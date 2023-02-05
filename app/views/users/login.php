@@ -14,7 +14,7 @@
 
     <div class="login-form-wrapper">
         <div class="left-side">
-        <img src="<?php echo URLROOT; ?>/img/wego_logo.png" alt="" class="logo">
+        <img src="<?php echo URLROOT; ?>/img/wego new-01.png" alt="" class="logo">
             <h1>WEGO</h1>
             <hr>
             <h3>Find Your<br> Transport Here</h3>

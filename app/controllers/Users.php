@@ -184,7 +184,7 @@
 
         // Validate Email
         if(empty($data['email'])){
-          $data['email_err'] = 'Pleae enter email';
+          $data['email_err'] = 'Please enter email';
         }
 
         // Validate Password
@@ -224,6 +224,7 @@
         if($loggedInUser){
           // Create Session
           $this->createUserSession($loggedInUser);
+          flash('register_success', 'You are now logged in');
         } else {
           $data['password_err'] = 'Password incorrect';
 
@@ -250,7 +251,7 @@
     }
 
     public function createUserSession($user){
-      $_SESSION['user_id'] = $user->id;
+      $_SESSION['user_id'] = $user->us_id;
       $_SESSION['user_email'] = $user->email;
       $_SESSION['user_name'] = $user->name;
       redirect('pages/dashboard');

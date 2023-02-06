@@ -73,13 +73,13 @@
           // Validated
           if($this->vehicleModel->addVehicle($data)){
             flash('vehicle_message', 'Vehicle Added');
-            redirect('pages/viewVehicle');
+            redirect('vehicles/addVehicle');
           } else {
             die('Something went wrong');
           }
         } else {
           // Load view with errors
-          $this->view('vehicles/addVehicle', $data);
+          $this->view('users/driver/addvehicle', $data);
         }
 
       } else {
@@ -90,7 +90,7 @@
           'route' => ''
         ];
   
-        $this->view('vehicles/addVehicle', $data);
+        $this->view('users/driver/addvehicle', $data);
       }
     }
   }

@@ -33,8 +33,8 @@
       $this->view('users/driver/viewvehicle', $data);
     }
 
-    public function acceptRequest(){
-      $requests = $this->vehicleModel->getRequests();
+    public function acceptRideRequest(){
+      //$requests = $this->vehicleModel->getRequests();
         
       //$vehicle = $this->vehicleModel->getRequestById($id);
       //$user = $this->userModel->getUserById($vehicle->vehicleid);
@@ -42,9 +42,9 @@
       $data = [
           'vehicle' =>'' ,
           'user' => '',
-          'requests' => $requests
+          // 'requests' => $requests
       ];
-      $this->view('users/driver/viewvehicle', $data);
+      $this->view('users/driver/acceptriderequest', $data);
     }
     
     public function viewProfile(){

@@ -20,25 +20,25 @@
           </a>
         </li>
         <li>
-          <a href="<?php echo URLROOT?>/users/supplier/parentrequests">
+          <a href="<?php echo URLROOT?>/prequests/viewParentRequest">
             <div class='bx bx-box' ></div>
             <span class="links_name">&nbsp; Parents</span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="<?php echo URLROOT?>/wrequests/viewWorkerRequest">
             <div class='bx bx-list-ul' ></div>
             <span class="links_name">&nbsp; Office Workers</span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="<?php echo URLROOT?>/rides/viewRides">
             <div class='bx bx-pie-chart-alt-2' ></div>
             <span class="links_name">&nbsp; Rides</span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="<?php echo URLROOT?>/driver/viewDrivers">
             <div class='bx bx-coin-stack' ></div>
             <span class="links_name">&nbsp; Drivers</span>
           </a>
@@ -158,7 +158,8 @@
             <div class="driver-topic">
                Vehicle locations
             </div>
-            <div><img class="map" src="../public/img/gmap.png "></div>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.9029768541595!2d79.85896421459267!3d6.902205495012633!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae25963120b1509%3A0x2db2c18a68712863!2sUniversity%20of%20Colombo%20School%20of%20Computing%20(UCSC)!5e0!3m2!1sen!2slk!4v1675683519781!5m2!1sen!2slk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+           <!-- <div><img class="map" src="../public/img/gmap.png "></div>-->
             
             <!--<div class="driver-details">
                 <div class="driver-img">
@@ -229,7 +230,9 @@
     </div>
         <!-- </div> -->
     <div class="card2">
+            <a href="<?php echo URLROOT?>/myvehicles/viewMyVehicles">
             <div class="addfunctions">My Vehicles</div>
+            </a>
             <div class="number">06</div>
             <div><img class="add" src="../public/img/car.png"></div>
             

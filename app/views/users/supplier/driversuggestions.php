@@ -7,7 +7,7 @@
 <html>
 </head>
 
-
+<script type="text/javascript" src="list.js"></script>
 <body>
 
 
@@ -24,7 +24,7 @@
           </a>
         </li>
         <li>
-          <a href="#" class="active">
+          <a href="#" >
             <div class='bx bx-box' ></div>
             <span class="links_name">&nbsp; Parents</span>
           </a>
@@ -42,7 +42,7 @@
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="#"  class="active">
             <div class='bx bx-coin-stack' ></div>
             <span class="links_name">&nbsp; Drivers</span>
           </a>
@@ -117,119 +117,103 @@
     </nav>
      
     <div class="home-content">
-<button class="tablink" onclick="openPage('Parentrequests')" id="defaultOpen" >Parent Requests</button>
-<button class="tablink" onclick="openPage('PAccepted')" >Accepted Parent Requests</button>
-
-<div id="Parentrequests" class="tabcontent">
+ <h2>Driver Suggestions</h2>
+ <br>
   <div class="friend-list">
     <div class="friend-card">
       
-      <div class="friend-name"><img src="../public/img/ac1.png" class="friend-picture" >Sheron Kingsley</div>
+      <div class="friend-name"><img src="../public/img/x4.png" class="friend-picture" >Chris Perera</div>
       <br>
       <br>
       <div class="friend-actions">
-        <button class="accept-button">Accept</button>
-        <button class="delete-button">Delete</button>
+        <button class="accept-button">Add</button>
+        <button class="delete-button">Remove</button>
       </div>
     </div>
     <div class="friend-card">
       
-      <div class="friend-name"><img src="../public/img/ac8.png " class="friend-picture" >Jane De Silva</div> 
+      <div class="friend-name"><img src="../public/img/x8.png" class="friend-picture" >Mark Fernando</div>
       <br>
       <br>
       <div class="friend-actions">
-        <button class="accept-button">Accept</button>
-        <button class="delete-button">Delete</button>
+        <button class="accept-button">Add</button>
+        <button class="delete-button">Remove</button>
       </div>
     </div>
     <div class="friend-card">
       
-      <div class="friend-name"><img src="../public/img/o1.png" class="friend-picture" >Anne De Zoysa</div>
+      <div class="friend-name"><img src="../public/img/x9.png" class="friend-picture" >Andrew Thomson</div>
       <br>
       <br>
       <div class="friend-actions">
-        <button class="accept-button">Accept</button>
-        <button class="delete-button">Delete</button>
+        <button class="accept-button">Add</button>
+        <button class="delete-button">Remove</button>
       </div>
     </div>
     <div class="friend-card">
       
-      <div class="friend-name"><img src="../public/img/w1.png" class="friend-picture" >John Fernando</div>
+      <div class="friend-name"><img src="../public/img/p7.png" class="friend-picture" >Roy Perera</div>
       <br>
       <br>
       <div class="friend-actions">
-        <button class="accept-button">Accept</button>
-        <button class="delete-button">Delete</button>
+        <button class="accept-button">Add</button>
+        <button class="delete-button">Remove</button>
       </div>
     </div>
     <div class="friend-card">
       
-      <div class="friend-name"><img src="../public/img/o6.png" class="friend-picture" >George Perera</div>
+      <div class="friend-name"><img src="../public/img/o6.png" class="friend-picture" >Frank De Silva</div>
       <br>
       <br>
       <div class="friend-actions">
-        <button class="accept-button">Accept</button>
-        <button class="delete-button">Delete</button>
+        <button class="accept-button">Add</button>
+        <button class="delete-button">Remove</button>
       </div>
     </div>
 
     <div class="friend-card">
       
-      <div class="friend-name"><img src="../public/img/w5.png" class="friend-picture" >Melissa De Silva</div>
-      <br>
-      <br>
-      <div class="friend-actions">
-        <button class="accept-button">Accept</button>
-        <button class="delete-button">Delete</button>
+        <div class="friend-name"><img src="../public/img/m4.png" class="friend-picture" >Solomon Perera</div>
+        <br>
+        <br>
+        <div class="friend-actions">
+          <button class="accept-button">Add</button>
+          <button class="delete-button">Remove</button>
+        </div>
       </div>
-    </div>
+
+
   </div>
   
   
   </div>
 
-<div id="PAccepted" class="tabcontent">
-  <div class="friend-list">
-    <div class="friend-card">
-      
-      <div class="friend-name"><img src="../public/img/p4.png" class="friend-picture" >Adam Awishka</div>
-      <br>
-      <br>
-      <div class="friend-actions">
-        <button class="details-button">View Details</button>
-       
-      </div>
-    </div>
-    <div class="friend-card">
-      
-      <div class="friend-name"><img src="../public/img/p8.png" class="friend-picture" >Susan Perera</div>
-      <br>
-      <br>
-      <div class="friend-actions">
-        <button class="details-button">View Details</button>
-      </div>
-    </div>
-    <div class="friend-card">
-      
-      <div class="friend-name"><img src="../public/img/p7.png" class="friend-picture" >Arthur Fernando</div>
-      <br>
-      <br>
-      <div class="friend-actions">
-        <button class="details-button">View Details</button>
-      </div>
-    </div>
-    <div class="friend-card">
-      
-      <div class="friend-name"><img src="../public/img/ac4.png" class="friend-picture" >Peter Perera</div>
-      <br>
-      <br>
-      <div class="friend-actions">
-        <button class="details-button">View Details</button>
-      </div>
-    </div>
+
+ 
   
 </div>
 
+
+
+
+         
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
 
 
     </body>
@@ -237,4 +221,4 @@
 
 
 
-    <!--<?php require APPROOT . '/views/inc/footer.php'; ?>-->
+    <?php require APPROOT . '/views/inc/footer.php'; ?>

@@ -1,0 +1,80 @@
+div.home-content h2 {
+    padding-top: 2%;
+    padding-left: 8%;
+    color: rgb(36, 20, 98);
+}
+
+.list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .card {
+    width: 25%;
+    height: 150px; 
+    margin-top: 5%;
+    margin-left: 30%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    margin-left: 75px;
+    border: 2px solid rgb(36, 20, 98);
+    align-items: stretch; 
+    background-color: rgb(187, 196, 228);
+    }
+
+
+.details {
+    font-size: 23px;
+    
+    color:rgb(36, 20, 98) ;
+    text-align: center;
+    padding-top: 5%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.ride-image {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin-right: 0;
+    width: 918.58215px;
+    height: 432.0506px;
+    transform: scale(0.5);
+    }
+
+.d-card{
+    width: 20%;
+    height: 150px; 
+    margin-top: 3%;
+    margin-left: 30%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    margin-left: 75px;
+    border: 2px solid rgb(36, 20, 98);
+    align-items: stretch; 
+    background-color: rgb(187, 196, 228);
+    }
+
+    .container {
+        position: relative;
+        height: 600px;
+        width: 280px;
+      }
+      
+      .driver-image {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        margin-right: 0;
+      }
+      
+      
+

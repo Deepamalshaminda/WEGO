@@ -3,12 +3,12 @@
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/dashboard.css">
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/prequest.css">
 <script type="text/javascript" src="<?php echo URLROOT; ?>/js/list.js"></script>
+<body>
 <title><?php echo SITENAME; ?></title>
 <html>
 </head>
 
 
-<body>
 
 
 <div class="sidebar">
@@ -24,13 +24,13 @@
           </a>
         </li>
         <li>
-          <a href="#" class="active">
+          <a href="#" >
             <div class='bx bx-box' ></div>
             <span class="links_name">&nbsp; Parents</span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="#" class="active">
             <div class='bx bx-list-ul' ></div>
             <span class="links_name">&nbsp; Office Workers</span>
           </a>
@@ -117,14 +117,14 @@
     </nav>
      
     <div class="home-content">
-<button class="tablink" onclick="openPage('Parentrequests')" id="defaultOpen" >Parent Requests</button>
-<button class="tablink" onclick="openPage('PAccepted')" >Accepted Parent Requests</button>
+<button class="tablink" onclick="openPage('workerrequest')" id="defaultOpen" >Office Worker Requests</button>
+<button class="tablink" onclick="openPage('WAccepted')" >Accepted Worker Requests</button>
 
-<div id="Parentrequests" class="tabcontent">
+<div id="workerrequest" class="tabcontent">
   <div class="friend-list">
     <div class="friend-card">
       
-      <div class="friend-name"><img src="../public/img/ac1.png" class="friend-picture" >Sheron Kingsley</div>
+      <div class="friend-name"><img src="../public/img/p1.png" class="friend-picture" >Michelle Fernando</div>
       <br>
       <br>
       <div class="friend-actions">
@@ -134,7 +134,7 @@
     </div>
     <div class="friend-card">
       
-      <div class="friend-name"><img src="../public/img/ac8.png " class="friend-picture" >Jane De Silva</div> 
+      <div class="friend-name"><img src="../public/img/p2.jpg" class="friend-picture" >Gabriella De Silva</div>
       <br>
       <br>
       <div class="friend-actions">
@@ -144,7 +144,7 @@
     </div>
     <div class="friend-card">
       
-      <div class="friend-name"><img src="../public/img/o1.png" class="friend-picture" >Anne De Zoysa</div>
+      <div class="friend-name"><img src="../public/img/m1.png" class="friend-picture" >John De Zoysa</div>
       <br>
       <br>
       <div class="friend-actions">
@@ -154,7 +154,7 @@
     </div>
     <div class="friend-card">
       
-      <div class="friend-name"><img src="../public/img/w1.png" class="friend-picture" >John Fernando</div>
+      <div class="friend-name"><img src="../public/img/m2.png" class="friend-picture" >James Perera</div>
       <br>
       <br>
       <div class="friend-actions">
@@ -164,7 +164,7 @@
     </div>
     <div class="friend-card">
       
-      <div class="friend-name"><img src="../public/img/o6.png" class="friend-picture" >George Perera</div>
+      <div class="friend-name"><img src="../public/img/vs round.png" class="friend-picture" >Zain Malik</div>
       <br>
       <br>
       <div class="friend-actions">
@@ -173,26 +173,17 @@
       </div>
     </div>
 
-    <div class="friend-card">
-      
-      <div class="friend-name"><img src="../public/img/w5.png" class="friend-picture" >Melissa De Silva</div>
-      <br>
-      <br>
-      <div class="friend-actions">
-        <button class="accept-button">Accept</button>
-        <button class="delete-button">Delete</button>
-      </div>
-    </div>
+
   </div>
   
   
   </div>
 
-<div id="PAccepted" class="tabcontent">
+<div id="WAccepted" class="tabcontent">
   <div class="friend-list">
     <div class="friend-card">
       
-      <div class="friend-name"><img src="../public/img/p4.png" class="friend-picture" >Adam Awishka</div>
+      <div class="friend-name"><img src="../public/img/m3.png" class="friend-picture" >Joel De Mel</div>
       <br>
       <br>
       <div class="friend-actions">
@@ -202,7 +193,7 @@
     </div>
     <div class="friend-card">
       
-      <div class="friend-name"><img src="../public/img/p8.png" class="friend-picture" >Susan Perera</div>
+      <div class="friend-name"><img src="../public/img/m4.png" class="friend-picture" >Sunil Perera</div>
       <br>
       <br>
       <div class="friend-actions">
@@ -211,7 +202,7 @@
     </div>
     <div class="friend-card">
       
-      <div class="friend-name"><img src="../public/img/p7.png" class="friend-picture" >Arthur Fernando</div>
+      <div class="friend-name"><img src="../public/img/ac6.png" class="friend-picture" >Zac Fernando</div>
       <br>
       <br>
       <div class="friend-actions">
@@ -220,16 +211,57 @@
     </div>
     <div class="friend-card">
       
-      <div class="friend-name"><img src="../public/img/ac4.png" class="friend-picture" >Peter Perera</div>
+      <div class="friend-name"><img src="../public/img/ac7.png" class="friend-picture" >Prakash Sivakumar</div>
       <br>
       <br>
       <div class="friend-actions">
         <button class="details-button">View Details</button>
       </div>
     </div>
+
+    <div class="friend-card">
+      
+        <div class="friend-name"><img src="../public/img/o3.png" class="friend-picture" >Peter Parker</div>
+        <br>
+        <br>
+        <div class="friend-actions">
+          <button class="details-button">View Details</button>
+        </div>
+      </div>
+
+      <div class="friend-card">
+      
+        <div class="friend-name"><img src="../public/img/w7.png" class="friend-picture" >Jesica De Silva</div>
+        <br>
+        <br>
+        <div class="friend-actions">
+          <button class="details-button">View Details</button>
+        </div>
+      </div>
   
 </div>
 
+
+
+
+         
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
 
 
     </body>

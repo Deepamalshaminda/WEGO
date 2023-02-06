@@ -502,6 +502,7 @@ nav .profile-details i{
   border-radius: 30px;
   padding: 1%;
   margin-right: 3%;
+  margin-left: 20px;
 }
 
 .driver-topic{
@@ -582,4 +583,11 @@ nav .profile-details i{
   border-color: white;
   color:white;
   border: 0;
+}
+
+iframe{
+  width:300px;
+  height :500px;
+  border:0;
+  
 }

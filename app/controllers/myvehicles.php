@@ -1,5 +1,6 @@
+
 <?php 
-class prequests extends Controller
+class myvehicles extends Controller
 {
     
     
@@ -10,10 +11,9 @@ public $userModel;
   }
 
 
-public function viewParentRequest(){
+public function viewMyVehicles(){
             //view
-            $this->view('users/supplier/parentrequests');
+            $this->view('users/supplier/vehicles');
 }
 
 }
-

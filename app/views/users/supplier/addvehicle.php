@@ -1,6 +1,6 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
 
-<!--<link rel="stylesheet" href="<?php echo URLROOT; ?>/css/addvehicle.css">-->
+<link rel="stylesheet" href="<?php echo URLROOT; ?>/css/addvehicle.css">
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/dashboard.css">
 <title><?php echo SITENAME; ?></title>
 </head>

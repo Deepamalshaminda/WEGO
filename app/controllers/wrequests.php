@@ -1,5 +1,5 @@
 <?php 
-class prequests extends Controller
+class wrequests extends Controller
 {
     
     
@@ -10,9 +10,9 @@ public $userModel;
   }
 
 
-public function viewParentRequest(){
+public function viewWorkerRequest(){
             //view
-            $this->view('users/supplier/parentrequests');
+            $this->view('users/supplier/workerrequest');
 }
 
 }

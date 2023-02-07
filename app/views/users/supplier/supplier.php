@@ -150,10 +150,12 @@
         </div>
         
         <div class="map-card">
-            <div class="driver-topic">
-               Vehicle locations
-            </div>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.9029768541595!2d79.85896421459267!3d6.902205495012633!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae25963120b1509%3A0x2db2c18a68712863!2sUniversity%20of%20Colombo%20School%20of%20Computing%20(UCSC)!5e0!3m2!1sen!2slk!4v1675683519781!5m2!1sen!2slk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  <div class="driver-topic">
+    Vehicle locations
+  </div>
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126743.63162574056!2d79.78616450128246!3d6.921833528266875!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae253d10f7a7003%3A0x320b2e4d32d3838d!2sColombo!5e0!3m2!1sen!2slk!4v1675796781445!5m2!1sen!2slk" width="420" height="450" style="border:0;" allowfullscreen></iframe>
+</div>
+
            <!-- <div><img class="map" src="../public/img/gmap.png "></div>-->
             
             <!--<div class="driver-details">
@@ -226,9 +228,9 @@
         <!-- </div> -->
     <div class="card2">
             <a href="<?php echo URLROOT?>/myvehicles/viewMyVehicles">
-            <div class="addfunctions">My Vehicles</div>
+            <button class="addfunctions">My Vehicles</button>
             </a>
-            <div class="number">06</div>
+           
             <div><img class="add" src="../public/img/car.png"></div>
             
           </div>

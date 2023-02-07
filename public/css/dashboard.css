@@ -383,6 +383,7 @@ nav .profile-details i{
   }
   .home-content .sales-boxes .top-sales{
     margin: 0;
+    width: 480px;
   }
 }
 @media (max-width: 1000px) {
@@ -493,16 +494,19 @@ nav .profile-details i{
 }
 
 .card{
-  width: 400px;
+  width: 440px;
   background: white;
   box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
   transition: 0.3s;
-  height: 450px;
+  height: 420px;
   margin-top: 0%;
   border-radius: 30px;
   padding: 1%;
-  margin-right: 3%;
+  
   margin-left: 20px;
+  display: inline-block;
+  margin-right: 10px;
+  
 }
 
 .driver-topic{
@@ -510,7 +514,7 @@ nav .profile-details i{
   font-size:24px;
   font-weight: 600;
   text-align: center;
-  margin-bottom: 16%;
+  
 }
 
 .profile-img{
@@ -541,66 +545,69 @@ nav .profile-details i{
   width:250px ;
 }
 
-.card2{
-  width: 400px;
-  background: white;
-  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
-  transition: 0.3s;
+
+.card2 {
+  display: inline-block;
+  width: 470px;
   height: 200px;
-  margin-top: 4%;
-  border-radius: 30px;
-  padding: 1%;
-  margin-right: 3%;
-  margin-left: 3%;
-  
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px grey;
+  text-align: right;
+  margin: 20px;
+  position: relative;
 }
 
-/* .card3{
-  width: 400px;
-  background: white;
-  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
-  transition: 0.3s;
-  height: 200px;
-  margin-top: 4%;
-  border-radius: 30px;
-  padding: 1%;
-  margin-right: 3%;
-  margin-left: 3%;
-  
-} */
-
-.number{
-  font-size:200%;
-  font-weight: bolder;
+.add {
+  width: 150px;
+  height: 150px;
+  margin: 20px auto;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
 }
 
-.join{
+button.addfunctions {
+  font-size: 20px;
+  font-weight: bold;
+  padding: 20px;
+  background-color: lightblue;
+  border-radius: 10px;
+  border: none;
+  color: white;
+  width: 290px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+
+
+.join {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.button.addfunctions{
-  border-radius: 0%;
-  border-color: white;
-  color:white;
+
+iframe{
+  width: 420px;
+  height: 450px;
   border: 0;
 }
 
-iframe{
-  width:450px;
-  height :380px;
-  border:0;
-  
-}
-
 .map-card{
-  width: 500px;
+  width: 420px;
   background: white;
   box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
   transition: 0.3s;
   height: 450px;
   margin-top: 0%;
   border-radius: 30px;
-  padding: 1%;
   margin-right: 3%;
-  margin-left: 10%;
+  margin-left: 5%;
+  ;
 }

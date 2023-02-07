@@ -19,7 +19,8 @@ h1{
     padding: 30px;
     width: auto ;
     color: black;
-    font-weight: bold;
+    font-weight: bolder;
+    
 }
 
 h2{
@@ -87,3 +88,7 @@ h2{
 margin-right: auto;
 display: block;
 }
+
+
+
+

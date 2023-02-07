@@ -493,11 +493,11 @@ nav .profile-details i{
 }
 
 .card{
-  width: 350px;
+  width: 400px;
   background: white;
   box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
   transition: 0.3s;
-  height: 550px;
+  height: 450px;
   margin-top: 0%;
   border-radius: 30px;
   padding: 1%;
@@ -586,8 +586,21 @@ nav .profile-details i{
 }
 
 iframe{
-  width:300px;
-  height :500px;
+  width:450px;
+  height :380px;
   border:0;
   
+}
+
+.map-card{
+  width: 500px;
+  background: white;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+  transition: 0.3s;
+  height: 450px;
+  margin-top: 0%;
+  border-radius: 30px;
+  padding: 1%;
+  margin-right: 3%;
+  margin-left: 10%;
 }

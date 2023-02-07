@@ -76,5 +76,11 @@ div.home-content h2 {
         margin-right: 0;
       }
       
-      
+    .card a{
+      text-decoration:none;
+    } 
+    
+    .d-card a{
+      text-decoration:none;
+    }
 

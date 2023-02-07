@@ -44,47 +44,42 @@
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="<?php echo URLROOT?>/Earningschart/viewEarnings">
             <div class='bx bx-book-alt' ></div>
             <span class="links_name">&nbsp; Earnings</span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="<?php echo URLROOT?>/Salarydetails/viewSalaryInfo">
             <div class='bx bx-user' ></div>
             <span class="links_name">&nbsp; Salaries</span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="<?php echo URLROOT?>/reports/viewReports">
             <div class='bx bx-user' ></div>
             <span class="links_name">&nbsp; Reports</span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="<?php echo URLROOT?>/Documents/viewDocuments">
             <div class='bx bx-user' ></div>
             <span class="links_name">&nbsp; Vehicle Documents</span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="<?php echo URLROOT?>/Vmaintenance/viewMaintenanceDetails">
             <div class='bx bx-user' ></div>
             <span class="links_name">&nbsp; Vehicle Maintenance</span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="<?php echo URLROOT?>/DriverAttendance/viewDriverAttendance">
             <div class='bx bx-user' ></div>
             <span class="links_name">&nbsp; Driver Attendace</span>
           </a>
         </li>
-        <li>
-          <a href="#">
-            <div class='bx bx-user' ></div>
-            <span class="links_name">&nbsp; Vehicle Status</span>
-          </a>
-        </li>
+        
         
         
         <!--<li class="log_out">
@@ -154,7 +149,7 @@
           <div><img class="earn" src="../public/img/graph.png"></div>
         </div>
         
-        <div class="card">
+        <div class="map-card">
             <div class="driver-topic">
                Vehicle locations
             </div>

@@ -1,0 +1,77 @@
+.graph-card {
+    width: 52%;
+    height: 30%;
+    margin: 10px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    align-content: center;
+    border-width: 1px;
+    margin-left: 25%;
+    background-color: rgb(221, 227, 237);
+  }
+
+  
+  #myChart {
+    display: block;
+    margin: 0 auto;
+  }
+
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 5%;
+  }
+
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+  th {
+    background-color: #dddddd;
+  }
+
+  .table-card{
+    width: 70%;
+    height: 50%;
+    margin: 10px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    align-content: center;
+    border-width: 1px;
+    margin-left: 16%;
+    margin-top: 5%;
+    background-color: rgb(238, 238, 247);
+    padding: 5% 5% 3% 5%;
+  }
+
+  .table tr:nth-child(even){
+    background-color: #f2f2f2;
+  }
+
+.table tr:hover {
+  background-color: #ddd;
+}
+
+.pie-card {
+  width: 57%;
+  height: 35%;
+  margin: 10px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  align-content: center;
+  border-width: 1px;
+  margin-left: 20%;
+  background-color: white;
+}

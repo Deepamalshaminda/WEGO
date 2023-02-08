@@ -116,7 +116,7 @@
     </nav>
      
     <div class="home-content">
-
+    
     <div class="graph-card">
       <h3>Earnings of last six months</h3>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>

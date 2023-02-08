@@ -116,6 +116,9 @@
     </nav>
      
     <div class="home-content">
+      <br>
+      <br>
+      <br>
       <div class="pie-card">
       <h3>Salaries to be paid this month</h3>
       <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>

@@ -114,80 +114,78 @@
     </nav>
      
     <div class="home-content">
-    
+  <div class="card"> 
     <h1>Add your vehicle here.....</h1>
     <form action="<?php echo URLROOT; ?>/vehicles/addvehicle" method="post">
-    <div class="form-wrapper">
-    <div class="boxes">
-    <div class="box-left">
-            <div class="forms">
+    <div class="form-group">
+    
                 <label for="vehicleno">Vehicle No &nbsp; : <sup>*</sup></label>
                 <input type="vehicleno" name="vehicleno" class="controls <?php echo (!empty($data['vehicleno_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['vehicleno']; ?>">
                 <span class="invalid-feedback"><?php echo $data['vehicleno_err']; ?></span>
             </div><br>
 
-            <div class="forms">
+            <!--<div class="form-group">
                 <label for="chassino">Chassi No &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : <sup>*</sup></label>
                 <input type="chassino" name="chassino" class="controls <?php echo (!empty($data['chassino_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['chassino']; ?>">
                 <span class="invalid-feedback"><?php echo $data['chassino_err']; ?></span>
-            </div><br>
+            </div><br>-->
 
-            <div class="forms">
+            <div class="form-group">
                 <label for="model">Model &nbsp; &nbsp; : <sup>*</sup></label>
                 <input type="model" name="model" class="controls <?php echo (!empty($data['model_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['model']; ?>">
                 <span class="invalid-feedback"><?php echo $data['model_err']; ?></span>
             </div><br>
 
-            <div class="forms">
+            <div class="form-group">
                 <label for="color">Color  : <sup>*</sup></label>
                 <input type="color" name="color" class="controls <?php echo (!empty($data['color_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['color']; ?>">
                 <span class="invalid-feedback"><?php echo $data['color_err']; ?></span>
             </div>
 
-            <div class="forms">
+            <div class="form-group">
                 <label for="year">Year  : <sup>*</sup></label>
                 <input type="year" name="year" class="controls <?php echo (!empty($data['year_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['year']; ?>">
                 <span class="invalid-feedback"><?php echo $data['year_err']; ?></span>
             </div>
 
-            <div class="forms">
+            <div class="form-group">
                 <label for="address">Address : <sup>*</sup></label>
                 <input type="address" name="address" class="controls <?php echo (!empty($data['address_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['address']; ?>">
                 <span class="invalid-feedback"><?php echo $data['address_err']; ?></span>
             </div>
 
-            <div class="forms">
+            <div class="form-group">
                 <label for="route">Route : <sup>*</sup></label>
                 <input type="route" name="route" class="controls <?php echo (!empty($data['route_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['route']; ?>">
                 <span class="invalid-feedback"><?php echo $data['route_err']; ?></span>
             </div>
 
-            <div class="forms">
+            <div class="form-group">
                 <label for="starttime">Usual journey start time : <sup>*</sup></label>
                 <input type="starttime" name="starttime" class="controls <?php echo (!empty($data['starttime_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['starttime']; ?>">
                 <span class="invalid-feedback"><?php echo $data['starttime_err']; ?></span>
             </div>
 
-            <div class="forms">
+            <div class="form-group">
                 <label for="seatingcapacity">Seating capacity: <sup>*</sup></label>
                 <input type="seatingcapacity" name="seatingcapacity" class="controls <?php echo (!empty($data['seatingcapacity_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['seatingcapacity']; ?>">
                 <span class="invalid-feedback"><?php echo $data['seatingcapacity_err']; ?></span>
             </div>
 
-            <div class="forms">
+            <div class="form-group">
                 <label for="Ac">AC/Non-AC : <sup>*</sup></label>
                 <input type="Ac" name="Ac" class="controls <?php echo (!empty($data['Ac_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['Ac']; ?>">
                 <span class="invalid-feedback"><?php echo $data['Ac_err']; ?></span>
             </div>
 
-            <div class="forms">
+            <div class="form-group">
                 <label for="expirylicence">Expiry date of licence: <sup>*</sup></label>
                 <input type="date" name="expirylicence" size="30" placeholder="Enter licence expiry date"
                  class="controls <?php echo (!empty($data['expirylicence_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['expirylicence']; ?>">
                 <span class="invalid-feedback"><?php echo $data['expirylicence_err']; ?></span>
             </div>
 
-            <div class="forms">
+            <div class="form-group">
                 <label for="comments">Special conditions<sup>*</sup></label>
                 <input type="comments" name="comments" class="controls <?php echo (!empty($data['comments_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['comments']; ?>">
                 <span class="invalid-feedback"><?php echo $data['comments_err']; ?></span>
@@ -202,6 +200,7 @@
             </div>
         </div>
     </form>
+  </div>
     <!-- <div class="box-right">
         <div class="upload">
             <img src="../public/img/upimage.jpg"><br>

@@ -1,7 +1,7 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
 
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/dashboard.css">
-<link rel="stylesheet" href="<?php echo URLROOT; ?>/css/prequest.css">
+<link rel="stylesheet" href="<?php echo URLROOT; ?>/css/doc.css">
 <script type="text/javascript" src="<?php echo URLROOT; ?>/js/list.js"></script>
 <title><?php echo SITENAME; ?></title>
 <html>
@@ -41,7 +41,7 @@
           </a>
         </li>
         <li>
-          <a href="#"  class="active">
+          <a href="#"  >
             <div class='bx bx-coin-stack' ></div>
             <span class="links_name">&nbsp; Drivers</span>
           </a>
@@ -65,7 +65,7 @@
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="#" class="active">
             <div class='bx bx-user' ></div>
             <span class="links_name">&nbsp; Vehicle Documents</span>
           </a>
@@ -111,28 +111,77 @@
     </nav>
      
     <div class="home-content">
+      <br>
+      <br>
  
     <div class="card-container">
   <div class="card">
-    <h2 class="card-title">Vehicle ID 001 Documents</h2>
-    <p class="card-content">Vehicle Insuarance Do</p>
-    <a href="#" class="view-link">View</a>
-    <a href="#" class="download-link">Download</a>
+    <h2 class="card-title">Vehicle ID 001 Documents</h2><br>
+    <p class="card-content">Vehicle Insuarance Document</p>
+    <button class="view-link">View</button><br>
+    <button class="download-link">Download</button><br>
+    <p class="card-content">Vehicle Revenue License</p>
+    <button class="view-link">View</button><br>
+    <button class="download-link">Download</button><br>
+    <p class="card-content">Vehicle Registration Certificate</p>
+    <button class="view-link">View</button><br>
+    <button class="download-link">Download</button><br>
+    <p class="card-content">Permission Letter</p>
+    <button class="view-link">View</button><br>
+    <button class="download-link">Download</button>
   </div>
   <div class="card">
-    <h2 class="card-title">Document 2</h2>
-    <p class="card-content">Content of Document 2</p>
-    <a href="#" class="view-link">View</a>
-    <a href="#" class="download-link">Download</a>
+    <h2 class="card-title">Vehicle ID 002 Documents</h2><br>
+    <p class="card-content">Vehicle Insuarance Document</p>
+    <button class="view-link">View</button><br>
+    <button class="download-link">Download</button><br>
+    <p class="card-content">Vehicle Revenue License</p>
+    <button class="view-link">View</button><br>
+    <button class="download-link">Download</button><br>
+    <p class="card-content">Vehicle Registration Certificate</p>
+    <button class="view-link">View</button><br>
+    <button class="download-link">Download</button><br>
+    <p class="card-content">Permission Letter</p>
+    <button class="view-link">View</button><br>
+    <button class="download-link">Download</button>
   </div>
-  <!-- Add more cards for additional documents -->
-</div>
+
+  <div class="card">
+    <h2 class="card-title">Vehicle ID 003 Documents</h2><br>
+    <p class="card-content">Vehicle Insuarance Document</p>
+    <button class="view-link">View</button><br>
+    <button class="download-link">Download</button><br>
+    <p class="card-content">Vehicle Revenue License</p>
+    <button class="view-link">View</button><br>
+    <button class="download-link">Download</button><br>
+    <p class="card-content">Vehicle Registration Certificate</p>
+    <button class="view-link">View</button><br>
+    <button class="download-link">Download</button><br>
+    <p class="card-content">Permission Letter</p>
+    <button class="view-link">View</button><br>
+    <button class="download-link">Download</button>
+  </div>
+
+  <div class="card">
+    <h2 class="card-title">Vehicle ID 004 Documents</h2><br>
+    <p class="card-content">Vehicle Insuarance Document</p>
+    <button class="view-link">View</button><br>
+    <button class="download-link">Download</button><br>
+    <p class="card-content">Vehicle Revenue License</p>
+    <button class="view-link">View</button><br>
+    <button class="download-link">Download</button><br>
+    <p class="card-content">Vehicle Registration Certificate</p>
+    <button class="view-link">View</button><br>
+    <button class="download-link">Download</button><br>
+    <p class="card-content">Permission Letter</p>
+    <button class="view-link">View</button><br>
+    <button class="download-link">Download</button>
+  </div>
 
 
 
- 
+
   
-</div>
 
 
 

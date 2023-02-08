@@ -144,6 +144,21 @@
                         <td><button class="report-btn">View</button></td>
                         <td><img src="../public/img/downloads.png"></td>
                     </tr>
+                    <tr class="row">
+                        <td>Driver Attendance Report</td>
+                        <td><button class="report-btn">View</button></td>
+                        <td><img src="../public/img/downloads.png"></td>
+                    </tr>
+                    <tr class="row">
+                        <td>Driver Attendance Report</td>
+                        <td><button class="report-btn">View</button></td>
+                        <td><img src="../public/img/downloads.png"></td>
+                    </tr>
+                    <tr class="row">
+                        <td>Income and Expense Summary Report</td>
+                        <td><button class="report-btn">View</button></td>
+                        <td><img src="../public/img/downloads.png"></td>
+                    </tr>
                     
                     
                 </table>

@@ -1,9 +1,9 @@
 select {
     background-color: #f1f1f1;
     font-size: 16px;
-    padding: 12px;
+    padding: 8px;
     border: none;
-    border-radius: 4px;
+    border-radius: 10px;
   }
   
   option {
@@ -14,3 +14,25 @@ select {
     background-color: #ddd;
   }
   
+  .input[type=submit] {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    font-size: 12px;
+    cursor: pointer;
+    background-color: rgb(53, 13, 108);
+    color: white;
+    margin-right: 1%;
+  }
+  
+  
+  
+  .input[type=cancel] {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    font-size: 12px;
+    cursor: pointer;
+    background-color: rgb(107, 107, 217);
+    color: white;
+  }

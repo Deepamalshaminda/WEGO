@@ -6,7 +6,7 @@
         </div>
         <ul class="nav-links">
             <li>
-                <a href="#" class="active">
+                <a href="<?php echo URLROOT;?>/Pages/dashboard" class="active">
                     <i class='bx bx-grid-alt'></i>
                     <span class="links_name">Dashboard</span>
                 </a>
@@ -20,45 +20,45 @@
             </li>
 
             <li>
-                <a href="#">
+                <a href="<?php echo URLROOT;?>/ManageDrivers/checkTripInfo">
                     <i class='bx bx-list-ul'></i>
                     <span class="links_name">Check Trip Info</span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="<?php echo URLROOT;?>/ManageDrivers/viewEarnings">
                     <i class='bx bx-pie-chart-alt-2'></i>
                     <span class="links_name">View Earnings</span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="<?php echo URLROOT;?>/Vehicles/studentsToBeAbsent">
                     <i class='bx bx-coin-stack'></i>
                     <span class="links_name">Students to be Absent</span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="<?php echo URLROOT;?>/ManageDrivers/viewProfile">
                     <i class='bx bx-book-alt'></i>
                     <span class="links_name">View Profile</span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="<?php echo URLROOT;?>/Vehicles/completedTrips">
                     <i class='bx bx-user'></i>
                     <span class="links_name">Completed Trips</span>
                 </a>
             </li>
 
             <li>
-                <a href="<?php echo URLROOT;?>/vehicles/addVehicle">
+                <a href="<?php echo URLROOT;?>/Vehicles/addVehicle">
                     <i class='bx bx-user'></i>
                     <span class="links_name">Add Another Vehicle</span>
                 </a>
             </li>
 
             <li class="log_out">
-                <a href="#">
+                <a href="<?php echo URLROOT;?>/Users/logout">
                     <i class='bx bx-log-out'></i>
                     <span class="links_name">Log out</span>
                 </a>

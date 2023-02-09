@@ -130,6 +130,11 @@
                      </div>         
                     
               </div>
+
+              <div>
+                     
+              </div>
+
               <div class="btn-wrapper">
                     <button class="btn-submit">Register</button>
                     <button class="btn-cancel">Cancel</button>

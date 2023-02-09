@@ -46,6 +46,22 @@
       ];
       $this->view('users/driver/acceptriderequest', $data);
     }
+
+    public function checkTripInfo(){
+      //$dashboard = $this->viewDashboardModel->viewDashboard();
+      $data = [
+        'trip' => 'trip'
+      ];
+      $this->view('users/driver/checktripinfo', $data);
+    }
+
+    public function viewEarnings(){
+      //$dashboard = $this->viewDashboardModel->viewDashboard();
+      $data = [
+        'earnings' => 'earnings'
+      ];
+      $this->view('users/driver/viewearnings', $data);
+    }
     
     public function viewProfile(){
       $data = [

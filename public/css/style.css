@@ -54,6 +54,14 @@ body{
     border: #d9d6d6 1px solid;
 }
 
+.full-page .register-wrapper .input{
+  background-color: #e4e0e0;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  box-shadow: #797474;
+}
+
 ::placeholder{
     color: #cccbcb;
     font-family: Poppins, sans-serif;

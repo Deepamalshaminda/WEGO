@@ -93,4 +93,20 @@
         $this->view('users/driver/addvehicle', $data);
       }
     }
+
+    public function studentsToBeAbsent(){
+      //$dashboard = $this->viewDashboardModel->viewDashboard();
+      $data = [
+        'student' => 'student'
+      ];
+      $this->view('users/driver/studentstobeabsent', $data);
+    }
+
+    public function completedTrips(){
+      //$dashboard = $this->viewDashboardModel->viewDashboard();
+      $data = [
+        'completedTrip' => 'completedTrip'
+      ];
+      $this->view('users/driver/completedtrips', $data);
+    }
   }

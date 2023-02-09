@@ -1,0 +1,125 @@
+/* .full-page{
+    position: relative;
+    max-height: 100vh;
+    width: calc(100% - 240px);
+    left: 240px;
+    top: 100px;
+    transition: all 0.5s ease;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.top-container-left{
+    background-color: black;
+    height: 10vh;
+}
+
+.top-container-right{
+    background-color: rgb(146, 143, 143);
+    height: 10vh;
+} */
+
+.full-page{
+    position: relative;
+    max-height: 100vh;
+    width: calc(100% - 240px);
+    left: 240px;
+    top: 100px;
+    transition: all 0.5s ease;
+    justify-content: center;
+    align-items: center;
+    display: block;
+}
+
+.top-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.top-container-left{
+    position: relative;
+    /* padding-right: 10px;
+    padding-left: 10px; */
+    background-color: rgb(192, 185, 185);
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin-right: 10%;
+    margin-left: 10%;
+    padding-bottom: 5%;
+    border-radius: 2%; */
+}
+
+.top-container-right{
+    background-color: rgb(181, 177, 177);
+    float: left;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* padding-right: 10px;
+    padding-left: 10px; */
+}
+
+/* .card-row{
+    display: flex;
+} */
+
+.side-image{
+    padding: 5%;
+    height: 80vh;
+    width: 90%;
+
+}
+
+.card-row-right{
+    text-align: center !important;
+    align-items: center !important;
+}
+
+/* .card-row-left{
+    background-color: rgb(165, 168, 168);
+} */
+
+.card-row-left-container{
+    background-color: rgb(212, 212, 212);
+    height: 44vh;
+    margin-top: 10%;
+    border-radius: 10px;
+    text-align: left;
+    padding-left: 2vh;
+}
+
+.card-row-left{
+    text-align: center;
+    justify-content: center;
+    display: flex;
+}
+
+.trip-id{
+    height: 8vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.details-container-top{
+    height: 6vh;
+}
+
+.button{
+    align-items: center;
+    padding: 8px 24px;
+    color: white;
+    background-color: rgb(36, 36, 74);
+    border: none;
+    border-radius: 20px;
+}
+
+.link{
+    text-decoration: none;
+    color: white;
+}

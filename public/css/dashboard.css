@@ -10,7 +10,7 @@
   position: fixed;
   height: 100%;
   width: 240px;
-  background: #356ed9;
+  background: #0c457d;
   transition: all 0.5s ease;
 }
 .sidebar.active{
@@ -53,7 +53,7 @@
   background: #9fb6e0;
 }
 .sidebar .nav-links li a:hover{
-  background: #2c0686;
+  background: #6967e7;
 }
 .sidebar .nav-links li i{
   min-width: 60px;
@@ -88,7 +88,7 @@
   display: flex;
   justify-content: space-between;
   height: 60px;
-  background: #558bef;
+  background:white;
   display: flex;
   align-items: center;
   position: fixed;
@@ -594,20 +594,20 @@ a {
 
 
 iframe{
-  width: 420px;
+  width: 550px;
   height: 450px;
   border: 0;
 }
 
 .map-card{
-  width: 420px;
-  background: white;
-  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
-  transition: 0.3s;
-  height: 450px;
-  margin-top: 0%;
-  border-radius: 30px;
-  margin-right: 3%;
-  margin-left: 5%;
+  width: 900px;
+    background: white;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+    transition: 0.3s;
+    height: 450px;
+    margin-top: 0%;
+    border-radius: 30px;
+    margin-right: 10%;
+    margin-left: 2%
   ;
 }

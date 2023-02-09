@@ -24,5 +24,15 @@ public function viewRideInfo(){
     $this->view('users/supplier/ongoing');
 }
 
+public function assignDrivers(){
+  //view
+  $this->view('users/supplier/assigndrivers');
+}
+
+public function changeDrivers(){
+  //view
+  $this->view('users/supplier/changedrivers');
+}
+
 
 }

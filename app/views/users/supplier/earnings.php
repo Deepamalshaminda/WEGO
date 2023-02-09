@@ -137,7 +137,7 @@
             data: <?php echo json_encode($data) ?>,
             backgroundColor: 'rgba(0, 116, 203, 0.35)',
             borderColor: 'rgba(0, 140, 214, 1)',
-            borderWidth: 1
+            borderWidth: 0
             
           }]
         },
@@ -156,7 +156,14 @@
 
 
     </div>
-    <br>
+   
+    <div class="total-card">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <canvas id="myDonutChart"></canvas>
+
+
+    
+    </div>
 
 
     

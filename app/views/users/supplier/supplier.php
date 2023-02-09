@@ -108,6 +108,8 @@
     </nav>
 
     <div class="home-content">
+      <br>
+      <br> 
       <div class="overview-boxes">
         <div class="box">
           <div class="right-side">

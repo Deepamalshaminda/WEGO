@@ -1,103 +1,82 @@
-<!--navigation bar left-->
-<div class="sidebar">
-        <div class="logo-details">
-            <i><img src="<?php echo URLROOT?>/img/wego_logo.png" class="wego-logo" alt="wego-logo"></i>
-            <span class="logo_name">WEGO</span>
-        </div>
-        <ul class="nav-links">
-            <li>
-                <a href="<?php echo URLROOT;?>/Pages/dashboard" class="active">
-                    <i class='bx bx-grid-alt'></i>
-                    <span class="links_name">Dashboard</span>
-                </a>
-            </li>
 
-            <li>
-                <a href="<?php echo URLROOT;?>/ManageDrivers/acceptRideRequest">
-                    <i class='bx bx-box'></i>
-                    <span class="links_name">Accept Ride Requests</span>
-                </a>
-            </li>
+<link rel="stylesheet" href="<?php echo URLROOT; ?>/css/p_dashboard.css">
+  <title><?php echo SITENAME; ?></title>
+</head>
+<body>
 
-            <li>
-                <a href="<?php echo URLROOT;?>/ManageDrivers/checkTripInfo">
-                    <i class='bx bx-list-ul'></i>
-                    <span class="links_name">Check Trip Info</span>
-                </a>
-            </li>
-            <li>
-                <a href="<?php echo URLROOT;?>/ManageDrivers/viewEarnings">
-                    <i class='bx bx-pie-chart-alt-2'></i>
-                    <span class="links_name">View Earnings</span>
-                </a>
-            </li>
-            <li>
-                <a href="<?php echo URLROOT;?>/Vehicles/studentsToBeAbsent">
-                    <i class='bx bx-coin-stack'></i>
-                    <span class="links_name">Students to be Absent</span>
-                </a>
-            </li>
-            <li>
-                <a href="<?php echo URLROOT;?>/ManageDrivers/viewProfile">
-                    <i class='bx bx-book-alt'></i>
-                    <span class="links_name">View Profile</span>
-                </a>
-            </li>
-            <li>
-                <a href="<?php echo URLROOT;?>/Vehicles/completedTrips">
-                    <i class='bx bx-user'></i>
-                    <span class="links_name">Completed Trips</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="<?php echo URLROOT;?>/Vehicles/addVehicle">
-                    <i class='bx bx-user'></i>
-                    <span class="links_name">Add Another Vehicle</span>
-                </a>
-            </li>
-
-            <li class="log_out">
-                <a href="<?php echo URLROOT;?>/Users/logout">
-                    <i class='bx bx-log-out'></i>
-                    <span class="links_name">Log out</span>
-                </a>
-            </li>
-        </ul>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
+  <div class="sidebar">
+    <div class="logo-details">
+      <div class='bx bxl-c-plus-plus'></div>
+      <span class="logo_name">&nbsp; WeGo</span>
     </div>
-
-
-
-
-
-    <section class="home-section">
-        <nav>
-            <div class="sidebar-button">
-                <i class='bx bx-menu sidebarBtn'></i>
-                <span class="dashboard">Dashboard</span>
-            </div>
-            <div class="search-box">
-                <input type="text" placeholder="Search...">
-                <i class='bx bx-search'></i>
-            </div>
-            <div class="profile-details">
-                <!--<img src="images/profile.jpg" alt="">-->
-                <!-- <span class="admin_name">Profile</span>
-                <i class='bx bx-chevron-down'></i> -->
-                
-            </div>
-        </nav>
-       
-    </section>
-
-    <script>
-        let sidebar = document.querySelector(".sidebar");
-        let sidebarBtn = document.querySelector(".sidebarBtn");
-        sidebarBtn.onclick = function () {
-            sidebar.classList.toggle("active");
-            if (sidebar.classList.contains("active")) {
-                sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
-            } else
-                sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
-        }
-    </script>
+      <ul class="nav-links">
+        <li>
+          <a href="<?php echo URLROOT?>/Dashboard/dashboard" class="">
+            <div class='bx bx-grid-alt' ></div>
+            <span class="links_name">&nbsp; Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="<?php echo URLROOT?>/Sendrequests/sendrequest">
+            <div class='bx bx-box' ></div>
+            <span class="links_name">&nbsp;Send requests</span>
+          </a>
+        </li>
+        <li>
+          <a href="<?php echo URLROOT?>/Makereservations/makereservation">
+            <div class='bx bx-list-ul' ></div>
+            <span class="links_name">&nbsp; Make reservations</span>
+          </a>
+        </li>
+        <li>
+          <a href="<?php echo URLROOT?>/Payments/payment">
+            <div class='bx bx-pie-chart-alt-2' ></div>
+            <span class="links_name">&nbsp; Payments</span>
+          </a>
+        </li>
+        <li>
+          <a href="<?php echo URLROOT?>/Attendencechildren/attendencechild">
+            <div class='bx bx-coin-stack' ></div>
+            <span class="links_name">&nbsp; Student attendence</span>
+          </a>
+        </li>
+        <!--<li>
+          <a href="#">
+            <div class='bx bx-book-alt' ></div>
+            <span class="links_name">&nbsp; My added children</span>
+          </a>
+        </li>-->
+        <li>
+          <a href="#">
+            <div class='bx bx-user' ></div>
+            <span class="links_name">&nbsp; </span>
+          </a>
+        </li>
+        
+        <li class="log_out">
+          <a href="<?php echo URLROOT?>/Users/logout">
+            <div class='bx bx-log-out'></div>
+            <span class="links_name">&nbsp; Log out</span>
+          </a>
+        </li>
+      </ul>
+  </div>
+  <section class="home-section">
+    <nav>
+      <div class="sidebar-button">
+        <div class='bx bx-menu sidebarBtn'></div>
+        
+      </div>
+      <div class="search-box">
+        <input type="text" placeholder="Search...">
+        <div class='bx bx-search' ></div>
+      </div>
+      <div class="profile-details">
+        <!-- //<img src="../public/img/images.png" alt=""> -->
+        <span class="admin_name">Melissa Perera</span>
+        <div class='bx bx-chevron-down' ></div>
+      </div>
+    </nav>

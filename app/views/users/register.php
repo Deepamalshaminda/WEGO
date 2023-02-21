@@ -1,18 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<?php require APPROOT . '/views/inc/header.php'; ?>
+<link rel="stylesheet" href="<?php echo URLROOT; ?>/css/reg.css">
   <title><?php echo SITENAME; ?></title>
 </head>
 <body>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+
 
 <div class="full-page">
        <div class="register-wrapper">
@@ -23,15 +17,22 @@
               <form action="<?php echo URLROOT; ?>/users/register" method="post">
               <div class="left-column">
                      <div class="field">
+                            <label for="user_role">Select User Role</label>
+                            <select name="user_role" id="user-role">
+                                   <option  value="1">Driver</option>
+                                   <option value="2">Vehicle Supplier</option>
+                                   <option value="3">Parent</option>
+                                   <option value="4">Office Worker</option>
+                                   <option value="5">Admin</option>
+                            </select>
+                     </div>
+                     <div class="field">
                             <label for="name">Name <sup>*</sup></label> <br>
                             <input type="text" name="name" size="30" placeholder="Enter name"
                                    class="input <?php echo (!empty($data['name_err'])) ? 'is-invalid' : ''; ?>"
                                    value="<?php echo $data['name']; ?>"><br>
                             <span class="invalid-feedback"><?php echo $data['name_err']; ?></span>
                      </div>
-                    
-                        
-
                      <div class="field">
                             <label for="gender">Gender <sup>*</sup></label> <br>
                             <input type="text" name="gender" size="30" placeholder="Select Gender"
@@ -130,13 +131,8 @@
                      </div>         
                     
               </div>
-
-              <div>
-                     
-              </div>
-
               <div class="btn-wrapper">
-                    <button class="btn-submit">Register</button>
+                    <button class="btn-register">Register</button>
                     <button class="btn-cancel">Cancel</button>
               </div>
               </form>

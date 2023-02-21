@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/sidenavbar.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/acceptriderequests.css">
   <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/_base.css">
-    <title>Document</title>
+    <title><?php echo SITENAME; ?></title>
 </head>
 <body>
-    <?php require APPROOT.'/views/inc/sidenavbar.php';?>
+    <?php require APPROOT.'/views/inc/d_sidenavbar.php';?>
 
 <main class="full-page">
 
@@ -51,8 +51,8 @@
                 </div>
 
                 <div class="btn-container col-12">
-                    <button class="button"><a class="link" href="#">Submit</a></button>
-                    <button class="button"><a class="link" href="#">Delete</a></button>
+                    <button class="button"><a class="link" href="#">Accept</a></button>
+                    <button class="button"><a class="link" href="#">Declline</a></button>
                 </div>
             </div>
         </div>
@@ -61,7 +61,7 @@
         <div class="left-request col-6">
             <div class="left-request-container col-12">
                 <div class="title-container col-12">
-                    <h3>Deepamal Shaminda</h3>
+                    <h3>Surani Sooriyaarachchi</h3>
                 </div>
 
                 <div class="div-bottom col-12">
@@ -74,7 +74,7 @@
                                 <p>From</p>
                             </div>
                             <div class="location-name col-12">
-                                <h5>Pamankada</h5>
+                                <h5>Kirulapone</h5>
                             </div>
                         </div>
 
@@ -90,8 +90,8 @@
                 </div>
 
                 <div class="btn-container col-12">
-                    <button class="button"><a class="link" href="#">Submit</a></button>
-                    <button class="button"><a class="link" href="#">Delete</a></button>
+                    <button class="button"><a class="link" href="#">Accept</a></button>
+                    <button class="button"><a class="link" href="#">Decline</a></button>
                 </div>
             </div>
         </div>
@@ -104,7 +104,7 @@
         <div class="left-request col-6">
             <div class="left-request-container col-12">
                 <div class="title-container col-12">
-                    <h3>Deepamal Shaminda</h3>
+                    <h3>Parindi Dewmini</h3>
                 </div>
 
                 <div class="div-bottom col-12">
@@ -117,7 +117,7 @@
                                 <p>From</p>
                             </div>
                             <div class="location-name col-12">
-                                <h5>Pamankada</h5>
+                                <h5>Thimbirigasyaya</h5>
                             </div>
                         </div>
 
@@ -133,8 +133,8 @@
                 </div>
 
                 <div class="btn-container col-12">
-                    <button class="button"><a class="link" href="#">Submit</a></button>
-                    <button class="button"><a class="link" href="#">Delete</a></button>
+                    <button class="button"><a class="link" href="#">Accept</a></button>
+                    <button class="button"><a class="link" href="#">Decline</a></button>
                 </div>
             </div>
         </div>
@@ -143,7 +143,7 @@
         <div class="left-request col-6">
             <div class="left-request-container col-12">
                 <div class="title-container col-12">
-                    <h3>Deepamal Shaminda</h3>
+                    <h3>Chris Perera</h3>
                 </div>
 
                 <div class="div-bottom col-12">
@@ -172,8 +172,8 @@
                 </div>
 
                 <div class="btn-container col-12">
-                    <button class="button"><a class="link" href="#">Submit</a></button>
-                    <button class="button"><a class="link" href="#">Delete</a></button>
+                    <button class="button"><a class="link" href="#">Accept</a></button>
+                    <button class="button"><a class="link" href="#">Decline</a></button>
                 </div>
             </div>
         </div>

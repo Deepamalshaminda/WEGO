@@ -4,7 +4,6 @@
    * Loads the models and views
    */
   class Controller {
-
     // Load model
     public function model($model){
       // Require model file

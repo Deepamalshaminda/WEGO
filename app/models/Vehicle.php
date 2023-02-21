@@ -6,25 +6,30 @@
       $this->db = new Database;
     }
 
-    public function getVehicleDetails(){
-      $this->db->query('SELECT * FROM vehicles
-                        INNER JOIN users
-                        ON `vehicles`.`id` = `users`.`id` AND '.$_SESSION['user_id'].'=`vehicles`.`id`
-                        ');
-
+    public function getVehicles($userid){
+      $this->db->query('SELECT *  FROM vehicles where id=:id;');
+      $this->db->bind(':id', $userid);
       $results = $this->db->resultSet();
 
       return $results;
     }
 
-    public function addVehicle($data){
-      $this->db->query('INSERT INTO vehicles (vehiclenumber, vehicletype, initiallocation, route, id) VALUES(:vehiclenumber, :vehicletype, :initiallocation, :route, :id)');
-
-      $this->db->bind(':vehiclenumber', $data['vehiclenumber']);
-      $this->db->bind(':vehicletype', $data['vehicletype']);
-      $this->db->bind(':initiallocation', $data['initiallocation']);
+    public function addvehicle($data){
+      $this->db->query('INSERT INTO vehicles (vehicleno,chassino,model,color,year,address,route,starttime,seatingcapacity,Ac,expirylicence,comments,id) VALUES(:vehicleno, :route, :starttime, :vehicletype,:id)');
+      // Bind values
+      $this->db->bind(':vehicleno', $data['vehicleno']);
+      //$this->db->bind(':user id', $data['user id']);
+      $this->db->bind(':chassino', $data['chassino']);
+      $this->db->bind(':model', $data['model']);
+      $this->db->bind(':color', $data['color']);
+      $this->db->bind(':address', $data['address']);
       $this->db->bind(':route', $data['route']);
-      $this->db->bind(':id', $data['user_id']);
+      $this->db->bind(':starttime', $data['starttime']);
+      $this->db->bind(':seatingcapacity', $data['seatingcapacity']);
+      $this->db->bind(':Ac', $data['Ac']);
+      $this->db->bind(':expirylicence', $data['expirylicence']);
+      $this->db->bind(':comments', $data['comments']);
+      $this->db->bind(':id', $data['userid']);
 
       // Execute
       if($this->db->execute()){
@@ -32,13 +37,5 @@
       } else {
         return false;
       }
-    }
-
-    public function getRequestByID($id)
-    {
-        $this->db->query('SELECT * FROM vehicles WHERE vehicleid = :vehicleid');
-        $this->db->bind(':vehicleid', $id);
-        $row = $this->db->single();
-        return $row;
     }
   }

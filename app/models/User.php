@@ -8,7 +8,7 @@
 
     // Regsiter user
     public function register($data){
-      $this->db->query('INSERT INTO user (name, nic, gender, dob, province, district, nearestTown, address, contactNumber, email, password) VALUES(:name, :nic, :gender, :dob, :province, :district, :nearestTown, :address, :contactNumber, :email, :password)');
+      $this->db->query('INSERT INTO user (name, nic, gender, dob, province, district, nearestTown, address, contactNumber, email, password, role_id) VALUES(:name, :nic, :gender, :dob, :province, :district, :nearestTown, :address, :contactNumber, :email, :password, :role_id)');
       // Bind values
       $this->db->bind(':name', $data['name']);
       $this->db->bind(':nic', $data['nic']);
@@ -21,6 +21,7 @@
       $this->db->bind(':contactNumber', $data['contactNumber']);
       $this->db->bind(':email', $data['email']);
       $this->db->bind(':password', $data['password']);
+      $this->db->bind(':role_id', $data['user_role']);
 
       // Execute
       if($this->db->execute()){
@@ -44,12 +45,6 @@
         return false;
       }
     }
-    public function getUserById($id){
-      $this->db->query('SELECT * FROM user WHERE id = :id');
-      $this->db->bind(':id', $id);
-      $row = $this->db->single();
-      return $row;
-  }
 
     // Find user by email
     public function findUserByEmail($email){

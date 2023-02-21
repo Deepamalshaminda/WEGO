@@ -40,8 +40,8 @@
       //$user = $this->userModel->getUserById($vehicle->vehicleid);
     
       $data = [
-          'vehicle' =>'' ,
-          'user' => '',
+          //'vehicle' =>'' ,
+          //'user' => '',
           // 'requests' => $requests
       ];
       $this->view('users/driver/acceptriderequest', $data);

@@ -17,18 +17,19 @@
 
 .left-request, .right-request{
     position: relative;
-    /* padding-right: 10px;
-    padding-left: 10px; */
-    padding: 3% 5%;
-    /* margin-right: 10%;
-    margin-left: 10%;
-    padding-bottom: 5%;
-    border-radius: 2%; */
+}
+
+.left-request{
+    padding: 3% 2% 3% 3%;
+}
+
+.right-request{
+    padding: 3% 3% 3% 2%;
 }
 
 .left-request-container, .right-request-container{
-    background-color: rgb(170, 170, 170);   
-    border-radius: 10px;
+    background-color: #EEEDED;   
+    border-radius: 12px;
 }
 
 .title-container{

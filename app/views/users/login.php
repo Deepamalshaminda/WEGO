@@ -1,71 +1,63 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <title><?php echo SITENAME; ?></title>
+<?php error_reporting(0); ?>
+<?php require APPROOT . '/views/inc/header.php'; ?>
+<link rel="stylesheet" href="<?php echo URLROOT; ?>/css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<title><?php echo SITENAME; ?></title>
 </head>
+
 <body>
+  
 
-<main class="full-page">
 
-    <div class="login-form-wrapper">
-        <div class="left-side">
-        <img src="<?php echo URLROOT; ?>/img/wego_logo.png" alt="" class="logo">
-            <h1>WEGO</h1>
-            <hr>
-            <h3>Find Your<br> Transport Here</h3>
+
+
+  <form action="<?php echo URLROOT; ?>/users/login" method="post" class="form">
+  <div class="form">
+        <div class="leftside">
+            <div class="img"><img src="../public/img/welcome.svg"></div>
+            <p class="wego">WeGo</p>
         </div>
-
-        <div class="right-side">
-            <div class="title-container"><h1>LOGIN</h1></div>
-            <form action="<?php echo URLROOT; ?>/users/login" method="POST">
-
-                <div class="input-segment">
-                    <label class="form-label">Email</label> <br>
-                    <input class="input-field" type="text" name="email" placeholder="Enter email"
-                           size="40"><br>
-                    <?php
-                    if (isset($this->data['email_err'])) {
-                        ?>
-                        <span class="error">
-                            <input type="hidden">
-                            <?php echo $this->data['email_err']; ?>
-                        </span>
-                        <?php
-                    }
-                    ?>
-                    <br>
+        <div class="rightside">
+            <p class="topic">Log In</p>
+            <div class="select">
+            <select name="user-role" id="user-role">
+                <option value="1">Driver</option>
+                <option value="2">Vehicle Supplier</option>
+                <option value="3">Parent</option>
+                <option value="4">Office Worker</option>
+                <option value="5">Admin</option>
+            </select>
+            </div>
+            <div class="input-container">
+                <div class="input">
+                    <i class="fa fa-user"></i>
+                    <input type="email"  name="email" class="control <?php echo (!empty($data['email_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['email']; ?> ">
+      <br><span class="invalid-feedback"><?php echo $data['email_err']; ?></span>  
                 </div>
-
-                <div class="input-segment">
-                    <label class="form-label">Password</label> <br>
-                    <input class="input-field" type="password" name="password" placeholder="Enter password" size="40"><br>
-                    <?php
-                    if (isset($this->data['password_err'])) {
-                        ?>
-                        <span class="error">
-                            <input type="hidden">
-                            <?php echo $this->data['password_err']; ?>
-                        </span>
-                        <?php
-                    }
-                    ?>
-                    <br>
-                </div>
-
-                <p class="signup-link">Don't have an account?<a href="Register"><b>SignUp</b></a></p>
                 <br>
-
-                <div class="btn-wrapper">
-                    <button class="btn-submit" type="submit">LOGIN</button>
+                <div class="input">
+                    <i class="fa fa-lock"></i>
+                    <input type="password" placeholder="Password" name="password" class="control <?php echo (!empty($data['password_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['password']; ?>">
+      <br><span class="invalid-feedback"><?php echo $data['password_err']; ?></span>
                 </div>
-
-            </form>
+                <br>
+                <input type="submit" class="login" value="LOGIN">
+                <!--<p>Or Login Using</p>
+                <div class="social-items">
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-google"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                </div>-->
+                <h6 class="signup"> Not registered yet?  <a href="<?php echo URLROOT; ?>/users/register"><span>  Sign Up</span></a></h6>
+            </div>
         </div>
+    </div>
 
-    
+   
+
+
+ 
+  
+
+</body>
 <?php require APPROOT . '/views/inc/footer.php'; ?>

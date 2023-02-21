@@ -8,22 +8,12 @@
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/sidenavbar.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/checktripinfo.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/_base.css">
-    <title>Document</title>
+    <title><?php echo SITENAME; ?></title>
 </head>
 <body>
-<?php require APPROOT.'/views/inc/sidenavbar.php';?>
+<?php require APPROOT.'/views/inc/d_sidenavbar.php';?>
 
 <main class="full-page">
-  <!-- <div class="check-trip-info-page">
-    <div class="top-container col-12">
-      <div class="top-container-left col-6">
-        <h3>Ongoing Trips</h3>
-      </div>
-      <div class="top-container-right col-6">
-        <h3>Completed Trips</h3>
-      </div>
-    </div>
-  </div> -->
 
     <div class="top-container col-12">
         <div class="top-container-left col-6">

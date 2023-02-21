@@ -11,7 +11,7 @@ body {
   /* Style tab links */
   .tablink {
     /* background-color: rgb(36, 20, 98);  */
-    color: #241462;
+    color: #0C457D;
     float: left;
     border: none;
     outline: none;
@@ -87,18 +87,19 @@ body {
   }
   
   .accept-button {
-    background-color: rgb(53, 13, 108);
+    background-color: #0C457D;
     color: white;
     margin-right: 1%;
   }
   
   .delete-button {
-    background-color: rgb(107, 107, 217);
-    color: white;
+    background-color: rgb(193, 193, 213);
+    color: rgb(0, 0, 0);
+    font-weight:600 ;
   }
 
   .details-button{
-    background-color: rgb(43, 43, 149);
+    background-color: #0C457D;
     color: white;
     width:32%;
     padding: 8px 15px;

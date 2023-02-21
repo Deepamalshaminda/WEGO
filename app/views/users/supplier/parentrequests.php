@@ -17,7 +17,7 @@
 <button class="tablink" onclick="openPage('Parentrequests')" id="defaultOpen" >Parent Requests</button>
 <button class="tablink" onclick="openPage('PAccepted')" >Accepted Parent Requests</button>
 
-<div id="Parentrequests" class="tabcontent">
+<!--<div id="Parentrequests" class="tabcontent">
   <div class="friend-list">
     <div class="friend-card">
       
@@ -125,9 +125,26 @@
       </div>
     </div>
   
+</div>-->
+
+<div id="Parentrequests" class="tabcontent">
+  <div class="friend-list">
+    <?php foreach ($data['parentRequests'] as $request): ?>
+      <div class="friend-card">
+        <div class="friend-name">
+          <img src="<?php echo $request['picture']; ?>" class="friend-picture">
+          <?php echo $request['name']; ?>
+        </div>
+        <br>
+        <br>
+        <div class="friend-actions">
+          <button class="accept-button">Accept</button>
+          <button class="delete-button">Delete</button>
+        </div>
+      </div>
+    <?php endforeach; ?>
+  </div>
 </div>
-
-
 
     </body>
 

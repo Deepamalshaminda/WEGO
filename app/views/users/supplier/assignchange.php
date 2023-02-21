@@ -21,8 +21,9 @@
       <br>
       <br>
       <div class="friend-actions">
-        <a href="<?php echo URLROOT?>/rides/assignDrivers">"<button class="accept-button">Assign</button></a>
-        <button class="delete-button">Change</button>
+        <a href="<?php echo URLROOT?>/rides/assignDrivers"><button class="accept-button">Assign</button></a>
+        <a href="<?php echo URLROOT?>/rides/changeDrivers"><button class="delete-button">Change</button></a>
+        
       </div>
     </div>
     <div class="friend-card">

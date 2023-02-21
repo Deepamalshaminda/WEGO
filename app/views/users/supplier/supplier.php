@@ -5,10 +5,9 @@
 <body>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   </head>
+   
 <body>
-<?php require APPROOT . '/views/inc/sidebarnav.php' ;?>
-
+<?php require APPROOT . '/views/inc/sidebarnav.php';?>
     <div class="home-content">
       <br>
       <br> 

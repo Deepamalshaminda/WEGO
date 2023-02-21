@@ -10,6 +10,8 @@
 <?php require APPROOT . '/views/inc/sidebarnav.php' ;?>
      
     <div class="home-content">
+      <br>
+      <br>
     <div class="table-card"> 
 <h3>Driver Attendance - Month of February</h3>
 

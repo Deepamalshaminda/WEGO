@@ -1,38 +1,77 @@
+
+
+  .as-card {
+    width: 58%;
+    background: white;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+    transition: 0.3s;
+    height: 600px;
+    margin-top: 1%;
+    border-radius: 30px;
+    padding: 1%;
+    margin-left: 22%;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+div.as-card h2{
+  color: darkblue;
+text-align: center;
+}
+
+form {
+  margin: 5px auto;
+  width: 580px;
+  padding: 20px;
+  background-color: #e6e5f2;
+  border-radius: 20px;
+  margin-top: 3px;
+  
+}
+
+label {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 20px;
+  display: block;
+}
+
+input[type="text"] {
+  width: 60px;
+  padding: 10px;
+  font-size: 16px;
+  margin-top: 10px;
+  border-radius: 15px;
+  border: 1px solid #ccc;
+}
+
 select {
-    background-color: #f1f1f1;
-    font-size: 16px;
-    padding: 8px;
-    border: none;
-    border-radius: 10px;
-  }
-  
-  option {
-    color: #000;
-  }
-  
-  option:hover {
-    background-color: #ddd;
-  }
-  
-  .input[type=submit] {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 20px;
-    font-size: 12px;
-    cursor: pointer;
-    background-color: rgb(53, 13, 108);
-    color: white;
-    margin-right: 1%;
-  }
-  
-  
-  
-  .input[type=cancel] {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 20px;
-    font-size: 12px;
-    cursor: pointer;
-    background-color: rgb(107, 107, 217);
-    color: white;
-  }
+  width: 70%;
+  padding: 10px;
+  font-size: 16px;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+input[type="submit"], input[type="reset"] {
+  width: 36%;
+  padding: 6px;
+  font-size: 14px;
+  margin-top: 20px;
+  margin-left: 8%;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  background-color: #3b5998;
+  color: white;
+  cursor: pointer;
+}
+
+input[type="reset"] {
+  background-color: #ddd;
+  color: black;
+}
+
+input[type="submit"]:hover, input[type="reset"]:hover {
+  background-color: #0b3e91;
+}

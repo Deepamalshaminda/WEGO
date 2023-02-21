@@ -1,6 +1,7 @@
 <?php 
 class prequests extends Controller
 {
+
     
     
 public $userModel;
@@ -14,6 +15,7 @@ public function viewParentRequest(){
             //view
             $this->view('users/supplier/parentrequests');
 }
+
 
 }
 

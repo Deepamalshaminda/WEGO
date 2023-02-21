@@ -9,15 +9,19 @@
 
 <?php require APPROOT . '/views/inc/sidebarnav.php' ;?>
     <div class="home-content">
-  <div class="card"> 
-    <h1>Add your vehicle here.....</h1>
+        <br>
+        <br>
+  <div class="add-card"> 
+    <h1>Add your vehicle here...</h1>
+    <br>
+    <div class="add-form">
     <form action="<?php echo URLROOT; ?>/vehicles/addvehicle" method="post">
     <div class="form-group">
     
                 <label for="vehicleno">Vehicle No &nbsp; : <sup>*</sup></label>
                 <input type="vehicleno" name="vehicleno" class="controls <?php echo (!empty($data['vehicleno_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['vehicleno']; ?>">
                 <span class="invalid-feedback"><?php echo $data['vehicleno_err']; ?></span>
-            </div><br>
+            </div>
 
             <!--<div class="form-group">
                 <label for="chassino">Chassi No &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : <sup>*</sup></label>
@@ -73,12 +77,12 @@
                 <span class="invalid-feedback"><?php echo $data['Ac_err']; ?></span>
             </div>
 
-            <div class="form-group">
+            <!--<div class="form-group">
                 <label for="expirylicence">Expiry date of licence: <sup>*</sup></label>
                 <input type="date" name="expirylicence" size="30" placeholder="Enter licence expiry date"
                  class="controls <?php echo (!empty($data['expirylicence_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['expirylicence']; ?>">
                 <span class="invalid-feedback"><?php echo $data['expirylicence_err']; ?></span>
-            </div>
+            </div>-->
 
             <div class="form-group">
                 <label for="comments">Special conditions<sup>*</sup></label>
@@ -90,11 +94,13 @@
             <div class="row">
                 <div class="col">
                     <input type="submit" value="Save" name="addVehicle" class="btn1">
+                    <br>
                     <input type="reset" value="Cancel" class="btn2">
                 </div>
             </div>
         </div>
     </form>
+  </div>
   </div>
     <!-- <div class="box-right">
         <div class="upload">
@@ -113,7 +119,7 @@
 </div>
         <br>
         <br><br>
-        <a href="<?php echo URLROOT?>/users/supplier/addvehicle"><button class="more"  >Add another vehicle (+)</button></a><br>
+        <!--<a href="<?php echo URLROOT?>/users/supplier/addvehicle"><button class="more"  >Add another vehicle (+)</button></a><br>-->
         
 
     </div> 

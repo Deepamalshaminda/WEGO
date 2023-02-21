@@ -1,5 +1,5 @@
 <?php 
-class dashboard extends Controller
+class Dashboard extends Controller
 {
     
     
@@ -9,8 +9,8 @@ public $userModel;
     // $this->userModel = $this->model('User');
   }
 
-  public function viewDashboard(){
+  public function dashboard(){
     //view
-    $this->view('users/supplier/supplier');
+    $this->view('users/parent/parentdash');
 }
 }

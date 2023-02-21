@@ -5,7 +5,7 @@
     </div>
       <ul class="nav-links">
         <li>
-          <a href="<?php echo URLROOT?>/dashboard/viewDashboard">
+          <a href="<?php echo URLROOT?>/vdashboard/viewDashboard">
             <div class='bx bx-grid-alt' ></div>
             <span class="links_name">&nbsp; Dashboard</span>
           </a>
@@ -66,6 +66,12 @@
           </a>
         </li>
         
+        <li class="log_out">
+          <a href="<?php echo URLROOT?>/Users/logout">
+            <div class='bx bx-log-out'></div>
+            <span class="links_name">&nbsp; Log out</span>
+          </a>
+        </li>
         
         
         <!--<li class="log_out">

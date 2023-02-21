@@ -1,0 +1,141 @@
+div.card h1 {
+  text-align: center;
+  margin-top: 50px;
+  text-align: center;
+  color: #1b1038;
+}
+
+
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  color: #d1d0fa;
+}
+
+
+
+.btn {
+  width: 100%;
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+}
+
+.invalid-feedback {
+  color: red;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+}
+
+
+
+.add-card {
+  
+    width: 70%;
+    background: white;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+    transition: 0.3s;
+    height: 1400%;
+    margin-top: 0%;
+    border-radius: 30px;
+    padding: 1%;
+    margin-left: 190px;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+
+.add-form{
+  width: 80%;
+  background:rgb(202, 209, 242);
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+  transition: 0.3s;
+  height: 1200px;
+  margin-top: 1%;
+  border-radius: 20px;
+  padding: 1%;
+  margin-left: 12%;
+  display: inline-block;
+  margin-right: 10px;
+}
+form {
+  display: inline-block;
+  text-align: left;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 20px;
+  margin-left: 20%;
+}
+
+
+input[type="vehicleno"],
+input[type="model"],
+
+input[type="year"],
+input[type="address"],
+input[type="route"],
+input[type="starttime"],
+input[type="seatingcapacity"],
+input[type="Ac"],
+
+input[type="comments"]{
+  width: 100%;
+  padding: 6px;
+  margin-bottom: 20px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  font-size: 18px;
+  margin-left: 50%;
+}
+
+input[type="expirylicence"]{
+width:50% ;
+margin-left: 45%;
+}
+
+input[type="color"]{
+  width:50% ;
+  margin-left: 50%;
+
+}
+
+input[type="submit"] {
+  width: 100%;
+  padding: 5px;
+  border-radius: 15px;
+  border: 1px solid #ccc;
+  background-color: #140e3a;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  align-items: center;
+  margin-left: 60%;
+}
+
+input[type="reset"] {
+  width: 100%;
+  padding: 5px;
+  border-radius: 15px;
+  border: 1px solid #ccc;
+  background-color: #a09cb6;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  margin-top: 3%;
+  align-items: center;
+  margin-left: 60%;
+}

@@ -1,8 +1,8 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
 
-<link rel="stylesheet" href="<?php echo URLROOT; ?>/css/dashboard.css">
-<link rel="stylesheet" href="<?php echo URLROOT; ?>/css/prequest.css">
-<link rel="stylesheet" href="<?php echo URLROOT; ?>/css/viewvehicle.css">
+<link rel="stylesheet" href="<?php echo URLROOT; ?>/css/admin_dashboard.css">
+<link rel="stylesheet" href="<?php echo URLROOT; ?>/css/rideschedule.css">
+<link rel="stylesheet" href="<?php echo URLROOT; ?>/css/viewride.css">
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/js/list.js">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <title><?php echo SITENAME; ?></title>

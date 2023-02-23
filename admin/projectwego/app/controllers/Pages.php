@@ -24,18 +24,12 @@
 
     public function dashboard(){
       $data = [
-        'title' => 'Parent'
+        'title' => 'Admin'
       ];
 
       $this->view('users/admin/admindash', $data);
     }
 
-    public function viewVehicle(){
-      $data = [
-        'title' => 'View Vehicle'
-      ];
-
-      $this->view('users/driver/index', $data);
-    }
+   
   }
   

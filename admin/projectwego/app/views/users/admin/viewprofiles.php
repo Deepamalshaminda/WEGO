@@ -1,7 +1,7 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
 
 
-<link rel="stylesheet" href="<?php echo URLROOT; ?>/css/viewchildren.css">
+<link rel="stylesheet" href="<?php echo URLROOT; ?>/css/tranaction.css">
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/js/list.js">
 <title><?php echo SITENAME; ?></title>
 <html>

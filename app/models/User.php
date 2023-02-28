@@ -61,4 +61,11 @@
         return false;
       }
     }
+
+    public function getUserRoleByEmail($email){
+      $this->db->query('SELECT role_id FROM user where email = :email');
+      $this->db->bind(':email', $email);
+      $results = $this->db->resultSet();
+      return $results;
+    }
   }

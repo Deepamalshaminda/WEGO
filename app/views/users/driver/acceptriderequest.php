@@ -27,7 +27,7 @@
 
                 <div class="div-bottom col-12">
                     <div class="image-wrapper col-6">
-                        <img src="<?php echo URLROOT?>/img/3.jpg" class="profile-picture" alt="profile picture">
+                        <a href="<?php echo URLROOT?>/ManageDrivers/viewProfile"><img src="<?php echo URLROOT?>/img/3.jpg" class="profile-picture" alt="profile picture"></a>
                     </div>
                     <div class="user-details col-6">
                         <div class="from-where col-12">

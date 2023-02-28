@@ -6,7 +6,7 @@
         </div>
         <ul class="nav-links">
             <li>
-                <a href="<?php echo URLROOT;?>/Pages/d_dashboard" class="active">
+                <a href="<?php echo URLROOT;?>/ManageDrivers/ViewDashboard">
                     <i class='bx bx-grid-alt'></i>
                     <span class="links_name">Dashboard</span>
                 </a>

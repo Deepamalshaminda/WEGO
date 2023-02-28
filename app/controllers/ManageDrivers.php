@@ -19,7 +19,7 @@
       $data = [
         'dashboard' => $dashboard
       ];
-      $this->view('users/driver/dashboard', $data);
+      $this->view('users/driver/d_dashboard', $data);
     }
 
     public function index(){
@@ -44,7 +44,7 @@
           //'user' => '',
           // 'requests' => $requests
       ];
-      $this->view('users/driver/', $data);
+      $this->view('users/driver/acceptriderequest', $data);
     }
 
     public function checkTripInfo(){

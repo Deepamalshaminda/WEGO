@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/map.css">
   <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/sidenavbar.css">
   <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/d_dashboard.css">
+  <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/_base.css">
   <!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/handlebars/4.7.7/handlebars.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
@@ -619,9 +620,11 @@
         {{/each}}
       {{/if}}
     </script>
-  </head>
+</head>
 
-<?php require APPROOT . '/views/inc/sidenavbar.php'; ?>
+<body>
+
+<?php require APPROOT . '/views/inc/d_sidenavbar.php'; ?>
 
 <?php 
   //require APPROOT . '/views/inc/map.php'; 
@@ -631,13 +634,13 @@
 <div class="top-row col-12">
   <div class="btn-1-container col-3">
     <div class="btn-1 col-10">
-      <h1>Students To Be Absent</h1>
+      <a href="<?php echo URLROOT;?>/D_Vehicles/studentsToBeAbsent"><h1>Students To Be Absent</h1></a>
     </div>
   </div>
 
   <div class="btn-1-container col-3">
     <div class="btn-1 col-10">
-      <h1>Reservation Requests</h1>
+      <a href="#"><h1>Reservation Requests</h1></a>
     </div>
   </div>
 
@@ -656,6 +659,3 @@
 </main>
 
 <?php require APPROOT . '/views/inc/footer.php'; ?>
-
-
-</body>

@@ -115,4 +115,30 @@ body {
     padding-left: 8%;
     color: rgb(36, 20, 98);
 }
-
+  .details-button a{
+    text-decoration: none;
+  }
+  a:link {
+    color: white;
+    background-color: transparent;
+    text-decoration: none;
+  }
+  
+  a:visited {
+    color: white;
+    background-color: transparent;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: rgb(189, 220, 246);
+    background-color: transparent;
+    text-decoration: none;
+  }
+  
+  a:active {
+    color: rgb(189, 220, 246);
+    background-color: transparent;
+    text-decoration: none;
+  }
+  

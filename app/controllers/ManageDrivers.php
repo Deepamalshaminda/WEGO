@@ -44,7 +44,7 @@
           //'user' => '',
           // 'requests' => $requests
       ];
-      $this->view('users/driver/', $data);
+      $this->view('users/driver/acceptriderequest', $data);
     }
 
     public function checkTripInfo(){

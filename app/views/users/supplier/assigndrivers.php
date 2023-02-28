@@ -19,9 +19,12 @@
     
     
     <form>
+  
   <label for="vehicleid">Vehicle ID:</label>
   <input type="vehicleid" id="vehicleid" name="vehicleid" value="002">
+    
   <br>
+
   <label for="vehicleno">Vehicle No:</label>
   <input type="vehicleno" id="vehicleno" name="vehicleno" value="SW 5642">
   <br>

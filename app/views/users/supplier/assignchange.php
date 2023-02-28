@@ -16,8 +16,9 @@
  <br>
   <div class="friend-list">
     <div class="friend-card">
-      
+    <a href="<?php echo URLROOT?>/vehicleProfile/viewVehicleProfile">
       <div class="friend-name"><img src="../public/img/wwww.jpg" class="friend-picture" >Vehicle ID 001</div>
+    </a> 
       <br>
       <br>
       <div class="friend-actions">

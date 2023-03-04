@@ -13,20 +13,20 @@
             </li>
 
             <li>
-                <a href="<?php echo URLROOT;?>/ManageDrivers/acceptRideRequest">
+                <a href="<?php echo URLROOT;?>/D_ManageDrivers/acceptRideRequest">
                     <i class='bx bx-box'></i>
                     <span class="links_name">Accept Ride Requests</span>
                 </a>
             </li>
 
             <li>
-                <a href="<?php echo URLROOT;?>/ManageDrivers/checkTripInfo">
+                <a href="<?php echo URLROOT;?>/D_ManageDrivers/checkTripInfo">
                     <i class='bx bx-list-ul'></i>
                     <span class="links_name">Check Trip Info</span>
                 </a>
             </li>
             <li>
-                <a href="<?php echo URLROOT;?>/ManageDrivers/viewEarnings">
+                <a href="<?php echo URLROOT;?>/D_ManageDrivers/viewEarnings">
                     <i class='bx bx-pie-chart-alt-2'></i>
                     <span class="links_name">View Earnings</span>
                 </a>
@@ -38,7 +38,7 @@
                 </a>
             </li>
             <li>
-                <a href="<?php echo URLROOT;?>/ManageDrivers/viewProfile">
+                <a href="<?php echo URLROOT;?>/D_ManageDrivers/viewProfile">
                     <i class='bx bx-book-alt'></i>
                     <span class="links_name">View Profile</span>
                 </a>

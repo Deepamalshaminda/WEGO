@@ -29,7 +29,7 @@
       <br>
       <br>
       <div class="friend-actions">
-        <button class="accept-button">View</button>
+        <button class="accept-button"><a href="<?php echo URLROOT?>/Viewsentrequests/viewsentrequest"> View</a></button>
         <button class="delete-button">Delete</button>
       </div>
     </div>

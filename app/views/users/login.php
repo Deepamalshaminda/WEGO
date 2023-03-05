@@ -19,7 +19,7 @@
         </div>
         <div class="rightside">
             <p class="topic">Log In</p>
-            <div class="select">
+            <!-- <div class="select">
             <select name="user-role" id="user-role">
                 <option value="1">Driver</option>
                 <option value="2">Vehicle Supplier</option>
@@ -27,7 +27,7 @@
                 <option value="4">Office Worker</option>
                 <option value="5">Admin</option>
             </select>
-            </div>
+            </div> -->
             <div class="input-container">
                 <div class="input">
                     <i class="fa fa-user"></i>

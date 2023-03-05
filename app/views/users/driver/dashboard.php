@@ -5,10 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-  <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/d_dashboard.css">
+  <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/map.css">
   <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/sidenavbar.css">
-  <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/_base.css">
-  <!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script> -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/handlebars/4.7.7/handlebars.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <script>
@@ -620,41 +619,13 @@
     </script>
   </head>
 
-<?php require APPROOT . '/views/inc/d_sidenavbar.php'; ?>
+<?php require APPROOT . '/views/inc/sidenavbar.php'; ?>
 
-<?php 
-  //require APPROOT . '/views/inc/map.php'; 
-?>
-
-<main class="full-page">
-<div class="top-row col-12">
-  <div class="btn-1-container col-3">
-    <div class="btn-1 col-10">
-      <a href="<?php echo URLROOT;?>/D_Vehicles/studentsToBeAbsent"><h1>Students To Be Absent</h1></a>
-    </div>
-  </div>
-
-  <div class="btn-1-container col-3">
-    <div class="btn-1 col-10">
-      <a href="#"><h1>Reservation Requests</h1></a>
-    </div>
-  </div>
-
-  <div class="btn-1-container col-3">
-    <div class="btn-1 col-10">
-      <h1>Earnings Statistics</h1>
-    </div>
-  </div>
-</div>
-
-<!-- <div class="map-div col-12">
-  <div class="map-container col-10">
-  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.9029322876!2d79.85896421523185!3d6.9022108205585555!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae25963120b1509%3A0x2db2c18a68712863!2sUniversity%20of%20Colombo%20School%20of%20Computing%20(UCSC)!5e0!3m2!1sen!2slk!4v1675998107896!5m2!1sen!2slk" width="1400" height="700" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-  </div>
-</div> -->
-</main>
+<?php require APPROOT . '/views/inc/map.php'; ?>
 
 <?php require APPROOT . '/views/inc/footer.php'; ?>
+
+
 
 
 </body>

@@ -1,16 +1,16 @@
 <?php
-  class ManageDrivers extends Controller {
+  class D_ManageDrivers extends Controller {
     public $userModel;
     public $viewDashboardModel;
     public $vehicleModel;
 
     public function __construct(){
       if(!isLoggedIn()){
-        redirect('ManageDrivers/viewDashboard');
+        redirect('D_ManageDrivers/viewDashboard');
       }
 
       //$this->requestModel = $this->model('Request');
-      $this ->vehicleModel = $this->model('ManageDriver');
+      $this ->vehicleModel = $this->model('D_ManageDriver');
       $this ->viewDashboardModel = $this->model('viewDashboard');
     }
 
@@ -19,7 +19,7 @@
       $data = [
         'dashboard' => $dashboard
       ];
-      $this->view('users/driver/dashboard', $data);
+      $this->view('users/driver/d_dashboard', $data);
     }
 
     public function index(){
@@ -34,17 +34,17 @@
     }
 
     public function acceptRideRequest(){
-      //$requests = $this->vehicleModel->getRequests();
+      $requests = $this->vehicleModel->getRequests('user_id');
         
       //$vehicle = $this->vehicleModel->getRequestById($id);
       //$user = $this->userModel->getUserById($vehicle->vehicleid);
     
-      $data = [
-          //'vehicle' =>'' ,
-          //'user' => '',
-          // 'requests' => $requests
-      ];
-      $this->view('users/driver/acceptriderequest', $data);
+      // $data = [
+      //     //'vehicle' =>'' ,
+      //     //'user' => '',
+      //     'requests' => $requests
+      // ];
+      $this->view('users/driver/acceptriderequest', $requests);
     }
 
     public function checkTripInfo(){

@@ -99,7 +99,7 @@
                     <img class="profile-img" src="../public/img/v1.png">
                 </div>
                 <div class="driver-name">
-                    <label>Colombo-Kandy</label>
+                    <label><a href="<?php echo URLROOT?>/Viewsentrequests/viewsentrequest"> Colombo-Kandy</a></label>
                 </div>
             </div>
             </div>

@@ -49,7 +49,6 @@ class Vehicles extends Controller
       // Init data
       $data = [
         'vehicleno' => trim($_POST['vehicleno']),
-        'chassino' => trim($_POST['chassino']),
         'model' => trim($_POST['model']),
         'color' => trim($_POST['color']),
         'year' => trim($_POST['year']),
@@ -63,7 +62,6 @@ class Vehicles extends Controller
         //'image'=>trim($_POST['image']),
         //'document'=>trim($_POST['document']),
         'vehicleno_err' => '',
-        'chassino_err' => '',
         'model_err' => '',
         'color_err' => '',
         'year_err' => '',
@@ -84,10 +82,7 @@ class Vehicles extends Controller
         $data['vehicleno_err'] = 'Please enter vehicle number';
       }
 
-      // Validate chassino
-      if (empty($data['chaasino'])) {
-        $data['chassino_err'] = 'Please enter chassi number';
-      }
+    
 
       // Validate model
       if (empty($data['model'])) {
@@ -152,7 +147,7 @@ class Vehicles extends Controller
 
 
       // Make sure errors are empty
-      if (empty($data['vehicleno_err']) && empty($data['chassino_err']) && empty($data['model_err']) && empty($data['color_err']) && empty($data['year_err']) && empty($data['address_err']) && empty($data['route_err']) && empty($data['starttime_err']) && empty($data['seatingcapacity_err']) && empty($data['Ac_err']) && empty($data['expirylicence_err']) && empty($data['comments_err'])) {
+      if (empty($data['vehicleno_err']) && empty($data['model_err']) && empty($data['color_err']) && empty($data['year_err']) && empty($data['address_err']) && empty($data['route_err']) && empty($data['starttime_err']) && empty($data['seatingcapacity_err']) && empty($data['Ac_err']) && empty($data['expirylicence_err']) && empty($data['comments_err'])) {
         if ($this->vehicleModel->addvehicle($data)) {
           // flash('vehicle_message','Vehicle Added');
           // echo "added";
@@ -170,7 +165,6 @@ class Vehicles extends Controller
       // Init data
       $data = [
         'vehicleno' => '',
-        'chassino' => '',
         'model' => '',
         'color' => '',
         'year' => '',

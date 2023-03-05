@@ -89,8 +89,7 @@
           'initiallocation' => '',
           'route' => ''
         ];
-  
-        $this->view('users/driver/addvehicle', $data);
+        $this->view('users/driver/d_addvehicle', $data);
       }
     }
 

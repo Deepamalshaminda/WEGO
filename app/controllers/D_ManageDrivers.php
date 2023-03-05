@@ -30,7 +30,7 @@
         'requests' => $requests
       ];
 
-      $this->view('users/driver/viewvehicle', $data);
+      $this->view('users/driver/d_viewvehicle', $data);
     }
 
     public function acceptRideRequest(){
@@ -44,7 +44,7 @@
       //     //'user' => '',
       //     'requests' => $requests
       // ];
-      $this->view('users/driver/acceptriderequest', $requests);
+      $this->view('users/driver/d_acceptriderequest', $requests);
     }
 
     public function checkTripInfo(){
@@ -52,7 +52,7 @@
       $data = [
         'trip' => 'trip'
       ];
-      $this->view('users/driver/checktripinfo', $data);
+      $this->view('users/driver/d_checktripinfo', $data);
     }
 
     public function viewEarnings(){
@@ -60,7 +60,7 @@
       $data = [
         'earnings' => 'earnings'
       ];
-      $this->view('users/driver/viewearnings', $data);
+      $this->view('users/driver/d_viewearnings', $data);
     }
     
     public function viewProfile(){
@@ -68,7 +68,7 @@
         'title' => 'Profile',
       ];
 
-      $this->view('users/driver/driver_profile', $data);
+      $this->view('users/driver/d_driver_profile', $data);
     }
   }
 

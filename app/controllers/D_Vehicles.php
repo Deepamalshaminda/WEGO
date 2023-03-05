@@ -21,7 +21,7 @@
         'vehicles' => $vehicles
       ];
 
-      $this->view('users/driver/viewvehicle', $data);
+      $this->view('users/driver/d_viewvehicle', $data);
     }
 
     public function show($id){
@@ -33,7 +33,7 @@
           'vehicle' => $vehicle,
           'user' => $user
       ];
-      $this->view('users/driver/viewvehicle', $data);
+      $this->view('users/driver/d_viewvehicle', $data);
 
   }
 
@@ -98,7 +98,7 @@
       $data = [
         'student' => 'student'
       ];
-      $this->view('users/driver/studentstobeabsent', $data);
+      $this->view('users/driver/d_studentstobeabsent', $data);
     }
 
     public function completedTrips(){
@@ -106,6 +106,6 @@
       $data = [
         'completedTrip' => 'completedTrip'
       ];
-      $this->view('users/driver/completedtrips', $data);
+      $this->view('users/driver/d_completedtrips', $data);
     }
   }

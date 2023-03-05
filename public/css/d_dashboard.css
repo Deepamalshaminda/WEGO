@@ -29,6 +29,13 @@
     justify-content: center;
     border-radius: 10px;
     box-shadow: 5px 5px 5px rgb(169, 171, 172);
+    text-align: center;
+    text-decoration: none;
+}
+
+.btn-1 a{
+    text-decoration: none;
+    color: black;
 }
 
 .btn-1-container{
@@ -38,6 +45,10 @@
     align-items: center;
     justify-content: center;
     height: 20vh;
+}
+
+a{
+    text-decoration: none;
 }
 
 .map-div{

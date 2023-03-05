@@ -19,7 +19,7 @@
 
 
 <?php
-$cities = array($this->$data['requests']);
+$cities = array($requests);
  
 // Get values from cities array
 print_r(array_values($cities));

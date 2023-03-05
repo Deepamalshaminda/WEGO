@@ -7,7 +7,7 @@
     }
 
     public function getVehicles($userid){
-      $this->db->query('SELECT *  FROM vehicles where id=:id;');
+      $this->db->query('SELECT *  FROM vehicle where id=:id;');
       $this->db->bind(':id', $userid);
       $results = $this->db->resultSet();
 
@@ -15,13 +15,14 @@
     }
 
     public function addvehicle($data){
-      $this->db->query('INSERT INTO vehicles (vehicleno,chassino,model,color,year,address,route,starttime,seatingcapacity,Ac,expirylicence,comments,id) VALUES(:vehicleno, :route, :starttime, :vehicletype,:id)');
+      $this->db->query('INSERT INTO vehicle (vehicleno,model,color,year,address,route,starttime,seatingcapacity,Ac,expirylicence,comments,id) VALUES(:vehicleno, :model, :color, :year, :address, :route, :starttime, :seatingcapacity, :Ac, :expirylicence, :comments, :id)');
       // Bind values
       $this->db->bind(':vehicleno', $data['vehicleno']);
       //$this->db->bind(':user id', $data['user id']);
-      $this->db->bind(':chassino', $data['chassino']);
+    
       $this->db->bind(':model', $data['model']);
       $this->db->bind(':color', $data['color']);
+      $this->db->bind(':year', $data['year']);
       $this->db->bind(':address', $data['address']);
       $this->db->bind(':route', $data['route']);
       $this->db->bind(':starttime', $data['starttime']);

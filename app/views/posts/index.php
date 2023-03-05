@@ -21,10 +21,18 @@
 		<tr>
 		<th>Vehicle Id</th>
 		<th>Vehicle No</th>
+		<th>Model</th>
+		<th>Color</th>
+		<th>Year</th>
+		<th>Address</th>
 		<th>Route</th>
-		<th>Start Time</th>
-		<th>Vehicle Type</th>
-		<th>User ID</th>
+		<th>Usual starttime</th>
+		<th>Seating capacity</th>
+		<th>Ac/Non-Ac</th>
+		<th>Licence expiry date</th>
+		<th>Special conditions</th>
+		<th> Supplier ID</th>
+
 		</tr>
 		</div>
 	</thead>
@@ -34,12 +42,19 @@
 	      <?php if (!empty($data['vehicles'])) :?> 
 				<?php  foreach ($data['vehicles'] as $vehicle):?>
 					<tr>
-					<td><?php echo $vehicle->vehicleid; ?></td>
+					<td><?php echo $vehicle->ve_id; ?></td>
 					<td><?php echo $vehicle->vehicleno; ?></td>
+					<td><?php echo $vehicle->model;?></td>
+					<td><?php echo $vehicle->color; ?></td>
+					<td><?php echo $vehicle->year; ?></td>
+					<td><?php echo $vehicle->address; ?></td>
 					<td><?php echo $vehicle->route;?></td>
 					<td><?php echo $vehicle->starttime; ?></td>
-					<td><?php echo $vehicle->vehicletype; ?></td>
-					<td><?php echo $vehicle->id; ?></td>
+					<td><?php echo $vehicle->seatingcapacity; ?></td>
+					<td><?php echo $vehicle->Ac; ?></td>
+					<td><?php echo $vehicle->expirylicence;?></td>
+					<td><?php echo $vehicle->comments;?></td>
+					<td><?php echo $vehicle->id;?></td>
 					</tr>
 					
 					<?php endforeach ;?>

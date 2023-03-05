@@ -39,12 +39,12 @@
       //$vehicle = $this->vehicleModel->getRequestById($id);
       //$user = $this->userModel->getUserById($vehicle->vehicleid);
     
-      $data = [
-          //'vehicle' =>'' ,
-          //'user' => '',
-          'requests' => $requests
-      ];
-      $this->view('users/driver/acceptriderequest', $data);
+      // $data = [
+      //     //'vehicle' =>'' ,
+      //     //'user' => '',
+      //     'requests' => $requests
+      // ];
+      $this->view('users/driver/acceptriderequest', $requests);
     }
 
     public function checkTripInfo(){

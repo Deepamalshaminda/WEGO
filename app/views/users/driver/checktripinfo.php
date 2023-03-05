@@ -98,10 +98,6 @@
             </div>
         </div>
 
-
-        <div class="card-row-right col-6">
-            <img src="<?php echo URLROOT?>/img/s.png" class="side-image" alt="Image">
-        </div>
     </div>
 </main>
 

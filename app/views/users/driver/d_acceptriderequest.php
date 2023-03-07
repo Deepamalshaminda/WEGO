@@ -19,19 +19,17 @@
 
 
 <?php
-$cities = array($requests);
- 
 // Get values from cities array
-print_r(array_values($cities));
-?>
+// print_r($data['requests']);
 
-    <div class="request-row col-12">
-        <?php foreach($data['requests'] as $requests){ ?>
+?>
+<div class="request-row col-12">
+        <?php foreach($data['requests'] as $request){ ?>
              <div class="left-request col-6">
              <div class="left-request-container col-12">
                  <div class="title-container col-12">
-                     <h3>Deepamal Shaminda</h3>
-                     <php echo $requests ?>
+                     <h3><?php echo $request->name?></h3>
+                     
                  </div>
  
                  <div class="div-bottom col-12">
@@ -68,7 +66,7 @@ print_r(array_values($cities));
        <?php } ?>
     </div>
 
-
+    
 
 </main>
 

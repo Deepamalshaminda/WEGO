@@ -34,17 +34,18 @@
     }
 
     public function acceptRideRequest(){
-      $requests = $this->vehicleModel->getRequests('user_id');
+      $requests = array();
+      $requests = $this->vehicleModel->getRequests($_SESSION['user_id']);
         
       //$vehicle = $this->vehicleModel->getRequestById($id);
       //$user = $this->userModel->getUserById($vehicle->vehicleid);
     
-      // $data = [
-      //     //'vehicle' =>'' ,
-      //     //'user' => '',
-      //     'requests' => $requests
-      // ];
-      $this->view('users/driver/d_acceptriderequest', $requests);
+      $data = [
+          'vehicle' =>'' ,
+          'user' => '',
+          'requests' => $requests
+      ];
+      $this->view('users/driver/d_acceptriderequest', $data);
     }
 
     public function checkTripInfo(){

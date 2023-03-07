@@ -1,0 +1,151 @@
+.full-page{
+    position: relative;
+    max-height: 100vh;
+    width: calc(100% - 240px);
+    left: 240px;
+    top: 80px;
+    transition: all 0.5s ease;
+    justify-content: center;
+    align-items: center;
+    display: block;
+    padding-top: 300px;
+    padding-left: 850px;
+}
+
+
+.wrapper{
+  left: 240px;
+  transform: translate(-50%,-50%);
+  width: 750px;
+  height: 500px;
+  display: flex;
+  box-shadow: 0 1px 20px 0 rgba(69,90,100,.08);
+}
+
+.wrapper .left{
+  width: 50%;
+  background: linear-gradient(to right,#bbbbbb,#eaedf3);
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  text-align: center;
+  color: #08122e;
+  font-size: 24px;
+}
+
+.right, .left{
+  height: 70vh;
+}
+.wrapper .left img{
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+
+.wrapper .left p{
+  font-size: 15px;
+}
+
+.wrapper .right{
+  width: 100%;
+  background: #fff;
+  padding: 30px 25px;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.wrapper .right .info,
+.wrapper .right .projects{
+  margin-bottom: 25px;
+}
+
+.wrapper .right .info h2,
+.wrapper .right .projects h2{
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #e0e0e0;
+    color: #353c4e;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+}
+
+.wrapper .right .info_data,
+.wrapper .right .projects_data{
+  display: flex;
+  justify-content: space-between;
+}
+
+.wrapper .right .info_data .data,
+.wrapper .right .projects_data .data{
+  width: 100%;
+}
+
+.wrapper .right .info_data .data h4,
+.wrapper .right .projects_data .data h4{
+    color: #353c4e;
+    margin-bottom: 5px;
+}
+
+.wrapper .right .info_data .data p,
+.wrapper .right .projects_data .data p{
+  font-size: 13px;
+  margin-bottom: 10px;
+  color: #919aa3;
+}
+
+.wrapper .social_media ul{
+  display: flex;
+}
+
+.edit , .delete{
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    font-size: 12px;
+    cursor: pointer;
+    width: 50%;
+
+}
+
+.edit{
+    background-color: rgb(23, 54, 101);
+    color: white;
+    margin-left: 80%;
+    
+}
+
+.delete{
+    background-color: rgb(139, 173, 218);
+    color: white;
+    margin-left: 45%;
+
+}
+
+.button{
+  align-items: center;
+  padding: 8px 24px;
+  color: white;
+  background-color: rgb(36, 36, 74);
+  border: none;
+  border-radius: 20px;
+}
+
+.link{
+  text-decoration: none;
+  color: white;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+}
+
+td, th {
+  border: 1px solid #949191;
+  text-align: left;
+  padding: 12px;
+}
+
+tr:nth-child(even) {
+  background-color: #6187aa;
+}

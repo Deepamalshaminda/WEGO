@@ -642,7 +642,7 @@
 
   <div class="btn-1-container col-3">
     <div class="btn-1 col-10">
-      <h1>Earnings Statistics</h1>
+      <a href="#"><h1>Earnings Statistics</h1></a>
     </div>
   </div>
 </div>

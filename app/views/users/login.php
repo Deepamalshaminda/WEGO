@@ -31,14 +31,14 @@
             <div class="input-container">
                 <div class="input">
                     <i class="fa fa-user"></i>
-                    <input type="email"  name="email" class="control <?php echo (!empty($data['email_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['email']; ?> ">
-      <br><span class="invalid-feedback"><?php echo $data['email_err']; ?></span>  
+                    <input type="email"  placeholder="Email" name="email" class="control <?php echo (!empty($data['email_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['email']; ?> ">
+                    <br><span class="invalid-feedback"><?php echo $data['email_err']; ?></span>  
                 </div>
                 <br>
                 <div class="input">
                     <i class="fa fa-lock"></i>
                     <input type="password" placeholder="Password" name="password" class="control <?php echo (!empty($data['password_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['password']; ?>">
-      <br><span class="invalid-feedback"><?php echo $data['password_err']; ?></span>
+                    <br><span class="invalid-feedback"><?php echo $data['password_err']; ?></span>
                 </div>
                 <br>
                 <input type="submit" class="login" value="LOGIN">

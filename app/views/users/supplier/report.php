@@ -23,8 +23,11 @@
                     
                     <tr class="row">
                       <td>Monthly earning report</td>
-                      <td><button class="report-btn">View</button></td>
-                      <td><img src="../public/img/downloads.png"></td>
+                      
+                      <td class="report-btn"><a href="pdf/index" target="_blank" rel="noopener noreferrer">View PDF</a></td>
+                      <td> <a href="pdf/generate" download="report.pdf">Download PDF</a></td>
+
+                      
                     </tr>
                     <tr class="row">
                       <td>Monthly salary expense report</td>

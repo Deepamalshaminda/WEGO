@@ -9,6 +9,12 @@ public $userModel;
     // $this->userModel = $this->model('User');
   }
 
+    public function index() {
+      // generate PDF here
+    }
+  
+  
+
   public function viewReports(){
     //view
     $this->view('users/supplier/report');

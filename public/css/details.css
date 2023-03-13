@@ -1,0 +1,41 @@
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .card {
+    width: 300px;
+    height: 500px;
+    margin: 20px;
+    text-align: center;
+    border: 1px solid rgb(10, 9, 98);
+    background-color: white;
+  }
+  
+  img {
+    width: 85%;
+    height: 35%;
+  }
+  
+  
+  .edit-btn, .delete-btn {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: rgb(90, 120, 228);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .edit-btn:hover, .delete-btn:hover {
+    background-color: darkblue;
+  }
+
+  p{
+    font-size: 11px;
+    text-align: left;
+    font-weight: 500;
+  }

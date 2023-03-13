@@ -5,7 +5,6 @@ class Users extends Controller
   {
     $this->userModel = $this->model('User');
   }
-  
   public function register()
   {
     // Check for POST
@@ -18,7 +17,7 @@ class Users extends Controller
       // Init data
       $data = [
         'name' => trim($_POST['name']),
-        'nic' => trim($_POST['nic']),
+        'nic' => trim($_POST['nic']), 
         'gender' => trim($_POST['gender']),
         'dob' => trim($_POST['dob']),
         'province' => trim($_POST['province']),
@@ -27,6 +26,7 @@ class Users extends Controller
         'address' => trim($_POST['address']),
         'contactNumber' => trim($_POST['contactNumber']),
         'email' => trim($_POST['email']),
+        'user_role' => trim($_POST['user_role']),
         'password' => trim($_POST['password']),
         'confirm_password' => trim($_POST['confirm_password']),
         'name_err' => '',
@@ -146,6 +146,7 @@ class Users extends Controller
         'contactNumber' => '',
         'email' => '',
         'password' => '',
+        'user_role'=>'',
         'confirm_password' => '',
         'name_err' => '',
         'nic_err' => '',
@@ -179,8 +180,10 @@ class Users extends Controller
       $data = [
         'email' => trim($_POST['email']),
         'password' => trim($_POST['password']),
+        // 'role_id' => trim($_POST['user-role']),
         'email_err' => '',
         'password_err' => '',
+        // 'role_id_err'=>'',
       ];
 
       // Validate Email
@@ -201,8 +204,43 @@ class Users extends Controller
       //   // Load view with errors
       //   $this->view('users/login', $data);
       // }
-
+      // $role_id = $this->userModel->getUserRoleByEmail($data['email']); 
       $loggedInUser = $this->userModel->login($data['email'], $data['password']);
+      $role_id = $loggedInUser->role_id;
+      switch($role_id){
+        case 1:
+          
+          // if($loggedInUser){
+            //$this->view('users/driver/d_dashboard');
+            redirect('D_ManageDrivers/viewDashboard');
+          // }
+          break;
+        case 2:
+          // $loggedInUser = $this->userModel->login($data['email'], $data['password']);
+          // if($loggedInUser){
+          $this->view('users/supplier/supplier');
+          // }
+          break;
+        case 3:
+          // $loggedInUser = $this->userModel->login($data['email'], $data['password']);
+          // if($loggedInUser){
+          $this->view('users/parent/parentdash');
+          // }
+          break;
+        case 4:
+          // $loggedInUser = $this->userModel->login($data['email'], $data['password']);
+          // if($loggedInUser){
+            $this->view('users/officeworker/ow_officeworkerdash');
+          // }
+          break;
+        case 5:
+          // $loggedInUser = $this->userModel->login($data['email'], $data['password']);
+          // if($loggedInUser){
+            $this->view('users/admin/admindash');
+          // }
+          break;
+
+      }
 
       if($loggedInUser){
         // Create Session
@@ -223,8 +261,10 @@ class Users extends Controller
       $data =[    
         'email' => '',
         'password' => '',
+        // 'role_id' => '',
         'email_err' => '',
-        'password_err' => '',        
+        'password_err' => '', 
+        // 'role_id_err' =>'',      
       ];
 
       // Load view
@@ -233,10 +273,9 @@ class Users extends Controller
   }
 
   public function createUserSession($user){
-    $_SESSION['user_id'] = $user->id;
+    $_SESSION['user_id'] = $user->us_id;
     $_SESSION['user_email'] = $user->email;
     $_SESSION['user_name'] = $user->name;
-    redirect('pages/vehicle');
   }
 
   public function logout(){
@@ -256,3 +295,6 @@ class Users extends Controller
   }
 
 }
+
+
+

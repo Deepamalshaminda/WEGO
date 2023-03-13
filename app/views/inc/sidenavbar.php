@@ -1,5 +1,5 @@
 
-<link rel="stylesheet" href="<?php echo URLROOT; ?>/css/dashboard.css">
+<link rel="stylesheet" href="<?php echo URLROOT; ?>/css/p_dashboard.css">
   <title><?php echo SITENAME; ?></title>
 </head>
 <body>
@@ -43,7 +43,12 @@
             <span class="links_name">&nbsp; Student attendence</span>
           </a>
         </li>
-       
+        <!--<li>
+          <a href="#">
+            <div class='bx bx-book-alt' ></div>
+            <span class="links_name">&nbsp; My added children</span>
+          </a>
+        </li>-->
         <li>
           <a href="#">
             <div class='bx bx-user' ></div>
@@ -52,7 +57,7 @@
         </li>
         
         <li class="log_out">
-          <a href="#">
+          <a href="<?php echo URLROOT?>/Users/logout">
             <div class='bx bx-log-out'></div>
             <span class="links_name">&nbsp; Log out</span>
           </a>
@@ -71,8 +76,7 @@
       </div>
       <div class="profile-details">
         <!-- //<img src="../public/img/images.png" alt=""> -->
-        <span class="admin_name">Adam Fernando</span>
+        <span class="admin_name">Melissa Perera</span>
         <div class='bx bx-chevron-down' ></div>
       </div>
     </nav>
-  

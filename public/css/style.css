@@ -64,13 +64,32 @@ body{
   
 }
 input{
-  background: transparent;
   border: none;
   outline: none;
   width: 70%;
   line-height:30px;
   font-size: 15px;
+  box-shadow: none;
+  background-color: none;
 }
+
+.control{
+  background-color: transparent;
+  box-shadow: none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-box-shadow: #dedde4 !important;
+}
+
+
+::placeholder{
+  text-align: center;
+}
+
 i{
   opacity: 50%;
 }
@@ -166,4 +185,16 @@ img{
   .rightside{
       width: 100%;
   }
+}
+
+
+select{
+  width: 122%;
+  margin-top: 15px;
+  height: 50px;
+  padding: 10px 20px;
+  background-color: #dedde4;
+  align-items: center;
+  border-radius: 25px;
+  
 }

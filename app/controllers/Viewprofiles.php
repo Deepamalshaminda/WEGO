@@ -11,6 +11,6 @@ public $userModel;
 
   public function viewprofile(){
     //view
-    $this->view('users/parent/viewprofiles');
+    $this->view('users/admin/viewprofiles');
 }
 }

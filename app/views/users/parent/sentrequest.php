@@ -1,7 +1,7 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
 
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/dashboard.css">
-<link rel="stylesheet" href="<?php echo URLROOT; ?>/css/prequest.css">
+<link rel="stylesheet" href="<?php echo URLROOT; ?>/css/p_prequest.css">
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/js/list.js">
 <title><?php echo SITENAME; ?></title>
 <html>
@@ -13,7 +13,9 @@
 <body>
 
 
+
 <?php require APPROOT . '/views/inc/sidenavbar.php' ;?>
+     
      
     <div class="home-content">
 <button class="tablink" onclick="openPage('sendrequests')" id="defaultOpen" >Sent ride requests</button>

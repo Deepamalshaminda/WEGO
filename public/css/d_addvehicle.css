@@ -1,0 +1,84 @@
+.full-page{
+    position: relative;
+    max-height: 100vh;
+    width: calc(100% - 240px);
+    left: 240px;
+    top: 80px;
+    transition: all 0.5s ease;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.background-section{
+    padding: 0 120px;
+}
+
+.back-btn-container{
+    padding-bottom: 24px;
+}
+
+.btn-back{
+    padding: 5px 10px;
+    background-color: rgb(36, 36, 74);
+    border-radius: 12px;
+}
+
+.btn-back a{
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.form-wrapper{
+    box-shadow: 0 2px 4px rgba(7, 7, 7, 0.4);
+    border-radius: 12px;
+    padding: 32px 100px;
+    width: max-content;
+    background-color: #EEEDED;
+}
+
+.title-container{
+    text-align: center;
+}
+
+.form-description{
+    padding: 16px 0;
+    color: rgb(36, 36, 74);
+    font-size: large;
+    font-weight: bold;
+}
+
+.form-group{
+    padding-bottom: 12px;
+}
+
+.btn-container{
+    text-align: center;
+    padding: 16px 0;
+}
+
+.btn-submit{
+    align-items: center;
+    padding: 8px 24px;
+    color: white;
+    background-color: rgb(36, 36, 74);
+    border: none;
+    border-radius: 20px;
+}
+
+.input-field{
+    padding: 8px 10px;
+    margin-top: 5px;
+    border-radius: 8px;
+    border: none;
+    background-color:#FFFFFF;
+}
+
+.vehicleNo-input{
+    padding-right: 30px;
+}
+
+.vehicleType-input{
+    padding-left: 30px;
+}

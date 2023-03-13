@@ -1,0 +1,96 @@
+.full-page{
+  position: relative;
+  max-height: 100vh;
+  width: calc(100% - 240px);
+  left: 240px;
+  top: 100px;
+  transition: all 0.5s ease;
+  justify-content: center;
+  align-items: center;
+  display: block;
+}
+
+.top-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.top-container-left{
+  position: relative;
+  background-color: rgb(192, 185, 185);
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.top-container-right{
+  background-color: rgb(181, 177, 177);
+  float: left;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-row{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-row-left-container{
+  background-color: #EEEDED;
+  border-radius: 10px;
+  padding: 32px 80px;
+}
+
+.card-row-left{
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  padding: 30px;
+}
+
+.trip-id{
+  height: 8vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.details-container-top{
+  height: 6vh;
+}
+
+.button{
+  align-items: center;
+  padding: 8px 24px;
+  color: white;
+  background-color: rgb(36, 36, 74);
+  border: none;
+  border-radius: 20px;
+}
+
+.link{
+  text-decoration: none;
+  color: white;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+}
+
+td, th {
+  border: 1px solid #949191;
+  text-align: left;
+  padding: 12px;
+}
+
+tr:nth-child(even) {
+  background-color: #e7e3e3;
+}

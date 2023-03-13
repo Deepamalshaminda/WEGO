@@ -15,7 +15,9 @@
 <body>
 
 
+
 <?php require APPROOT . '/views/inc/sidenavbar.php' ;?>
+     
 
 <div class="wrapper">
     <div class="left">

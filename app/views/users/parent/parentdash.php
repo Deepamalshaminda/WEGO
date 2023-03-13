@@ -1,5 +1,5 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
-<link rel="stylesheet" href="<?php echo URLROOT; ?>/css/dashboard.css">
+<link rel="stylesheet" href="<?php echo URLROOT; ?>/css/p_dashboard.css">
   <title><?php echo SITENAME; ?></title>
 </head>
 <body>
@@ -7,7 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
 <body>
+ 
 <?php require APPROOT . '/views/inc/sidenavbar.php' ;?>
+     
 
     <div class="home-content">
       <div class="overview-boxes">
@@ -47,9 +49,9 @@
 
       <div class="sales-boxes">
         <div class="recent-sales box">
-          <div class="title">Attendance Summery</div>
+          <div class="title">Attendence Summery</div>
           <div class="graph-card">
-      <h3 class="summery">Attendance summery of last month</h3>
+      <h3 class="summery">Attendence summery of last month</h3>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
   
   

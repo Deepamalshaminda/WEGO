@@ -8,7 +8,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
 <body>
+  
 <?php require APPROOT . '/views/inc/sidenavbar.php' ;?>
+     
 
     
  
@@ -21,7 +23,7 @@
 
             <div class="col">
 
-                <h3 class="title">billing address</h3>
+                <h3 class="title">Payment Details</h3>
 
                 <div class="inputBox">
                     <span>full name :</span>

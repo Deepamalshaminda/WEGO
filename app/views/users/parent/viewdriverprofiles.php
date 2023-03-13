@@ -1,7 +1,7 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
 
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/dashboard.css">
-<link rel="stylesheet" href="<?php echo URLROOT; ?>/css/prequest.css">
+<link rel="stylesheet" href="<?php echo URLROOT; ?>/css/p_prequest.css">
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/viewchildren.css">
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/js/list.js">
 <title><?php echo SITENAME; ?></title>
@@ -15,10 +15,12 @@
 
 
 
-
+<?php require APPROOT . '/views/inc/sidenavbar.php' ;?>
+     
+     
    
   
-<?php require APPROOT . '/views/inc/sidenavbar.php' ;?>
+</div>
 
 <div class="wrapper">
     <div class="left">

@@ -33,19 +33,27 @@
       $this->view('users/driver/d_viewvehicle', $data);
     }
 
-    public function acceptRideRequest(){
+    public function getRideRequest(){
       $requests = array();
       $requests = $this->requestModel->getRequests($_SESSION['user_id']);
-        
-      //$vehicle = $this->vehicleModel->getRequestById($id);
-      //$user = $this->userModel->getUserById($vehicle->vehicleid);
-    
+  
       $data = [
           'vehicle' =>'' ,
           'user' => '',
           'requests' => $requests
       ];
       $this->view('users/driver/d_acceptriderequest', $data);
+    }
+
+    public function acceptRideRequest($se_id){
+
+      if ($this->requestModel->acceptRideRequest($se_id)){
+        redirect('D_ManageDrivers/getRideRequest');
+        return true;
+      }
+
+      $this->view('users/driver/d_acceptriderequest');
+      return false;
     }
 
     public function checkTripInfo(){

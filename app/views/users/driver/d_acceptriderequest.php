@@ -58,7 +58,7 @@ print_r($data['requests']);
                  </div>
  
                  <div class="btn-container col-12">
-                     <button class="button"><a class="link" href="#">Accept</a></button>
+                     <button class="button"><a class="link" href="<?php echo URLROOT?>/D_ManageDrivers/acceptRideRequest/<?php echo $request->se_id?>">Accept</a></button>
                      <button class="button"><a class="link" href="#">Declline</a></button>
                  </div>
              </div>

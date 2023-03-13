@@ -12,6 +12,7 @@
       // Instatiate model
       return new $model();
     }
+    
 
     // Load view
     public function view($view, $data = []){
@@ -20,7 +21,7 @@
         require_once '../app/views/' . $view . '.php';
       } else {
         // View does not exist
-        die('View does not exist');
+        require_once '../app/views/other/404Page.php';
       }
     }
   }

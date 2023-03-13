@@ -13,7 +13,7 @@
             </li>
 
             <li>
-                <a href="<?php echo URLROOT;?>/D_ManageDrivers/acceptRideRequest">
+                <a href="<?php echo URLROOT;?>/D_ManageDrivers/getRideRequest">
                     <i class='bx bx-box'></i>
                     <span class="links_name">Accept<?php echo $_SESSION['user_id'] ?> Ride Requests</span>
                 </a>

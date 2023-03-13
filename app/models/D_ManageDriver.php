@@ -10,6 +10,7 @@
         public function getRequests($driverId)
         {
             $this->db->query("SELECT
+            s.se_id as 'se_id',
             u.name as 'fromWhom',
             u.nearestTown as 'fromWhere',
             ow.officeAddress as 'toWhere'
@@ -20,6 +21,17 @@
             $this->db->bind(':id', $driverId);
             $results = $this->db->resultSet();
             return $results;
+        }
+
+        public function acceptRideRequest($se_id)
+        {
+            $this->db->query("INSERT INTO accepted_request (se_id, status) VALUES (:id, '1')");
+            $this->db->bind(':id', $se_id);
+            if($this->db->execute()){
+                return true;
+              } else {
+                return false;
+              }
         }
 
         // public function getRequestSendersName($sendersUserID){

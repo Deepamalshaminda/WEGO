@@ -18,40 +18,40 @@
 <!-- <div class="background-section col-12"> -->
 
 
-<?php
-// Get values from cities array
-// print_r($data['requests']);
 
+
+<?php
+print_r($data['requests']);
 ?>
 <div class="request-row col-12">
         <?php foreach($data['requests'] as $request){ ?>
              <div class="left-request col-6">
-             <div class="left-request-container col-12">
+             <div class="left-request-container col-6">
                  <div class="title-container col-12">
-                     <h3><?php echo $request->name?></h3>
+                     <h3><?php echo $request->fromWhom?></h3>
                      
                  </div>
  
                  <div class="div-bottom col-12">
-                     <div class="image-wrapper col-6">
+                     <div class="image-wrapper col-4">
                          <img src="<?php echo URLROOT?>/img/3.jpg" class="profile-picture" alt="profile picture">
                      </div>
-                     <div class="user-details col-6">
+                     <div class="user-details col-8">
                          <div class="from-where col-12">
-                             <div class="from col-12">
+                             <div class="from col-4">
                                  <p>From</p>
                              </div>
-                             <div class="location-name col-12">
-                                 <h5>Pamankada</h5>
+                             <div class="location-name col-8">
+                                 <h5><?php echo $request->fromWhere?></h5>
                              </div>
                          </div>
  
                          <div class="to-where col-12">
-                             <div class="from col-12">
+                             <div class="from col-4">
                                  <p>To</p>
                              </div>
-                             <div class="location-name col-12">
-                                 <h5>Colombo University</h5>
+                             <div class="location-name col-8">
+                                 <h5><?php echo $request->toWhere?></h5>
                              </div>
                          </div>
                      </div>

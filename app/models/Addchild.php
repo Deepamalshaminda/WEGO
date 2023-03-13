@@ -15,7 +15,7 @@
    // }
 
     public function addchild($data){
-      $this->db->query('INSERT INTO child (child_name,school,address,age,route,gender) VALUES(:name, :school, :address, :age,:route, :gender)');
+      $this->db->query('INSERT INTO child (name,school,address,age,route,gender,pr_id) VALUES(:name, :school, :address, :age,:route, :gender, :pr_id)');
       // Bind values
       $this->db->bind(':name', $data['name']);
       //$this->db->bind(':user id', $data['user id']);
@@ -24,6 +24,7 @@
       $this->db->bind(':age', $data['age']);
       $this->db->bind(':route', $data['route']);
       $this->db->bind(':gender', $data['gender']);
+      $this->db->bind(':pr_id', $data['pr_id']);
 
 
       // Execute

@@ -14,15 +14,17 @@
 <body>
   <?php require APPROOT . '/views/inc/sidenavbar.php' ;?>
     
-<!--<div class="full-page">
-       <div class="register-wrapper">
-              <div class="title-wrapper">
-                <h2 class="topic">Add your child's details..</h2>
-              </div>
 
-              <form action="<?php echo URLROOT; ?>/Parents/addchild" method="post">
-              <div class="left-column">
-                     <div class="field">
+       <h1 class="childtopic">Fill your child's details here..</h1>
+       <br>
+       <section class="formback">
+       <form action="<?php echo URLROOT; ?>/Parents/addchild" method="post">
+      <div class="container">
+        <h1 class="topic">Please fill this form with your child's details</h1>
+        
+        <hr>
+
+        <div class="field">
                             <label for="name">Name <sup>*</sup></label> <br>
                             <input type="text" name="name" size="30" placeholder="Enter name"
                                    class="input <?php echo (!empty($data['name_err'])) ? 'is-invalid' : ''; ?>"
@@ -75,29 +77,8 @@
                                    value="<?php echo $data['gender']; ?>"> <br>
                             <span class="invalid-feedback"><?php echo $data['gender_err']; ?></span>
                      </div>
-                    
-
-                </div>
-
-               
-                    
-              </div>
-              <div class="btn-wrapper">
-                    <button class="btn-register">Register</button>
-                    <button class="btn-cancel">Cancel</button>
-              </div>
-              </form> 
-       </div>-->
-       <h1 class="childtopic">Fill your child's details here..</h1>
-       <br>
-       <section class="formback">
-       <form action="<?php echo URLROOT; ?>/Parents/addchild" method="post">
-      <div class="container">
-        <h1 class="topic">Please fill this form with your child's details</h1>
-        
-        <hr>
     
-        <label for="email" class="fields"><b>Name*</b></label>
+       <!-- <label for="email" class="fields"><b>Name*</b></label>
         <input type="text" placeholder="Enter Name" name="name" required>
     
         <label for="psw" class="fields"><b>School*</b></label>
@@ -115,7 +96,7 @@
         <label for="psw-repeat" class="fields"><b>Gender*</b></label>
         <input type="password" placeholder="Enter child's gender" name="psw-repeat" required>
     
-        <!--<label>
+        <label>
           <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
         </label>
     

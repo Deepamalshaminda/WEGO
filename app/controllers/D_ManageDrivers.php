@@ -2,7 +2,7 @@
   class D_ManageDrivers extends Controller {
     public $userModel;
     public $viewDashboardModel;
-    public $vehicleModel;
+    public $requestModel;
 
     public function __construct(){
       if(!isLoggedIn()){
@@ -10,7 +10,7 @@
       }
 
       //$this->requestModel = $this->model('Request');
-      $this ->vehicleModel = $this->model('D_ManageDriver');
+      $this ->requestModel = $this->model('D_ManageDriver');
       $this ->viewDashboardModel = $this->model('viewDashboard');
     }
 
@@ -24,7 +24,7 @@
 
     public function index(){
       
-      $requests = $this->vehicleModel->getVehicleDetails();
+      $requests = $this->requestModel->getVehicleDetails();
 
       $data = [
         'requests' => $requests
@@ -35,7 +35,7 @@
 
     public function acceptRideRequest(){
       $requests = array();
-      $requests = $this->vehicleModel->getRequests($_SESSION['user_id']);
+      $requests = $this->requestModel->getRequests($_SESSION['user_id']);
         
       //$vehicle = $this->vehicleModel->getRequestById($id);
       //$user = $this->userModel->getUserById($vehicle->vehicleid);

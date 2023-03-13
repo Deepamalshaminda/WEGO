@@ -7,12 +7,31 @@
             $this->db = new Database;
         }
 
-        public function getRequests($id){
-            $this->db->query('SELECT se_id as sentRequestID, us_id as userID, name as userName, nearestTown as from,   FROM sent_request WHERE to_whom = :id');
-            $this->db->bind(':id', $id);
+        public function getRequests($driverId)
+        {
+            $this->db->query("SELECT
+            u.name as 'fromWhom',
+            u.nearestTown as 'fromWhere',
+            ow.officeAddress as 'toWhere'
+            FROM sent_request s
+            INNER JOIN user u ON s.from_whom = u.us_id
+            INNER JOIN officeworker ow ON s.from_whom = ow.us_id
+            WHERE to_whom = :id;");
+            $this->db->bind(':id', $driverId);
             $results = $this->db->resultSet();
             return $results;
         }
+
+        // public function getRequestSendersName($sendersUserID){
+        //     $this->db->query("SELECT
+        //     u.name as 'sendersName'
+        //     FROM user as u
+        //     WHERE u.us_id = :senderID;
+        //     ");
+        //     $this->db->bind(':senderID', $sendersUserID);
+        //     $results = $this->db->resultSet();
+        //     return $results;
+        // }
     }
 
 ?>

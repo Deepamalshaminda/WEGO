@@ -17,19 +17,17 @@
 
 .left-request, .right-request{
     position: relative;
-}
-
-.left-request{
-    padding: 3% 2% 3% 3%;
-}
-
-.right-request{
-    padding: 3% 3% 3% 2%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3% 1% 3% 3%;
 }
 
 .left-request-container, .right-request-container{
     background-color: #EEEDED;   
     border-radius: 12px;
+    align-items: center;
+    justify-content: center;
 }
 
 .title-container{
@@ -52,8 +50,8 @@
 
 
 .profile-picture{
-    width: 20vh;
-    height: 20vh;
+    width: 10vh;
+    height: 10vh;
     border-radius: 50%;
 }
 
@@ -64,11 +62,11 @@
 }
 
 .from-where{
-    height: 10vh;
+    height: 5vh;
 }
 
 .to-where{
-    height: 10vh;
+    height: 5vh;
 }
 
 /* .full-page .request-row .left-request .left-request-container .button-container{
@@ -93,8 +91,10 @@
 
 .image-wrapper{
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: left;
+    align-items: left;
+    padding-left: 2vh;
+    
 }
 
 .button{

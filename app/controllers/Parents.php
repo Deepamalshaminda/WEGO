@@ -18,21 +18,23 @@
 
         $data = [
           'name' => trim($_POST['name']),
-          'school' => trim($_POST['school']),
-          'address' => trim($_POST['address']),
-          'age' => trim($_POST['age']),
-          'route' => trim($_POST['route']),
           'gender' => trim($_POST['gender']),
+          'dob' => trim($_POST['dob']),
+          'school' => trim($_POST['school']),
+          'school_address' => trim($_POST['school_address']),
+          'age' => trim($_POST['age']),
           'pr_id' => $_SESSION['user_id'],
+          
 
 
           'name_err' => '',
-          'school_err' => '',
-          'address_err' => '',
-          'age_err' => '',
-          'route_err' => '',
           'gender_err' => '',
-          'pr_id_err' => '',
+          'dob_err' => '',
+          'school_err' => '',
+          'school_address_err' => '',
+          'age_err' => '',
+          
+        
           
         ];
 
@@ -40,36 +42,34 @@
           $data['name_err'] = 'Please enter name';
         }
 
+        if (empty($data['gender'])) {
+          $data['gender_err'] = 'Please enter your childs gender';
+        }
+
+        if (empty($data['dob'])) {
+          $data['dob_err'] = 'Please enter date of birth';
+        }
+
         if (empty($data['school'])) {
           $data['school_err'] = 'Please enter school';
         }
 
-        if (empty($data['address'])) {
-          $data['name_address'] = 'Please enter address';
+        if (empty($data['school_address'])) {
+          $data['school_address'] = 'Please enter school address';
         }
 
         if(!($data['age']<18)){
             $data['age_err']='Age is Invalid';
         }
 
-        if (empty($data['route'])) {
-          $data['route_err'] = 'Please enter route';
-        }
-
-        if (empty($data['gender'])) {
-          $data['gender_err'] = 'Please enter gender';
-        }
-
-        if (empty($data['pr_id'])) {
-          $data['pr_id'] = 'Please enter parent id';
-        }
         
-        if( empty($data['name_err']) && empty($data['school_err']) && empty($data['address_err']) && empty($data['age_err'])&& empty($data['route_err']) && empty($data['gender_err']) &&  empty($data['pr_id_err']) )
+
+        if( empty($data['name_err']) && empty($data['gender_err']) && empty($data['dob_err']) && empty($data['school_err'])&& empty($data['school_address_err']) && empty($data['age_err']) )
 
         {
 
           if($this->userModel->addchild($data)){
-              echo "correct";
+            $this->view('users/parent/parentdash', $data);
           }else{
             echo "wrong";
           }
@@ -82,22 +82,22 @@
         $data = [
             'name' => '',
             'gender' => '',
+            'dob' => '',
             'school' => '',
-            'address' => '',
-            'route' => '',
+            'school_address' => '',
             'age' => '',
-            'pr_id' => '',
+           
 
 
 
-            'name_err' => '',
-            'gender_err' => '',
-            'school_err' => '',
-            'address_err' => '',
-            'route_err' => '',
-            'age_err' => '',
-            'pr_id_err' => '',
-            
+           'name_err' => '',
+           'gender_err' => '',
+           'dob_err' => '',
+           'school_err' => '',
+           'school_address_err' => '',
+           'age_err' => '',
+          
+           
           ];
     
           // Load view

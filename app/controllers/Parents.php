@@ -23,7 +23,8 @@
           'school' => trim($_POST['school']),
           'school_address' => trim($_POST['school_address']),
           'age' => trim($_POST['age']),
-          'pr_id' => $_SESSION['user_id'],
+          //'pr_id' => $_SESSION['user_id'],
+          'userid' => $_SESSION['user_id'],
           
 
 

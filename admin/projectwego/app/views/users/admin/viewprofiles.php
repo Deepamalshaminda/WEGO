@@ -1,8 +1,13 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
 
+<link rel="stylesheet" href="<?php echo URLROOT; ?>/css/admin_dashboard.css">
+<link rel="stylesheet" href="<?php echo URLROOT; ?>/css/viewprofiles.css">
 
+<<<<<<< Updated upstream:admin/projectwego/app/views/users/admin/viewprofiles.php
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/tranaction.css">
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/js/list.js">
+=======
+>>>>>>> Stashed changes:app/views/users/admin/viewprofiles.php
 <title><?php echo SITENAME; ?></title>
 <html>
 </head>
@@ -13,6 +18,7 @@
 <body>
 
 
+<<<<<<< Updated upstream:admin/projectwego/app/views/users/admin/viewprofiles.php
 <?php require APPROOT . '/views/inc/sidenavbar.php' ;?>
 <div class="wrapper">
     <div class="left">
@@ -180,96 +186,87 @@
         <div class='bx bx-chevron-down' ></div>
       </div>
     </nav>
+=======
+<?php require APPROOT . '/views/inc/admin_sidenavbar.php' ;?>
+>>>>>>> Stashed changes:app/views/users/admin/viewprofiles.php
      
-   
+    <div class="home-content">
+<div class="tab">
+        <button class="tablink" onclick="openPage('drivers')" id="defaultOpen" >Drivers</button>
+        <button class="tablink" onclick="openPage('Vehicle Suppliers')" >Vehicle Suppliers</button>
+        <button class="tablink" onclick="openPage('parents')" >Parents</button>
+        <button class="tablink" onclick="openPage('officeworkers')" >Office Workers</button>
+    </div>   
+
+<div id="drivers" class="tabcontent">
+  <div class="friend-list">
+    <div class="friend-card">
+      
+      <div class="friend-name"><img src="../public/img/us1.jpg" class="friend-picture" > Dinidu Pathirana </div>
+      <br>
+      <br>
+      <div class="friend-actions">
+      <button class="details-button"><a href="<?php echo URLROOT?>/Admin/viewuser"> View details</a></button>
+        
+      </div>
+    </div>
+    <div class="friend-card">
+      
+      <div class="friend-name"><img src="../public/img/us2.jpg" class="friend-picture" > Dan Fernando </div>
+      <br>
+      <br>
+      <div class="friend-actions">
+      <button class="details-button"> View details</button>
+        
+      </div>
+    </div>
+    <div class="friend-card">
+      
+      <div class="friend-name"><img src="../public/img/us3.jpg" class="friend-picture" > Sophia Aluthgama </div>
+      <br>
+      <br>
+      <div class="friend-actions">
+      <button class="details-button"> View details</button>
+        
+      </div>
+    </div>
+    <div class="friend-card">
+      
+      <div class="friend-name"><img src="../public/img/us4.jpg" class="friend-picture" > Minoli Perera </div>
+      <br>
+      <br>
+      <div class="friend-actions">
+      <button class="details-button"> View details</button>
+        
+      </div>
+    </div>
+    <div class="friend-card">
+      
+      <div class="friend-name"><img src="../public/img/us5.jpg" class="friend-picture" > Suchi Siriwardhana </div>
+      <br>
+      <br>
+      <div class="friend-actions">
+      <button class="details-button"> View details</button>
+        
+      </div>
+    </div>
+
+    <div class="friend-card">
+      
+      <div class="friend-name"><img src="../public/img/us6.jpg" class="friend-picture" > Wikim Gunathilaka </div>
+      <br>
+      <br>
+      <div class="friend-actions">
+      <button class="details-button"> View details</button>
+        
+      </div>
+    </div>
+  </div>
+  
+  
+  </div>
   
 </div>
-
-<div class="wrapper">
-    <div class="left">
-        <img src ="../public/img/v1.png" 
-        alt="user" width="100">
-        <br>
-        <h6 class="name">LB 5678 - Van(HIACE)</h6>
-         <p class="name" >Driver</p>
-         <br>
-         <p class="name"><b>Overall Rating</b></p>
-<div class="name"><span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span></div>
-    </div>
-    <div class="right">
-        <div class="info"> 
-            <h2>Information</h2>
-            <br>
-            <div class="info_data">
-                 <div class="data">
-                    <h4>Name(Driver) : Nadun Gamlath</h4>
-                    <button class="view-profile"></button>
-                    <br>
-                    <h4>Route : Panadura - Moratuwa - Ratmalana - Mt. Lavinia (Galkissa) - Dehiwala</h4>
-                    <br>
-                    <h4>Departure time : 8.30 a.m.</h4>
-                    <br>
-                    <h4>Vehicle No. : LB 5678</h4>
-                    <br>
-                    <h4>Available Seats : 5</h4>
-                    
-
-
-
-
-                    <!--<p>Kevin Fernando</p>-->
-                 </div>
-                <!-- <div class="data">
-                   <h4>Phone</h4>
-                    <p>0001-213-998761</p>
-              </div>-->
-            </div>
-        </div>
-        <br>
-      
-      <div class="projects">
-            
-            <div class="projects_data">
-                 <div class="data">
-                    <button class="edit">Edit</button>
-                    
-                 </div>
-                 <div class="data">
-                   <button class="delete">Delete</h4>
-                    
-              </div>
-            </div>
-        </div>
-      
-        
-    </div>
-</div>
-
-</body>
-</html>
-
-
-         
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     </body>
 

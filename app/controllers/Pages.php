@@ -65,4 +65,26 @@ public function viewAddedDrivers(){
   //$this->view('users/admin/admin_home', $data);
 //}
 
+<<<<<<< Updated upstream
 }
+=======
+public function d_dashboard(){
+  $data = [
+    'title' => 'Dashboard'
+  ];
+
+  $this->view('users/driver/d_dashboard', $data);
+}
+public function a_dashboard(){
+  $data = [
+    'title' => 'Admin'
+  ];
+
+  $this->view('users/admin/admindash', $data);
+}
+
+}
+  
+  
+  
+>>>>>>> Stashed changes

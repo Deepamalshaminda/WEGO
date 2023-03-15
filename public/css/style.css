@@ -5,6 +5,7 @@ body{
     font-size: small;
   
 }
+<<<<<<< Updated upstream
 
 
 .full-page{
@@ -64,6 +65,18 @@ body{
 
 .invalid-feedback{
     color: #f63b3b;
+=======
+input{
+  background: transparent;
+  border: none;
+  outline: none;
+  width: 70%;
+  line-height:30px;
+  font-size: 15px;
+}
+i{
+  opacity: 50%;
+>>>>>>> Stashed changes
 }
 
 .btn-register, .btn-cancel{
@@ -1080,6 +1093,7 @@ nav .profile-details i{
 
 /*nav bar*/
 
+<<<<<<< Updated upstream
 .sidenav {
   height: 100%;
   width: 0;
@@ -1270,3 +1284,18 @@ nav .profile-details i{
 	} /* min-width:32em */
 
 } /* grid only */
+=======
+
+
+
+
+/*------------Responsive--------------*/
+@media screen and (max-width:768px){
+  .leftside{
+      display: none;
+  }
+  .rightside{
+      width: 100%;
+  }
+}
+>>>>>>> Stashed changes

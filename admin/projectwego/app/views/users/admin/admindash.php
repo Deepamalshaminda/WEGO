@@ -8,7 +8,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
 <body>
+<<<<<<< Updated upstream:admin/projectwego/app/views/users/admin/admindash.php
 <?php require APPROOT . '/views/inc/sidenavbar.php' ;?>
+=======
+<?php require APPROOT . '/views/inc/admin_sidenavbar.php' ;?>
+>>>>>>> Stashed changes:app/views/users/admin/admindash.php
 
     <div class="home-content">
       <div class="overview-boxes">

@@ -15,7 +15,7 @@
     }
 
     public function addvehicle($data){
-      $this->db->query('INSERT INTO vehicle (vehicleno,model,color,year,address,route,starttime,seatingcapacity,Ac,expirylicence,comments,id) VALUES(:vehicleno, :model, :color, :year, :address, :route, :starttime, :seatingcapacity, :Ac, :expirylicence, :comments, :id)');
+      $this->db->query('INSERT INTO vehicle (vehicleno,model,color,year,address,route,starttime,seatingcapacity,Ac,expirylicence,comments,image_path, document_path,id) VALUES(:vehicleno, :model, :color, :year, :address, :route, :starttime, :seatingcapacity, :Ac, :expirylicence, :comments, :vehicle_image, :vehicle_document, :id)');
       // Bind values
       $this->db->bind(':vehicleno', $data['vehicleno']);
       //$this->db->bind(':user id', $data['user id']);
@@ -30,6 +30,8 @@
       $this->db->bind(':Ac', $data['Ac']);
       $this->db->bind(':expirylicence', $data['expirylicence']);
       $this->db->bind(':comments', $data['comments']);
+      $this->db->bind(':vehicle_image', $data['vehicle_image']);
+      $this->db->bind(':vehicle_document', $data['vehicle_document']);
       $this->db->bind(':id', $data['userid']);
 
       // Execute

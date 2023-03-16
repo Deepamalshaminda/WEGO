@@ -7,6 +7,13 @@ body {
     
    
   }
+
+  .home-content .tab{
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: rgba(146, 140, 171, 0.1);
+  
+}
   
   /* Style tab links */
   .tablink {

@@ -11,6 +11,6 @@ public $userModel;
 
   public function sendrequest(){
     //view
-    $this->view('users/officeworker/sendrequest');
+    $this->view('users/parent/sendrequest');
 }
 }

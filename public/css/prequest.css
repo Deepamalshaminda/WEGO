@@ -8,27 +8,28 @@ body {
    
   }
   
-  /* Style tab links */
   .tablink {
-    /* background-color: rgb(36, 20, 98);  */
-    color: #241462;
+    background-color: rgb(36, 20, 98);
+    color: white;
     float: left;
     border: none;
     outline: none;
     cursor: pointer;
-    padding: 19px 77px;
-    font-size: 24px;
-    /* width: 50%; */
-    /* text-align: center;*/
+    padding:  16px;
+    font-size: 17px;
+    width: 50%;
   }
-   
+  
+  .tablink:hover {
+    background-color: rgb(111, 123, 237);
+  }
   
 
   
  
   .tabcontent {
     color: black;
-    /* display: none; */
+    display: none;
     padding: 100px 20px;
     height: 100%;
   }
@@ -100,16 +101,20 @@ body {
   .details-button{
     background-color: rgb(43, 43, 149);
     color: white;
-    width:32%;
+    width:37%;
     padding: 8px 15px;
     border: none;
     border-radius: 20px;
     font-size: 12px;
     cursor: pointer;
     margin-right: 50%;
-    
   }
-
+  
+  div.home-content h2 {
+    padding-top: 4%;
+    padding-left: 8%;
+    color: rgb(36, 20, 98);
+}
   .details-button a{
     text-decoration: none;
   }

@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/admin_dashboard.css">
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/viewcomplaint.css">
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/js/dropdown.js">
-<link rel="stylesheet" href="<?php echo URLROOT; ?>/js/list.js">
+<link rel="stylesheet" href="<?php echo URLROOT; ?>/js/tab.js">
 <title><?php echo SITENAME; ?></title>
 <html>
 </head>

@@ -17,15 +17,22 @@
               <form action="<?php echo URLROOT; ?>/users/register" method="post">
               <div class="left-column">
                      <div class="field">
+                            <label for="user_role">Select User Role</label>
+                            <select name="user_role" id="user-role">
+                                   <option  value="1">Driver</option>
+                                   <option value="2">Vehicle Supplier</option>
+                                   <option value="3">Parent</option>
+                                   <option value="4">Office Worker</option>
+                                   <option value="5">Admin</option>
+                            </select>
+                     </div>
+                     <div class="field">
                             <label for="name">Name <sup>*</sup></label> <br>
                             <input type="text" name="name" size="30" placeholder="Enter name"
                                    class="input <?php echo (!empty($data['name_err'])) ? 'is-invalid' : ''; ?>"
                                    value="<?php echo $data['name']; ?>"><br>
                             <span class="invalid-feedback"><?php echo $data['name_err']; ?></span>
                      </div>
-                    
-                        
-
                      <div class="field">
                             <label for="gender">Gender <sup>*</sup></label> <br>
                             <input type="text" name="gender" size="30" placeholder="Select Gender"
@@ -128,7 +135,7 @@
                     <button class="btn-register">Register</button>
                     <button class="btn-cancel">Cancel</button>
               </div>
-              </form> 
+              </form>
        </div>
 </div>
 

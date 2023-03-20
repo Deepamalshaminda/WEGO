@@ -46,6 +46,20 @@
       call_user_func_array([$this->currentController, $this->currentMethod], $this->params);
     }
 
+  
+
+
+//     public function render(){
+//       $path = '../app/views/' . $this->viewName . '.php';
+
+//         if (file_exists($path)) {
+//             require_once $path;
+//         } else {
+//             require_once '../app/views/other/404Page.php';
+//         }
+//     }
+
+
     public function getUrl(){
       if(isset($_GET['url'])){
         $url = rtrim($_GET['url'], '/');

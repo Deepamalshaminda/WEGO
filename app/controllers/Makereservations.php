@@ -11,6 +11,6 @@ public $userModel;
 
   public function makereservation(){
     //view
-    $this->view('users/officeworker/makereservations');
+    $this->view('users/parent/makereservations');
 }
 }

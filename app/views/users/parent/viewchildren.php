@@ -1,4 +1,4 @@
-<?php require APPROOT . '/views/inc/header.php'; ?>
+s<?php require APPROOT . '/views/inc/header.php'; ?>
 
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/dashboard.css">
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/p_prequest.css">

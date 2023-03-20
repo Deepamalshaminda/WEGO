@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/admin_dashboard.css">
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/vehicle.css">
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/completed.css">
-<script type="text/javascript" src="<?php echo URLROOT; ?>/js/list.js"></script>
+<script type="text/javascript" src="<?php echo URLROOT; ?>/js/tab.js"></script>
 <title><?php echo SITENAME; ?></title>
 <html>
 </head>

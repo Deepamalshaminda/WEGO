@@ -11,6 +11,6 @@ public $userModel;
 
   public function viewsentrequest(){
     //view
-    $this->view('users/officeworker/Viewsentrequests');
+    $this->view('users/parent/Viewsentrequests');
 }
 }

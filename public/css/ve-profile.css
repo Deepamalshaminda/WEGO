@@ -1,0 +1,25 @@
+.pro-card {
+    border: 1px solid #4134da;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 300px;
+    background-color: aliceblue;
+  }
+  
+  .pro-card img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .pro-card .details {
+    padding: 10px;
+  }
+  
+  .pro-card h2 {
+    margin: 0;
+  }
+  
+  .pro-card p {
+    margin: 5px 0;
+  }
+  

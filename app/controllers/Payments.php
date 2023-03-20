@@ -11,6 +11,6 @@ public $userModel;
 
   public function payment(){
     //view
-    $this->view('users/officeworker/payments');
+    $this->view('users/parent/payments');
 }
 }

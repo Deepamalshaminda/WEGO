@@ -94,7 +94,7 @@
       border-radius: 20px;
       font-size: 12px;
       cursor: pointer;
-      width: 50%;
+      width: 60%;
   
   }
   
@@ -123,13 +123,14 @@
   .view-profile{
     background-color: rgb(23, 54, 101);
       color: white;
-      margin-left: 38%;
+      margin-left: 71%;
+      margin-top: 1%;
       padding: 10px 20px;
       border: none;
       border-radius: 20px;
       font-size: 12px;
       cursor: pointer;
-      width: 30%;
+      width: 60%;
   
 
   }

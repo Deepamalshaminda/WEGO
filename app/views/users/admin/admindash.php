@@ -1,5 +1,5 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
-<link rel="stylesheet" href="<?php echo URLROOT; ?>/css/dashboard.css">
+<link rel="stylesheet" href="<?php echo URLROOT; ?>/css/admin_dashboard.css">
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/graphstyle.css">
   <title><?php echo SITENAME; ?></title>
 </head>
@@ -8,7 +8,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
 <body>
-<?php require APPROOT . '/views/inc/adsidenavbar.php' ;?>
+
+<?php require APPROOT . '/views/inc/admin_sidenavbar.php' ;?>
 
     <div class="home-content">
       <div class="overview-boxes">

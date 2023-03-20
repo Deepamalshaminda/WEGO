@@ -33,9 +33,7 @@
       <br>
       <div class="friend-actions">
       <button class="details-button"><a href="<?php echo URLROOT?>/Admin/viewcomplaint"> View details</a></button>
-        
-        
-      </div>
+  </div>
     </div>
     <div class="friend-card">
       
@@ -72,8 +70,6 @@
     </div>
     
   </div>
-  
-  
   </div>
 
   
@@ -84,4 +80,4 @@
 
 
 
-    <!--<?php require APPROOT . '/views/inc/footer.php'; ?>-->
+    <!--<?php require APPROOT . '/views/inc/footer.php'; ?>-->

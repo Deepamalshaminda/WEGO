@@ -1,5 +1,6 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
 
+
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/admin_dashboard.css">
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/vehicle.css">
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/completed.css">
@@ -7,6 +8,7 @@
 <title><?php echo SITENAME; ?></title>
 <html>
 </head>
+
 
 
 
@@ -89,15 +91,18 @@
     </div>
     <div class="friend-card">
       
+
       <div class="friend-name"><img src="../public/img/v9.png" class="friend-picture" >Route : Negombo-Pettah</div>
       <br>
       <br>
       <div class="friend-actions">
         <button class="accept-button">View</button>
+
       </div>
     </div>
     <div class="friend-card">
       
+
       <div class="friend-name"><img src="../public/img/v9.png" class="friend-picture" >Route : Negombo-Pettah</div>
       <br>
       <br>
@@ -140,17 +145,17 @@
       <br>
       <div class="friend-actions">
         <button class="accept-button">View</button>
-        
       </div>
     </div>
     <div class="friend-card">
       
+
       <div class="friend-name"><img src="../public/img/v9.png" class="friend-picture" >Route : Kandy-Colombo</div>
       <br>
       <br>
       <div class="friend-actions">
         <button class="accept-button">View</button>
-        
+       
       </div>
     </div>
     <div class="friend-card">
@@ -182,3 +187,4 @@
             </div>
         </div>
               
+

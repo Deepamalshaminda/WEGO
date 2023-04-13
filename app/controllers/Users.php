@@ -123,7 +123,12 @@ class Users extends Controller
 
         // Register User
         if ($this->userModel->register($data)) {
-          redirect('users/login');
+          if($this->userModel->isVehicleHavingDriver($data['email'])){
+            redirect('users/setVehicle');
+          } else{
+            redirect('users/login');
+          }
+          
         } else {
           die('Something went wrong');
         }
@@ -292,6 +297,19 @@ class Users extends Controller
     } else {
       return false;
     }
+  }
+
+  public function setVehicle(){
+    $data = [
+      'setvehicle' => 'setVehicle'
+    ];
+
+    $this->view('users/driver/d_setvehicle', $data);
+
+    if ($this->userModel->register($data)){
+      
+    }
+
   }
 
 }

@@ -77,18 +77,32 @@
                 <span class="invalid-feedback"><?php echo $data['Ac_err']; ?></span>
             </div>
 
-            <!--<div class="form-group">
+            <div class="form-group">
                 <label for="expirylicence">Expiry date of licence: <sup>*</sup></label>
                 <input type="date" name="expirylicence" size="30" placeholder="Enter licence expiry date"
                  class="controls <?php echo (!empty($data['expirylicence_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['expirylicence']; ?>">
                 <span class="invalid-feedback"><?php echo $data['expirylicence_err']; ?></span>
-            </div>-->
+            </div>
 
             <div class="form-group">
                 <label for="comments">Special conditions<sup>*</sup></label>
                 <input type="comments" name="comments" class="controls <?php echo (!empty($data['comments_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['comments']; ?>">
                 <span class="invalid-feedback"><?php echo $data['comments_err']; ?></span>
             </div>
+            
+            <div class="form-group">
+                <label for="vehicle_image">Image of vehicle<sup>*</sup></label>
+                <input type="file" name="vehicle_image" class="controls <?php echo (!empty($data['vehicle_image_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['vehicle_image']; ?>">
+                <span class="invalid-feedback"><?php echo $data['vehicle_image_err']; ?></span>
+            </div>
+
+            
+            <div class="form-group">
+                <label for="vehicle_document">Documents of vehicle<sup>*</sup></label>
+                <input type="file" name="vehicle_document" class="controls <?php echo (!empty($data['vehicle_document_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['vehicle_document']; ?>">
+                <span class="invalid-feedback"><?php echo $data['vehicle_document_err']; ?></span>
+            </div>
+           
 
 
             <div class="row">

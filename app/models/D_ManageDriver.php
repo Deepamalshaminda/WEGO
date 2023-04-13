@@ -28,6 +28,10 @@
             $this->db->query("INSERT INTO accepted_request (se_id, status) VALUES (:id, '1')");
             $this->db->bind(':id', $se_id);
             if($this->db->execute()){
+                // $this->db->query("DELETE FROM sent_request WHERE se_id = :se_id");
+                // $this->db->bind(':se_id', $se_id);
+
+                
                 return true;
               } else {
                 return false;

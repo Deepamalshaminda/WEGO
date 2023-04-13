@@ -6,7 +6,7 @@
 
     public function __construct(){
       if(!isLoggedIn()){
-        redirect('D_ManageDrivers/viewDashboard');
+        redirect('users/login');
       }
 
       //$this->requestModel = $this->model('Request');
@@ -79,6 +79,8 @@
 
       $this->view('users/driver/d_driver_profile', $data);
     }
+
+    
   }
 
   ?>

@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/d_setvehicle.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/_base.css">
-    <script src="C:\wamp64\www\wego_mvc3_withcss\public\js\d_setvehicle.js"></script>
     <title>Document</title>
 </head>
 <body>
@@ -19,18 +18,18 @@
             </div>
             <div class="col-12">
                 <div class="right-container col-6">
-                    <!-- <a href="#"> -->
-                        <div class="col-4 right clickable-div" onclick="getPathValue(value)" value="own-vehicle">
+                    <!-- <a href="/Vehicles/addvehicle"> -->
+                        <div id="own-vehicle" class="col-4 right clickable-div" value="own-vehicle">
                             <h3 class="content">
                                 Register your own vehicle
-                                <?php echo APPROOT;?>
+                                
                             </h3>
                         </div>
                     <!-- </a> -->
                 </div>
                 <div class="left-container col-6">
-                    <!-- <a href="#" value> -->
-                        <div class="col-4 left clickable-div" onclick="getPathValue(value)" value="find-vehicle">
+                    <!-- <a href="#"> -->
+                        <div id="find-vehicle" class="col-4 left clickable-div" value="find-vehicle">
                             <h3 class="content">
                                 Find vehicle suppliers
                             </h3>
@@ -40,6 +39,7 @@
             </div>
         </div>
     </div>
+    <script src="<?php echo URLROOT?>/public/js/d_setvehicle.js" defer></script>
 
 </body>
 </html>

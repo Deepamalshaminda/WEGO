@@ -9,7 +9,7 @@
         redirect('users/login');
       }
 
-      //$this->requestModel = $this->model('Request');
+      $this->userModel = $this->model('user');
       $this ->requestModel = $this->model('D_ManageDriver');
       $this ->viewDashboardModel = $this->model('viewDashboard');
     }
@@ -78,6 +78,22 @@
       ];
 
       $this->view('users/driver/d_driver_profile', $data);
+    }
+
+    public function ownVehicle(){
+      $data = [
+        'title' => 'Own Vehicle',
+      ];
+
+      $this->view('users/driver/d_dashboardown', $data);
+    }
+
+    public function findVehicle(){
+      $data = [
+        'title' => 'Own Vehicle',
+      ];
+
+      $this->view('users/driver/d_dashboardfind', $data);
     }
 
     

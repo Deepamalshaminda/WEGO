@@ -63,6 +63,7 @@
     margin-left: 20vh;
     margin-right: 20vh;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .content{
@@ -80,6 +81,8 @@
     align-items: center;
     justify-content: center;
     text-align: center;
+    margin-left: 20vh;
     margin-right: 20vh;
     border-radius: 5px;
+    cursor: pointer;
 }

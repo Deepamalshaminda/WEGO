@@ -55,6 +55,14 @@
     $this->view('drivers/addDrivers', $title);
   }
 
+  public function contactUs(){
+    $title = [
+      'title' => 'Contact Us'
+    ];
+
+    $this->view('contact_us', $title);
+  }
+
 
 public function viewAddedDrivers(){
   $data = [

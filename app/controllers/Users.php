@@ -4,7 +4,21 @@ class Users extends Controller
   public function __construct()
   {
     $this->userModel = $this->model('User');
+    // $this->view('users/index');
   }
+
+public function index()
+  {
+    // $users = $this->userModel->getUsers();
+
+    // $data = [
+    //   'users' => $users
+    // ];
+
+    $this->view('users/index');
+  }
+
+
   public function register()
   {
     // Check for POST

@@ -57,6 +57,17 @@
         }
     }
 
+    public function ownVehicle($email){
+      $this->db->query('SELECT * FROM user WHERE email = :email');
+      $this->db->bind(':email', $email);
+      $row = $this->db->asAnArray();
+        if($row['role_id'] == 2){
+          return true;
+        } else {
+          return false;
+        }
+    }
+
     // Find user by email
     public function findUserByEmail($email){
       $this->db->query('SELECT * FROM user WHERE email = :email');

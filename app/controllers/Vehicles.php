@@ -59,8 +59,8 @@ class Vehicles extends Controller
         'Ac' => trim($_POST['Ac']),
         'expirylicence' => trim($_POST['expirylicence']),
         'comments' => trim($_POST['comments']),
-        'vehicle_image' => trim($_POST['vehicle_image']),
-        'vehicle_document' => trim($_POST['vehicle_document']),
+        //'vehicle_image' => trim($_POST['vehicle_image']),
+        //'vehicle_document' => trim($_POST['vehicle_document']),
         //'image'=>trim($_POST['image']),
         //'document'=>trim($_POST['document']),
         'vehicleno_err' => '',
@@ -74,8 +74,8 @@ class Vehicles extends Controller
         'Ac_err' => '',
         'expirylicence_err' => '',
         'comments_err' => '',
-        'vehicle_image_err' => '',
-        'vehicle_document_err' => '',
+        //'vehicle_image_err' => '',
+        //'vehicle_document_err' => '',
         
         //'image_err' => '',
         //'document_err' => '',
@@ -140,14 +140,14 @@ class Vehicles extends Controller
       }
 
       // Validate image
-      if (empty($data['vehicle_image'])) {
-        $data['vehicle_image_err'] = 'Please upload an image of your vehicle';
-      }
+      //if (empty($data['vehicle_image'])) {
+        //$data['vehicle_image_err'] = 'Please upload an image of your vehicle';
+      //}
 
        // Validate image
-       if (empty($data['vehicle_document'])) {
-        $data['vehicle_document_err'] = 'Please upload documents of your vehicle';
-      }
+       //if (empty($data['vehicle_document'])) {
+        //$data['vehicle_document_err'] = 'Please upload documents of your vehicle';
+      //}
 
       // Validate image
       //if (empty($data['image'])) {
@@ -160,7 +160,7 @@ class Vehicles extends Controller
       //}
 
    // upload the vehicle image
-  $target_dir = "uploads/";
+  /*$target_dir = "uploads/";
   $target_file = $target_dir . basename($_FILES["vehicle_image"]["name"]);
   $uploadOk = 1;
   $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
@@ -219,7 +219,7 @@ class Vehicles extends Controller
     } else {
       echo "Sorry, there was an error uploading your file.";
     }
-  }
+  }*/
 
 
       // Make sure errors are empty
@@ -251,8 +251,10 @@ class Vehicles extends Controller
         'Ac' => '',
         'expirylicence' => '',
         'comments' => '',
+        //'vehicle_image' => '',
+        //'vehicle_document' => '',
         'vehicleno_err' => '',
-        'chassino_err' => '',
+        //'chassino_err' => '',
         'model_err' => '',
         'color_err' => '',
         'year_err' => '',
@@ -263,8 +265,8 @@ class Vehicles extends Controller
         'Ac_err' => '',
         'expirylicence_err' => '',
         'comments_err' => '',
-        'vehicle_image_err' => '',
-        'vehicle_document_err' => '',
+        //'vehicle_image_err' => '',
+        //'vehicle_document_err' => '',
         
         //'image_err' => '',
         //'document_err' =>'',
@@ -276,4 +278,56 @@ class Vehicles extends Controller
       $this->view('users/supplier/addvehicle', $data);
     }
   }
+
+  public function update($id)
+  {
+      if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+          // Sanitize POST data
+          $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+          $data = [
+              'id' => $id,
+              'vehicle_no' => trim($_POST['vehicle_no']),
+              'model' => trim($_POST['model']),
+              'color' => trim($_POST['color']),
+              'year' => trim($_POST['year']),
+              'address' => trim($_POST['address']),
+              'route' => trim($_POST['route']),
+              'start_time' => trim($_POST['start_time']),
+              'seating_capacity' => trim($_POST['seating_capacity']),
+              'ac' => trim($_POST['ac']),
+              'expiry_licence' => trim($_POST['expiry_licence']),
+              'comments' => trim($_POST['comments'])
+          ];
+
+          // Update vehicle
+          if ($this->vehicleModel->updateVehicle($data)) {
+              flash('vehicle_message', 'Vehicle updated');
+              redirect('vehicles/edit/' . $id);
+          } else {
+              die('Something went wrong');
+          }
+      } else {
+          // Get existing vehicle data
+          $vehicle = $this->vehicleModel->getVehicleById($id);
+
+          $data = [
+              'id' => $id,
+              'vehicle_no' => $vehicle->vehicle_no,
+              'model' => $vehicle->model,
+              'color' => $vehicle->color,
+              'year' => $vehicle->year,
+              'address' => $vehicle->address,
+              'route' => $vehicle->route,
+              'start_time' => $vehicle->start_time,
+              'seating_capacity' => $vehicle->seating_capacity,
+              'ac' => $vehicle->ac,
+              'expiry_licence' => $vehicle->expiry_licence,
+              'comments' => $vehicle->comments
+          ];
+
+          $this->view('vehicles/edit', $data);
+      }
+  }
 }
+

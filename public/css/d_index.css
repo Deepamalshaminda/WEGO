@@ -47,6 +47,20 @@ a{
     justify-content: center;
 }
 
+.top-link{
+    padding: 7px;
+    background-color: #24244A;
+    color: white;
+    border-radius: 10px;
+}
+
+.top-link:hover{
+    background-color: white;
+    border-radius: 10px;
+    color: #24244A;
+    padding: 10px;
+}
+
 .bottom{
     margin-top: 15vh;
     display: flex;
@@ -101,6 +115,7 @@ p{
     background-color: rgb(36, 36, 74);
     border: none;
     border-radius: 20px;
+    display: inline;
 }
 
 .login-container{

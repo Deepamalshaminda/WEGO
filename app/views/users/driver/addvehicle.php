@@ -25,7 +25,7 @@
 </div>
 
 <div class="form-wrapper col-12">
-    <h1 class="title-container">Add vehicle</h1>
+    <h1 class="title-container">Add vehicle<?php echo $data['email']?></h1>
     <p class="form-description">Enter your vehicle details here</p>
 
     <form action="<?php echo URLROOT; ?>/Vehicles/addVehicle" method="POST">

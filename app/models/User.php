@@ -46,12 +46,27 @@
       }
     }
 
-    public function isVehicleHavingDriver($email){
+    public function isDriver($data){
+      $email = $data['email'];
       $this->db->query('SELECT * FROM user WHERE email = :email');
       $this->db->bind(':email', $email);
       $row = $this->db->asAnArray();
         if($row['role_id'] == 1){
           return true;
+        } else {
+          return false;
+        }
+    }
+
+
+    public function getUserByEmail($data){
+      $email = $data['email'];
+      $this->db->query('SELECT * FROM user WHERE email = :email');
+      $this->db->bind(':email', $email);
+      $row = $this->db->asAnArray();
+        if($row['role_id'] == 1){
+          $row = $this->db->single();
+          return $row;
         } else {
           return false;
         }
@@ -68,6 +83,8 @@
         }
     }
 
+    
+
     // Find user by email
     public function findUserByEmail($email){
       $this->db->query('SELECT * FROM user WHERE email = :email');
@@ -83,4 +100,44 @@
         return false;
       }
     }
+
+
+
+    public function updateDriversVehicleOwnershipAsOwnVehicle($driverId)
+    {
+
+        $this->db->query("INSERT INTO driver (us_id, vehicle_status) VALUES (:us_id, :vehicle_status)");
+        $this->db->bind(':us_id', $driverId);
+        $this->db->bind(':vehicle_status', 'own');
+        $results = $this->db->resultSet();
+        return $results;
+    }
+
+    public function updateDriversVehicleOwnershipAsFindVehicle($driverId)
+    {
+
+        $this->db->query("INSERT INTO driver (us_id, vehicle_status) VALUES (:us_id, :vehicle_status)");
+        $this->db->bind(':us_id', $driverId);
+        $this->db->bind(':vehicle_status', 'find');
+        $results = $this->db->resultSet();
+        return $results;
+    }
+    
+    public function updateServiceTypeAsSchoolService($driverId)
+    {
+        $this->db->query("UPDATE drivers SET service_type = :service_type WHERE us_id = :us_id");
+        $this->db->bind(':us_id', $driverId);
+        $this->db->bind(':service_type', 'school');
+        $results = $this->db->resultSet();
+        return $results;
+    } 
+    
+    public function updateServiceTypeAsOfficeService($driverId)
+    {
+        $this->db->query("UPDATE drivers SET service_type = :service_type WHERE us_id = :us_id");
+        $this->db->bind(':us_id', $driverId);
+        $this->db->bind(':service_type', 'office');
+        $results = $this->db->resultSet();
+        return $results;
+    } 
   }

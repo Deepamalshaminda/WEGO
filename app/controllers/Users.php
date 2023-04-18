@@ -1,9 +1,14 @@
 <?php 
 class Users extends Controller
 {public $userModel;
+  public $driverModel;
+
+  public $registering_driver = array();
+
   public function __construct()
   {
     $this->userModel = $this->model('User');
+    $this->driverModel = $this->model('D_ManageDriver');
     // $this->view('users/index');
   }
 
@@ -137,12 +142,15 @@ public function index()
 
         // Register User
         if ($this->userModel->register($data)) {
-          if($this->userModel->isVehicleHavingDriver($data['email'])){
-            redirect('users/setVehicle');
-          } else{
-            redirect('users/login');
-          }
-          
+          $registering_driver = $this->userModel->getUserByEmail($data);
+            if($this->userModel->isDriver($data)){
+              $this->createUserSession($registering_driver);
+              $us_id = $registering_driver->us_id;
+              // $this->setGlobal($us_id);
+              $this->view('users/driver/d_setvehicle', $_SESSION['user_id']);
+            }else{
+              die('Something went wrong');
+            }
         } else {
           die('Something went wrong');
         }
@@ -313,20 +321,85 @@ public function index()
     }
   }
 
-  public function setVehicle(){
-    $data = [
-      'setvehicle' => 'setVehicle'
-    ];
+  public function setVehicle($data){
+    // $data = [
+    //   'setvehicle' => 'setVehicle'
+    // ];
 
     $this->view('users/driver/d_setvehicle', $data);
+    $loggedInUser = $this->userModel->login($data['email'], $data['password']);
 
-    if ($this->userModel->register($data)){
-      
+    if($loggedInUser){
+      // Create Session
+      $this->createUserSession($loggedInUser);
+    } else {
+      $data['password_err'] = 'Password incorrect';
+
+      $this->view('users/index', $data);
     }
 
   }
 
+  public function test($email){
+    $this->view('users/driver/addvehicle', $email);}
+
+  public function setServiceType($data){
+    // $data = [
+    //   'setvehicle' => 'setVehicle'
+    // ];
+
+    $this->view('users/driver/d_setservicetype', $data);
+
+  }
+
+  public function ownVehicle($us_id){
+    if($this->userModel->updateDriversVehicleOwnershipAsOwnVehicle($us_id)){
+      $this->view('users/driver/d_setservicetype',$us_id);
+    } else{
+      $this->view('users/driver/index', $us_id);
+    }
+  }
+
+  public function findVehicle($registering_driver){
+    if($this->userModel->updateDriversVehicleOwnershipAsFindVehicle($registering_driver['user_id'])){
+      $this->view('users/driver/d_setservicetype', $registering_driver);
+    } else{
+      $this->view('users/driver/index', $registering_driver);
+    }
+  }
+
+  public function schoolService($registering_driver){
+    if($this->userModel->updateServiceTypeAsSchoolService($registering_driver['user_id'])){
+      $this->view('users/login', $registering_driver);
+    } else{
+      $this->view('users/index', $registering_driver);
+    }
+
+  }
+
+  public function officeService($registering_driver){
+    if($this->userModel->updateServiceTypeAsOfficeService($registering_driver['user_id'])){
+      $this->view('users/login', $registering_driver);
+    } else{
+      $this->view('users/index', $registering_driver);
+    }
+
+  }
+
+  // public function setGlobal($us_id){
+  //   $GLOBALS = array(
+  //     'us_id' => $us_id
+  //   );
+  //   return $GLOBALS;
+  // }
+
+  public function getUserIdJson(){
+    
+      $this->sendJson($_SESSION);      
+  }
 }
+
+
 
 
 

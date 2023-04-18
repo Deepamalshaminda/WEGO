@@ -103,22 +103,6 @@
       $this->view('users/driver/d_driver_profile', $data);
     }
 
-    public function ownVehicle(){
-      $data = [
-        'title' => 'Own Vehicle',
-      ];
-
-      $this->view('users/driver/d_dashboardown', $data);
-    }
-
-    public function findVehicle(){
-      $data = [
-        'title' => 'Own Vehicle',
-      ];
-
-      $this->view('users/driver/d_dashboardfind', $data);
-    }
-
     
   }
 

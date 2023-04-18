@@ -31,7 +31,7 @@
                 to find reliable and safe transportation for your employees or children. Whether you're a driver 
                 looking for work or a business in need of transportation services, Wego makes it easy to find and 
                 book the right option for you. Join our community today and experience stress-free transport management 
-                like never before!</p>
+                like never before!<?php echo $GLOBALS ?></p>
             </div>
         </div> 
     </div>

@@ -15,14 +15,14 @@
       <div class="overview-boxes">
         <div class="box">
           <div class="right-side">
-            <div class="box-topic-link"><a href="<?php echo URLROOT?>/Parents/addchild"> add child</a></div>
+            <div class="box-topic-link"><a href="<?php echo URLROOT?>/Parents/addchild"> Add child</a></div>
             <!--<div class="number">10</div>-->
             
         </div>
         </div>
         <div class="box">
           <div class="right-side">
-            <div class="box-topic-link"><a href="<?php echo URLROOT?>/Addedchildren/addedchildren"> Your added children</a></div>
+            <div class="box-topic-link"><a href="<?php echo URLROOT?>/Parents/getChildren"> Your children</a></div>
            <!-- <div class="number">12</div>-->
           
           </div>

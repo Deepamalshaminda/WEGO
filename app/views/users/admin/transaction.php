@@ -1,20 +1,12 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
-
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/admin_dashboard.css">
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/vehicle.css">
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/js/tab.js">
-
-
-
 <title><?php echo SITENAME; ?></title>
 <html>
 </head>
-
-
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <body>
-
 
 <?php require APPROOT . '/views/inc/admin_sidenavbar.php' ;?>
      
@@ -164,7 +156,7 @@
     </div>
   
 </div>
-    
+
     </body>
 
 

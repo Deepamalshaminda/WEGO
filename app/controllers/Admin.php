@@ -1,7 +1,15 @@
 <?php
   class Admin extends Controller {
+    public $userModel;
     public function __construct(){
-     
+      if(!isLoggedIn()){
+        redirect('Admin/a_dashboard');
+      }
+
+      //$this->requestModel = $this->model('Request');
+      $this ->complaintModel = $this->model('Complaint');
+      $this ->userModel = $this->model('User');
+      $this->profileModel = $this->model('Profile');
     }
     
     public function index(){
@@ -32,21 +40,20 @@
     }
     
   
-    public function complaints(){
-      $data = [
-        'title' => 'complaint'
-      ];
-      //view
-      $this->view('users/admin/complaint');
-  }
-
-  public function viewcomplaint(){
-    $data = [
-      'title' => 'viewcomplaint'
-    ];
-    //view
-    $this->view('users/admin/viewcomplaint');
-}
+    public function complaints()
+    {
+      $data = [];
+      $data['complaints'] =  $this-> complaintModel->getComplaints();
+      $this->view('users/admin/complaint', $data);
+    }
+  
+    public function viewcomplaint($co_id)
+    {
+      $data = [];
+      $data['complaint'] =  $this-> complaintModel ->getComplaintById($co_id);
+  
+      $this->view('users/admin/viewcomplaint', $data);
+    }
 
     public function rideschedule(){
       $data = [
@@ -94,18 +101,26 @@
     $this->view('users/admin/transaction');
   }
   public function viewprofile(){
-    $data = [
-      'title' => 'viewprofile'
-    ];
+    $requests = $this->profileModel->profile($us_id);
+    
+
+        $data = [
+            'requests' => $requests,
+            
+        ];
     //view
-    $this->view('users/admin/viewprofiles');
+    $this->view('users/admin/viewprofiles', $data);
   }
-  public function viewuser(){
-    $data = [
-      'title' => 'viewuser'
-    ];
+  public function viewuser($us_id){
+       $requests = $this->profileModel->profile($us_id);
+        $user = $this->userModel->getUserById($requests->us_id);
+
+        $data = [
+            'requests' => $requests,
+            'user' => $user
+        ];
     //view
-    $this->view('users/admin/viewuser');
+    $this->view('users/admin/viewuser', $data);
   }
 
   public function viewride(){

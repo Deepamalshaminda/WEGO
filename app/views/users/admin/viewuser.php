@@ -21,10 +21,10 @@
 
 <div class="wrapper">
     <div class="left">
-        <img src ="../public/img/us1.jpg" 
+    <img src ="../public/img/us1.jpg" 
         alt="user" width="100">
-        <h4> Dinidu Pathirana </h4>
-         <p> Driver </p>
+        <h4> <?php echo $user['name']; ?> </h4>
+         <p> <?php echo $user['role_id']; ?> </p>
     </div>
     <div class="right">
         <div class="info">
@@ -32,15 +32,19 @@
             <br>
             <div class="info_data">
                  <div class="data">
-                    <h4>Name : Dinidu Pathirana </h4>
+                    <h4>Name : <?php echo $user['name']; ?> </h4>
                     <br>
-                    <h4>License No : B2369867D </h4>
+                    <h4>Gender : <?php echo $user['gender']; ?> </h4>
                     <br>
-                    <h4>NIC : 986754329v</h4>
+                    <h4>NIC : <?php echo $user['nic']; ?> </h4>
                     <br>
-                    <h4>Phone Number : 076-3422650 </h4>
+                    <h4>DOB : <?php echo $user['dob']; ?> </h4>
                     <br>
-                    <h4>Email : dinidu2@gmail.com </h4>
+                    <h4>Gender : <?php echo $user['gender']; ?> </h4>
+                    <br>
+                    <h4>Address : <?php echo $user['address']; ?> </h4>
+                    <br>
+                    <h4>Email : <?php echo $user['email']; ?> </h4>
                     
 
                  </div>

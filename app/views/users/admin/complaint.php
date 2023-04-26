@@ -12,7 +12,6 @@
 
 <body>
 
-
   <?php require APPROOT . '/views/inc/admin_sidenavbar.php'; ?>
 
   <div class="home-content">
@@ -46,11 +45,9 @@
     </div>
 
 
+
   </div>
 
 </body>
-
-
-
 
 <!--<?php require APPROOT . '/views/inc/footer.php'; ?>-->

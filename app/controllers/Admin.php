@@ -101,26 +101,26 @@
     $this->view('users/admin/transaction');
   }
   public function viewprofile(){
-    $requests = $this->profileModel->profile($us_id);
+    // $requests = $this->profileModel->profile($us_id);
     
 
-        $data = [
-            'requests' => $requests,
+    //     $data = [
+    //         'requests' => $requests,
             
-        ];
+    //     ];
     //view
-    $this->view('users/admin/viewprofiles', $data);
+    $this->view('users/admin/viewprofiles');
   }
-  public function viewuser($us_id){
-       $requests = $this->profileModel->profile($us_id);
-        $user = $this->userModel->getUserById($requests->us_id);
+  public function viewuser(){
+      //  $requests = $this->profileModel->profile($us_id);
+      //   $user = $this->userModel->getUserById($requests->us_id);
 
-        $data = [
-            'requests' => $requests,
-            'user' => $user
-        ];
+      //   $data = [
+      //       'requests' => $requests,
+      //       'user' => $user
+      //   ];
     //view
-    $this->view('users/admin/viewuser', $data);
+    $this->view('users/admin/viewuser');
   }
 
   public function viewride(){

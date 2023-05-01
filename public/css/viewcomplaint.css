@@ -1,0 +1,149 @@
+
+
+.wrapper{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: 7.5%;
+    margin-top: 1.7%;
+    transform: translate(-50%,-50%);
+    width: 750px;
+    height: 500px;
+    display: flex;
+    box-shadow: 0 1px 20px 0 rgba(69,90,100,.08);
+  }
+  
+  .wrapper .left{
+    width: 50%;
+    background: linear-gradient(to right,#8196ae,#c7d4ed);
+    padding: 30px 25px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    text-align: center;
+    color: #08122e;
+    font-size: 24px;
+  }
+  
+  .wrapper .left img{
+    border-radius: 12px;
+    margin-bottom: 10px;
+  }
+  
+  .wrapper .left h4{
+    margin-bottom: 10px;
+  }
+  
+  .wrapper .left p{
+    font-size: 15px;
+  }
+  
+  .wrapper .right{
+    width: 100%;
+    background: #fff;
+    padding: 30px 25px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+  }
+  
+  .wrapper .right .info,
+  .wrapper .right .projects{
+    margin-bottom: 25px;
+  }
+  
+  .wrapper .right .info h2,
+  .wrapper .right .projects h2{
+      margin-bottom: 15px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid #e0e0e0;
+      color: #353c4e;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+  }
+  
+  .wrapper .right .info_data,
+  .wrapper .right .projects_data{
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .wrapper .right .info_data .data,
+  .wrapper .right .projects_data .data{
+    width: 100%;
+  }
+  
+  .wrapper .right .info_data .data h4,
+  .wrapper .right .projects_data .data h4{
+      color: #353c4e;
+      margin-bottom: 5px;
+  }
+  
+  .wrapper .right .info_data .data p,
+  .wrapper .right .projects_data .data p{
+    font-size: 13px;
+    margin-bottom: 10px;
+    color: #919aa3;
+  }
+  
+  .wrapper .social_media ul{
+    display: flex;
+  }
+
+
+.select-menu .select-btn{
+    background-color: rgb(23, 54, 101);
+    color: white;
+    float: left;
+    margin-left: 10%;
+    border: none;
+    border-radius: 30px;
+    outline: none;
+    cursor: pointer;
+    padding: 19px 77px;
+    font-size: 20px;
+    
+  
+}
+select-btn i{
+    font-size: 25px;
+    transition: 0.3s;
+}
+.select-menu.active .select-btn i{
+    transform: rotate(-180deg);
+}
+.select-menu .options{
+    position: absolute;
+    padding: 10px;
+    margin-top: 10px;
+    width: 250px;
+    border-radius: 3px;
+    background: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 1);
+    display: none;
+}
+.select-menu.active .options{
+    display: block;
+}
+.options .option{
+    display: flex;
+    height: 55px;
+    cursor: pointer;
+    padding: 0 16px;
+    border-radius: 8px;
+    align-items: center;
+    background: #fff;
+}
+.options .option:hover{
+    background: #F2F2F2;
+}
+.option i{
+    font-size: 25px;
+    margin-right: 12px;
+}
+.option .option-text{
+    font-size: 18px;
+    color: #333;
+}
+  
+  
+  
+  

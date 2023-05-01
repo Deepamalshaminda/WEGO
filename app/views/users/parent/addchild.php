@@ -14,80 +14,7 @@
 <body>
   <?php require APPROOT . '/views/inc/sidenavbar.php' ;?>
     
-<!--<div class="full-page">
-       <div class="register-wrapper">
-              <div class="title-wrapper">
-                <h2 class="topic">Add your child's details..</h2>
-              </div>
 
-              <form action="<?php echo URLROOT; ?>/Parents/addchild" method="post">
-              <div class="left-column">
-                     <div class="field">
-                            <label for="name">Name <sup>*</sup></label> <br>
-                            <input type="text" name="name" size="30" placeholder="Enter name"
-                                   class="input <?php echo (!empty($data['name_err'])) ? 'is-invalid' : ''; ?>"
-                                   value="<?php echo $data['name']; ?>"><br>
-                            <span class="invalid-feedback"><?php echo $data['name_err']; ?></span>
-                     </div>
-                    
-                        
-
-                     <div class="field">
-                            <label for="school">School <sup>*</sup></label> <br>
-                            <input type="text" name="school" size="30" placeholder="Select school"
-                                   class="input <?php echo (!empty($data['school_err'])) ? 'is-invalid' : ''; ?>"
-                                   value="<?php echo $data['school']; ?>"><br>
-                            <span class="invalid-feedback"><?php echo $data['school_err']; ?></span>
-                     </div>
-
-                     <div class="field">
-                            <label for="address">Address <sup>*</sup></label> <br>
-                            <input type="text" name="address" size="30" placeholder="Enter address"
-                                   class="input <?php echo (!empty($data['address_err'])) ? 'is-invalid' : ''; ?>" 
-                                   value="<?php echo $data['address']; ?>" > <br>
-                            <span class="invalid-feedback"><?php echo $data['address_err']; ?></span>
-                     </div>
-                    
-
-                     <div class="field">
-                            <label for="">Age <sup>*</sup></label> <br>
-                            <input type="number" name="age" size="30" placeholder="Enter age"
-                                   class="input <?php echo (!empty($data['age_err'])) ? 'is-invalid' : ''; ?>"
-                                   value="<?php echo $data['age']; ?>"> <br>
-                            <span class="invalid-feedback"><?php echo $data['age_err']; ?></span>
-                     </div>
-                    
-
-                     <div class="field">
-                            <label for="route">Route <sup>*</sup></label> <br>
-                            <input type="text" name="route" size="30" placeholder="Enter contact number"
-                                   class="input <?php echo (!empty($data['route_err'])) ? 'is-invalid' : ''; ?>"
-                                   value="<?php echo $data['route']; ?>"> <br>
-                            <span class="invalid-feedback"><?php echo $data['route_err']; ?></span>
-                     </div>
-                    
-
-                     <div class="field">
-
-                            <label for="gender">Gender <sup>*</sup></label> <br>
-                            <input type="gender" name="gender" size="30" placeholder="Create a gender"
-                                   class="input <?php echo (!empty($data['gender_err'])) ? 'is-invalid' : ''; ?>"
-                                   value="<?php echo $data['gender']; ?>"> <br>
-                            <span class="invalid-feedback"><?php echo $data['gender_err']; ?></span>
-                     </div>
-                    
-
-                </div>
-
-               
-                    
-              </div>
-              <div class="btn-wrapper">
-                    <button class="btn-register">Register</button>
-                    <button class="btn-cancel">Cancel</button>
-              </div>
-              </form> 
-       </div>-->
        <h1 class="childtopic">Fill your child's details here..</h1>
        <br>
        <section class="formback">
@@ -96,26 +23,82 @@
         <h1 class="topic">Please fill this form with your child's details</h1>
         
         <hr>
+
+                     <div class="field">
+                            <label for="name">Name <sup>*</sup></label> <br>
+                            <input type="text" name="name" size="30" placeholder="Enter name"
+                                   class="input <?php echo (!empty($data['name_err'])) ? 'is-invalid' : ''; ?>"
+                                   value="<?php echo $data['name']; ?>"><br>
+                            <span class="invalid-feedback"><?php echo $data['name_err']; ?></span>
+                     </div>
+
+                     <div class="field">
+                            <label for="gender">Gender <sup>*</sup></label> <br>
+                            <input type="text" name="gender" size="30" placeholder="Enter gender"
+                                   class="input <?php echo (!empty($data['gender_err'])) ? 'is-invalid' : ''; ?>"
+                                   value="<?php echo $data['gender']; ?>"><br>
+                            <span class="invalid-feedback"><?php echo $data['gender_err']; ?></span>
+                     </div>
+                    
+
+                     <div class="field">
+                            <label for="dob"> Date of birth <sup>*</sup></label> <br>
+                            <input type="text" name="dob" size="30" placeholder="Enter dob"
+                                   class="input <?php echo (!empty($data['dob_err'])) ? 'is-invalid' : ''; ?>" 
+                                   value="<?php echo $data['dob']; ?>" > <br>
+                            <span class="invalid-feedback"><?php echo $data['dob_err']; ?></span>
+                     </div>
+                    
+
+                     <div class="field">
+                            <label for="school">School<sup>*</sup></label> <br>
+                            <input type="school" name="school" size="30" placeholder="Enter school"
+                                   class="input <?php echo (!empty($data['school_err'])) ? 'is-invalid' : ''; ?>"
+                                   value="<?php echo $data['school']; ?>"> <br>
+                            <span class="invalid-feedback"><?php echo $data['school_err']; ?></span>
+                     </div>
+                    
+
+                     <div class="field">
+                            <label for="school_address">School address <sup>*</sup></label> <br>
+                            <input type="text" name="school_address" size="30" placeholder="Enter school address"
+                                   class="input <?php echo (!empty($data['school_address_err'])) ? 'is-invalid' : ''; ?>"
+                                   value="<?php echo $data['school_address']; ?>"> <br>
+                            <span class="invalid-feedback"><?php echo $data['school_address_err']; ?></span>
+                     </div>
+                    
+
+                     <div class="field">
+
+                            <label for="age"> Age <sup>*</sup></label> <br>
+                            <input type="age" name="age" size="30" placeholder="Create a age"
+                                   class="input <?php echo (!empty($data['age_err'])) ? 'is-invalid' : ''; ?>"
+                                   value="<?php echo $data['age']; ?>"> <br>
+                            <span class="invalid-feedback"><?php echo $data['age_err']; ?></span>
+                     </div>
+
+                    
+                    
     
-        <label for="email" class="fields"><b>Name*</b></label>
+       <!-- <label for="email" class="fields"><b>Name*</b></label>
         <input type="text" placeholder="Enter Name" name="name" required>
     
-        <label for="psw" class="fields"><b>School*</b></label>
-        <input type="password" placeholder="Enter School" name="school" required>
+        <label for="psw" class="fields"><b>age*</b></label>
+        <input type="password" placeholder="Enter age" name="age" required>
     
-        <label for="psw-repeat" class="fields"><b>Address*</b></label>
-        <input type="password" placeholder="Enter address" name="psw-repeat" required>
+        <label for="psw-repeat" class="fields"><b>dob*</b></label>
+        <input type="password" placeholder="Enter dob" name="psw-repeat" required>
 
-        <label for="psw-repeat" class="fields"><b>Age*</b></label>
-        <input type="password" placeholder="Enter age" name="psw-repeat" required>
+        <label for="psw-repeat" class="fields"><b>school*</b></label>
+        <input type="password" placeholder="Enter school" name="psw-repeat" required>
 
-        <label for="psw-repeat" class="fields"><b>Route*</b></label>
-        <input type="password" placeholder="Enter your require route" name="psw-repeat" required>
+        <label for="psw-repeat" class="fields"><b>school_address*</b></label>
+        <input type="password" placeholder="Enter your require school_address" name="psw-repeat" required>
 
-        <label for="psw-repeat" class="fields"><b>Gender*</b></label>
-        <input type="password" placeholder="Enter child's gender" name="psw-repeat" required>
+        <label for="psw-repeat" class="fields"><b>age*</b></label>
+        <input type="password" placeholder="Enter child's age" name="psw-repeat" required>
     
-        <!--<label>
+        <label>
           <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
         </label>
     

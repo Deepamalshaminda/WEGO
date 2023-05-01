@@ -6,7 +6,7 @@ class Router {
     public function addRoute($url, $params) {
         $this->routes[$url] = $params;
     }
-
+ 
     public function dispatch() {
         $url = $_SERVER['REQUEST_URI'];
 
@@ -19,5 +19,7 @@ class Router {
             // handle 404 error
         }
     }
+
+    
 }
 

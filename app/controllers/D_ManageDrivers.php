@@ -1,17 +1,18 @@
-<?php
+n<?php
   class D_ManageDrivers extends Controller {
     public $userModel;
     public $viewDashboardModel;
-    public $vehicleModel;
+    public $model;
+    public $connRequestModel;
 
     public function __construct(){
       if(!isLoggedIn()){
-        redirect('D_ManageDrivers/viewDashboard');
+        redirect('users/login');
       }
 
-      //$this->requestModel = $this->model('Request');
-      $this ->vehicleModel = $this->model('D_ManageDriver');
-      $this ->viewDashboardModel = $this->model('viewDashboard');
+      $this->model = $this->model('D_ManageDriver');
+      $this->connRequestModel = $this->model('D_ConnectionRequest');
+      $this->viewDashboardModel = $this->model('viewDashboard');
     }
 
     public function viewDashboard(){
@@ -24,35 +25,66 @@
 
     public function index(){
       
-      $requests = $this->vehicleModel->getVehicleDetails();
+      $requests = $this->model->getVehicleDetails();
 
       $data = [
         'requests' => $requests
       ];
 
-      $this->view('users/driver/viewvehicle', $data);
+      $this->view('users/driver/d_viewvehicle', $data);
     }
 
-    public function acceptRideRequest(){
-      $requests = $this->vehicleModel->getRequests('user_id');
-        
-      //$vehicle = $this->vehicleModel->getRequestById($id);
-      //$user = $this->userModel->getUserById($vehicle->vehicleid);
-    
-      // $data = [
-      //     //'vehicle' =>'' ,
-      //     //'user' => '',
-      //     'requests' => $requests
-      // ];
-      $this->view('users/driver/acceptriderequest', $requests);
+    public function RideRequests(){
+
+      $requests = $this->model->getRequestsFromParents($_SESSION['user_id']);
+  
+      $data = [
+          'vehicle' =>'' ,
+          'user' => '',
+          'requests' => $requests
+      ];
+
+      $this->view('users/driver/d_acceptriderequest', $data);
+    }
+
+    public function accept($requestId){
+
+      if ($this->model->acceptRideRequests($requestId)){
+        redirect('D_ManageDrivers/RideRequests');
+        return true;
+      };
+
+      $this->view('users/driver/d_acceptriderequest');
+      return false;
+    }
+
+    public function decline($requestId){
+
+      if ($this->model->declineRideRequests($requestId)){
+        redirect('D_ManageDrivers/RideRequests');
+        return true;
+      };
+      
+      $this->view('users/driver/d_acceptriderequest');
+      return false;
     }
 
     public function checkTripInfo(){
-      //$dashboard = $this->viewDashboardModel->viewDashboard();
-      $data = [
-        'trip' => 'trip'
-      ];
-      $this->view('users/driver/checktripinfo', $data);
+
+      $this->view('users/driver/d_checktripinfo');
+
+    }
+
+    public function getOngoingTripInfo(){
+
+      $this->sendJson($this->model->viewOngoingTrip($_SESSION['user_id']));
+
+    }
+
+    public function getCompletedTripsInfo(){
+
+      $this->sendJson($this->model->viewCompletedTrips($_SESSION['user_id']));
+
     }
 
     public function viewEarnings(){
@@ -60,7 +92,7 @@
       $data = [
         'earnings' => 'earnings'
       ];
-      $this->view('users/driver/viewearnings', $data);
+      $this->view('users/driver/d_viewearnings', $data);
     }
     
     public function viewProfile(){
@@ -68,8 +100,10 @@
         'title' => 'Profile',
       ];
 
-      $this->view('users/driver/driver_profile', $data);
+      $this->view('users/driver/d_driver_profile', $data);
     }
+
+    
   }
 
   ?>

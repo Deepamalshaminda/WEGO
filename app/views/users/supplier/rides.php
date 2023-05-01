@@ -1,6 +1,7 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
 
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/dashboard.css">
+<link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/rides.css">
 <script type="text/javascript" src="<?php echo URLROOT; ?>/js/list.js"></script>
 <title><?php echo SITENAME; ?></title>

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/sidenavbar.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/d_sidenavbar.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/d_acceptriderequests.css">
   <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/_base.css">
     <title><?php echo SITENAME; ?></title>
@@ -15,14 +15,6 @@
 
 <main class="full-page">
 
-<!-- <div class="background-section col-12"> -->
-
-
-
-
-<?php
-print_r($data['requests']);
-?>
 <div class="request-row col-12">
         <?php foreach($data['requests'] as $request){ ?>
              <div class="left-request col-6">
@@ -58,8 +50,8 @@ print_r($data['requests']);
                  </div>
  
                  <div class="btn-container col-12">
-                     <button class="button"><a class="link" href="<?php echo URLROOT?>/D_ManageDrivers/acceptRideRequest/<?php echo $request->se_id?>">Accept</a></button>
-                     <button class="button"><a class="link" href="#">Declline</a></button>
+                     <button class="button"><a class="link" href="<?php echo URLROOT?>/D_ManageDrivers/accept/<?php echo $request->request_id?>">Accept</a></button>
+                     <button class="button"><a class="link" href="<?php echo URLROOT?>/D_ManageDrivers/decline/<?php echo $request->request_id?>">Declline</a></button>
                  </div>
              </div>
          </div>

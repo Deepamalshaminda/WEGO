@@ -44,11 +44,12 @@
 
 
     public function getVehicleById($id){
-        $this->db->query('SELECT * FROM vehicle WHERE id = :id');
-        $this->db->bind(':id', $id);
-        $row = $this->db->single();
-        return $row;
-    }
+      $this->db->query('SELECT * FROM vehicle WHERE ve_id = :id');
+      $this->db->bind(':id', $id);
+      $row = $this->db->single();
+      return $row;
+  }
+  
 
     public function updateVehicle($id, $vehicle_no, $model, $color, $year, $address, $route, $start_time, $seating_capacity, $ac, $expiry_licence, $comments){
         $this->db->query('UPDATE vehicle SET vehicleno = :vehicleno, model = :model, color = :color, year = :year, address = :address, route = :route, starttime = :starttime, seatingcapacity = :seatingcapacity, Ac = :Ac, expirylicence = :expirylicence, comments = :comments WHERE id = :id');

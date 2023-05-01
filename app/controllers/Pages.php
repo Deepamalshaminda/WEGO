@@ -63,6 +63,14 @@
     $this->view('contact_us', $title);
   }
 
+  public function setServiceType(){
+    $title = [
+      'title' => 'Contact Us'
+    ];
+
+    $this->view('users/driver/d_setservicetype', $title);
+  }
+
 
 public function viewAddedDrivers(){
   $data = [

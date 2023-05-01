@@ -23,8 +23,8 @@
     <div class="left">
     <img src ="../public/img/us1.jpg" 
         alt="user" width="100">
-        <h4> <?php echo $user['name']; ?> </h4>
-         <p> <?php echo $user['role_id']; ?> </p>
+        <h4> <?php echo $data['user']->name; ?> </h4>
+         <p> <?php echo $data['user']->role_id; ?> </p>
     </div>
     <div class="right">
         <div class="info">
@@ -32,19 +32,19 @@
             <br>
             <div class="info_data">
                  <div class="data">
-                    <h4>Name : <?php echo $user['name']; ?> </h4>
+                    <h4>Name : <?php echo $data['user']->name; ?> </h4>
                     <br>
-                    <h4>Gender : <?php echo $user['gender']; ?> </h4>
+                    <h4>Gender : <?php echo $data['user']->gender; ?> </h4>
                     <br>
-                    <h4>NIC : <?php echo $user['nic']; ?> </h4>
+                    <h4>NIC : <?php echo $data['user']->nic; ?> </h4>
                     <br>
-                    <h4>DOB : <?php echo $user['dob']; ?> </h4>
+                    <h4>DOB : <?php echo $data['user']->dob; ?> </h4>
                     <br>
-                    <h4>Gender : <?php echo $user['gender']; ?> </h4>
+                    <h4>Gender : <?php echo $data['user']->gender; ?> </h4>
                     <br>
-                    <h4>Address : <?php echo $user['address']; ?> </h4>
+                    <h4>Address : <?php echo $data['user']->address; ?> </h4>
                     <br>
-                    <h4>Email : <?php echo $user['email']; ?> </h4>
+                    <h4>Email : <?php echo $data['user']->email; ?> </h4>
                     
 
                  </div>

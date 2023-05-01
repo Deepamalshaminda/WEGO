@@ -8,8 +8,8 @@
 
       //$this->requestModel = $this->model('Request');
       $this ->complaintModel = $this->model('Complaint');
-      $this ->userModel = $this->model('User');
       $this->profileModel = $this->model('Profile');
+      $this->transactionModel = $this->model('Transaction');
     }
     
     public function index(){
@@ -94,33 +94,23 @@
   }
 
     public function transactions(){
-      $data = [
-        'title' => 'transactions'
-      ];
+      $data = [];
+      $data['transactions'] =  $this->transactionModel->getTransactions();
     //view
-    $this->view('users/admin/transaction');
+    $this->view('users/admin/transaction', $data);
   }
   public function viewprofile(){
-    // $requests = $this->profileModel->profile($us_id);
-    
-
-    //     $data = [
-    //         'requests' => $requests,
-            
-    //     ];
+    $data = [];
+    $data['users'] =  $this->model('User')->getUsers();
     //view
-    $this->view('users/admin/viewprofiles');
+    $this->view('users/admin/viewprofiles', $data);
   }
-  public function viewuser(){
-      //  $requests = $this->profileModel->profile($us_id);
-      //   $user = $this->userModel->getUserById($requests->us_id);
+  public function viewuser($us_id){
+    $data = [];
+    $data['users'] =  $this->model('User')->getUsersById($us_id);
 
-      //   $data = [
-      //       'requests' => $requests,
-      //       'user' => $user
-      //   ];
     //view
-    $this->view('users/admin/viewuser');
+    $this->view('users/admin/viewuser' ,$data);
   }
 
   public function viewride(){

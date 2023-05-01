@@ -61,6 +61,18 @@
         return false;
       }
     }
-    
+    public function getUsers()
+    {
+        $this->db->query('SELECT * FROM user WHERE us_id = :us_id');
+        $results = $this->db->resultSet();
+        return $results;
+    }
+    public function getUsersById($us_id)
+    {
+        $this->db->query('SELECT * FROM user WHERE us_id = :us_id');
+        $this->db->bind(':us_id', $us_id);
+        $row = $this->db->single();
+        return $row;
+    }
 
   }

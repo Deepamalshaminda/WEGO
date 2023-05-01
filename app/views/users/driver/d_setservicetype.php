@@ -30,29 +30,11 @@
         <div class="full col-8">
             <div class="top col-12">
                 <div class="col-5 topic">
-                    <h2>Hi <?php echo $data['name']?>Select your prefered serivce type as a driver</h2>
+                    <h2>Hi <?php echo $data?>Select your prefered serivce type as a driver</h2>
                 </div>
             </div>
-            <div class="col-12">
-                <div class="right-container col-6">
-                    <!-- <a href="/Vehicles/addvehicle"> -->
-                        <div id="own-vehicle" class="col-4 right clickable-div" value="school-service">
-                            <h3 class="content">
-                                School Service
-                                
-                            </h3>
-                        </div>
-                    <!-- </a> -->
-                </div>
-                <div class="left-container col-6">
-                    <!-- <a href="#"> -->
-                        <div id="find-vehicle" class="col-4 left clickable-div" value="office-service">
-                            <h3 class="content">
-                                Office Transport
-                            </h3>
-                        </div>
-                    <!-- </a> -->
-                </div>   
+            <div class="col-12" id ="view">
+                Loading
             </div>
         </div>
     </div>

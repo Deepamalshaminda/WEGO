@@ -122,7 +122,12 @@
     padding: 20px 0;
     border: 1px solid rgb(36, 36, 74);
     cursor: pointer;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
 
 .active-link{
     background-color: rgb(36, 36, 74);

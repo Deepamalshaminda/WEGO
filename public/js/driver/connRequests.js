@@ -1,9 +1,11 @@
+const URL_ROOT = "http://localhost/projectwego";
+
 let received_requests = null;
 let sent_requests = null;
 let suggessions = null;
 
 const fetchReceivedRequests = async() => {
-    const response = await fetch('http://localhost/projectwego/D_ManageDrivers/getReceivedRequests');
+    const response = await fetch('http://localhost/projectwego/D_ConnectionRequests/getReceivedRequests');
     if(response.status == 200){
         received_requests = await response.json();
         loadReceivedRequests(received_requests);
@@ -11,7 +13,7 @@ const fetchReceivedRequests = async() => {
 }
 
 const fetchSentRequests = async() => {
-    const response = await fetch('http://localhost/projectwego/D_ManageDrivers/getSentRequests');
+    const response = await fetch('http://localhost/projectwego/D_ConnectionRequests/getSentRequests');
     if(response.status == 200){
         sent_requests = await response.json();
         loadSentRequests(sent_requests);
@@ -20,7 +22,7 @@ const fetchSentRequests = async() => {
 
 const fetchSuggestedVehicleSuppliers = async() => {
     console.log("Button Clicked!");
-    const response = await fetch('http://localhost/projectwego/D_ManageDrivers/getSuggessions');
+    const response = await fetch('http://localhost/projectwego/D_ConnectionRequests/getSuggessions');
     if(response.status == 200){
         suggessions = await response.json();
         loadSuggestedVehicleSuppliers(suggessions);
@@ -44,8 +46,8 @@ const loadReceivedRequests = (requests) => {
                         <img src="../img/3.jpg" class="profile-picture" alt="profile picture">
                     </div>
                     <div class="btn-container col-12">
-                        <button class="button"><a class="link" href="/accept/${req.request_id}">Accept</a></button>
-                        <button class="button"><a class="link" href="/decline/${req.request_id}">Declline</a></button>
+                        <button class="button"><a class="link" href="${URL_ROOT}/D_ConnectionRequests/accept/${req.request_id}">Accept</a></button>
+                        <button class="button"><a class="link" href="${URL_ROOT}/D_ConnectionRequests/decline/${req.request_id}">Declline</a></button>
                     </div>
                 </div>
             </div>
@@ -78,7 +80,7 @@ const loadSentRequests = (requests) => {
                         <img src="../img/3.jpg" class="profile-picture" alt="profile picture">
                     </div>
                     <div class="btn-container col-12">
-                        <button class="button"><a class="link" href="/delete/${req.request_id}">Delete Request</a></button>
+                        <button class="button"><a class="link" href="${URL_ROOT}/D_ConnectionRequests/delete/${req.request_id}">Delete Request</a></button>
                     </div>
                 </div>
             </div>
@@ -110,7 +112,7 @@ const loadSuggestedVehicleSuppliers = (requests) => {
                         <img src="../img/3.jpg" class="profile-picture" alt="profile picture">
                     </div>
                     <div class="btn-container col-12">
-                        <button class="button"><a class="link" href="/accept/${req.supplier_id}">
+                        <button class="button"><a class="link" href="http://localhost/projectwego/D_ConnectionRequests/accept/${req.supplier_id}">
                         Send Request</a></button>
                     </div>
                 </div>

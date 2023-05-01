@@ -63,7 +63,7 @@
             return $results;
         }
 
-        public function acceptRideRequests($requestId)
+        public function acceptConnRequests($requestId)
         {
             $this->db->query("UPDATE conn_request SET status = 'Accepted' WHERE req_id = :id");
             $this->db->bind(':id', $requestId);
@@ -74,7 +74,7 @@
               }
         }
 
-        public function declineRideRequests($requestId)
+        public function declineConnRequests($requestId)
         {
             $this->db->query("DELETE FROM conn_request WHERE req_id = :id");
             $this->db->bind(':id', $requestId);

@@ -147,7 +147,7 @@ public function index()
               $this->createUserSession($registering_driver);
               $us_id = $registering_driver->us_id;
               // $this->setGlobal($us_id);
-              $this->view('users/driver/d_setvehicle', $_SESSION['user_id']);
+              $this->view('users/driver/d_setvehicle', $registering_driver);
             }else{
               die('Something went wrong');
             }
@@ -340,6 +340,25 @@ public function index()
 
   }
 
+  public function setSeriviceType($data){
+    // $data = [
+    //   'setvehicle' => 'setVehicle'
+    // ];
+
+    $this->view('users/driver/d_servicetype', $data);
+    $loggedInUser = $this->userModel->login($data['email'], $data['password']);
+
+    if($loggedInUser){
+      // Create Session
+      $this->createUserSession($loggedInUser);
+    } else {
+      $data['password_err'] = 'Password incorrect';
+
+      $this->view('users/index', $data);
+    }
+
+  }
+
   public function test($email){
     $this->view('users/driver/addvehicle', $email);}
 
@@ -354,34 +373,36 @@ public function index()
 
   public function ownVehicle($us_id){
     if($this->userModel->updateDriversVehicleOwnershipAsOwnVehicle($us_id)){
-      $this->view('users/driver/d_setservicetype',$us_id);
+      $this->view('users/driver/d_setservicetype',$_SESSION['user_name']);
+      //redirect('users/setServiceType');
     } else{
-      $this->view('users/driver/index', $us_id);
+      $this->view('users/index');
     }
   }
 
-  public function findVehicle($registering_driver){
-    if($this->userModel->updateDriversVehicleOwnershipAsFindVehicle($registering_driver['user_id'])){
-      $this->view('users/driver/d_setservicetype', $registering_driver);
+  public function findVehicle($us_id){
+    if($this->userModel->updateDriversVehicleOwnershipAsFindVehicle($us_id)){
+      $this->view('users/driver/d_setservicetype', $_SESSION['user_name']);
+      // redirect('pages/setServiceType');
     } else{
-      $this->view('users/driver/index', $registering_driver);
+      $this->view('users/index');
     }
   }
 
-  public function schoolService($registering_driver){
-    if($this->userModel->updateServiceTypeAsSchoolService($registering_driver['user_id'])){
-      $this->view('users/login', $registering_driver);
+  public function schoolService($us_id){
+    if($this->userModel->updateServiceTypeAsSchoolService($us_id)){
+      redirect('users/login');
     } else{
-      $this->view('users/index', $registering_driver);
+      $this->view('users/index');
     }
 
   }
 
-  public function officeService($registering_driver){
-    if($this->userModel->updateServiceTypeAsOfficeService($registering_driver['user_id'])){
-      $this->view('users/login', $registering_driver);
+  public function officeService(){
+    if($this->userModel->updateServiceTypeAsOfficeService($_SESSION['user_id'])){
+      redirect('users/login');
     } else{
-      $this->view('users/index', $registering_driver);
+      $this->view('users/index');
     }
 
   }

@@ -98,7 +98,6 @@
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-let user = null;
 
 const fetchUserId = async() => {
   const response = await fetch('http://localhost/projectwego/Users/getUserIdJson');
@@ -115,19 +114,19 @@ const renderView = (user) => {
   let result = `
     <div class="right-container col-6">
    
-        <button id="own-vehicle" class="col-4 right clickable-div" value="own-vehicle" onclick="setVehicle(${user.user_id})">
-            <h3 class="content">
-                Register your own vehicle 
-            </h3>
-        </button>
+      <button id="own-vehicle" class="col-4 left clickable-div" value="own-vehicle" onclick="console.log('Button clicked!'); setVehicleAsOwn(${user.user_id})">
+        <h3 class="content">
+          Own vehicle suppliers
+        </h3>
+      </button>
    
     </div>
     <div class="left-container col-6">
-          <div id="find-vehicle" class="col-4 left clickable-div" value="find-vehicle">
-              <h3 class="content">
-                  Find vehicle suppliers
-              </h3>
-          </div>
+      <button id="find-vehicle" class="col-4 left clickable-div" value="find-vehicle" onclick="console.log('Button clicked!'); setVehicleAsFind(${user.user_id})">
+        <h3 class="content">
+          Find vehicle suppliers
+        </h3>
+      </button>
     </div>  
   `;
 
@@ -135,24 +134,94 @@ const renderView = (user) => {
 
 }
 
-function setVehicle($us_id) {
-  var path = document.querySelector('#own-vehicle').value;
+const setVehicleAsOwn = async($us_id) => {
   console.log($us_id);
-  if (path === 'own-vehicle') {
-    console.log('own-vehicle');
-    window.location.href = "http://localhost/projectwego/Users/ownVehicle/" + $us_id;
+  const response = await fetch('http://localhost/projectwego/Users/ownVehicle?userId=' + $us_id);
+    console.log($us_id)
     if(response.status == 200){
       console.log("Successful");
-    }
-  } else if (path === 'find-vehicle') {
-    console.log('find-vehicle');
-    const response = fetch("http://localhost/projectwego/Users/findVehicle/" +$us_id);
-    if(response.status == 200){
-      console.log("Successful");
-    }
-  }
+}
 }
 
+const setVehicleAsFind = async($us_id) => {
+  console.log($us_id);
+  const response = await fetch('http://localhost/projectwego/Users/ownVehicle?userId=' + $us_id);
+    console.log($us_id)
+    if(response.status == 200){
+      console.log("Successful");
+}
+}
+
+// function setVehicleAsFind($us_id) {
+//   console.log($us_id);
+//   window.location.href = "http://localhost/projectwego/Users/findVehicle?userId=" + $us_id;
+//     if(response.status == 200){
+//       console.log("Successful");
+// }
+// }
+
+// function setVehicle($us_id) {
+//   var path = document.querySelector('.clickable-div').value;
+//   console.log($us_id);
+//   if (path === 'own-vehicle') {
+//     console.log('own-vehicle');
+//     window.location.href = "http://localhost/projectwego/Users/ownVehicle/" + $us_id;
+//     if(response.status == 200){
+//       console.log("Successful");
+//     }
+//   } else if (path === 'find-vehicle') {
+//     console.log('find-vehicle');
+//     window.location.href = "http://localhost/projectwego/Users/findVehicle/" +$us_id;
+//     if(response.status == 200){
+//       console.log("Successful");
+//     }
+//   }
+// }
+
+
+// function setVehicleAsOwn(userId) {
+//   console.log(userId);
+
+//   fetch(`http://localhost/projectwego/Users/ownVehicle/${userId}`, {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify({ userId: userId })
+//   })
+//   .then(response => {
+//     if (response.status === 200) {
+//       console.log('Successful');
+//       // do something on success
+//     }
+//   })
+//   .catch(error => {
+//     console.error('Error:', error);
+//   });
+// }
+
+// function setVehicleAsFind(userId) {
+//   console.log(userId);
+
+//   fetch(`http://localhost/projectwego/Users/findVehicle/${userId}`, {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify({ userId: userId })
+//   })
+//   .then(response => {
+//     if (response.status === 200) {
+//       console.log('Successful');
+//       // do something on success
+//     }
+//   })
+//   .catch(error => {
+//     console.error('Error:', error);
+//   });
+// }
+
+let user = null;
 const view = document.querySelector('#view');
 document.addEventListener("DOMContentLoaded", () => fetchUserId());
 

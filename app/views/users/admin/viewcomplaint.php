@@ -22,22 +22,22 @@
 
 <div class="wrapper">
     <div class="left">
-        <img src ="../public/img/rr.png" 
+        <img src ="<?php echo URLROOT ?>/public/img/rr.png" 
         alt="user" width="100">
-        <h4> Richard Fernando </h4>
+        <h4> <?php echo $data['complaint']->name; ?> </h4>
          
     </div>
     <div class="right">
         <div class="info">
-            <h2> Complain </h2>
+            <h2> Complaint </h2>
             <br>
             <div class="info_data">
                  <div class="data">
-                    <h4> Late coming in the morning regarding KV 5432 vehicle </h4>
+                    <h4> <?php echo $data['complaint']->complaint_description; ?> </h4>
                     <br>
-                    <h4> NIC : 954332786V </h4>
+                    <h4> NIC : <?php echo $data['complaint']->nic; ?> </h4>
                     <br>
-                    <h4>Email : rich4@gmail.com </h4>
+                    <h4>Email : <?php echo $data['complaint']->email; ?> </h4>
                     
 
                  </div>

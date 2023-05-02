@@ -1,4 +1,6 @@
+
 <?php
+
 class Vehicles extends Controller
 {public $vehicleModel;
   public function __construct()
@@ -279,6 +281,7 @@ class Vehicles extends Controller
     }
   }
 
+
   public function updateVehicle()
 {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -316,30 +319,32 @@ class Vehicles extends Controller
             $data['comments']
         )) {
             flash('vehicle_message', 'Vehicle updated');
-            redirect('posts/index' . $data);
+            redirect('posts/index');
         } else {
             die('Something went wrong');
         }
     } else {
         // Get existing vehicle data
-        $vehicle = $this->vehicleModel->getVehicleById($_SESSION['id']);
+        if (isset($_SESSION['id']) && !is_null($_SESSION['id'])) {
+            $vehicle = $this->vehicleModel->getVehicleById($_SESSION['id']);
 
-        $data = [
-            'id' => $vehicle->id,
-            'vehicle_no' => $vehicle->vehicle_no,
-            'model' => $vehicle->model,
-            'color' => $vehicle->color,
-            'year' => $vehicle->year,
-            'address' => $vehicle->address,
-            'route' => $vehicle->route,
-            'start_time' => $vehicle->start_time,
-            'seating_capacity' => $vehicle->seating_capacity,
-            'ac' => $vehicle->ac,
-            'expiry_licence' => $vehicle->expiry_licence,
-            'comments' => $vehicle->comments
-        ];
+            $data = [
+                'id' => $vehicle->ve_id,
+                'vehicle_no' => $vehicle->vehicle_no,
+                'model' => $vehicle->model,
+                'color' => $vehicle->color,
+                'year' => $vehicle->year,
+                'address' => $vehicle->address,
+                'route' => $vehicle->route,
+                'start_time' => $vehicle->starttime,
+                'seating_capacity' => $vehicle->seatingcapacity,
+                'ac' => $vehicle->Ac,
+                'expiry_licence' => $vehicle->expirylicence,
+                'comments' => $vehicle->comments
+            ];
 
-        $this->view('users/supplier/updateVehicle', $data);
+            $this->view('users/supplier/updateVehicle', $data);
+        }
     }
 }
 }

@@ -12,8 +12,7 @@ class ReportModel {
         JOIN vehicle ON earnings.ve_id = vehicle.ve_id 
         JOIN user ON earnings.us_id = user.us_id 
         JOIN payment ON earnings.ve_id = payment.ve_id
-        WHERE MONTH(date) = MONTH(CURRENT_DATE())
-        ');
+        WHERE MONTH(date) = MONTH(CURRENT_DATE())');
         return $this->db->resultSet();
     }
 

@@ -141,12 +141,12 @@ class Vehicles extends Controller
         $data['comments_err'] = 'Please describe if there any special conditions of the vehicle';
       }
 
-      // Validate image
+      //Validate image
       if (empty($data['vehicle_image'])) {
         $data['vehicle_image_err'] = 'Please upload an image of your vehicle';
       }
 
-       // Validate image
+       // Validate documents
        if (empty($data['vehicle_document'])) {
         $data['vehicle_document_err'] = 'Please upload documents of your vehicle';
       }
@@ -154,74 +154,14 @@ class Vehicles extends Controller
       // Validate image
       //if (empty($data['image'])) {
       //$data['image_err'] = 'Please upload image';
-      // }
+       //}
 
       // Validate documents
       // if (empty($data['document'])) {
       // $data['document_err'] = 'Please upload documents';
       //}
 
-   // upload the vehicle image
-  $target_dir = "uploads/";
-  $target_file = $target_dir . basename($_FILES["vehicle_image"]["name"]);
-  $uploadOk = 1;
-  $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-
-  // check if image file is a actual image or fake image
-  $check = getimagesize($_FILES["vehicle_image"]["tmp_name"]);
-  if($check !== false) {
-    $uploadOk = 1;
-  } else {
-    $uploadOk = 0;
-  }
-
-  // check file size
-  if ($_FILES["vehicle_image"]["size"] > 500000) {
-    $uploadOk = 0;
-  }
-
-  // allow certain file formats
-  if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-  && $imageFileType != "gif" ) {
-    $uploadOk = 0;
-  }
-
-  if ($uploadOk == 0) {
-    echo "Sorry, your file was not uploaded.";
-  } else {
-    if (move_uploaded_file($_FILES["vehicle_image"]["tmp_name"], $target_file)) {
-      $vehicle_image = $target_file;
-    } else {
-      echo "Sorry, there was an error uploading your file.";
-    }
-  }
-
-  // upload the vehicle document
-  $target_dir = "uploads/";
-  $target_file = $target_dir . basename($_FILES["vehicle_document"]["name"]);
-  $uploadOk = 1;
-  $documentFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-
-  // check file size
-  if ($_FILES["vehicle_document"]["size"] > 500000) {
-    $uploadOk = 0;
-  }
-
-  // allow certain file formats
-  if($documentFileType != "pdf" && $documentFileType != "doc" && $documentFileType != "docx"
-  && $documentFileType != "txt" ) {
-    $uploadOk = 0;
-  }
-
-  if ($uploadOk == 0) {
-    echo "Sorry, your file was not uploaded.";
-  } else {
-    if (move_uploaded_file($_FILES["vehicle_document"]["tmp_name"], $target_file)) {
-      $vehicle_document = $target_file;
-    } else {
-      echo "Sorry, there was an error uploading your file.";
-    }
-  }
+   
 
 
       // Make sure errors are empty
@@ -253,8 +193,10 @@ class Vehicles extends Controller
         'Ac' => '',
         'expirylicence' => '',
         'comments' => '',
+        'vehicle_image' => '',
+        'vehicle_document' => '',
         'vehicleno_err' => '',
-        'chassino_err' => '',
+        //'chassino_err' => '',
         'model_err' => '',
         'color_err' => '',
         'year_err' => '',

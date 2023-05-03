@@ -111,5 +111,33 @@
     color: white;
 }
 
+/* Accept connection requests */
+
+.top-container{
+    display: flex;
+}
+
+.top-container-left, .top-container-middle, .top-container-right{
+    text-align: center;
+    padding: 20px 0;
+    border: 1px solid rgb(36, 36, 74);
+    cursor: pointer;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.active-link{
+    background-color: rgb(36, 36, 74);
+    color: white;
+}
+
+.inactive-link{
+    background-color: rgb(181, 177, 177);
+    color: black;
+}
+
 
 

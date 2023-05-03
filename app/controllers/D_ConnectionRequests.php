@@ -54,7 +54,7 @@
 
     public function accept($requestId){
 
-      if ($this->model->acceptConnRequests($requestId)){
+      if ($this->connRequestModel->acceptConnRequests($requestId)){
         redirect('D_ConnectionRequests/ConnectionRequests');
           return true;
       };
@@ -65,7 +65,7 @@
 
     public function decline($requestId){
 
-      if ($this->model->declineConnRequests($requestId)){
+      if ($this->connRequestModel->declineConnRequests($requestId)){
         redirect('D_ConnectionRequests/ConnectionRequests');
           return true;
       };
@@ -76,7 +76,7 @@
 
     public function delete($requestId){
 
-        if ($this->model->deleteSentRequest($requestId)){
+        if ($this->connRequestModel->deleteSentRequest($requestId)){
           redirect('D_ConnectionRequests/ConnectionRequests');
           return true;
         };

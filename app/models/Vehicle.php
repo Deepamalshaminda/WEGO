@@ -42,18 +42,12 @@
       }
     }
 
-    public function showVehicles()
-    {
-        $this->db->query('SELECT * FROM vehicle');
-        $results = $this->db->resultSet();
-        return $results;
-    }
-    public function showVehiclesById($us_id)
-    {
-        $this->db->query('SELECT * FROM vehicle WHERE ve_id = :ve_id');
-        $this->db->bind(':ve_id', $ve_id);
-        $row = $this->db->single();
-        return $row;
-    }
+
+    public function getVehicleById($id){
+      $this->db->query('SELECT * FROM vehicle WHERE ve_id = :id');
+      $this->db->bind(':id', $id);
+      $row = $this->db->single();
+      return $row;
+  }
 
   }

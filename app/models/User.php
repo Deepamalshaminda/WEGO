@@ -75,5 +75,62 @@
         return $row;
     }
    
+    public function updateDriversVehicleOwnershipAsOwnVehicle($driverId)
+    {
 
+        $this->db->query("INSERT INTO driver (us_id, vehicle_status) VALUES (:us_id, :vehicle_status)");
+        $this->db->bind(':us_id', $driverId);
+        $this->db->bind(':vehicle_status', 'own');
+         // $results = $this->db->resultSet();
+
+         if($this->db->execute()){
+          return true;
+        } else {
+          return false;
+        }
+    }
+
+    public function updateDriversVehicleOwnershipAsFindVehicle($driverId)
+    {
+
+        $this->db->query("INSERT INTO driver (us_id, vehicle_status) VALUES (:us_id, :vehicle_status)");
+        $this->db->bind(':us_id', $driverId);
+        $this->db->bind(':vehicle_status', 'find');
+        // $results = $this->db->resultSet();
+
+        if($this->db->execute()){
+          return true;
+        } else {
+          return false;
+        }
+        
+    }
+    
+    public function updateServiceTypeAsSchoolService($driverId)
+    {
+        $this->db->query("UPDATE driver SET service_type = :service_type WHERE us_id = :us_id");
+        $this->db->bind(':us_id', $driverId);
+        $this->db->bind(':service_type', 'school');
+         // $results = $this->db->resultSet();
+
+         if($this->db->execute()){
+          return true;
+        } else {
+          return false;
+        }
+    } 
+    
+    public function updateServiceTypeAsOfficeService($driverId)
+    {
+        $this->db->query("UPDATE driver SET service_type = :service_type WHERE us_id = :us_id");
+        $this->db->bind(':us_id', $driverId);
+        $this->db->bind(':service_type', 'office');
+         // $results = $this->db->resultSet();
+
+         if($this->db->execute()){
+          return true;
+        } else {
+          return false;
+        }
+    } 
   }

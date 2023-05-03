@@ -26,14 +26,14 @@
 
 <div id="drivers" class="tabcontent">
   <div class="friend-list">
-  <?php foreach($data['user'] as $user): ?>
+  <?php foreach($data['users'] as $user): ?>
     <div class="friend-card">
       
       <div class="friend-name"><img src="../public/img/us1.jpg" class="friend-picture" > <?php echo $user->name; ?> </div>
       <br>
       <br>
       <div class="friend-actions">
-      <button class="details-button"><a href="<?php echo $user->us_id;?>/Admin/viewuser"> View details</a></button>
+      <button class="details-button"><a href="<?php echo URLROOT?>/Admin/viewuser/<?php echo $user->us_id; ?>"> View details</a></button>
         
       </div>
     </div>

@@ -59,13 +59,12 @@
 }
 
 .btn-submit{
+    align-items: center;
     padding: 8px 24px;
     color: white;
     background-color: rgb(36, 36, 74);
     border: none;
     border-radius: 20px;
-    display: inline-block;
-    
 }
 
 .input-field{

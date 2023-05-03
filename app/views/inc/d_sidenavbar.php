@@ -13,16 +13,9 @@
             </li>
 
             <li>
-                <a href="<?php echo URLROOT;?>/D_ManageDrivers/RideRequests">
+                <a href="<?php echo URLROOT;?>/D_ManageDrivers/getRideRequest">
                     <i class='bx bx-box'></i>
-                    <span class="links_name">View Ride Requests</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="<?php echo URLROOT;?>/D_ConnectionRequests/ConnectionRequests">
-                    <i class='bx bx-box'></i>
-                    <span class="links_name">Vehicle Suppliers</span>
+                    <span class="links_name">Accept<?php echo $_SESSION['user_id'] ?> Ride Requests</span>
                 </a>
             </li>
 
@@ -32,8 +25,6 @@
                     <span class="links_name">Check Trip Info</span>
                 </a>
             </li>
-
-            
             <li>
                 <a href="<?php echo URLROOT;?>/D_ManageDrivers/viewEarnings">
                     <i class='bx bx-pie-chart-alt-2'></i>

@@ -10,6 +10,10 @@
       $this ->complaintModel = $this->model('Complaint');
       $this->profileModel = $this->model('Profile');
       $this->transactionModel = $this->model('Transaction');
+      $this->userModel = $this->model('User');
+      // $this->rideModel = $this->model('Ride');
+      
+
     }
     
     public function index(){
@@ -56,39 +60,33 @@
     }
 
     public function rideschedule(){
-      $data = [
-        'title' => 'rides'
-      ];
+      $data = [];
+      // $data['rides'] =  $this->rideModel->getRides();
     //view
     $this->view('users/admin/rideschedule');
   }
 
   public function pendingride(){
-    $data = [
-      'title' => 'rides'
-    ];
+    $data = [];
+    // $data['pending_rides'] =  $this->rideModel->getPendingrides();
   //view
   $this->view('users/admin/pendingride');
 }
 
   public function vehicles(){
-    $data = [
-      'title' => 'vehicles'
-    ];
+    $data = [];
+    $data['vehicle'] =  $this->vehicleModel->showVehicles();
     //view
     $this->view('users/admin/vehicle');
   }
-  public function viewvehicle(){
-    $data = [
-      'title' => 'viewvehicles'
-    ];
+  public function viewvehicle($ve_id){
+    $data = [];
+    $data['vehicle'] =  $this->vehicleModel->showVehiclesById($ve_id);
     //view
     $this->view('users/admin/viewvehicle');
   }
   public function addvehicle(){
-    $data = [
-      'title' => 'viewvehicles'
-    ];
+    $data = [];
     //view
     $this->view('users/admin/vehicleadd');
   }
@@ -101,18 +99,17 @@
   }
   public function viewprofile(){
     $data = [];
-    $data['users'] =  $this->model('User')->getUsers();
+    $data['users'] =  $this->userModel->getUsers();
     //view
     $this->view('users/admin/viewprofiles', $data);
   }
   public function viewuser($us_id){
     $data = [];
-    $data['users'] =  $this->model('User')->getUsersById($us_id);
+    $data['users'] =  $this->userModel->getUsersById($us_id);
 
     //view
     $this->view('users/admin/viewuser' ,$data);
   }
-
   public function viewride(){
     $data = [
       'title' => 'viewride'

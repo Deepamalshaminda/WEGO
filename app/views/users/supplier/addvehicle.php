@@ -1,7 +1,6 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
 
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/addvehicle.css">
-<link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/dashboard.css">
 <title><?php echo SITENAME; ?></title>
 </head>
@@ -91,7 +90,7 @@
                 <span class="invalid-feedback"><?php echo $data['comments_err']; ?></span>
             </div>
             
-            <!--<div class="form-group">
+            <div class="form-group">
                 <label for="vehicle_image">Image of vehicle<sup>*</sup></label>
                 <input type="file" name="vehicle_image" class="controls <?php echo (!empty($data['vehicle_image_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['vehicle_image']; ?>">
                 <span class="invalid-feedback"><?php echo $data['vehicle_image_err']; ?></span>
@@ -102,7 +101,7 @@
                 <label for="vehicle_document">Documents of vehicle<sup>*</sup></label>
                 <input type="file" name="vehicle_document" class="controls <?php echo (!empty($data['vehicle_document_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['vehicle_document']; ?>">
                 <span class="invalid-feedback"><?php echo $data['vehicle_document_err']; ?></span>
-            </div>-->
+            </div>
            
 
 

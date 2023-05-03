@@ -31,18 +31,20 @@
 
 <div id="add" class="tabcontent">
   <div class="friend-list">
+  <?php foreach($data['vehicle'] as $vehicle): ?>
     <div class="friend-card">
       
-      <div class="friend-name"><img src="../public/img/v3.png" class="friend-picture" > CAA 7865 <br> Added By: Roshan Madushan </div>
+      <div class="friend-name"><img src="../public/img/v3.png" class="friend-picture" > <?php echo $vehicle->vehicleno; ?> <br> Added By: Roshan Madushan </div>
       <br>
       <br>
       <div class="friend-actions">
         
-      <button class="details-button"><a href="<?php echo URLROOT?>/Admin/addvehicle"> Add </a></button>
+      <button class="details-button"><a href="<?php echo URLROOT?>/Admin/addvehicle/<?php echo $vehicle->ve_id; ?>"> Add </a></button>
         
       </div>
     </div>
-    <div class="friend-card">
+    <?php endforeach; ?>
+    <!-- <div class="friend-card">
       
       <div class="friend-name"><img src="../public/img/v6.png" class="friend-picture" > ASS 3421 <br> Added By: Kalum Pathirana </div>
       <br>
@@ -119,7 +121,7 @@
       <button class="details-button"> View </button>
         
       </div>
-    </div>
+    </div> -->
     
 
     

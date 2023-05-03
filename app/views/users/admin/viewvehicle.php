@@ -25,7 +25,7 @@
         alt="user" width="100">
         <h4> Added By: Roshan Madushan </h4>
         <br>
-        <h4> Vehicle No:<br>CAA 7865 <h4>
+        <h4> Vehicle No:<br><?php echo $data['vehicle']->vehicleno; ?> <h4>
     </div>
     <div class="right">
         <div class="info">
@@ -36,15 +36,15 @@
 
                     <h4>Vehicle Type : Car </h4>
                     <br>
-                    <h4>Vehicle Model : Toyota </h4>
+                    <h4>Vehicle Model : <?php echo $data['vehicle']->model; ?></h4>
                     <br>
-                    <h4>Color: White</h4>
+                    <h4>Color: <?php echo $data['vehicle']->color; ?></h4>
                     <br>
-                    <h4>AC/Non AC : AC</h4>
+                    <h4>AC/Non AC : <?php echo $data['vehicle']->Ac; ?></h4>
                     <br>
-                    <h4>Year : 2014 </h4>
+                    <h4>Year : <?php echo $data['vehicle']->year; ?> </h4>
                     <br>
-                    <h4>Seating Capacity : 8 </h4>
+                    <h4>Seating Capacity : <?php echo $data['vehicle']->seatingcapacity; ?> </h4>
                     <br>
                     <h4>Insurance Card : Valid </h4>
                     <br>

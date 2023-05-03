@@ -61,8 +61,8 @@ class Vehicles extends Controller
         'Ac' => trim($_POST['Ac']),
         'expirylicence' => trim($_POST['expirylicence']),
         'comments' => trim($_POST['comments']),
-        //'vehicle_image' => trim($_POST['vehicle_image']),
-        //'vehicle_document' => trim($_POST['vehicle_document']),
+        'vehicle_image' => trim($_POST['vehicle_image']),
+        'vehicle_document' => trim($_POST['vehicle_document']),
         //'image'=>trim($_POST['image']),
         //'document'=>trim($_POST['document']),
         'vehicleno_err' => '',
@@ -76,8 +76,8 @@ class Vehicles extends Controller
         'Ac_err' => '',
         'expirylicence_err' => '',
         'comments_err' => '',
-        //'vehicle_image_err' => '',
-        //'vehicle_document_err' => '',
+        'vehicle_image_err' => '',
+        'vehicle_document_err' => '',
         
         //'image_err' => '',
         //'document_err' => '',
@@ -142,14 +142,14 @@ class Vehicles extends Controller
       }
 
       // Validate image
-      //if (empty($data['vehicle_image'])) {
-        //$data['vehicle_image_err'] = 'Please upload an image of your vehicle';
-      //}
+      if (empty($data['vehicle_image'])) {
+        $data['vehicle_image_err'] = 'Please upload an image of your vehicle';
+      }
 
        // Validate image
-       //if (empty($data['vehicle_document'])) {
-        //$data['vehicle_document_err'] = 'Please upload documents of your vehicle';
-      //}
+       if (empty($data['vehicle_document'])) {
+        $data['vehicle_document_err'] = 'Please upload documents of your vehicle';
+      }
 
       // Validate image
       //if (empty($data['image'])) {
@@ -162,7 +162,7 @@ class Vehicles extends Controller
       //}
 
    // upload the vehicle image
-  /*$target_dir = "uploads/";
+  $target_dir = "uploads/";
   $target_file = $target_dir . basename($_FILES["vehicle_image"]["name"]);
   $uploadOk = 1;
   $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
@@ -221,7 +221,7 @@ class Vehicles extends Controller
     } else {
       echo "Sorry, there was an error uploading your file.";
     }
-  }*/
+  }
 
 
       // Make sure errors are empty
@@ -253,10 +253,8 @@ class Vehicles extends Controller
         'Ac' => '',
         'expirylicence' => '',
         'comments' => '',
-        //'vehicle_image' => '',
-        //'vehicle_document' => '',
         'vehicleno_err' => '',
-        //'chassino_err' => '',
+        'chassino_err' => '',
         'model_err' => '',
         'color_err' => '',
         'year_err' => '',
@@ -267,8 +265,8 @@ class Vehicles extends Controller
         'Ac_err' => '',
         'expirylicence_err' => '',
         'comments_err' => '',
-        //'vehicle_image_err' => '',
-        //'vehicle_document_err' => '',
+        'vehicle_image_err' => '',
+        'vehicle_document_err' => '',
         
         //'image_err' => '',
         //'document_err' =>'',

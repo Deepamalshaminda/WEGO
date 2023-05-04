@@ -48,45 +48,6 @@
       }
     }
 
-    public function isDriver($data){
-      $email = $data['email'];
-      $this->db->query('SELECT * FROM user WHERE email = :email');
-      $this->db->bind(':email', $email);
-      $row = $this->db->asAnArray();
-        if($row['role_id'] == 1){
-          return true;
-        } else {
-          return false;
-        }
-    }
-
-
-    public function getUserByEmail($data){
-      $email = $data['email'];
-      $this->db->query('SELECT * FROM user WHERE email = :email');
-      $this->db->bind(':email', $email);
-      $row = $this->db->asAnArray();
-        if($row['role_id'] == 1){
-          $row = $this->db->single();
-          return $row;
-        } else {
-          return false;
-        }
-    }
-
-    public function ownVehicle($email){
-      $this->db->query('SELECT * FROM user WHERE email = :email');
-      $this->db->bind(':email', $email);
-      $row = $this->db->asAnArray();
-        if($row['role_id'] == 2){
-          return true;
-        } else {
-          return false;
-        }
-    }
-
-    
-
     // Find user by email
     public function findUserByEmail($email){
       $this->db->query('SELECT * FROM user WHERE email = :email');
@@ -102,9 +63,20 @@
         return false;
       }
     }
-
-
-
+    public function getUsers()
+    {
+        $this->db->query('SELECT * FROM user');
+        $results = $this->db->resultSet();
+        return $results;
+    }
+    public function getUsersById($us_id)
+    {
+        $this->db->query('SELECT * FROM user WHERE us_id = :us_id');
+        $this->db->bind(':us_id', $us_id);
+        $row = $this->db->single();
+        return $row;
+    }
+   
     public function updateDriversVehicleOwnershipAsOwnVehicle($driverId)
     {
 

@@ -13,10 +13,11 @@
         <br>
         <br>
   <div class="add-card"> 
-    <h1>Add your vehicle here...</h1>
+    <h1>Edit your vehicle details...</h1>
     <br>
+ <section class="formback">
     <div class="add-form">
-    <form action="<?php echo URLROOT; ?>/vehicles/addvehicle" method="post">
+    <form action="<?php echo URLROOT; ?>/Vehicles/updateVehicle" method="post">
     <div class="form-group">
     
                 <label for="vehicleno">Vehicle No &nbsp; : <sup>*</sup></label>
@@ -91,7 +92,7 @@
                 <span class="invalid-feedback"><?php echo $data['comments_err']; ?></span>
             </div>
             
-            <div class="form-group">
+            <!--<div class="form-group">
                 <label for="vehicle_image">Image of vehicle<sup>*</sup></label>
                 <input type="file" name="vehicle_image" class="controls <?php echo (!empty($data['vehicle_image_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['vehicle_image']; ?>">
                 <span class="invalid-feedback"><?php echo $data['vehicle_image_err']; ?></span>
@@ -99,10 +100,10 @@
 
             
             <div class="form-group">
-                <label for="vehicle_document">Upload documents of the vehicle<sup>*</sup></label>
+                <label for="vehicle_document">Documents of vehicle<sup>*</sup></label>
                 <input type="file" name="vehicle_document" class="controls <?php echo (!empty($data['vehicle_document_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['vehicle_document']; ?>">
                 <span class="invalid-feedback"><?php echo $data['vehicle_document_err']; ?></span>
-            </div>
+            </div>-->
            
 
 
@@ -129,18 +130,13 @@
             <label class="button" for="upload-btn">Upload documents here</label>
             <input type="file" id="upload-btn" hidden />
         </div>-->
-        <br>
-        <br>
-</div>
-        <br>
-        <br><br>
-        <!--<a href="<?php echo URLROOT?>/users/supplier/addvehicle"><button class="more"  >Add another vehicle (+)</button></a><br>-->
-        
+    
 
     </div> 
 </div>
 
 </div>
+</section>
 </body>
 
 

@@ -43,53 +43,159 @@
         $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
         $data = [
-          'vehiclenumber' => trim($_POST['vehiclenumber']),
-          'vehicletype' => trim($_POST['vehicletype']),
-          'initiallocation' => trim($_POST['initiallocation']),
+          'vehicleno' => trim($_POST['vehicleno']),
+          'model' => trim($_POST['model']),
+          'color' => trim($_POST['color']),
+          'year' => trim($_POST['year']),
+          'address' => trim($_POST['address']),
           'route' => trim($_POST['route']),
-          'user_id' => $_SESSION['user_id'],
-          'vehiclenumber_err' => '',
-          'vehicletype_err' => '',
-          'initiallocation_err' => '',
-          'route_err' => ''
+          'starttime' => trim($_POST['starttime']),
+          'seatingcapacity' => trim($_POST['seatingcapacity']),
+          'Ac' => trim($_POST['Ac']),
+          'expirylicence' => trim($_POST['expirylicence']),
+          'comments' => trim($_POST['comments']),
+          'vehicle_image' => trim($_POST['vehicle_image']),
+          'vehicle_document' => trim($_POST['vehicle_document']),
+          //'image'=>trim($_POST['image']),
+          //'document'=>trim($_POST['document']),
+          'vehicleno_err' => '',
+          'model_err' => '',
+          'color_err' => '',
+          'year_err' => '',
+          'address_err' => '',
+          'route_err' => '',
+          'starttime_err' => '',
+          'seatingcapacity_err' => '',
+          'Ac_err' => '',
+          'expirylicence_err' => '',
+          'comments_err' => '',
+          'vehicle_image_err' => '',
+          'vehicle_document_err' => '',
+          
+          //'image_err' => '',
+          //'document_err' => '',
+          'userid' => $_SESSION['user_id']
         ];
 
-        // Validate data
-        if(empty($data['vehiclenumber'])){
-          $data['vehiclenumber_err'] = 'Please enter title';
-        }
-        if(empty($data['vehicletype'])){
-          $data['vehicletype_err'] = 'Please enter body text';
-        }
-        if(empty($data['initiallocation'])){
-          $data['initiallocation_err'] = 'Please enter body text';
-        }
-        if(empty($data['route'])){
-          $data['route_err'] = 'Please enter body text';
-        }
+        // Validate vehicleno
+      if (empty($data['vehicleno'])) {
+        $data['vehicleno_err'] = 'Please enter vehicle number';
+      }
+
+    
+
+      // Validate model
+      if (empty($data['model'])) {
+        $data['model_err'] = 'Please enter vehicle model';
+      }
+
+      // Validate color
+      if (empty($data['color'])) {
+        $data['color_err'] = 'Please enter color of the vehicle';
+      }
+
+      // Validate year
+      if (empty($data['year'])) {
+        $data['year_err'] = 'Please enter manufactured year of the vehicle';
+      }
+
+      // Validate address
+      if (empty($data['address'])) {
+        $data['address_err'] = 'Please enter the address';
+      }
+
+      // Validate route
+      if (empty($data['route'])) {
+        $data['route_err'] = 'Please enter vehicle route';
+      }
+
+      // Validate start time
+      if (empty($data['starttime'])) {
+        $data['starttime_err'] = 'Please enter normal journey start time';
+      }
+
+      // Validate seating capacity
+      if (empty($data['seatingcapacity'])) {
+        $data['seatingcapacity_err'] = 'Please enter number of seats';
+      }
+
+      // Validate AC
+      if (empty($data['Ac'])) {
+        $data['Ac_err'] = 'Please select Ac or Non-Ac';
+      }
+
+      // Validate expiry of licence
+      if (empty($data['expirylicence'])) {
+        $data['expirylicence_err'] = 'Please enter licence expiry date';
+      }
+
+      // Validate comments
+      if (empty($data['comments'])) {
+        $data['comments_err'] = 'Please describe if there any special conditions of the vehicle';
+      }
+
+      // Validate image
+      if (empty($data['vehicle_image'])) {
+        $data['vehicle_image_err'] = 'Please upload an image of your vehicle';
+      }
+
+       // Validate image
+       if (empty($data['vehicle_document'])) {
+        $data['vehicle_document_err'] = 'Please upload documents of your vehicle';
+      }
 
         // Make sure no errors
-        if(empty($data['vehiclenumber_err']) && empty($data['vehicletype_err']) && empty($data['initiallocation_err']) && empty($data['route_err'])){
-          // Validated
-          if($this->vehicleModel->addVehicle($data)){
-            flash('vehicle_message', 'Vehicle Added');
-            redirect('D_Vehicles/addVehicle');
+        if (empty($data['vehicleno_err']) && empty($data['model_err']) && empty($data['color_err']) && empty($data['year_err']) && empty($data['address_err']) && empty($data['route_err']) && empty($data['starttime_err']) && empty($data['seatingcapacity_err']) && empty($data['Ac_err']) && empty($data['expirylicence_err']) && empty($data['comments_err'])  && empty($data['vehicle_image_err']) && empty($data['vehicle_document_err'])) {
+          if ($this->vehicleModel->addvehicle($data)) {
+            // flash('vehicle_message','Vehicle Added');
+            // echo "added";
+  
+  
+            return redirect('vehicles');
           } else {
             die('Something went wrong');
           }
         } else {
           // Load view with errors
-          $this->view('users/driver/addvehicle', $data);
+          $this->view('users/supplier/addvehicle', $data);
         }
-
-      } else {
+        } else {
+        // Init data
         $data = [
-          'vehiclenumber' => '',
-          'vehicletype' => '',
-          'initiallocation' => '',
-          'route' => ''
+          'vehicleno' => '',
+          'model' => '',
+          'color' => '',
+          'year' => '',
+          'address' => '',
+          'route' => '',
+          'starttime' => '',
+          'seatingcapacity' => '',
+          'Ac' => '',
+          'expirylicence' => '',
+          'comments' => '',
+          'vehicleno_err' => '',
+          'chassino_err' => '',
+          'model_err' => '',
+          'color_err' => '',
+          'year_err' => '',
+          'address_err' => '',
+          'route_err' => '',
+          'starttime_err' => '',
+          'seatingcapacity_err' => '',
+          'Ac_err' => '',
+          'expirylicence_err' => '',
+          'comments_err' => '',
+          'vehicle_image_err' => '',
+          'vehicle_document_err' => '',
+          
+          //'image_err' => '',
+          //'document_err' =>'',
         ];
-        $this->view('users/driver/d_addvehicle', $data);
+  
+        
+        
+        // Load view
+        $this->view('users/supplier/addvehicle', $data);
       }
     }
 

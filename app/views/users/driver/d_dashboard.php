@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
   <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/d_dashboard.css">
-  <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/sidenavbar.css">
+  <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/d_sidenavbar.css">
   <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/_base.css">
   <!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/handlebars/4.7.7/handlebars.min.js"></script>

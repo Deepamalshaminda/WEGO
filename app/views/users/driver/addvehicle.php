@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-  <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/sidenavbar.css">
+  <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/d_sidenavbar.css">
   <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/addvehicle.css">
   <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/_base.css">
   <title><?php echo SITENAME; ?></title>
@@ -25,7 +25,7 @@
 </div>
 
 <div class="form-wrapper col-12">
-    <h1 class="title-container">Add vehicle</h1>
+    <h1 class="title-container">Add vehicle<?php echo $data['email']?></h1>
     <p class="form-description">Enter your vehicle details here</p>
 
     <form action="<?php echo URLROOT; ?>/Vehicles/addVehicle" method="POST">

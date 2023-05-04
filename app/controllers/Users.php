@@ -1,10 +1,29 @@
 <?php 
 class Users extends Controller
 {public $userModel;
+  public $driverModel;
+
+  public $registering_driver = array();
+
   public function __construct()
   {
     $this->userModel = $this->model('User');
+    $this->driverModel = $this->model('D_ManageDriver');
+    // $this->view('users/index');
   }
+
+public function index()
+  {
+    // $users = $this->userModel->getUsers();
+
+    // $data = [
+    //   'users' => $users
+    // ];
+
+    $this->view('users/index');
+  }
+
+
   public function register()
   {
     // Check for POST
@@ -126,7 +145,6 @@ class Users extends Controller
 
         // Register User
         if ($this->userModel->register($data)) {
-
           $registering_driver = $this->userModel->getUserByEmail($data);
             if($this->userModel->isDriver($data)){
               $this->createUserSession($registering_driver);
@@ -422,6 +440,8 @@ class Users extends Controller
       $this->sendJson($_SESSION);      
   }
 }
+
+
 
 
 

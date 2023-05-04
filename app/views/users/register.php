@@ -4,9 +4,10 @@
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/_base.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/register.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCykzd2-mQTQdSMQNh8PxrWAnDBgqjf_Xg&libraries=places"></script>
     <title><?php echo SITENAME; ?></title>
 </head>
-<body>
+<body onload="initMap()">
     <div class="col-12 top-navbar">
         <div class="col-9">
             <div class="col-2 logo">
@@ -26,12 +27,12 @@
 
     <div class="bottom col-12">
        <div>
-              <div class="col-4 image">
+              <!-- <div class="col-4 image">
                      <div class="image-container col-12">
                             <img src="<?php echo URLROOT?>/img/Driver/reg.png" class="reg-background" alt="wego-logo">
                      </div>
-              </div>
-              <div class="col-8 form">
+              </div> -->
+              <div class="col-12 form">
                      <div class="form-container col-11">
                             <div class="register-wrapper col-11">
                                    <div class="title-wrapper">
@@ -51,7 +52,40 @@
                                                         <!-- <option value="5">Admin</option> -->
                                                  </select>
                                           </div>
-                                          
+                                          <div class="map">
+                                                 <label for="map">Select your default location</label>
+                                                 <div class="space" style="height: 50vh; margin : 20px;">
+                                                        <div id="map" style="height: 50vh; width: 100%; margin: 20px;">
+                                                        <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCykzd2-mQTQdSMQNh8PxrWAnDBgqjf_Xg&callback=Function.prototype"></script>-->
+                                                               <script>
+                                                                      function initMap() {
+                                                                      var colombo = {lat: 6.9271, lng: 79.8612};
+                                                                      var map = new google.maps.Map(document.getElementById('map'), {
+                                                                             zoom: 12,
+                                                                             center: colombo
+
+                                                                      });
+                                                                      var marker = new google.maps.Marker({
+                                                                             position: colombo,
+                                                                             map: map,
+                                                                             draggable: true
+                                                                      });
+                                                                      google.maps.event.addListener(marker, 'dragend', function(event) {
+                                                                             document.getElementById("latitude").value = event.latLng.lat();
+                                                                             document.getElementById("longitude").value = event.latLng.lng();
+                                                                      });
+                                                                      }
+
+                                                               </script>
+
+                                                        </div>
+                                                        <input type="hidden" id="latitude" name="latitude"><br>
+                                                        <input type="hidden" id="longitude" name="longitude"><br>
+                                                 </div>
+                                          </div>
+                                   </div>
+
+                                   <div class="right-column col-3">
                                           <div class="field">
                                                  <label for="name">Name <sup>*</sup></label> <br>
                                                  <input type="text" name="name" size="30" placeholder="Enter name"
@@ -105,11 +139,9 @@
                                                         value="<?php echo $data['password']; ?>"> <br>
                                                  <span class="invalid-feedback"><?php echo $data['password_err']; ?></span>
                                           </div>
-                                   
-
                                    </div>
 
-                                   <div class="right-column col-6">
+                                   <div class="right-column col-3">
 
                                           <div class="field">
                                                  <label for="nic">NIC Number <sup>*</sup></label> <br>

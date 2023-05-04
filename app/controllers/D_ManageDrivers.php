@@ -103,6 +103,11 @@
       $this->view('users/driver/d_driver_profile', $data);
     }
 
+    public function getDriverByUserId($us_id){
+      $driver = $this -> model -> getDriverByUserId($us_id);
+      return $driver;
+    }
+
     
   }
 

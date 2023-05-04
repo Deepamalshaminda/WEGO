@@ -620,7 +620,8 @@
     </script>
   </head>
 
-<?php require APPROOT . '/views/inc/d_sidenavbar.php'; ?>
+  <?php require APPROOT . '/views/users/driver/vehicle-own-school-transport/d_sidenavbar-own-school'; ?>
+
 
 <?php 
   //require APPROOT . '/views/inc/map.php'; 

@@ -78,6 +78,19 @@
             $this->db->bind(':id',$driverId);
             return $this->db->resultSet();
         }
+
+        public function getDriverByUserId($us_id){
+            $this->db->query("SELECT * FROM driver WHERE us_id = :us_id");
+            $this->db->bind(':us_id',$us_id);
+            $row = $this->db->asAnArray();
+            //$row = $this->db->asAnArray();
+            if($row){
+                $row = $this->db->single();
+                return $row;
+            } else {
+                return false;
+            }
+        }
     }
 
 ?>

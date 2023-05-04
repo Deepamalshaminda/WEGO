@@ -34,6 +34,26 @@
               }
         }
 
+        public function viewCompletedTrips($driverId)
+        {
+            $this->db->query("SELECT * FROM trip_information WHERE driver_id = :id AND trip_status = 'Completed'");
+            $this->db->bind(':id',$driverId);
+            return $this->db->resultSet();
+        }
+
+        public function getDriverByUserId($us_id){
+            $this->db->query("SELECT * FROM driver WHERE us_id = :us_id");
+            $this->db->bind(':us_id',$us_id);
+            $row = $this->db->asAnArray();
+            //$row = $this->db->asAnArray();
+            if($row){
+                $row = $this->db->single();
+                return $row;
+            } else {
+                return false;
+            }
+        }
+
         // public function getRequestSendersName($sendersUserID){
         //     $this->db->query("SELECT
         //     u.name as 'sendersName'

@@ -29,6 +29,8 @@ class Users extends Controller
         'user_role' => trim($_POST['user_role']),
         'password' => trim($_POST['password']),
         'confirm_password' => trim($_POST['confirm_password']),
+        'latitude' => trim($_POST['latitude']),
+        'longitude' => trim($_POST['longitude']),
         'name_err' => '',
         'nic_err' => '',
         'gender_err' => '',
@@ -40,7 +42,8 @@ class Users extends Controller
         'contactNumber_err' => '',
         'email_err' => '',
         'password_err' => '',
-        'confirm_password_err' => ''
+        'confirm_password_err' => '',
+
       ];
 
       // Validate Email
@@ -157,6 +160,8 @@ class Users extends Controller
         'password' => '',
         'user_role'=>'',
         'confirm_password' => '',
+        'latitude' => '',
+        'longitude' => '',
         'name_err' => '',
         'nic_err' => '',
         'gender_err' => '',
@@ -218,11 +223,25 @@ class Users extends Controller
       $role_id = $loggedInUser->role_id;
       switch($role_id){
         case 1:
+          $user = $this->userModel->getUserByEmail($data);
+          $us_id = $user -> us_id;
+
+          $driver = $this -> driverModel -> getDriverByUserId($us_id);
+          $service_type = $driver -> service_type;
+          $vehicle_status = $driver -> vehicle_status;
+
+          if($vehicle_status == 'own' AND $service_type == 'school'){
+            $this -> view('users/driver/vehicle-own-school-transport/d_dashboard_OS', $data);
+          } elseif ($vehicle_status == 'own' AND $service_type == 'office'){
+            redirect('D_Own_Office_Drivers/viewDashboard', $data);
+          } elseif ($vehicle_status == 'find' AND $service_type == 'school'){
+            redirect('D_Find_School_Drivers/viewDashboard', $data);
+          }elseif ($vehicle_status == 'find' AND $service_type == 'office'){
+            redirect('D_Find_Office_Drivers/viewDashboard', $data);
+          }else {
+            $this -> view('users/index');
+          }
           
-          // if($loggedInUser){
-            //$this->view('users/driver/d_dashboard');
-            redirect('D_ManageDrivers/viewDashboard');
-          // }
           break;
         case 2:
           // $loggedInUser = $this->userModel->login($data['email'], $data['password']);
@@ -373,6 +392,7 @@ class Users extends Controller
 
   public function schoolService($us_id){
     if($this->userModel->updateServiceTypeAsSchoolService($us_id)){
+      session_destroy();
       redirect('users/login');
     } else{
       $this->view('users/index');
@@ -382,6 +402,7 @@ class Users extends Controller
 
   public function officeService(){
     if($this->userModel->updateServiceTypeAsOfficeService($_SESSION['user_id'])){
+      session_destroy();
       redirect('users/login');
     } else{
       $this->view('users/index');

@@ -1,6 +1,5 @@
 
 <?php
-
 class Vehicles extends Controller
 {public $vehicleModel;
   public function __construct()
@@ -60,9 +59,16 @@ class Vehicles extends Controller
         'seatingcapacity' => trim($_POST['seatingcapacity']),
         'Ac' => trim($_POST['Ac']),
         'expirylicence' => trim($_POST['expirylicence']),
+        'service_type' => trim($_POST['service_type']),
         'comments' => trim($_POST['comments']),
-        'vehicle_image' => trim($_POST['vehicle_image']),
-        'vehicle_document' => trim($_POST['vehicle_document']),
+        //'vehicle_image' => trim($_POST['vehicle_image']),
+        'vehicle_document' => !empty($_POST['vehicle_document']) ? trim(implode(',', (array)$_POST['vehicle_document'])) : '',
+
+        
+
+
+
+
         //'image'=>trim($_POST['image']),
         //'document'=>trim($_POST['document']),
         'vehicleno_err' => '',
@@ -75,8 +81,9 @@ class Vehicles extends Controller
         'seatingcapacity_err' => '',
         'Ac_err' => '',
         'expirylicence_err' => '',
+        'service_type_err' => '',
         'comments_err' => '',
-        'vehicle_image_err' => '',
+        //'vehicle_image_err' => '',
         'vehicle_document_err' => '',
         
         //'image_err' => '',
@@ -135,37 +142,58 @@ class Vehicles extends Controller
       if (empty($data['expirylicence'])) {
         $data['expirylicence_err'] = 'Please enter licence expiry date';
       }
-
+     
+      // Validate service type
+      if (empty($data['service_type'])) {
+        $data['service_type_err'] = 'Please select whether you are providing school service or office transport';
+      }
       // Validate comments
       if (empty($data['comments'])) {
         $data['comments_err'] = 'Please describe if there any special conditions of the vehicle';
       }
 
       //Validate image
-      if (empty($data['vehicle_image'])) {
-        $data['vehicle_image_err'] = 'Please upload an image of your vehicle';
-      }
+      //if (empty($data['vehicle_image'])) {
+        //$data['vehicle_image_err'] = 'Please upload an image of your vehicle';
+     // }
 
-       // Validate documents
-       if (empty($data['vehicle_document'])) {
-        $data['vehicle_document_err'] = 'Please upload documents of your vehicle';
-      }
+        // Validate documents
+       // Check if file was uploaded
+if (!empty($_FILES['vehicle_document']['name'])) {
+  $allowed_extensions = array('zip');
+  $file_name = $_FILES['vehicle_document']['name'];
+  $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
 
-      // Validate image
-      //if (empty($data['image'])) {
-      //$data['image_err'] = 'Please upload image';
-       //}
+  // Check if file extension is allowed
+  if (!in_array($file_ext, $allowed_extensions)) {
+    $data['vehicle_document_err'] = 'Invalid file type. Only ZIP files are allowed.';
+  }
 
-      // Validate documents
-      // if (empty($data['document'])) {
-      // $data['document_err'] = 'Please upload documents';
-      //}
+  // Check if file size is less than 10 MB
+  elseif ($_FILES['vehicle_document']['size'] > 10485760) {
+    $data['vehicle_document_err'] = 'File size exceeded. Please upload a file with size less than 10 MB.';
+  }
 
-   
+  // If file is valid, move it to the destination folder
+  else {
+    $file_tmp = $_FILES['vehicle_document']['tmp_name'];
+    $file_destination = 'public/vehicle_document/' . $file_name;
+
+
+
+    if (move_uploaded_file($file_tmp, $file_destination)) {
+      $data['vehicle_document'] = $file_destination;
+    } else {
+      $data['vehicle_document_err'] = 'Error uploading file.';
+    }
+  }
+} else {
+  $data['vehicle_document_err'] = 'Please upload documents of your vehicle.';
+}
 
 
       // Make sure errors are empty
-      if (empty($data['vehicleno_err']) && empty($data['model_err']) && empty($data['color_err']) && empty($data['year_err']) && empty($data['address_err']) && empty($data['route_err']) && empty($data['starttime_err']) && empty($data['seatingcapacity_err']) && empty($data['Ac_err']) && empty($data['expirylicence_err']) && empty($data['comments_err'])  && empty($data['vehicle_image_err']) && empty($data['vehicle_document_err'])) {
+      if (empty($data['vehicleno_err']) && empty($data['model_err']) && empty($data['color_err']) && empty($data['year_err']) && empty($data['address_err']) && empty($data['route_err']) && empty($data['starttime_err']) && empty($data['seatingcapacity_err']) && empty($data['Ac_err']) && empty($data['expirylicence_err']) && empty($data['service_type_err']) && empty($data['comments_err']) && empty($data['vehicle_document_err'])) {
         if ($this->vehicleModel->addvehicle($data)) {
           // flash('vehicle_message','Vehicle Added');
           // echo "added";
@@ -192,6 +220,7 @@ class Vehicles extends Controller
         'seatingcapacity' => '',
         'Ac' => '',
         'expirylicence' => '',
+        'service_type' => '',
         'comments' => '',
         'vehicle_image' => '',
         'vehicle_document' => '',
@@ -206,12 +235,12 @@ class Vehicles extends Controller
         'seatingcapacity_err' => '',
         'Ac_err' => '',
         'expirylicence_err' => '',
+        'service_type_err' => '',
         'comments_err' => '',
         'vehicle_image_err' => '',
         'vehicle_document_err' => '',
         
-        //'image_err' => '',
-        //'document_err' =>'',
+    
       ];
 
       
@@ -222,7 +251,7 @@ class Vehicles extends Controller
   }
 
 
-  public function updateVehicle()
+  /*public function updateVehicle()
 {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Sanitize POST data
@@ -286,5 +315,5 @@ class Vehicles extends Controller
             $this->view('users/supplier/updateVehicle', $data);
         }
     }
-}
+    */
 }

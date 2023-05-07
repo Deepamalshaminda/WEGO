@@ -75,7 +75,6 @@ a{
 }
 
 .form{
-    height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -100,7 +99,7 @@ label{
 }
 
 .form-container{
-    margin-top: 10vh;
+    margin-top: 2vh;
     background-color: #548fa9d6;
     height: 85vh;
     opacity: 100%;
@@ -157,26 +156,29 @@ label{
 .register-wrapper{
     border-radius: 8px;
     background-color: #ebeaea26;
-    padding: 20px 5px;
     margin-top: 3vh;
     margin-bottom: 3vh;
     /* box-shadow: #f2f2f28f 1px 1px 2px 3px; */
 }
 
 .field{
-    margin-bottom: 5%;
+    margin-bottom: 4vh;
+}
+
+.map{
+    height: 50vh;
 }
 
 .left-column {
     float: left;
     padding: 0 20px;
-    margin-left: 15vh;
+    padding-left: 5vh;
   }
 
 .right-column {
     float: right;
     padding: 0 20px;
-    margin-left: -15vh;
+    margin-left: -5vh;
 }
 
 .form-group{

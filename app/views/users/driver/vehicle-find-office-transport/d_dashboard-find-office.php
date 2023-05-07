@@ -620,7 +620,7 @@
     </script>
   </head>
 
-<?php require APPROOT . '/views/users/driver/vehicle-find-office-transport/d_dashboard-find-office.php'; ?>
+<?php require APPROOT . '/views/inc/d_sidenavbar-find-office'; ?>
 
 <?php 
   //require APPROOT . '/views/inc/map.php'; 
@@ -630,13 +630,7 @@
 <div class="top-row col-12">
   <div class="btn-1-container col-3">
     <div class="btn-1 col-10">
-      <a href="<?php echo URLROOT;?>/D_Vehicles/studentsToBeAbsent"><h1>Students To Be Absent</h1></a>
-    </div>
-  </div>
-
-  <div class="btn-1-container col-3">
-    <div class="btn-1 col-10">
-      <a href="#"><h1>Reservation Requests</h1></a>
+      <a href="<?php echo URLROOT;?>/D_Vehicles/studentsToBeAbsent"><h1>Employees To Be Absent</h1></a>
     </div>
   </div>
 

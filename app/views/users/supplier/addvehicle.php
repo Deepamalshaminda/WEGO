@@ -16,7 +16,7 @@
     <h1>Add your vehicle here...</h1>
     <br>
     <div class="add-form">
-    <form action="<?php echo URLROOT; ?>/vehicles/addvehicle" method="post">
+    <form method="post" action="<?php echo URLROOT; ?>/vehicles/addvehicle" enctype="multipart/form-data">
     <div class="form-group">
     
                 <label for="vehicleno">Vehicle No &nbsp; : <sup>*</sup></label>
@@ -86,23 +86,30 @@
             </div>
 
             <div class="form-group">
+                <label for="service_type">Service Type of the Vehicle<sup>*</sup></label>
+                <input type="service_type" name="service_type" class="controls <?php echo (!empty($data['service_type_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['service_type']; ?>">
+                <span class="invalid-feedback"><?php echo $data['service_type_err']; ?></span>
+            </div>
+
+            <div class="form-group">
                 <label for="comments">Special conditions<sup>*</sup></label>
                 <input type="comments" name="comments" class="controls <?php echo (!empty($data['comments_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['comments']; ?>">
                 <span class="invalid-feedback"><?php echo $data['comments_err']; ?></span>
             </div>
             
-            <div class="form-group">
+            <!--<div class="form-group">
                 <label for="vehicle_image">Image of vehicle<sup>*</sup></label>
                 <input type="file" name="vehicle_image" class="controls <?php echo (!empty($data['vehicle_image_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['vehicle_image']; ?>">
                 <span class="invalid-feedback"><?php echo $data['vehicle_image_err']; ?></span>
-            </div>
+            </div>-->
 
             
             <div class="form-group">
-                <label for="vehicle_document">Upload documents of the vehicle<sup>*</sup></label>
-                <input type="file" name="vehicle_document" class="controls <?php echo (!empty($data['vehicle_document_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['vehicle_document']; ?>">
-                <span class="invalid-feedback"><?php echo $data['vehicle_document_err']; ?></span>
-            </div>
+        <label for="vehicle_document">Upload documents of the vehicle (ZIP format only)<sup>*</sup></label>
+        <input type="file" name="vehicle_document" class="controls <?php echo (!empty($data['vehicle_document_err'])) ? 'is-invalid' : ''; ?>" accept=".zip">
+        <span class="invalid-feedback"><?php echo $data['vehicle_document_err']; ?></span>
+    </div>
+
            
 
 

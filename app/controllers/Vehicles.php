@@ -276,4 +276,68 @@ class Vehicles extends Controller
       $this->view('users/supplier/addvehicle', $data);
     }
   }
+
+  public function updateVehicle()
+{
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        // Sanitize POST data
+        $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+        $data = [
+            'id' => trim($_POST['id']),
+            'vehicle_no' => trim($_POST['vehicle_no']),
+            'model' => trim($_POST['model']),
+            'color' => trim($_POST['color']),
+            'year' => trim($_POST['year']),
+            'address' => trim($_POST['address']),
+            'route' => trim($_POST['route']),
+            'start_time' => trim($_POST['start_time']),
+            'seating_capacity' => trim($_POST['seating_capacity']),
+            'ac' => trim($_POST['ac']),
+            'expiry_licence' => trim($_POST['expiry_licence']),
+            'comments' => trim($_POST['comments'])
+        ];
+
+        // Update vehicle
+        if ($this->vehicleModel->updateVehicle(
+            $data['id'],
+            $data['vehicle_no'],
+            $data['model'],
+            $data['color'],
+            $data['year'],
+            $data['address'],
+            $data['route'],
+            $data['start_time'],
+            $data['seating_capacity'],
+            $data['ac'],
+            $data['expiry_licence'],
+            $data['comments']
+        )) {
+            flash('vehicle_message', 'Vehicle updated');
+            redirect('posts/index' . $data);
+        } else {
+            die('Something went wrong');
+        }
+    } else {
+        // Get existing vehicle data
+        $vehicle = $this->vehicleModel->getVehicleById($_SESSION['id']);
+
+        $data = [
+            'id' => $vehicle->id,
+            'vehicle_no' => $vehicle->vehicle_no,
+            'model' => $vehicle->model,
+            'color' => $vehicle->color,
+            'year' => $vehicle->year,
+            'address' => $vehicle->address,
+            'route' => $vehicle->route,
+            'start_time' => $vehicle->start_time,
+            'seating_capacity' => $vehicle->seating_capacity,
+            'ac' => $vehicle->ac,
+            'expiry_licence' => $vehicle->expiry_licence,
+            'comments' => $vehicle->comments
+        ];
+
+        $this->view('users/supplier/updateVehicle', $data);
+    }
+}
 }

@@ -620,14 +620,25 @@
     </script>
   </head>
 
+
 <?php require APPROOT . '/views/inc/d_sidenavbar-own-office'; ?>
+
+
+<?php require APPROOT . '/views/users/driver/vehicle-own-office-transport/d_dashboard-own-office.php'; ?>
+
+<?php 
+  //require APPROOT . '/views/inc/map.php'; 
+?>
 
 
 <main class="full-page">
 <div class="top-row col-12">
   <div class="btn-1-container col-3">
     <div class="btn-1 col-10">
+
       <a href="<?php echo URLROOT;?>/D_Vehicles/studentsToBeAbsent"><h1>Employees To Be Absent</h1></a>
+      <a href="<?php echo URLROOT;?>/D_Vehicles/studentsToBeAbsent"><h1>Students To Be Absent</h1></a>
+
     </div>
   </div>
 

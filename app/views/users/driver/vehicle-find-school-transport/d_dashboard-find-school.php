@@ -620,7 +620,11 @@
     </script>
   </head>
 
+
 <?php require APPROOT . '/views/inc/d_sidenavbar-find-school'; ?>
+
+<?php require APPROOT . '/views/users/driver/vehicle-find-school-transport/d_dashboard-find-school.php'; ?>
+
 
 <?php 
   //require APPROOT . '/views/inc/map.php'; 
@@ -631,6 +635,13 @@
   <div class="btn-1-container col-3">
     <div class="btn-1 col-10">
       <a href="<?php echo URLROOT;?>/D_Vehicles/studentsToBeAbsent"><h1>Students To Be Absent</h1></a>
+    </div>
+  </div>
+
+  <div class="btn-1-container col-3">
+    <div class="btn-1 col-10">
+
+      <a href="#"><h1>Reservation Requests</h1></a>
     </div>
   </div>
 

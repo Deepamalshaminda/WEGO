@@ -15,7 +15,7 @@
     }
 
     public function addvehicle($data){
-      $this->db->query('INSERT INTO vehicle (vehicleno, model, color, year, address, route, starttime, seatingcapacity, Ac, expirylicence, service_type, comments, vehicle_document, id) VALUES(:vehicleno, :model, :color, :year, :address, :route, :starttime, :seatingcapacity, :Ac, :expirylicence, :service_type, :comments, :vehicle_document, :id)');
+      $this->db->query('INSERT INTO vehicle (vehicleno, model, color, year, address, route, starttime, seatingcapacity, Ac, expirylicence, service_type, comments, vehicle_document, id) VALUES(:vehicleno, :model, :color, :year, :address, :route, :starttime, :seatingcapacity, :Ac, :expirylicence, :comments, :vehicle_image, :vehicle_document, :id)');
       // Bind values
       $this->db->bind(':vehicleno', $data['vehicleno']);
       //$this->db->bind(':user id', $data['user id']);
@@ -31,15 +31,14 @@
       $this->db->bind(':expirylicence', $data['expirylicence']);
       $this->db->bind(':service_type', $data['service_type']);
       $this->db->bind(':comments', $data['comments']);
-      $this->db->bind(':vehicle_document', $data['vehicle_document']);
-
+      //$this->db->bind(':vehicle_image', $data['vehicle_image']);
       $this->db->bind(':id', $data['userid']);
     
       // Check if document file is uploaded
-      /*if (!empty($_FILES['vehicle_document']['name'])) {
+      if (!empty($_FILES['vehicle_document']['name'])) {
         $file_name = basename($_FILES['vehicle_document']['name']);
         $file_tmp = $_FILES['vehicle_document']['tmp_name'];
-        $file_destination = 'C:\xampp\htdocs\projectwego\public\vehicle_document\\' . $file_name;
+        $file_destination = 'public/vehicle_document/' . $file_name;
     
         // Check file extension
         $file_extension = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
@@ -56,14 +55,12 @@
       } else {
         $this->db->bind(':vehicle_document', null); // insert null if no document is uploaded
       }
-    */
+    
       // Execute
       if($this->db->execute()){
         return true;
       } else {
         return false;
       }
-
-      
     }
   }    

@@ -12,56 +12,56 @@
         </li>
         <li>
           <a href="<?php echo URLROOT?>/prequests/viewParentRequest">
-            <div class='bx bx-user-circle' ></div>
+            <div class='bx bx-box' ></div>
             <span class="links_name">&nbsp; Parents</span>
           </a>
         </li>
         <li>
           <a href="<?php echo URLROOT?>/wrequests/viewWorkerRequest">
-            <div class='bx bx-user-pin' ></div>
+            <div class='bx bx-list-ul' ></div>
             <span class="links_name">&nbsp; Office Workers</span>
           </a>
         </li>
         <li>
           <a href="<?php echo URLROOT?>/rides/viewRides">
-            <div class='bx bx-taxi' ></div>
+            <div class='bx bx-pie-chart-alt-2' ></div>
             <span class="links_name">&nbsp; Rides</span>
           </a>
         </li>
         <li>
           <a href="<?php echo URLROOT?>/driver/viewDrivers">
-            <div class='bx bx-user' ></div>
+            <div class='bx bx-coin-stack' ></div>
             <span class="links_name">&nbsp; Drivers</span>
           </a>
         </li>
         <li>
           <a href="<?php echo URLROOT?>/Earningschart/viewEarnings">
-            <div class='bx bx-data' ></div>
+            <div class='bx bx-book-alt' ></div>
             <span class="links_name">&nbsp; Earnings</span>
           </a>
         </li>
         <li>
           <a href="<?php echo URLROOT?>/Salarydetails/viewSalaryInfo">
-            <div class='bx bx-money-withdraw' ></div>
+            <div class='bx bx-user' ></div>
             <span class="links_name">&nbsp; Salaries</span>
           </a>
         </li>
         <li>
           <a href="<?php echo URLROOT?>/reports/viewReports">
-            <div class='bx bx-spreadsheet' ></div>
+            <div class='bx bx-user' ></div>
             <span class="links_name">&nbsp; Reports</span>
           </a>
         </li>
         <li>
           <a href="<?php echo URLROOT?>/Documents/viewDocuments">
-            <div class='bx bx-file' ></div>
+            <div class='bx bx-user' ></div>
             <span class="links_name">&nbsp; Vehicle Documents</span>
           </a>
         </li>
         
         <li>
           <a href="<?php echo URLROOT?>/DriverAttendance/viewDriverAttendance">
-            <div class='bx bx-calendar-check' ></div>
+            <div class='bx bx-user' ></div>
             <span class="links_name">&nbsp; Driver Attendace</span>
           </a>
         </li>

@@ -28,6 +28,7 @@
 		<th>Licence expiry date</th>
     <th>Service Type</th>
 		<th>Special conditions</th>
+		<th>Vehicle document file path</th>
 		<th> Supplier ID</th>
 
 		</tr>

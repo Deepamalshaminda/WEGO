@@ -48,8 +48,8 @@ public function index()
         'user_role' => trim($_POST['user_role']),
         'password' => trim($_POST['password']),
         'confirm_password' => trim($_POST['confirm_password']),
-        'latitude' => trim($_POST['latitude']),
-        'longitude' => trim($_POST['longitude']),
+        // 'latitude' => trim($_POST['latitude']),
+        // 'longitude' => trim($_POST['longitude']),
         'name_err' => '',
         'nic_err' => '',
         'gender_err' => '',
@@ -152,7 +152,7 @@ public function index()
               // $this->setGlobal($us_id);
               $this->view('users/driver/d_setvehicle', $registering_driver);
             }else{
-              die('Something went wrong');
+              redirect('users/login');
             }
         } else {
           die('Something went wrong');
@@ -178,8 +178,8 @@ public function index()
         'password' => '',
         'user_role'=>'',
         'confirm_password' => '',
-        'latitude' => '',
-        'longitude' => '',
+        // 'latitude' => '',
+        // 'longitude' => '',
         'name_err' => '',
         'nic_err' => '',
         'gender_err' => '',
@@ -392,7 +392,8 @@ public function index()
 
   public function ownVehicle($us_id){
     if($this->userModel->updateDriversVehicleOwnershipAsOwnVehicle($us_id)){
-      $this->view('users/driver/d_setservicetype',$_SESSION['user_name']);
+      $data = $this->userModel->findUserById($us_id);
+      $this->view('users/driver/d_setservicetype',$data);
       //redirect('users/setServiceType');
     } else{
       $this->view('users/index');
@@ -401,7 +402,8 @@ public function index()
 
   public function findVehicle($us_id){
     if($this->userModel->updateDriversVehicleOwnershipAsFindVehicle($us_id)){
-      $this->view('users/driver/d_setservicetype', $_SESSION['user_name']);
+      $data = $this->userModel->findUserById($us_id);
+      $this->view('users/driver/d_setservicetype', $data);
       // redirect('pages/setServiceType');
     } else{
       $this->view('users/index');
@@ -410,7 +412,6 @@ public function index()
 
   public function schoolService($us_id){
     if($this->userModel->updateServiceTypeAsSchoolService($us_id)){
-      session_destroy();
       redirect('users/login');
     } else{
       $this->view('users/index');
@@ -420,7 +421,6 @@ public function index()
 
   public function officeService(){
     if($this->userModel->updateServiceTypeAsOfficeService($_SESSION['user_id'])){
-      session_destroy();
       redirect('users/login');
     } else{
       $this->view('users/index');

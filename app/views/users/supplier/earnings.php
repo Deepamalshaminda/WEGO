@@ -2,6 +2,7 @@
 
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/dashboard.css">
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/earnings.css">
+<link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 
 <title><?php echo SITENAME; ?></title>
 <html>

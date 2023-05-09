@@ -10,7 +10,7 @@
 <body>
   <div class="sidebar">
     <div class="logo-details">
-      <div class='bx bxl-c-plus-plus'></div>
+    <i><img src="../img/wego_logo.png" class="wego-logo" alt="wego-logo"></i>
       <span class="logo_name">&nbsp; WeGo</span>
     </div>
       <ul class="nav-links">

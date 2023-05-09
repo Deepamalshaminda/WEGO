@@ -1,10 +1,29 @@
 <?php 
 class Users extends Controller
 {public $userModel;
+  public $driverModel;
+
+  public $registering_driver = array();
+
   public function __construct()
   {
     $this->userModel = $this->model('User');
+    $this->driverModel = $this->model('D_ManageDriver');
+    // $this->view('users/index');
   }
+
+public function index()
+  {
+    // $users = $this->userModel->getUsers();
+
+    // $data = [
+    //   'users' => $users
+    // ];
+
+    $this->view('users/index');
+  }
+
+
   public function register()
   {
     // Check for POST
@@ -29,6 +48,8 @@ class Users extends Controller
         'user_role' => trim($_POST['user_role']),
         'password' => trim($_POST['password']),
         'confirm_password' => trim($_POST['confirm_password']),
+        // 'latitude' => trim($_POST['latitude']),
+        // 'longitude' => trim($_POST['longitude']),
         'name_err' => '',
         'nic_err' => '',
         'gender_err' => '',
@@ -40,7 +61,8 @@ class Users extends Controller
         'contactNumber_err' => '',
         'email_err' => '',
         'password_err' => '',
-        'confirm_password_err' => ''
+        'confirm_password_err' => '',
+
       ];
 
       // Validate Email
@@ -123,7 +145,6 @@ class Users extends Controller
 
         // Register User
         if ($this->userModel->register($data)) {
-
           $registering_driver = $this->userModel->getUserByEmail($data);
             if($this->userModel->isDriver($data)){
               $this->createUserSession($registering_driver);
@@ -131,7 +152,7 @@ class Users extends Controller
               // $this->setGlobal($us_id);
               $this->view('users/driver/d_setvehicle', $registering_driver);
             }else{
-              die('Something went wrong');
+              redirect('users/login');
             }
         } else {
           die('Something went wrong');
@@ -157,6 +178,8 @@ class Users extends Controller
         'password' => '',
         'user_role'=>'',
         'confirm_password' => '',
+        // 'latitude' => '',
+        // 'longitude' => '',
         'name_err' => '',
         'nic_err' => '',
         'gender_err' => '',
@@ -218,11 +241,25 @@ class Users extends Controller
       $role_id = $loggedInUser->role_id;
       switch($role_id){
         case 1:
+          $user = $this->userModel->getUserByEmail($data);
+          $us_id = $user -> us_id;
+
+          $driver = $this -> driverModel -> getDriverByUserId($us_id);
+          $service_type = $driver -> service_type;
+          $vehicle_status = $driver -> vehicle_status;
+
+          if($vehicle_status == 'own' AND $service_type == 'school'){
+            $this -> view('users/driver/vehicle-own-school-transport/d_dashboard_OS', $data);
+          } elseif ($vehicle_status == 'own' AND $service_type == 'office'){
+            redirect('D_Own_Office_Drivers/viewDashboard', $data);
+          } elseif ($vehicle_status == 'find' AND $service_type == 'school'){
+            redirect('D_Find_School_Drivers/viewDashboard', $data);
+          }elseif ($vehicle_status == 'find' AND $service_type == 'office'){
+            redirect('D_Find_Office_Drivers/viewDashboard', $data);
+          }else {
+            $this -> view('users/index');
+          }
           
-          // if($loggedInUser){
-            //$this->view('users/driver/d_dashboard');
-            redirect('D_ManageDrivers/viewDashboard');
-          // }
           break;
         case 2:
           // $loggedInUser = $this->userModel->login($data['email'], $data['password']);
@@ -355,7 +392,8 @@ class Users extends Controller
 
   public function ownVehicle($us_id){
     if($this->userModel->updateDriversVehicleOwnershipAsOwnVehicle($us_id)){
-      $this->view('users/driver/d_setservicetype',$_SESSION['user_name']);
+      $data = $this->userModel->findUserById($us_id);
+      $this->view('users/driver/d_setservicetype',$data);
       //redirect('users/setServiceType');
     } else{
       $this->view('users/index');
@@ -364,7 +402,8 @@ class Users extends Controller
 
   public function findVehicle($us_id){
     if($this->userModel->updateDriversVehicleOwnershipAsFindVehicle($us_id)){
-      $this->view('users/driver/d_setservicetype', $_SESSION['user_name']);
+      $data = $this->userModel->findUserById($us_id);
+      $this->view('users/driver/d_setservicetype', $data);
       // redirect('pages/setServiceType');
     } else{
       $this->view('users/index');
@@ -396,11 +435,13 @@ class Users extends Controller
   //   return $GLOBALS;
   // }
 
-  public function getUserIdJson(){
+  //public function getUserIdJson(){
     
-      $this->sendJson($_SESSION);      
-  }
+     // $this->sendJson($_SESSION);      
+  //}
 }
+
+
 
 
 

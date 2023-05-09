@@ -105,7 +105,11 @@
 
             
             <div class="form-group">
+<<<<<<< Updated upstream
         <label for="vehicle_document">Upload documents of the vehicle (ZIP format only)    -Please rename the zip file with your vehicle number<sup>*</sup></label>
+=======
+        <label for="vehicle_document">Upload documents of the vehicle (ZIP format only)<sup>*</sup></label>
+>>>>>>> Stashed changes
         <input type="file" name="vehicle_document" class="controls <?php echo (!empty($data['vehicle_document_err'])) ? 'is-invalid' : ''; ?>" accept=".zip">
         <span class="invalid-feedback"><?php echo $data['vehicle_document_err']; ?></span>
     </div>

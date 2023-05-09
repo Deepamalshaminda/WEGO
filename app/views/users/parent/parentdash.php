@@ -1,12 +1,15 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/p_dashboard.css">
+
+
+
+
   <title><?php echo SITENAME; ?></title>
 </head>
 <body>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   </head>
-<body>
+
  
 <?php require APPROOT . '/views/inc/sidenavbar.php' ;?>
      

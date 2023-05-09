@@ -1,45 +1,47 @@
-
+<head>
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/p_dashboard.css">
+<link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+
   <title><?php echo SITENAME; ?></title>
-</head>
-<body>
+
+
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
 <body>
   <div class="sidebar">
     <div class="logo-details">
-      <div class='bx bxl-c-plus-plus'></div>
-      <span class="logo_name">&nbsp; WeGo</span>
+    <i><img src="<?php echo URLROOT?>/img/wego_logo.png" class="wego-logo" alt="wego-logo"></i>
+    <span class="logo_name">&nbsp; WeGo</span>
     </div>
       <ul class="nav-links">
         <li>
           <a href="<?php echo URLROOT?>/Dashboard/dashboard" class="">
-            <div class='bx bx-grid-alt' ></div>
+            <i class='bx bx-grid-alt' ></i>
             <span class="links_name">&nbsp; Dashboard</span>
           </a>
         </li>
         <li>
-          <a href="<?php echo URLROOT?>/Sendrequests/sendrequest">
-            <div class='bx bx-box' ></div>
+          <a href="<?php echo URLROOT?>/SendRideRequests/getVehicles">
+            <i class='bx bx-box' ></i>
             <span class="links_name">&nbsp;Send requests</span>
           </a>
         </li>
         <li>
           <a href="<?php echo URLROOT?>/Makereservations/makereservation">
-            <div class='bx bx-list-ul' ></div>
+            <i class='bx bx-list-ul' ></i>
             <span class="links_name">&nbsp; Make reservations</span>
           </a>
         </li>
         <li>
           <a href="<?php echo URLROOT?>/Payments/payment">
-            <div class='bx bx-pie-chart-alt-2' ></div>
+            <i class='bx bx-pie-chart-alt-2' ></i>
             <span class="links_name">&nbsp; Payments</span>
           </a>
         </li>
         <li>
           <a href="<?php echo URLROOT?>/Attendencechildren/attendencechild">
-            <div class='bx bx-coin-stack' ></div>
+            <i class='bx bx-coin-stack' ></i>
             <span class="links_name">&nbsp; Student attendence</span>
           </a>
         </li>
@@ -51,14 +53,14 @@
         </li>-->
         <li>
           <a href="#">
-            <div class='bx bx-user' ></div>
-            <span class="links_name">&nbsp; </span>
+            <i class='bx bx-user' ></i>
+            <span class="links_name">&nbsp; Complaints </span>
           </a>
         </li>
         
         <li class="log_out">
           <a href="<?php echo URLROOT?>/Users/logout">
-            <div class='bx bx-log-out'></div>
+            <i class='bx bx-log-out'></i>
             <span class="links_name">&nbsp; Log out</span>
           </a>
         </li>
@@ -77,6 +79,6 @@
       <div class="profile-details">
         <!-- //<img src="../public/img/images.png" alt=""> -->
         <span class="admin_name"><?php echo $_SESSION ['user_name']?></span>
-        <div class='bx bx-chevron-down' ></div>
+        <i class='bx bx-chevron-down' ></i>
       </div>
     </nav>

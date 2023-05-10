@@ -18,7 +18,7 @@
        <h1 class="childtopic">Update your child's details here..</h1>
        <br>
        <section class="formback">
-       <form action="<?php echo URLROOT; ?>/parents/editChild/<?php echo $data['id']; ?>" method="post">
+       <form action="<?php echo URLROOT; ?>/parents/editChild/<?php echo $data['ch_id']; ?>" method="post">
               <div class="container">
                      <h1 class="topic">Please fill this form with your child's details</h1>
                      

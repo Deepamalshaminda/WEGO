@@ -1,6 +1,7 @@
 <?php
 class Vehicles extends Controller
-{public $vehicleModel;
+{
+  public $vehicleModel;
   public function __construct()
   {
     //if(!isLoggedIn()){
@@ -82,7 +83,7 @@ class Vehicles extends Controller
         $data['vehicleno_err'] = 'Please enter vehicle number';
       }
 
-    
+
 
       // Validate model
       if (empty($data['model'])) {
@@ -187,8 +188,8 @@ class Vehicles extends Controller
         'Ac_err' => '',
         'expirylicence_err' => '',
         'comments_err' => '',
-        
-        
+
+
         //'image_err' => '',
         //'document_err' =>'',
       ];

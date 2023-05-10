@@ -32,7 +32,6 @@
       $this->db->bind(':service_type', $data['service_type']);
       $this->db->bind(':comments', $data['comments']);
       $this->db->bind(':vehicle_document', $data['vehicle_document']);
-
       $this->db->bind(':id', $data['userid']);
     
       // Check if document file is uploaded
@@ -55,15 +54,13 @@
         }
       } else {
         $this->db->bind(':vehicle_document', null); // insert null if no document is uploaded
-      }
-    */
-      // Execute
+      }*/
+
+      //Execute
       if($this->db->execute()){
         return true;
       } else {
         return false;
       }
-
-      
     }
   }    

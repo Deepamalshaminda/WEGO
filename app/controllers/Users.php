@@ -435,13 +435,8 @@ public function index()
   //   return $GLOBALS;
   // }
 
-  //public function getUserIdJson(){
+  public function getUserIdJson(){
     
-     // $this->sendJson($_SESSION);      
-  //}
+      $this->sendJson($_SESSION);      
+  }
 }
-
-
-
-
-

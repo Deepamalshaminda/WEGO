@@ -156,8 +156,6 @@ class Vehicles extends Controller
       //if (empty($data['vehicle_image'])) {
         //$data['vehicle_image_err'] = 'Please upload an image of your vehicle';
      // }
-
-        // Validate documents
         if (!empty($_FILES['vehicle_document']['name'])) {
           $allowed_extensions = array('zip');
           $file_name = $_FILES['vehicle_document']['name'];
@@ -192,7 +190,38 @@ class Vehicles extends Controller
           $data['vehicle_document_err'] = 'Please upload documents of your vehicle.';
         }
         
+       // Check if file was uploaded
+if (!empty($_FILES['vehicle_document']['name'])) {
+  $allowed_extensions = array('zip');
+  $file_name = $_FILES['vehicle_document']['name'];
+  $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
 
+  // Check if file extension is allowed
+  if (!in_array($file_ext, $allowed_extensions)) {
+    $data['vehicle_document_err'] = 'Invalid file type. Only ZIP files are allowed.';
+  }
+
+  // Check if file size is less than 10 MB
+  elseif ($_FILES['vehicle_document']['size'] > 10485760) {
+    $data['vehicle_document_err'] = 'File size exceeded. Please upload a file with size less than 10 MB.';
+  }
+
+  // If file is valid, move it to the destination folder
+  else {
+    $file_tmp = $_FILES['vehicle_document']['tmp_name'];
+    $file_destination = 'public/vehicle_document/' . $file_name;
+
+
+
+    if (move_uploaded_file($file_tmp, $file_destination)) {
+      $data['vehicle_document'] = $file_destination;
+    } else {
+      $data['vehicle_document_err'] = 'Error uploading file.';
+    }
+  }
+} else {
+  $data['vehicle_document_err'] = 'Please upload documents of your vehicle.';
+}
 
       // Make sure errors are empty
       if (empty($data['vehicleno_err']) && empty($data['model_err']) && empty($data['color_err']) && empty($data['year_err']) && empty($data['address_err']) && empty($data['route_err']) && empty($data['starttime_err']) && empty($data['seatingcapacity_err']) && empty($data['Ac_err']) && empty($data['expirylicence_err']) && empty($data['service_type_err']) && empty($data['comments_err']) && empty($data['vehicle_document_err'])) {

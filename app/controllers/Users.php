@@ -153,6 +153,8 @@ public function index()
               $this->view('users/driver/d_setvehicle', $registering_driver);
             }else{
               redirect('users/login');
+              die('Something went wrong');
+              redirect('users/login');
             }
         } else {
           die('Something went wrong');
@@ -392,8 +394,7 @@ public function index()
 
   public function ownVehicle($us_id){
     if($this->userModel->updateDriversVehicleOwnershipAsOwnVehicle($us_id)){
-      $data = $this->userModel->findUserById($us_id);
-      $this->view('users/driver/d_setservicetype',$data);
+      $this->view('users/driver/d_setservicetype',$_SESSION['user_name']);
       //redirect('users/setServiceType');
     } else{
       $this->view('users/index');
@@ -402,8 +403,7 @@ public function index()
 
   public function findVehicle($us_id){
     if($this->userModel->updateDriversVehicleOwnershipAsFindVehicle($us_id)){
-      $data = $this->userModel->findUserById($us_id);
-      $this->view('users/driver/d_setservicetype', $data);
+      $this->view('users/driver/d_setservicetype', $_SESSION['user_name']);
       // redirect('pages/setServiceType');
     } else{
       $this->view('users/index');
@@ -412,6 +412,7 @@ public function index()
 
   public function schoolService($us_id){
     if($this->userModel->updateServiceTypeAsSchoolService($us_id)){
+      session_destroy();
       redirect('users/login');
     } else{
       $this->view('users/index');
@@ -421,6 +422,7 @@ public function index()
 
   public function officeService(){
     if($this->userModel->updateServiceTypeAsOfficeService($_SESSION['user_id'])){
+      session_destroy();
       redirect('users/login');
     } else{
       $this->view('users/index');
@@ -435,13 +437,8 @@ public function index()
   //   return $GLOBALS;
   // }
 
-  //public function getUserIdJson(){
+  public function getUserIdJson(){
     
-     // $this->sendJson($_SESSION);      
-  //}
+      $this->sendJson($_SESSION);      
+  }
 }
-
-
-
-
-

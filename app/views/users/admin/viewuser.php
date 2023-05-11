@@ -24,7 +24,7 @@
     <img src ="../public/img/us1.jpg" 
         alt="user" width="100">
         <h4> <?php echo $data['users']->name; ?> </h4>
-         <p> <?php echo $data['users']->role_id; ?> </p>
+         <p> <?php echo $data['users']->user_role; ?> </p>
     </div>
     <div class="right">
         <div class="info">

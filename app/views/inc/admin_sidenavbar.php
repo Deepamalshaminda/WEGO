@@ -10,11 +10,7 @@
 <body>
   <div class="sidebar">
     <div class="logo-details">
-<<<<<<< Updated upstream
     <i><img src="../img/wego_logo.png" class="wego-logo" alt="wego-logo"></i>
-=======
-    <i><img src="../public/img/wego_logo.png" class="wego-logo" alt="wego-logo"></i>
->>>>>>> Stashed changes
       <span class="logo_name">&nbsp; WeGo</span>
     </div>
       <ul class="nav-links">
@@ -26,20 +22,20 @@
         </li>
         <li>
           <a href="<?php echo URLROOT?>/Admin/viewprofile">
-            <div class='bx bx-coin-stack' ></div>
+            <div class='bx bx-list-ul' ></div>
             <span class="links_name">&nbsp; View Users</span>
           </a>
         </li>
         
         <li>
           <a href="<?php echo URLROOT?>/Admin/rideschedule">
-            <div class='bx bx-list-ul' ></div>
+            <div class='bx bx-box' ></div>
             <span class="links_name">&nbsp; Rides</span>
           </a>
         </li>
         <li>
-          <a href="<?php echo URLROOT?>/Admin/vehicles">
-            <div class='bx bx-user' ></div>
+          <a href="<?php echo URLROOT?>/Admin/vehicle">
+            <div class='bx bx-box' ></div>
             <span class="links_name">&nbsp; Vehicles</span>
           </a>
         </li>
@@ -51,7 +47,7 @@
         </li>
         <li>
         <a href="<?php echo URLROOT?>/Admin/complaints">
-            <div class='bx bx-book-alt' ></div>
+            <div class='bx bx-coin-stack' ></div>
             <span class="links_name">&nbsp; Complaints</span>
           </a>
         </li>

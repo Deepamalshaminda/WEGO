@@ -8,7 +8,7 @@
 
     // Regsiter user
     public function register($data){
-      $this->db->query('INSERT INTO user (name, nic, gender, dob, province, district, nearestTown, address, contactNumber, email, password, latitude, longitude, role_id) VALUES(:name, :nic, :gender, :dob, :province, :district, :nearestTown, :address, :contactNumber, :email, :password, :latitude , :longitude, :role_id)');
+      $this->db->query('INSERT INTO user (name, nic, gender, dob, province, district, nearestTown, address, contactNumber, email, password, role_id) VALUES(:name, :nic, :gender, :dob, :province, :district, :nearestTown, :address, :contactNumber, :email, :password, :role_id)');
       // Bind values
       $this->db->bind(':name', $data['name']);
       $this->db->bind(':nic', $data['nic']);
@@ -20,9 +20,7 @@
       $this->db->bind(':address', $data['address']);
       $this->db->bind(':contactNumber', $data['contactNumber']);
       $this->db->bind(':email', $data['email']);
-      $this->db->bind(':password', $data['password']);
-      $this->db->bind(':latitude', $data['latitude']);
-      $this->db->bind(':longitude', $data['longitude']);
+      $this->db->bind(':password', $data['password']);+
       $this->db->bind(':role_id', $data['user_role']);
 
       // Execute
@@ -48,6 +46,48 @@
       }
     }
 
+    public function isDriver($data){
+      $email = $data['email'];
+      $this->db->query('SELECT * FROM user WHERE email = :email');
+      $this->db->bind(':email', $email);
+      $row = $this->db->single();
+        if($row['role_id'] == 1){
+          return true;
+        } else {
+          return false;
+        }
+    }
+
+
+    public function getUserByEmail($email){
+      // $email = $data['email'];
+      $this->db->query('SELECT * FROM user WHERE email = :email');
+      $this->db->bind(':email', $email);
+      $row = $this->db->single();
+
+      // $row2 = json_decode($row);
+        if($row->role_id == 1){
+          return $row;
+        } else {
+          return false;
+        }
+    }
+
+
+
+    public function ownVehicle($email){
+      $this->db->query('SELECT * FROM user WHERE email = :email');
+      $this->db->bind(':email', $email);
+      $row = $this->db->single();
+        if($row['role_id'] == 2){
+          return true;
+        } else {
+          return false;
+        }
+    }
+
+    
+
     // Find user by email
     public function findUserByEmail($email){
       $this->db->query('SELECT * FROM user WHERE email = :email');
@@ -63,20 +103,23 @@
         return false;
       }
     }
-    public function getUsers()
-    {
-        $this->db->query('SELECT * FROM user');
-        $results = $this->db->resultSet();
-        return $results;
-    }
-    public function getUsersById($us_id)
-    {
-        $this->db->query('SELECT * FROM user WHERE us_id = :us_id');
-        $this->db->bind(':us_id', $us_id);
-        $row = $this->db->single();
+
+    public function findUserById($id){
+      $this->db->query('SELECT * FROM user WHERE us_id = :us_id');
+      // Bind value
+      $this->db->bind(':us_id', $id);
+
+      $row = $this->db->single();
+      // Check row
+      if($this->db->rowCount() > 0){
         return $row;
+      } else {
+        return false;
+      }
     }
-   
+
+
+
     public function updateDriversVehicleOwnershipAsOwnVehicle($driverId)
     {
 
@@ -135,4 +178,28 @@
           return false;
         }
     } 
+    public function getUsers()
+    {
+        $this->db->query('SELECT * FROM user');
+        $results = $this->db->resultSet();
+        return $results;
+    }
+    public function getUsersById($us_id)
+    {
+        $this->db->query('SELECT * FROM user 
+                          INNER JOIN roles on user.role_id = roles.role_id
+                          WHERE user.us_id = :us_id');
+        $this->db->bind(':us_id', $us_id);
+        $row = $this->db->single();
+        return $row;
+    }
+
+    // public function getUsersByrole($role_id)
+    // {
+    //     $this->db->query('SELECT * FROM user WHERE role_id = :role_id');
+    //     $this->db->bind(':role_id', $role_id);
+    //     $row = $this->db->single();
+    //     return $row;
+    // }
+
   }

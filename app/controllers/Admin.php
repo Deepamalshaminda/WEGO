@@ -11,6 +11,7 @@
       $this->profileModel = $this->model('Profile');
       $this->transactionModel = $this->model('Transaction');
       $this->userModel = $this->model('User');
+      $this->vehicleModel = $this->model('Vehicle');
       // $this->rideModel = $this->model('Ride');
       
 
@@ -73,7 +74,7 @@
   $this->view('users/admin/pendingride');
 }
 
-  public function vehicles(){
+  public function vehicle(){
     $data = [];
     $data['vehicle'] =  $this->vehicleModel->showVehicles();
     //view

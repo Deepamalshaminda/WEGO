@@ -1,10 +1,26 @@
-<?php
+<?php 
 class Users extends Controller
-{
-  public $userModel;
+{public $userModel;
+  public $driverModel;
+
+  public $registering_driver = array();
+
   public function __construct()
   {
     $this->userModel = $this->model('User');
+    $this->driverModel = $this->model('D_ManageDriver');
+    // $this->view('users/index');
+  }
+
+public function index()
+  {
+    // $users = $this->userModel->getUsers();
+
+    // $data = [
+    //   'users' => $users
+    // ];
+
+    $this->view('users/index');
   }
 
 
@@ -20,7 +36,7 @@ class Users extends Controller
       // Init data
       $data = [
         'name' => trim($_POST['name']),
-        'nic' => trim($_POST['nic']),
+        'nic' => trim($_POST['nic']), 
         'gender' => trim($_POST['gender']),
         'dob' => trim($_POST['dob']),
         'province' => trim($_POST['province']),
@@ -32,6 +48,8 @@ class Users extends Controller
         'user_role' => trim($_POST['user_role']),
         'password' => trim($_POST['password']),
         'confirm_password' => trim($_POST['confirm_password']),
+        // 'latitude' => trim($_POST['latitude']),
+        // 'longitude' => trim($_POST['longitude']),
         'name_err' => '',
         'nic_err' => '',
         'gender_err' => '',
@@ -43,7 +61,8 @@ class Users extends Controller
         'contactNumber_err' => '',
         'email_err' => '',
         'password_err' => '',
-        'confirm_password_err' => ''
+        'confirm_password_err' => '',
+
       ];
 
       // Validate Email
@@ -126,7 +145,15 @@ class Users extends Controller
 
         // Register User
         if ($this->userModel->register($data)) {
-          redirect('users/login');
+          $registering_driver = $this->userModel->getUserByEmail($data);
+            if($this->userModel->isDriver($data)){
+              $this->createUserSession($registering_driver);
+              $us_id = $registering_driver->us_id;
+              // $this->setGlobal($us_id);
+              $this->view('users/driver/d_setvehicle', $registering_driver);
+            }else{
+              redirect('users/login');
+            }
         } else {
           die('Something went wrong');
         }
@@ -149,8 +176,10 @@ class Users extends Controller
         'contactNumber' => '',
         'email' => '',
         'password' => '',
-        'user_role' => '',
+        'user_role'=>'',
         'confirm_password' => '',
+        // 'latitude' => '',
+        // 'longitude' => '',
         'name_err' => '',
         'nic_err' => '',
         'gender_err' => '',
@@ -183,10 +212,8 @@ class Users extends Controller
       $data = [
         'email' => trim($_POST['email']),
         'password' => trim($_POST['password']),
-        // 'role_id' => trim($_POST['user-role']),
         'email_err' => '',
-        'password_err' => '',
-        // 'role_id_err'=>'',
+        'password_err' => ''
       ];
 
       // Validate Email
@@ -202,68 +229,85 @@ class Users extends Controller
       // Make sure errors are empty
       if (empty($data['email_err']) && empty($data['password_err'])) {
         // Validated 
-        //   $this->view('users/supplier/supplier', $data);
-        // } else {
-        //   // Load view with errors
-        //   $this->view('users/login', $data);
-        // }
-        // $role_id = $this->userModel->getUserRoleByEmail($data['email']); 
-        $loggedInUser = $this->userModel->login($data['email'], $data['password']);
-        $role_id = $loggedInUser->role_id;
-        switch ($role_id) {
-          case 1:
+      //   $this->view('users/supplier/supplier', $data);
+      // } else {
+      //   // Load view with errors
+      //   $this->view('users/login', $data);
+      // }
+      // $role_id = $this->userModel->getUserRoleByEmail($data['email']); 
+      $loggedInUser = $this->userModel->login($data['email'], $data['password']);
+      $role_id = $loggedInUser->role_id;
+      switch($role_id){
+        case 1:
+          $user = $this->userModel->getUserByEmail($data);
+          $us_id = $user -> us_id;
 
-            // if($loggedInUser){
-            //$this->view('users/driver/d_dashboard');
-            redirect('D_ManageDrivers/viewDashboard');
-            // }
-            break;
-          case 2:
-            // $loggedInUser = $this->userModel->login($data['email'], $data['password']);
-            // if($loggedInUser){
-            $this->view('users/supplier/supplier');
-            // }
-            break;
-          case 3:
-            // $loggedInUser = $this->userModel->login($data['email'], $data['password']);
-            // if($loggedInUser){
-            $this->view('users/parent/parentdash');
-            // }
-            break;
-          case 4:
-            // $loggedInUser = $this->userModel->login($data['email'], $data['password']);
-            // if($loggedInUser){
+          $driver = $this -> driverModel -> getDriverByUserId($us_id);
+          $service_type = $driver -> service_type;
+          $vehicle_status = $driver -> vehicle_status;
+
+          if($vehicle_status == 'own' AND $service_type == 'school'){
+            $this -> view('users/driver/vehicle-own-school-transport/d_dashboard-own-school', $data);
+          } elseif ($vehicle_status == 'own' AND $service_type == 'office'){
+            $this -> view('users/driver/vehicle-own-office-transport/d_dashboard-own-office', $data);
+          } elseif ($vehicle_status == 'find' AND $service_type == 'school'){
+            $this -> view('users/driver/vehicle-find-school-transport/d_dashboard-find-school', $data);
+          }elseif ($vehicle_status == 'find' AND $service_type == 'office'){
+            $this -> view('users/driver/vehicle-find-office-transport/d_dashboard-find-office', $data);
+          }else {
+            $this -> view('users/index');
+          }
+          
+          break;
+        case 2:
+          // $loggedInUser = $this->userModel->login($data['email'], $data['password']);
+          // if($loggedInUser){
+          $this->view('users/supplier/supplier');
+          // }
+          break;
+        case 3:
+          // $loggedInUser = $this->userModel->login($data['email'], $data['password']);
+          // if($loggedInUser){
+          $this->view('users/parent/parentdash');
+          // }
+          break;
+        case 4:
+          // $loggedInUser = $this->userModel->login($data['email'], $data['password']);
+          // if($loggedInUser){
             $this->view('users/officeworker/ow_officeworkerdash');
-            // }
-            break;
-          case 5:
-            // $loggedInUser = $this->userModel->login($data['email'], $data['password']);
-            // if($loggedInUser){
+          // }
+          break;
+        case 5:
+          // $loggedInUser = $this->userModel->login($data['email'], $data['password']);
+          // if($loggedInUser){
             $this->view('users/admin/admindash');
-            // }
-            break;
-        }
+          // }
+          break;
 
-        if ($loggedInUser) {
-          // Create Session
-          $this->createUserSession($loggedInUser);
-        } else {
-          $data['password_err'] = 'Password incorrect';
+      }
 
-          $this->view('users/login', $data);
-        }
+      if($loggedInUser){
+        // Create Session
+        $this->createUserSession($loggedInUser);
       } else {
-        // Load view with errors
+        $data['password_err'] = 'Password incorrect';
+
         $this->view('users/login', $data);
       }
     } else {
+      // Load view with errors
+      $this->view('users/login', $data);
+    }
+
+
+    } else {
       // Init data
-      $data = [
+      $data =[    
         'email' => '',
         'password' => '',
         // 'role_id' => '',
         'email_err' => '',
-        'password_err' => '',
+        'password_err' => '', 
         // 'role_id_err' =>'',      
       ];
 
@@ -272,15 +316,13 @@ class Users extends Controller
     }
   }
 
-  public function createUserSession($user)
-  {
+  public function createUserSession($user){
     $_SESSION['user_id'] = $user->us_id;
     $_SESSION['user_email'] = $user->email;
     $_SESSION['user_name'] = $user->name;
   }
 
-  public function logout()
-  {
+  public function logout(){
     unset($_SESSION['user_id']);
     unset($_SESSION['user_email']);
     unset($_SESSION['user_name']);
@@ -288,12 +330,111 @@ class Users extends Controller
     redirect('users/login');
   }
 
-  public function isLoggedIn()
-  {
-    if (isset($_SESSION['user_id'])) {
+  public function isLoggedIn(){
+    if(isset($_SESSION['user_id'])){
       return true;
     } else {
       return false;
     }
+  }
+
+  public function setVehicle($data){
+    // $data = [
+    //   'setvehicle' => 'setVehicle'
+    // ];
+
+    $this->view('users/driver/d_setvehicle', $data);
+    $loggedInUser = $this->userModel->login($data['email'], $data['password']);
+
+    if($loggedInUser){
+      // Create Session
+      $this->createUserSession($loggedInUser);
+    } else {
+      $data['password_err'] = 'Password incorrect';
+
+      $this->view('users/index', $data);
+    }
+
+  }
+
+  public function setSeriviceType($data){
+    // $data = [
+    //   'setvehicle' => 'setVehicle'
+    // ];
+
+    $this->view('users/driver/d_servicetype', $data);
+    $loggedInUser = $this->userModel->login($data['email'], $data['password']);
+
+    if($loggedInUser){
+      // Create Session
+      $this->createUserSession($loggedInUser);
+    } else {
+      $data['password_err'] = 'Password incorrect';
+
+      $this->view('users/index', $data);
+    }
+
+  }
+
+  public function test($email){
+    $this->view('users/driver/addvehicle', $email);}
+
+  public function setServiceType($data){
+    // $data = [
+    //   'setvehicle' => 'setVehicle'
+    // ];
+
+    $this->view('users/driver/d_setservicetype', $data);
+
+  }
+
+  public function ownVehicle($us_id){
+    if($this->userModel->updateDriversVehicleOwnershipAsOwnVehicle($us_id)){
+      $this->view('users/driver/d_setservicetype',$_SESSION['user_name']);
+      //redirect('users/setServiceType');
+    } else{
+      $this->view('users/index');
+    }
+  }
+
+  public function findVehicle($us_id){
+    if($this->userModel->updateDriversVehicleOwnershipAsFindVehicle($us_id)){
+      $this->view('users/driver/d_setservicetype', $_SESSION['user_name']);
+      // redirect('pages/setServiceType');
+    } else{
+      $this->view('users/index');
+    }
+  }
+
+  public function schoolService($us_id){
+    if($this->userModel->updateServiceTypeAsSchoolService($us_id)){
+      session_destroy();
+      redirect('users/login');
+    } else{
+      $this->view('users/index');
+    }
+
+  }
+
+  public function officeService(){
+    if($this->userModel->updateServiceTypeAsOfficeService($_SESSION['user_id'])){
+      session_destroy();
+      redirect('users/login');
+    } else{
+      $this->view('users/index');
+    }
+
+  }
+
+  // public function setGlobal($us_id){
+  //   $GLOBALS = array(
+  //     'us_id' => $us_id
+  //   );
+  //   return $GLOBALS;
+  // }
+
+  public function getUserIdJson(){
+    
+      $this->sendJson($_SESSION);      
   }
 }

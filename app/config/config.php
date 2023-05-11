@@ -6,7 +6,7 @@
   define('DB_NAME', 'wego');
 
   // App Root
-  define('APPROOT', dirname(dirname(__FILE__)));
+  define('APPROOT', dirname(dirname(__FILE__))); //C:\wamp64\www\projectwego\app
   // URL Root
   define('URLROOT', 'http://localhost/projectwego');
   // Site Name

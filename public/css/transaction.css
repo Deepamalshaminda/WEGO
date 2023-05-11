@@ -1,0 +1,139 @@
+
+body {
+  height: 100%;
+  margin: 0;
+  font-family: Arial;
+  box-sizing: border-box;
+  
+ 
+}
+
+/* Style tab links */
+.tablink {
+  /* background-color: rgb(36, 20, 98);  */
+  color: #0C457D;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 19px 77px;
+  font-size: 24px;
+  /* width: 50%; */
+  /* text-align: center;*/
+}
+ 
+
+
+
+
+.tabcontent {
+  color: black;
+  /* display: none; */
+  padding: 100px 20px;
+  height: 100%;
+}
+
+.tablink.active{
+  background-color: rgb(21, 7, 100);
+}
+
+.friend-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.friend-card {
+  width: 40%;
+  height: 20%;
+  margin: 10px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  margin-left: 75px;
+  border-width: 1px;
+}
+
+.friend-picture {
+  width: 100px;
+  height: 100px;
+  margin-right: 60px;
+  border-radius: 50%;
+}
+
+
+.friend-name {
+  font-size: 20px;
+  margin-top: 0px;
+  padding: 20px;
+}
+
+.friend-actions {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  margin-left: 60%;
+  padding: 20px;
+}
+
+.accept-button, .delete-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.accept-button {
+  background-color: #0C457D;
+  color: white;
+  margin-right: 1%;
+}
+
+.delete-button {
+  background-color: rgb(193, 193, 213);
+  color: rgb(0, 0, 0);
+  font-weight:600 ;
+}
+
+.details-button{
+  background-color: #0C457D;
+  color: white;
+  width:32%;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 20px;
+  font-size: 12px;
+  cursor: pointer;
+  margin-right: 50%;
+  
+}
+
+.details-button a{
+  text-decoration: none;
+}
+a:link {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  color: rgb(189, 220, 246);
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:active {
+  color: rgb(189, 220, 246);
+  background-color: transparent;
+  text-decoration: none;
+}

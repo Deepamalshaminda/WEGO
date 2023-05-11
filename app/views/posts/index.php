@@ -2,11 +2,7 @@
 
   <?php flash('vehicle_message'); ?>
   <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/view.css">
-  <?php 
-
-
- ?>
-
+  
 	<div class="container">
 	<a href="<?php echo URLROOT?>/Vehicles/addvehicle"> 
        
@@ -30,7 +26,9 @@
 		<th>Seating capacity</th>
 		<th>Ac/Non-Ac</th>
 		<th>Licence expiry date</th>
+    <th>Service Type</th>
 		<th>Special conditions</th>
+		<th>Vehicle document file path</th>
 		<th> Supplier ID</th>
 
 		</tr>
@@ -53,8 +51,21 @@
 					<td><?php echo $vehicle->seatingcapacity; ?></td>
 					<td><?php echo $vehicle->Ac; ?></td>
 					<td><?php echo $vehicle->expirylicence;?></td>
+          <td><?php echo $vehicle->service_type;?></td>
 					<td><?php echo $vehicle->comments;?></td>
+          <td><?php echo $vehicle->vehicle_document;?></td>
 					<td><?php echo $vehicle->id;?></td>
+          <td>
+          <a href="<?php echo URLROOT; ?>/Vehicles/updateVehicle?vehicle_id=<?php echo $vehicle->ve_id; ?>">
+  <button class="updatebtn">Update</button>
+</a>
+
+
+            <form action="<?php echo URLROOT; ?>/Vehicles/deleteVehicle" method="post">
+              <input type="hidden" name="vehicle_id" value="<?php echo $vehicle->ve_id; ?>">
+              <input type="submit" value="Delete" name="deleteVehicle" class="delbtn">
+            </form>
+          </td>
 					</tr>
 					
 					<?php endforeach ;?>

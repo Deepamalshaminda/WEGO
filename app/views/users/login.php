@@ -43,8 +43,8 @@
                     <a href="#"><i class="fa fa-google"></i></a>
                     <a href="#"><i class="fa fa-twitter"></i></a>
                 </div>-->
-                    <h6 class="signup"> Not registered yet? <a href="<?php echo URLROOT; ?>/users/register"><span> Sign Up</span></a></h6>
-                </div>
+                <h6 class="signup"> Not registered yet?  <a href="<?php echo URLROOT; ?>/users/register"><span>  Sign Up</span></a></h6>
+                <h7 class="forgot_password"> Forgot Password? <a href="<?php echo URLROOT; ?>/forgot_password/resetForm"><span>  Reset Password</span></a></h7>
             </div>
         </div>
 

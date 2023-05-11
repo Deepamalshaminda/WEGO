@@ -72,6 +72,7 @@
           </a>
         </li>
       </ul>
+
     </div>
     <section class="home-section">
       <nav>
@@ -89,3 +90,4 @@
           <div class='bx bx-chevron-down'></div>
         </div>
       </nav>
+

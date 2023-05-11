@@ -212,10 +212,8 @@ public function index()
       $data = [
         'email' => trim($_POST['email']),
         'password' => trim($_POST['password']),
-        // 'role_id' => trim($_POST['user-role']),
         'email_err' => '',
-        'password_err' => '',
-        // 'role_id_err'=>'',
+        'password_err' => ''
       ];
 
       // Validate Email
@@ -249,13 +247,13 @@ public function index()
           $vehicle_status = $driver -> vehicle_status;
 
           if($vehicle_status == 'own' AND $service_type == 'school'){
-            $this -> view('users/driver/vehicle-own-school-transport/d_dashboard_OS', $data);
+            $this -> view('users/driver/vehicle-own-school-transport/d_dashboard-own-school', $data);
           } elseif ($vehicle_status == 'own' AND $service_type == 'office'){
-            redirect('D_Own_Office_Drivers/viewDashboard', $data);
+            $this -> view('users/driver/vehicle-own-office-transport/d_dashboard-own-office', $data);
           } elseif ($vehicle_status == 'find' AND $service_type == 'school'){
-            redirect('D_Find_School_Drivers/viewDashboard', $data);
+            $this -> view('users/driver/vehicle-find-school-transport/d_dashboard-find-school', $data);
           }elseif ($vehicle_status == 'find' AND $service_type == 'office'){
-            redirect('D_Find_Office_Drivers/viewDashboard', $data);
+            $this -> view('users/driver/vehicle-find-office-transport/d_dashboard-find-office', $data);
           }else {
             $this -> view('users/index');
           }
@@ -392,8 +390,7 @@ public function index()
 
   public function ownVehicle($us_id){
     if($this->userModel->updateDriversVehicleOwnershipAsOwnVehicle($us_id)){
-      $data = $this->userModel->findUserById($us_id);
-      $this->view('users/driver/d_setservicetype',$data);
+      $this->view('users/driver/d_setservicetype',$_SESSION['user_name']);
       //redirect('users/setServiceType');
     } else{
       $this->view('users/index');
@@ -402,8 +399,7 @@ public function index()
 
   public function findVehicle($us_id){
     if($this->userModel->updateDriversVehicleOwnershipAsFindVehicle($us_id)){
-      $data = $this->userModel->findUserById($us_id);
-      $this->view('users/driver/d_setservicetype', $data);
+      $this->view('users/driver/d_setservicetype', $_SESSION['user_name']);
       // redirect('pages/setServiceType');
     } else{
       $this->view('users/index');
@@ -412,6 +408,7 @@ public function index()
 
   public function schoolService($us_id){
     if($this->userModel->updateServiceTypeAsSchoolService($us_id)){
+      session_destroy();
       redirect('users/login');
     } else{
       $this->view('users/index');
@@ -421,6 +418,7 @@ public function index()
 
   public function officeService(){
     if($this->userModel->updateServiceTypeAsOfficeService($_SESSION['user_id'])){
+      session_destroy();
       redirect('users/login');
     } else{
       $this->view('users/index');

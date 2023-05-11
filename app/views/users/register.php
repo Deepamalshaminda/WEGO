@@ -203,40 +203,10 @@
                                    </div>
                                    </form>
                             </div>
-
                      </div>
-
-                     <div class="field">
-                            <label for="nearestTown">Nearest Town <sup>*</sup></label> <br>
-                            <input type="text" name="nearestTown" size="30" placeholder="Enter nearest town"
-                                   class="input <?php echo (!empty($data['nearestTown_err'])) ? 'is-invalid' : ''; ?>"
-                                   value="<?php echo $data['nearestTown']; ?>"> <br>
-                            <span class="invalid-feedback"><?php echo $data['nearestTown_err']; ?></span>
-                     </div>
-
-                     <div class="field">
-                            <label for="email">Email <sup>*</sup></label> <br>
-                            <input type="email" name="email" size="30" placeholder="Enter email"
-                                   class="input <?php echo (!empty($data['email_err'])) ? 'is-invalid' : ''; ?>"
-                                   value="<?php echo $data['email']; ?>"> <br>
-                            <span class="invalid-feedback"><?php echo $data['email_err']; ?></span>
-                     </div>
-
-                     <div class="field">
-                            <label for="confirm_password">Confirm Password <sup>*</sup></label> <br>
-                            <input type="password" name="confirm_password" size="30" placeholder="Re-enter password"
-                                   class="input <?php echo (!empty($data['confirm_password_err'])) ? 'is-invalid' : ''; ?>"
-                                   value="<?php echo $data['confirm_password']; ?>"> <br>
-                            <span class="invalid-feedback"><?php echo $data['confirm_password_err']; ?></span>
-                     </div>         
-                    
               </div>
-              <div class="btn-wrapper">
-                    <button class="btn-register">Register</button>
-                    <button class="btn-cancel">Cancel</button>
-              </div>
-              </form>
        </div>
-</div>
-
-<?php require APPROOT . '/views/inc/footer.php'; ?>
+    </div>
+    
+</body>
+</html>

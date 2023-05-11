@@ -48,13 +48,8 @@ public function index()
         'user_role' => trim($_POST['user_role']),
         'password' => trim($_POST['password']),
         'confirm_password' => trim($_POST['confirm_password']),
-<<<<<<< Updated upstream
         // 'latitude' => trim($_POST['latitude']),
         // 'longitude' => trim($_POST['longitude']),
-=======
-        'latitude' => trim($_POST['latitude']),
-        'longitude' => trim($_POST['longitude']),
->>>>>>> Stashed changes
         'name_err' => '',
         'nic_err' => '',
         'gender_err' => '',
@@ -157,11 +152,9 @@ public function index()
               // $this->setGlobal($us_id);
               $this->view('users/driver/d_setvehicle', $registering_driver);
             }else{
-<<<<<<< Updated upstream
               redirect('users/login');
-=======
               die('Something went wrong');
->>>>>>> Stashed changes
+              redirect('users/login');
             }
         } else {
           die('Something went wrong');
@@ -187,13 +180,8 @@ public function index()
         'password' => '',
         'user_role'=>'',
         'confirm_password' => '',
-<<<<<<< Updated upstream
         // 'latitude' => '',
         // 'longitude' => '',
-=======
-        'latitude' => '',
-        'longitude' => '',
->>>>>>> Stashed changes
         'name_err' => '',
         'nic_err' => '',
         'gender_err' => '',
@@ -406,12 +394,7 @@ public function index()
 
   public function ownVehicle($us_id){
     if($this->userModel->updateDriversVehicleOwnershipAsOwnVehicle($us_id)){
-<<<<<<< Updated upstream
-      $data = $this->userModel->findUserById($us_id);
-      $this->view('users/driver/d_setservicetype',$data);
-=======
       $this->view('users/driver/d_setservicetype',$_SESSION['user_name']);
->>>>>>> Stashed changes
       //redirect('users/setServiceType');
     } else{
       $this->view('users/index');
@@ -420,12 +403,7 @@ public function index()
 
   public function findVehicle($us_id){
     if($this->userModel->updateDriversVehicleOwnershipAsFindVehicle($us_id)){
-<<<<<<< Updated upstream
-      $data = $this->userModel->findUserById($us_id);
-      $this->view('users/driver/d_setservicetype', $data);
-=======
       $this->view('users/driver/d_setservicetype', $_SESSION['user_name']);
->>>>>>> Stashed changes
       // redirect('pages/setServiceType');
     } else{
       $this->view('users/index');
@@ -434,10 +412,7 @@ public function index()
 
   public function schoolService($us_id){
     if($this->userModel->updateServiceTypeAsSchoolService($us_id)){
-<<<<<<< Updated upstream
-=======
       session_destroy();
->>>>>>> Stashed changes
       redirect('users/login');
     } else{
       $this->view('users/index');
@@ -447,10 +422,7 @@ public function index()
 
   public function officeService(){
     if($this->userModel->updateServiceTypeAsOfficeService($_SESSION['user_id'])){
-<<<<<<< Updated upstream
-=======
       session_destroy();
->>>>>>> Stashed changes
       redirect('users/login');
     } else{
       $this->view('users/index');
@@ -465,13 +437,8 @@ public function index()
   //   return $GLOBALS;
   // }
 
-  //public function getUserIdJson(){
+  public function getUserIdJson(){
     
-     // $this->sendJson($_SESSION);      
-  //}
+      $this->sendJson($_SESSION);      
+  }
 }
-
-
-
-
-

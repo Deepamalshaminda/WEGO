@@ -15,75 +15,27 @@
 
 
 <?php require APPROOT . '/views/inc/sidenavbar.php' ;?>
-     
-     
+
     <div class="home-content">
-<button class="tablink" onclick="openPage('sendrequests')" id="defaultOpen" >Send Ride Requests..</button>
+<button class="tablink" onclick="openPage('sendrequests')" id="defaultOpen" >Choose your prefered vehicle here..</button>
 <!--<button class="tablink" onclick="openPage('PAccepted')" >Sent Requests</button>-->
 
 <div id="Parentrequests" class="tabcontent">
   <div class="friend-list">
-    <div class="friend-card">
+  <?php if (!empty($data)) :?> 
+    <?php foreach($data['vehicles'] as $vehicle ): ?>
       
-      <div class="friend-name"><img src="../public/img/v1.png" class="friend-picture" >Route : Colombo-Kandy</div>
-      <br>
-      <br>
-      <div class="friend-actions">
-        <button class="accept-button"><a href="<?php echo URLROOT?>/Viewsentrequests/viewsentrequest"> View</a></button>
-        <button class="delete-button">Delete</button>
-      </div>
-    </div>
-    <div class="friend-card">
+      <div class="friend-card">
       
-      <div class="friend-name"><img src="../public/img/v2.png" class="friend-picture" >Route : Galle-Kandy</div>
+      <div class="friend-name"><img src="../public/img/ch1.png" class="friend-picture" ><?php echo $vehicle -> route?></div>
       <br>
       <br>
-      <div class="friend-actions">
-        <button class="accept-button">View</button>
-        <button class="delete-button">Delete</button>
-      </div>
     </div>
-    <div class="friend-card">
-      
-      <div class="friend-name"><img src="../public/img/v3.png" class="friend-picture" >Route : Pettah-Nugegoda</div>
-      <br>
-      <br>
-      <div class="friend-actions">
-        <button class="accept-button">View</button>
-        <button class="delete-button">Delete</button>
-      </div>
-    </div>
-    <div class="friend-card">
-      
-      <div class="friend-name"><img src="../public/img/v4.png" class="friend-picture" >Route : Kandy-Colombo</div>
-      <br>
-      <br>
-      <div class="friend-actions">
-        <button class="accept-button">View</button>
-        <button class="delete-button">Delete</button>
-      </div>
-    </div>
-    <div class="friend-card">
-      
-      <div class="friend-name"><img src="../public/img/v5.png" class="friend-picture" >Route : Negombo-Kandy</div>
-      <br>
-      <br>
-      <div class="friend-actions">
-        <button class="accept-button">View</button>
-        <button class="delete-button">Delete</button>
-      </div>
-    </div>
-
-    <div class="friend-card">
-      
-      <div class="friend-name"><img src="../public/img/v6.png" class="friend-picture" >Route : Pettah-Negombo</div>
-      <br>
-      <br>
-      <div class="friend-actions">
-        <button class="accept-button">View</button>
-        <button class="delete-button">Delete</button>
-      </div>
-    </div>
+    <?php endforeach; ?>
+		<?php endif ;?>
+    
+    
+    
   </div>
   
   

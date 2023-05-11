@@ -1,4 +1,3 @@
-
 <?php
 class Vehicles extends Controller
 {public $vehicleModel;
@@ -13,21 +12,6 @@ class Vehicles extends Controller
   public function index()
   {
     $result = $this->vehicleModel->getVehicles($_SESSION['user_id']);
-
-    // if (!empty($result)) {
-    //   echo "no";
-    //   foreach ($result as $vehicle) {
-    //     echo $vehicle->vehicleid;
-    //     echo $vehicle->vehicletype;
-    //     echo $vehicle->route;
-    //     echo $vehicle->starttime;
-    //     echo $vehicle->id;
-    //   }
-    // }
-
-
-
-
 
 
     $data = [
@@ -46,8 +30,7 @@ class Vehicles extends Controller
       // Sanitize POST data
 
       $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-
-      // Init data
+// Init data
       $data = [
         'vehicleno' => trim($_POST['vehicleno']),
         'model' => trim($_POST['model']),
@@ -61,16 +44,12 @@ class Vehicles extends Controller
         'expirylicence' => trim($_POST['expirylicence']),
         'service_type' => trim($_POST['service_type']),
         'comments' => trim($_POST['comments']),
-        //'vehicle_image' => trim($_POST['vehicle_image']),
+        'vehicle_image' => trim($_POST['vehicle_image']),
         'vehicle_document' => !empty($_POST['vehicle_document']) ? trim(implode(',', (array)$_POST['vehicle_document'])) : '',
 
         
 
 
-
-
-        //'image'=>trim($_POST['image']),
-        //'document'=>trim($_POST['document']),
         'vehicleno_err' => '',
         'model_err' => '',
         'color_err' => '',
@@ -83,11 +62,9 @@ class Vehicles extends Controller
         'expirylicence_err' => '',
         'service_type_err' => '',
         'comments_err' => '',
-        //'vehicle_image_err' => '',
+        'vehicle_image_err' => '',
         'vehicle_document_err' => '',
         
-        //'image_err' => '',
-        //'document_err' => '',
         'userid' => $_SESSION['user_id']
       ];
 
@@ -95,10 +72,7 @@ class Vehicles extends Controller
       if (empty($data['vehicleno'])) {
         $data['vehicleno_err'] = 'Please enter vehicle number';
       }
-
-    
-
-      // Validate model
+ // Validate model
       if (empty($data['model'])) {
         $data['model_err'] = 'Please enter vehicle model';
       }
@@ -133,7 +107,7 @@ class Vehicles extends Controller
         $data['seatingcapacity_err'] = 'Please enter number of seats';
       }
 
-      // Validate AC
+ // Validate AC
       if (empty($data['Ac'])) {
         $data['Ac_err'] = 'Please select Ac or Non-Ac';
       }
@@ -151,11 +125,50 @@ class Vehicles extends Controller
       if (empty($data['comments'])) {
         $data['comments_err'] = 'Please describe if there any special conditions of the vehicle';
       }
+      
+      // validate images
+      if(isset($_POST["submit"])) {
 
-      //Validate image
-      //if (empty($data['vehicle_image'])) {
-        //$data['vehicle_image_err'] = 'Please upload an image of your vehicle';
-     // }
+        // Check if image file is a actual image or fake image
+        $check = getimagesize($_FILES["vehicle_image"]["tmp_name"]);
+        if($check !== false) {
+            $uploadOk = 1;
+        } else {
+            $data['vehicle_image_err'] = "File is not an image.";
+            $uploadOk = 0;
+        }
+    
+        // Check file size
+        if ($_FILES["vehicle_image"]["size"] > 500000) {
+            $data['vehicle_image_err'] = "Sorry, your file is too large.";
+            $uploadOk = 0;
+        }
+ // Allow only certain file formats
+        $allowed_types = array(IMAGETYPE_PNG, IMAGETYPE_JPEG, IMAGETYPE_GIF);
+        $detected_type = exif_imagetype($_FILES['vehicle_image']['tmp_name']);
+        if(!in_array($detected_type, $allowed_types)){
+            $data['vehicle_image_err'] = "Sorry, only JPG, JPEG & PNG files are allowed.";
+            $uploadOk = 0;
+        }
+    
+        // Check if $uploadOk is set to 0 by an error
+        if ($uploadOk == 0) {
+            echo "Sorry, your file was not uploaded.";
+            // Show error message in your view
+        } else {
+            // Read the image into memory
+            $image = file_get_contents($_FILES['vehicle_image']['tmp_name']);
+    
+            // Encode the image to base64 format
+            $image_base64 = base64_encode($image);
+    
+            // Store the encoded image in the database
+            $vehicle_image = $image_base64;
+        }
+    }
+    
+
+     //validate documents
         if (!empty($_FILES['vehicle_document']['name'])) {
           $allowed_extensions = array('zip');
           $file_name = $_FILES['vehicle_document']['name'];
@@ -170,8 +183,7 @@ class Vehicles extends Controller
           elseif ($_FILES['vehicle_document']['size'] > 10485760) {
             $data['vehicle_document_err'] = 'File size exceeded. Please upload a file with size less than 10 MB.';
           }
-        
-          // If file is valid, move it to the destination folder
+ // If file is valid, move it to the destination folder
           else {
             $file_tmp = $_FILES['vehicle_document']['tmp_name'];
             $file_destination = 'C:\xampp\htdocs\projectwego\public\vehicle_document\\' . $file_name;
@@ -205,8 +217,7 @@ if (!empty($_FILES['vehicle_document']['name'])) {
   elseif ($_FILES['vehicle_document']['size'] > 10485760) {
     $data['vehicle_document_err'] = 'File size exceeded. Please upload a file with size less than 10 MB.';
   }
-
-  // If file is valid, move it to the destination folder
+// If file is valid, move it to the destination folder
   else {
     $file_tmp = $_FILES['vehicle_document']['tmp_name'];
     $file_destination = 'public/vehicle_document/' . $file_name;
@@ -223,8 +234,10 @@ if (!empty($_FILES['vehicle_document']['name'])) {
   $data['vehicle_document_err'] = 'Please upload documents of your vehicle.';
 }
 
+
+
       // Make sure errors are empty
-      if (empty($data['vehicleno_err']) && empty($data['model_err']) && empty($data['color_err']) && empty($data['year_err']) && empty($data['address_err']) && empty($data['route_err']) && empty($data['starttime_err']) && empty($data['seatingcapacity_err']) && empty($data['Ac_err']) && empty($data['expirylicence_err']) && empty($data['service_type_err']) && empty($data['comments_err']) && empty($data['vehicle_document_err'])) {
+      if (empty($data['vehicleno_err']) && empty($data['model_err']) && empty($data['color_err']) && empty($data['year_err']) && empty($data['address_err']) && empty($data['route_err']) && empty($data['starttime_err']) && empty($data['seatingcapacity_err']) && empty($data['Ac_err']) && empty($data['expirylicence_err']) && empty($data['service_type_err']) && empty($data['comments_err'])  && empty($data['vehicle_image_err']) && empty($data['vehicle_document_err'])) {
         if ($this->vehicleModel->addvehicle($data)) {
           // flash('vehicle_message','Vehicle Added');
           // echo "added";
@@ -240,7 +253,7 @@ if (!empty($_FILES['vehicle_document']['name'])) {
       }
     } else {
       // Init data
-      $data = [
+$data = [
         'vehicleno' => '',
         'model' => '',
         'color' => '',
@@ -280,9 +293,7 @@ if (!empty($_FILES['vehicle_document']['name'])) {
       $this->view('users/supplier/addvehicle', $data);
     }
   }
-
-
-  /*public function updateVehicle()
+ /*public function updateVehicle()
 {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Sanitize POST data
@@ -325,7 +336,7 @@ if (!empty($_FILES['vehicle_document']['name'])) {
         }
     } else {
         // Get existing vehicle data
-        if (isset($_SESSION['id']) && !is_null($_SESSION['id'])) {
+if (isset($_SESSION['id']) && !is_null($_SESSION['id'])) {
             $vehicle = $this->vehicleModel->getVehicleById($_SESSION['id']);
 
             $data = [
@@ -345,6 +356,6 @@ if (!empty($_FILES['vehicle_document']['name'])) {
 
             $this->view('users/supplier/updateVehicle', $data);
         }
-    }
-    */
+    }
+    */
 }

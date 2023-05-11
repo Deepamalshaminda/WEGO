@@ -116,14 +116,14 @@
             'dob' => '',
             'school' => '',
             'school_address' => '',
-            'age' => '',
+            //'age' => '',
            
            'name_err' => '',
            'gender_err' => '',
            'dob_err' => '',
            'school_err' => '',
            'school_address_err' => '',
-           'age_err' => '',
+           //'age_err' => '',
           
            
           ];
@@ -140,7 +140,7 @@
       $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
       $data = [
-        'id' => $id,
+        'ch_id' => $id,
         'name' => trim($_POST['name']),
         'gender' => trim($_POST['gender']),
         'dob' => trim($_POST['dob']),
@@ -206,20 +206,20 @@
       $child = $this->childModel->getChildById($id);
 
       $data = [
-          'id' => $id,
+          'ch_id' => $id,
           'name' => $child->name,
           'gender' => $child->gender,
           'dob' => $child->dob,
           'school' => $child->school,
           'school_address' => $child->school_address,
-          'age' => $child->age,
+         // 'age' => $child->age,
          
          'name_err' => '',
          'gender_err' => '',
          'dob_err' => '',
          'school_err' => '',
          'school_address_err' => '',
-         'age_err' => '',
+         //'age_err' => '',
         
          
         ];

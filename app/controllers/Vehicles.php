@@ -143,7 +143,8 @@ class Vehicles extends Controller
             $data['vehicle_image_err'] = "Sorry, your file is too large.";
             $uploadOk = 0;
         }
- // Allow only certain file formats
+    
+        // Allow only certain file formats
         $allowed_types = array(IMAGETYPE_PNG, IMAGETYPE_JPEG, IMAGETYPE_GIF);
         $detected_type = exif_imagetype($_FILES['vehicle_image']['tmp_name']);
         if(!in_array($detected_type, $allowed_types)){

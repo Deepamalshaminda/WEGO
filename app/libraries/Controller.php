@@ -24,4 +24,10 @@
         require_once '../app/views/other/404Page.php';
       }
     }
+
+    public function sendJson(array $data): void
+    {
+        header('Content-Type: application/json');
+        echo json_encode($data);
+    }
   }

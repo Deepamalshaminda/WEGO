@@ -12,11 +12,7 @@
           }
 
         public function viewDashboard($user){
-
-          $data = [
-            "user" => $user
-          ];
-            $this->view('users/driver/vehicle-own-office-transport/D_Own_Office_Drivers');
+            $this->view('users/driver/vehicle-own-office-transport/D_Own_Office_Drivers',$user);
           }
     }
 

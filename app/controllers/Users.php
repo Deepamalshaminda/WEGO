@@ -438,8 +438,3 @@ public function index()
       $this->sendJson($_SESSION);      
   }
 }
-
-
-
-
-

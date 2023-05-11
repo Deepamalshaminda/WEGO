@@ -19,8 +19,7 @@
       // Bind values
       $this->db->bind(':vehicleno', $data['vehicleno']);
       //$this->db->bind(':user id', $data['user id']);
-      
-      $this->db->bind(':model', $data['model']);
+$this->db->bind(':model', $data['model']);
       $this->db->bind(':color', $data['color']);
       $this->db->bind(':year', $data['year']);
       $this->db->bind(':address', $data['address']);
@@ -41,6 +40,6 @@
         return true;
       } else {
         return false;
-      }
-    }
-  }    
+      }
+    }
+  }

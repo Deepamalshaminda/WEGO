@@ -1,4 +1,3 @@
-
 <?php
 class Vehicles extends Controller
 {public $vehicleModel;
@@ -31,8 +30,7 @@ class Vehicles extends Controller
       // Sanitize POST data
 
       $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-
-      // Init data
+// Init data
       $data = [
         'vehicleno' => trim($_POST['vehicleno']),
         'model' => trim($_POST['model']),
@@ -74,10 +72,7 @@ class Vehicles extends Controller
       if (empty($data['vehicleno'])) {
         $data['vehicleno_err'] = 'Please enter vehicle number';
       }
-
-    
-
-      // Validate model
+ // Validate model
       if (empty($data['model'])) {
         $data['model_err'] = 'Please enter vehicle model';
       }
@@ -112,7 +107,7 @@ class Vehicles extends Controller
         $data['seatingcapacity_err'] = 'Please enter number of seats';
       }
 
-      // Validate AC
+ // Validate AC
       if (empty($data['Ac'])) {
         $data['Ac_err'] = 'Please select Ac or Non-Ac';
       }
@@ -189,8 +184,7 @@ class Vehicles extends Controller
           elseif ($_FILES['vehicle_document']['size'] > 10485760) {
             $data['vehicle_document_err'] = 'File size exceeded. Please upload a file with size less than 10 MB.';
           }
-        
-          // If file is valid, move it to the destination folder
+ // If file is valid, move it to the destination folder
           else {
             $file_tmp = $_FILES['vehicle_document']['tmp_name'];
             $file_destination = 'C:\xampp\htdocs\projectwego\public\vehicle_document\\' . $file_name;
@@ -224,8 +218,7 @@ if (!empty($_FILES['vehicle_document']['name'])) {
   elseif ($_FILES['vehicle_document']['size'] > 10485760) {
     $data['vehicle_document_err'] = 'File size exceeded. Please upload a file with size less than 10 MB.';
   }
-
-  // If file is valid, move it to the destination folder
+// If file is valid, move it to the destination folder
   else {
     $file_tmp = $_FILES['vehicle_document']['tmp_name'];
     $file_destination = 'public/vehicle_document/' . $file_name;
@@ -261,7 +254,7 @@ if (!empty($_FILES['vehicle_document']['name'])) {
       }
     } else {
       // Init data
-      $data = [
+$data = [
         'vehicleno' => '',
         'model' => '',
         'color' => '',
@@ -301,9 +294,7 @@ if (!empty($_FILES['vehicle_document']['name'])) {
       $this->view('users/supplier/addvehicle', $data);
     }
   }
-
-
-  /*public function updateVehicle()
+ /*public function updateVehicle()
 {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Sanitize POST data
@@ -346,7 +337,7 @@ if (!empty($_FILES['vehicle_document']['name'])) {
         }
     } else {
         // Get existing vehicle data
-        if (isset($_SESSION['id']) && !is_null($_SESSION['id'])) {
+if (isset($_SESSION['id']) && !is_null($_SESSION['id'])) {
             $vehicle = $this->vehicleModel->getVehicleById($_SESSION['id']);
 
             $data = [
@@ -366,6 +357,6 @@ if (!empty($_FILES['vehicle_document']['name'])) {
 
             $this->view('users/supplier/updateVehicle', $data);
         }
-    }
-    */
+    }
+    */
 }

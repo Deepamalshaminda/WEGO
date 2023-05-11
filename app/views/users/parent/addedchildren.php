@@ -31,7 +31,7 @@
       <br>
       <br>
       <div class="friend-actions">
-      <button class="details-button"><a href="<?php echo URLROOT?>/Parents/viewChild/<?php echo $child->id ?>"> View details</a></button>
+      <button class="details-button"><a href="<?php echo URLROOT?>/Parents/viewChild/<?php echo $child->ch_id ?>"> View details</a></button>
         
       </div>
     </div>

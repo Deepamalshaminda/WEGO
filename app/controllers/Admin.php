@@ -74,6 +74,8 @@
   $this->view('users/admin/pendingride');
 }
 
+
+
   public function vehicle(){
     $data = [];
     $data['vehicle'] =  $this->vehicleModel->showVehicles();

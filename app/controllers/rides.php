@@ -1,5 +1,5 @@
 <?php
-class Rides extends Controller
+class rides extends Controller
 {
   public function viewRides(){
     //view
@@ -10,8 +10,8 @@ class Rides extends Controller
     // load the assignDrivers model
     require_once APPROOT . '/models/assignDrivers.php'; 
 
-    // create a new instance of the assignDrivers model
-    $assignDrivers = new assignDrivers();
+    // create a new instance of the assignDrivers model, passing in the user ID
+    $assignDrivers = new assignDrivers($_SESSION['user_id']);
 
     // retrieve the list of vehicles for the current user from the database
     $vehicles = $assignDrivers->getVehiclesByUser();

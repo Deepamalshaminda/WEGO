@@ -1,18 +1,40 @@
 <?php
-  class Vehicle {
-    private $db;
+class Vehicle
+{
+  private $db;
 
-    public function __construct(){
-      $this->db = new Database;
-    }
+  public function __construct()
+  {
+    $this->db = new Database;
+  }
 
-    public function getVehicles($userid){
-      $this->db->query('SELECT *  FROM vehicle where id=:id;');
-      $this->db->bind(':id', $userid);
-      $results = $this->db->resultSet();
+  public function getVehicles($userid)
+  {
+    $this->db->query('SELECT *  FROM vehicle where id=:id;');
+    $this->db->bind(':id', $userid);
+    $results = $this->db->resultSet();
 
-      return $results;
-    }
+    return $results;
+  }
+
+  public function getVehicleByNumber($number)
+  {
+    $this->db->query('SELECT *  FROM vehicle where vehicleno=:vehicleno;');
+    $this->db->bind(':vehicleno', $number);
+    $results = $this->db->resultSet();
+
+    return $results;
+  }
+
+
+
+  public function getAllVehicles()
+  {
+    $this->db->query('SELECT *  FROM vehicle;');
+    $results = $this->db->resultSet();
+
+    return $results;
+  }
 
     public function addvehicle($data){
       $this->db->query('INSERT INTO vehicle (vehicleno, model, color, year, address, route, starttime, seatingcapacity, Ac, expirylicence, service_type, comments, vehicle_image, vehicle_document, id) VALUES(:vehicleno, :model, :color, :year, :address, :route, :starttime, :seatingcapacity, :Ac, :expirylicence, :service_type, :comments, :vehicle_image, :vehicle_document, :id)');

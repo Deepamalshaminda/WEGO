@@ -6,21 +6,21 @@
         </div>
         <ul class="nav-links">
             <li>
-                <a href="<?php echo URLROOT;?>/Pages/d_dashboard">
+                <a href="<?php echo URLROOT;?>/D_Own_School_Drivers/viewOwnSchoolDashboard">
                     <i class='bx bx-grid-alt'></i>
                     <span class="links_name">Dashboard</span>
                 </a>
             </li>
 
             <li>
-                <a href="<?php echo URLROOT;?>/D_ManageDrivers/RideRequests">
+                <a href="<?php echo URLROOT;?>/D_Own_School_Drivers/RideRequests">
                     <i class='bx bx-box'></i>
                     <span class="links_name">View Ride Requests</span>
                 </a>
             </li>
 
             <li>
-                <a href="<?php echo URLROOT;?>/D_ManageDrivers/checkTripInfo">
+                <a href="<?php echo URLROOT;?>/D_Own_School_Drivers/checkTripInfo">
                     <i class='bx bx-list-ul'></i>
                     <span class="links_name">Check Trip Info</span>
                 </a>
@@ -28,26 +28,26 @@
 
             
             <li>
-                <a href="<?php echo URLROOT;?>/D_ManageDrivers/viewEarnings">
+                <a href="<?php echo URLROOT;?>/D_Own_School_Drivers/viewEarnings">
                     <i class='bx bx-pie-chart-alt-2'></i>
                     <span class="links_name">View Earnings</span>
                 </a>
             </li>
             <li>
-                <a href="<?php echo URLROOT;?>/D_Vehicles/studentsToBeAbsent">
+                <a href="<?php echo URLROOT;?>/D_Own_School_Drivers/studentsToBeAbsent">
                     <i class='bx bx-coin-stack'></i>
                     <span class="links_name">Students to be Absent</span>
                 </a>
             </li>
             <li>
-                <a href="<?php echo URLROOT;?>/D_ManageDrivers/viewProfile">
+                <a href="<?php echo URLROOT;?>/D_Own_School_Drivers/viewProfile">
                     <i class='bx bx-book-alt'></i>
                     <span class="links_name">View Profile</span>
                 </a>
             </li>
 
             <li>
-                <a href="<?php echo URLROOT;?>/D_Vehicles/addVehicle">
+                <a href="<?php echo URLROOT;?>/D_Own_School_Drivers/addVehicle">
                     <i class='bx bx-user'></i>
                     <span class="links_name">Add Vehicle</span>
                 </a>

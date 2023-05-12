@@ -12,3 +12,6 @@
   // Site Name
   define('SITENAME', 'Wego');
   
+  // config.php
+
+define('CONTACTEMAIL', 'info@wego.com');

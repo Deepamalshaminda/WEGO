@@ -10,7 +10,7 @@ class assignDrivers {
 
     // retrieve all vehicles from the database for the current user
     public function getVehiclesByUser() {
-        $this->db->query('SELECT ve_id, vehicleno FROM vehicle WHERE id = :id');
+        $this->db->query('SELECT vehicle_image ,ve_id, vehicleno FROM vehicle WHERE id = :id');
         $this->db->bind(':id', $this->id);
         $vehicles = $this->db->resultSet();
         return $vehicles;

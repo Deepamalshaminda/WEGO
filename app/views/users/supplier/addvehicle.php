@@ -112,7 +112,8 @@
         <span class="invalid-feedback"><?php echo $data['vehicle_document_err']; ?></span>
     </div>
             <div class="row">
-                <div class="col">
+            <div class="button-container">
+
                     <input type="submit" value="Save" name="addVehicle" class="btn1">
                     <br>
                     <input type="reset" value="Cancel" class="btn2">

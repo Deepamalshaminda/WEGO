@@ -9,9 +9,13 @@
   <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/d_sidenavbar.css">
   <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/_base.css">
   <!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script> -->
-    <script src="https://ajax.googleapis.com/ajax/libs/handlebars/4.7.7/handlebars.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/handlebars/4.7.7/handlebars.min.js"></script> -->
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <script>
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <link rel="stylesheet" type="text/css" href="<?php echo URLROOT; ?>/css/d_map.css" />
+    <script type="module" src="<?php echo URLROOT; ?>/js/driver/index.js"></script>
+    <!-- <script>
       'use strict';
 
       /** Hide a DOM element. */
@@ -617,7 +621,7 @@
           <p class="attribution">{{{this}}}</p>
         {{/each}}
       {{/if}}
-    </script>
+    </script> -->
   </head>
 
 <?php require APPROOT . '/views/inc/d_sidenavbar-own-school.php'; ?>
@@ -630,13 +634,13 @@
 <div class="top-row col-12">
   <div class="btn-1-container col-3">
     <div class="btn-1 col-10">
-      <a href="<?php echo URLROOT;?>/D_Vehicles/studentsToBeAbsent"><h1>Students To Be Absent</h1></a>
+      <a href="<?php echo URLROOT;?>/D_Own_School_Drivers/studentsToBeAbsent"><h1>Students To Be Absent</h1></a>
     </div>
   </div>
 
   <div class="btn-1-container col-3">
     <div class="btn-1 col-10">
-      <a href="#"><h1>Reservation345 Requests</h1></a>
+      <a href="#"><h1>Reservation Requests</h1></a>
     </div>
   </div>
 
@@ -646,12 +650,19 @@
     </div>
   </div>
 </div>
+<div class="trip-button-div col-12">
+      <button class="trip-button">
+        <h2>Start Trip on <?php $currentDate = date("Y-m-d");
+        echo $currentDate;?></h2>
+      </button>
+</div>
 
-<!-- <div class="map-div col-12">
+<div class="map-div col-12">
   <div class="map-container col-10">
-  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.9029322876!2d79.85896421523185!3d6.9022108205585555!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae25963120b1509%3A0x2db2c18a68712863!2sUniversity%20of%20Colombo%20School%20of%20Computing%20(UCSC)!5e0!3m2!1sen!2slk!4v1675998107896!5m2!1sen!2slk" width="1400" height="700" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.9029322876!2d79.85896421523185!3d6.9022108205585555!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae25963120b1509%3A0x2db2c18a68712863!2sUniversity%20of%20Colombo%20School%20of%20Computing%20(UCSC)!5e0!3m2!1sen!2slk!4v1675998107896!5m2!1sen!2slk" width="1400" height="700" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
+    <?php require APPROOT . '/views/inc/driver_map.php'; ?>
   </div>
-</div> -->
+</div>
 </main>
 
 <?php require APPROOT . '/views/inc/footer.php'; ?>

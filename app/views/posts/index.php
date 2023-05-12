@@ -28,6 +28,7 @@
 		<th>Licence expiry date</th>
     <th>Service Type</th>
 		<th>Special conditions</th>
+		<th>Vehicle Image</th>
 		<th>Vehicle document file path</th>
 		<th> Supplier ID</th>
 
@@ -53,7 +54,8 @@
 					<td><?php echo $vehicle->expirylicence;?></td>
           <td><?php echo $vehicle->service_type;?></td>
 					<td><?php echo $vehicle->comments;?></td>
-          <td><?php echo $vehicle->vehicle_document;?></td>
+					<td><?php echo $vehicle->vehicle_image;?></td>
+					<td><?php echo $vehicle->vehicle_document;?></td>
 					<td><?php echo $vehicle->id;?></td>
           <td>
           <a href="<?php echo URLROOT; ?>/Vehicles/updateVehicle?vehicle_id=<?php echo $vehicle->ve_id; ?>">

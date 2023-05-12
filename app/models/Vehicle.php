@@ -15,11 +15,12 @@
     }
 
     public function addvehicle($data){
-      $this->db->query('INSERT INTO vehicle (vehicleno, model, color, year, address, route, starttime, seatingcapacity, Ac, expirylicence, service_type, comments,vehicle_image, vehicle_document, id) VALUES(:vehicleno, :model, :color, :year, :address, :route, :starttime, :seatingcapacity, :Ac, :expirylicence, :service_type, :comments, :vehicle_image :vehicle_document, :id)');
+      $this->db->query('INSERT INTO vehicle (vehicleno, model, color, year, address, route, starttime, seatingcapacity, Ac, expirylicence, service_type, comments, vehicle_image, vehicle_document, id) VALUES(:vehicleno, :model, :color, :year, :address, :route, :starttime, :seatingcapacity, :Ac, :expirylicence, :service_type, :comments, :vehicle_image, :vehicle_document, :id)');
       // Bind values
       $this->db->bind(':vehicleno', $data['vehicleno']);
       //$this->db->bind(':user id', $data['user id']);
-$this->db->bind(':model', $data['model']);
+      
+      $this->db->bind(':model', $data['model']);
       $this->db->bind(':color', $data['color']);
       $this->db->bind(':year', $data['year']);
       $this->db->bind(':address', $data['address']);
@@ -32,14 +33,17 @@ $this->db->bind(':model', $data['model']);
       $this->db->bind(':comments', $data['comments']);
       $this->db->bind(':vehicle_image', $data['vehicle_image']);
       $this->db->bind(':vehicle_document', $data['vehicle_document']);
+
       $this->db->bind(':id', $data['userid']);
     
-
-      //Execute
+      
+      // Execute
       if($this->db->execute()){
         return true;
       } else {
         return false;
-      }
-    }
-  }
+      }
+
+      
+    }
+  }    

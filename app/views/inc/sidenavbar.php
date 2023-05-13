@@ -72,7 +72,6 @@
           </a>
         </li>
       </ul>
-
     </div>
     <section class="home-section">
       <nav>
@@ -86,8 +85,7 @@
         </div>
         <div class="profile-details">
           <!-- //<img src="../public/img/images.png" alt=""> -->
-          <span class="admin_name">Melissa Perera</span>
+          <span class="admin_name"><?php echo $_SESSION ['user_name']?></span>
           <div class='bx bx-chevron-down'></div>
         </div>
       </nav>
-

@@ -71,6 +71,14 @@ class Vehicles extends Controller
         'userid' => $_SESSION['user_id']
       ];
 
+      $fileVehicleImage = [
+        'image_name'=>$_FILES['vehicle_image']['name'],
+        'image_type'=>$_FILES['vehicle_image']['type'],
+        'image_size'=>$_FILES['vehicle_image']['size'],
+        'image_tempName'=>$_FILES['vehicle_image']['temp_name'],
+        'upload_location'=> PUBROOT . '/public/vehicle_image/'
+      ];
+
       // Validate vehicleno
       if (empty($data['vehicleno'])) {
         $data['vehicleno_err'] = 'Please enter vehicle number';
@@ -149,19 +157,19 @@ class Vehicles extends Controller
           }
         
           // If file is valid, move it to the destination folder
-          else {
-            $file_tmp = $_FILES['vehicle_image']['tmp_name'];
-            $file_destination = 'C:\xampp\htdocs\projectwego\public\vehicle_image\\' . $file_name;
+          // else {
+          //   $file_tmp = $_FILES['vehicle_image']['tmp_name'];
+          //   $file_destination = 'C:\xampp\htdocs\projectwego\public\vehicle_image\\' . $file_name;
         
-            echo realpath($file_destination);
+          //   echo realpath($file_destination);
         
-            if (move_uploaded_file($file_tmp, $file_destination)) {
-              $data['vehicle_image'] = $file_destination;
-            } else {
-              $data['vehicle_image_err'] = 'Error uploading image.';
-            }
+          //   if (move_uploaded_file($file_tmp, $file_destination)) {
+          //     $data['vehicle_image'] = $file_destination;
+          //   } else {
+          //     $data['vehicle_image_err'] = 'Error uploading image.';
+          //   }
             
-          }
+          // }
           
         } else {
           $data['vehicle_image_err'] = 'Please upload an image of your vehicle.';
@@ -210,7 +218,7 @@ class Vehicles extends Controller
 
       // Make sure errors are empty
       if (empty($data['vehicleno_err']) && empty($data['model_err']) && empty($data['color_err']) && empty($data['year_err']) && empty($data['address_err']) && empty($data['route_err']) && empty($data['starttime_err']) && empty($data['seatingcapacity_err']) && empty($data['Ac_err']) && empty($data['expirylicence_err']) && empty($data['service_type_err']) && empty($data['comments_err']) && empty($data['vehicle_document_err'])) {
-        if ($this->vehicleModel->addvehicle($data)) {
+        if ($this->vehicleModel->addvehicle($data,$fileVehicleImage)) {
           // flash('vehicle_message','Vehicle Added');
           // echo "added";
 

@@ -8,7 +8,7 @@
 
     // Regsiter user
     public function register($data){
-      $this->db->query('INSERT INTO user (name, nic, gender, dob, province, district, nearestTown, address, contactNumber, email, password, role_id) VALUES(:name, :nic, :gender, :dob, :province, :district, :nearestTown, :address, :contactNumber, :email, :password, :role_id)');
+      $this->db->query('INSERT INTO user (name, nic, gender, dob, province, district, nearestTown, address, contactNumber, email, password, role_id,latitude, longitude) VALUES(:name, :nic, :gender, :dob, :province, :district, :nearestTown, :address, :contactNumber, :email, :password, :role_id, :latitude, :longitude)');
       // Bind values
       $this->db->bind(':name', $data['name']);
       $this->db->bind(':nic', $data['nic']);
@@ -22,6 +22,9 @@
       $this->db->bind(':email', $data['email']);
       $this->db->bind(':password', $data['password']);
       $this->db->bind(':role_id', $data['user_role']);
+      $this->db->bind(':latitude', $data['latitude']);
+      $this->db->bind(':longitude', $data['longitude']);
+      
 
       // Execute
       if($this->db->execute()){

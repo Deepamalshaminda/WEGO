@@ -34,4 +34,22 @@ class AssignDrivers {
             return false;
         }
     }
-}
+
+    public function getRideInfo() {
+        $this->db->query('SELECT ve_id, vehicleno, driver_id, starttime, route 
+        FROM vehicle 
+        INNER JOIN trip_information ON vehicle.ve_id = trip_information.ve_id 
+        WHERE trip_information.trip_status = "Ongoing" AND vehicle.id =id
+        ');
+        
+        $this->db->bind(':id', $this->id);
+ 
+       // $this->db->bind($_SESSION['id'], $this->id);
+        
+        $vehicles = $this->db->resultSet();
+        return $vehicles;
+    }
+    
+    }
+    
+

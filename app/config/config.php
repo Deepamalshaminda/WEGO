@@ -15,3 +15,6 @@
   // config.php
 
 //define('CONTACTEMAIL', 'info@wego.com');
+
+//Pub Root
+define('PUBROOT',dirname(dirname(dirname(__FILE__))));

@@ -1,5 +1,5 @@
 <?php
-class assignDrivers {
+class AssignDrivers {
     private $db;
     private $id;
 
@@ -10,9 +10,28 @@ class assignDrivers {
 
     // retrieve all vehicles from the database for the current user
     public function getVehiclesByUser() {
-        $this->db->query('SELECT vehicle_image ,ve_id, vehicleno FROM vehicle WHERE id = :id');
+        $this->db->query('SELECT vehicle_image ,ve_id, vehicleno, route FROM vehicle WHERE id = :id');
         $this->db->bind(':id', $this->id);
         $vehicles = $this->db->resultSet();
         return $vehicles;
+    }
+
+    // retrieve all drivers from the database
+    public function getDrivers() {
+        $this->db->query('SELECT driver_id from driver WHERE id = 154');
+        $drivers = $this->db->resultSet();
+        return $drivers;
+    }
+
+    // assign a driver to a vehicle in the database
+    public function assignDriverToVehicle($driver_id, $vehicle_id) {
+        $this->db->query('UPDATE vehicle SET driver_id = :driver_id WHERE ve_id = :ve_id');
+        $this->db->bind(':driver_id', $driver_id);
+        $this->db->bind(':ve_id', $vehicle_id);
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

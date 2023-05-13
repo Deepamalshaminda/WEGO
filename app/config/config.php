@@ -14,4 +14,4 @@
   
   // config.php
 
-define('CONTACTEMAIL', 'info@wego.com');
+//define('CONTACTEMAIL', 'info@wego.com');

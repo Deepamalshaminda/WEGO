@@ -16,64 +16,36 @@
 <main class="full-page">
 
     <div class="top-container col-12">
-        <div class="top-container-left col-6">
-            <h3>Earnings From Reservations</h3>
-        </div>
-
-
         <div class="top-container-right col-6">
-            <h3>Earnings From Regular Rides</h3>
+            <h3>Earnings for vehicle</h3>
         </div>
     </div>
 
-        <div class="card-row col-12">
-        <div class="card-row-left col-6">
-        <div class="card-row-left-container col-12">
-        <table class="col-12">
-
-            <tr>
-              <td colspan="3">
-                <h1>Earnings For Month January - 2023</h1>
-              </td>
-            </tr>
-            <tr>
-              <th>Ride ID</th>
-              <th>Start - Destination</th>
-              <th>Price</th>
-            </tr>
-            <tr>
-              <td>0203D450</td>
-              <td>Pamankada - Colombo Fort</td>
-              <td>500 LKR</td>
-            </tr>
-            <tr>
-              <td>0212D630</td>
-              <td>Boralasgamuwa - Pamankada</td>
-              <td>400 LKR</td>
-            </tr>
-            <tr>
-              <td>0114D750</td>
-              <td>Papiliyana - Havelock</td>
-              <td>500 LKR</td>
-            </tr>
-            <tr>
-              <td>0125D123</td>
-              <td>Pamankada - Town Halle</td>
-              <td>700 LKR</td>
-            </tr>
-            <tr>
-              <td>0129D523</td>
-              <td>Havelock - Town Hall</td>
-              <td>500 LKR</td>
-            </tr>
-               
-        </table> 
+      <div class="card-row col-12">
+        <div class="card-row-left col-12">
+          <div class="card-row-left-container col-8">
+            <table class="col-12">
+                <tr>
+                  <td colspan="3">
+                    <h1>Earnings For Month January - 2023</h1>
+                  </td>
+                </tr>
+                <tr>
+                  <th>Ride ID</th>
+                  <th>Start - Destination</th>
+                  <th>Price</th>
+                </tr>
+                <?php foreach($data['payments'] as $payment){ ?>
+                  <tr>
+                    <td><?php echo $payment-> payment_date ?></td>
+                    <td><?php echo $payment-> name ?></td>
+                    <td><?php echo $payment-> amount ?></td>
+                  </tr>
+                <?php } ?>  
+            </table> 
+          </div>
         </div>
-        </div>
-        <div class="card-row-right col-6">
-            <img src="<?php echo URLROOT?>/img/earnings.png" class="side-image" alt="Image">
-        </div>
-        </div>
+      </div>
 </main>
 
 <?php require APPROOT.'/views/inc/footer.php';?>

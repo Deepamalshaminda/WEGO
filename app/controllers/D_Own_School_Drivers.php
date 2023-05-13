@@ -4,6 +4,7 @@
       public $model;
       public $connRequestModel;
       public $Own_Office_Driver_Model;
+      public $Attendencechild;
   
       public function __construct(){
         if(!isLoggedIn()){
@@ -14,19 +15,26 @@
         $this->connRequestModel = $this->model('D_ConnectionRequest');
         $this->viewDashboardModel = $this->model('viewDashboard');
         $this->Own_Office_Driver_Model = $this->model('D_Own_School_Driver');
+        $this->Attendencechild = $this->model('Attendencechild');
           }
 
-
-          // public function index(){
-      
-          //   $requests = $this->model->getVehicleDetails();
-      
-          //   $data = [
-          //     'requests' => $requests
-          //   ];
-      
-          //   $this->view('users/driver/d_viewvehicle', $data);
-          // }
+          public function viewEarnings()
+          {
+              //view
+              $payments = $this->Own_Office_Driver_Model->getPaymentForVehicle($_SESSION['user_id']);
+  
+              $data = [
+                  'payments' => $payments
+              ];
+  
+              // foreach ($children as $child) {
+              //     $ch_id = $child->ch_id;
+              //     $marked = $this->Attendencechild->getAttendance($ch_id);
+              //     $child->marked = $marked;
+              // }
+  
+              $this->view('users/driver/vehicle-own-school-transport/d_viewearnings', $data);
+          } 
       
           public function ConnectionRequests(){
       
@@ -99,7 +107,10 @@
           }
 
         public function viewOwnSchoolDashboard(){
-            $this->view('users/driver/vehicle-own-school-transport/d_dashboard-own-school');
+          $data = [
+            'user' => "Deep"
+        ];
+            $this->view('users/driver/vehicle-own-school-transport/d_dashboard-own-school', $data);
         }
     
         public function index(){
@@ -166,13 +177,13 @@
     
         }
     
-        public function viewEarnings(){
-          //$dashboard = $this->viewDashboardModel->viewDashboard();
-          $data = [
-            'earnings' => 'earnings'
-          ];
-          $this->view('users/driver/vehicle-own-school-transport/d_viewearnings', $data);
-        }
+        // public function viewEarnings(){
+        //   //$dashboard = $this->viewDashboardModel->viewDashboard();
+        //   $data = [
+        //     'earnings' => 'earnings'
+        //   ];
+        //   $this->view('users/driver/vehicle-own-school-transport/d_viewearnings', $data);
+        // }
         
         public function viewProfile(){
           $data = [

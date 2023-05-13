@@ -4,7 +4,7 @@
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/_base.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/register.css">
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCykzd2-mQTQdSMQNh8PxrWAnDBgqjf_Xg&libraries=places"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAzuu8sa68aSnLNQI2WrDHsXc3Uyq5m3fY&libraries=places"></script>
     <title><?php echo SITENAME; ?></title>
 </head>
 <body onload="initMap()">
@@ -56,7 +56,7 @@
                                                  <label for="map">Select your default location</label>
                                                  <div class="space" style="height: 50vh; margin : 20px;">
                                                         <div id="map" style="height: 50vh; width: 100%; margin: 20px;">
-                                                        <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCykzd2-mQTQdSMQNh8PxrWAnDBgqjf_Xg&callback=Function.prototype"></script>-->
+                                                        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCykzd2-mQTQdSMQNh8PxrWAnDBgqjf_Xg&callback=Function.prototype"></script>
                                                                <script>
                                                                       function initMap() {
                                                                       var colombo = {lat: 6.9271, lng: 79.8612};

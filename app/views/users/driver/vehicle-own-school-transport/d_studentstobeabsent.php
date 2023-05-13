@@ -33,7 +33,7 @@
                     <th>Parent Contact</th>
                     <th>Location</th>
                     <th>Confirm Absence</th>
-                    
+
                   </tr>
                   <tr>
               <td>Deepamal Shaminda</td>
@@ -72,7 +72,7 @@
               <th><input type="checkbox"></th>
             </tr>
           </table>
-                
+
         </div>
       </div>
     </div>

@@ -16,21 +16,25 @@ class rides extends Controller
     // retrieve the list of vehicles for the current user from the database
     $vehicles = $assignDrivers->getVehiclesByUser();
 
+    //print_r($vehicles);
+
     // pass the list of vehicles to the view
     $data = [
         'vehicles' => $vehicles
     ];
     $this->view('users/supplier/assignchange', $data);
-  }
+}
 
 
 
 
 
-  public function viewRideInfo(){
+
+
+ // public function viewRideInfo(){
     //view
-    $this->view('users/supplier/ongoing');
-  }
+    //$this->view('users/supplier/ongoing');
+  //}
 
   public function assignDrivers(){
     //view
@@ -41,4 +45,5 @@ class rides extends Controller
     //view
     $this->view('users/supplier/changedrivers');
   }
+
 }

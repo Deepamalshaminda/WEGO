@@ -97,11 +97,12 @@
                 <span class="invalid-feedback"><?php echo $data['comments_err']; ?></span>
             </div>
             
-            <!--<div class="form-group">
+            <div class="form-group">
                 <label for="vehicle_image">Image of vehicle<sup>*</sup></label>
                 <input type="file" name="vehicle_image" class="controls <?php echo (!empty($data['vehicle_image_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['vehicle_image']; ?>">
                 <span class="invalid-feedback"><?php echo $data['vehicle_image_err']; ?></span>
-            </div>-->
+            </div>
+
 
             
             <div class="form-group">
@@ -121,18 +122,7 @@
     </form>
   </div>
   </div>
-    <!-- <div class="box-right">
-        <div class="upload">
-            <img src="../public/img/upimage.jpg"><br>
-            <label class="button" for="upload-btn">Upload a vehicle image here</label>
-            <input type="file" id="upload-btn" hidden />
-        </div>
-        <br>
-        <div class="upload">
-            <img src="../public/img/upimage.jpg"><br>
-            <label class="button" for="upload-btn">Upload documents here</label>
-            <input type="file" id="upload-btn" hidden />
-        </div>-->
+    
         <br>
         <br>
 </div>

@@ -20,7 +20,8 @@
     <?php foreach ($data['vehicles'] as $vehicle): ?>
       <div class="card">
       <div class="card-body">
-    <img src="<?php echo URLROOT . 'C:\xampp\htdocs\projectwego\public\vehicle_image\\' . $vehicle->vehicle_image; ?>" alt="<?php echo $vehicle->vehicleno; ?>" class="card-img">
+        
+    <img src="<?php echo URLROOT; ?>/vehicle_image/<?php echo $vehicle->vehicle_image ?>" alt="<?php echo $vehicle->vehicleno; ?>" class="card-img">
     <h5 class="card-text">Vehicle ID: <?php echo $vehicle->ve_id; ?></h5>
     <h5 class="card-title">Vehicle Number: <?php echo $vehicle->vehicleno; ?></h5>
     <a href="<?php echo URLROOT?>/rides/assignDrivers"> <button type="button" class="btn btn-primary assign-btn"  >Assign</button></a>

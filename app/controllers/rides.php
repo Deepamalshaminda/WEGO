@@ -65,4 +65,29 @@ class rides extends Controller
     // redirect back to the assignChangeDrivers page
     redirect('rides/assignChangeDrivers');
   }
+ // public function viewRideInfo(){
+    //view
+   // $this->view('users/supplier/ongoing');
+  //}
+ 
+  public function viewRideInfo(){
+    // load the assignDrivers model
+    require_once APPROOT . '/models/assignDrivers.php'; 
+
+    // create a new instance of the assignDrivers model, passing in the user ID
+    $assignDrivers = new assignDrivers($_SESSION['user_id']);
+
+    // retrieve the list of vehicles for the current user from the database
+    $vehicles = $assignDrivers->getRideInfo();
+
+    // pass the list of vehicles to the view
+    $data = [
+        'vehicles' => $vehicles
+        
+        
+    ];
+    $this->view('users/supplier/ongoing', $data);
+  }
+
+  
 }

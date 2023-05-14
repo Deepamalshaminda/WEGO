@@ -155,21 +155,20 @@ class Vehicles extends Controller
           elseif ($_FILES['vehicle_image']['size'] > 5485760) {
             $data['vehicle_image_err'] = 'File size exceeded. Please upload an image with size less than 5 MB.';
           }
+          else {
+            $file_tmp = $_FILES['vehicle_image']['tmp_name'];
+            $file_destination = 'C:\xampp\htdocs\projectwego\public\vehicle_image\\' . $file_name;
         
-          // If file is valid, move it to the destination folder
-          // else {
-          //   $file_tmp = $_FILES['vehicle_image']['tmp_name'];
-          //   $file_destination = 'C:\xampp\htdocs\projectwego\public\vehicle_image\\' . $file_name;
+            echo realpath($file_destination);
         
-          //   echo realpath($file_destination);
-        
-          //   if (move_uploaded_file($file_tmp, $file_destination)) {
-          //     $data['vehicle_image'] = $file_destination;
-          //   } else {
-          //     $data['vehicle_image_err'] = 'Error uploading image.';
-          //   }
+            if (move_uploaded_file($file_tmp, $file_destination)) {
+              echo "uploaded";
+              $data['vehicle_image'] = $file_destination;
+            } else {
+              $data['vehicle_image_err'] = 'Error uploading image.';
+            }
             
-          // }
+          }
           
         } else {
           $data['vehicle_image_err'] = 'Please upload an image of your vehicle.';

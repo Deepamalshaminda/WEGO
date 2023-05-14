@@ -36,7 +36,7 @@
 
       $this->db->bind(':id', $data['userid']);
     
-      move_uploaded_file($fileVehicleImage['image_tempName'],$fileVehicleImage['upload_location'].$fileVehicleImage['image_name']);
+      //move_uploaded_file($fileVehicleImage['image_tempName'],$fileVehicleImage['upload_location'].$fileVehicleImage['image_name']);
       // Execute
       if($this->db->execute()){
         return true;

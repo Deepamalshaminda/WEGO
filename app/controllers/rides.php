@@ -22,8 +22,13 @@ class rides extends Controller
     ];
     $this->view('users/supplier/assignchange', $data);
   }
+  //getVehicleByVehicleId
 
-  public function assignDrivers(){
+
+
+
+  public function assignDrivers($vehicle_id){
+    
     // load the assignDrivers model
     require_once APPROOT . '/models/assignDrivers.php'; 
 
@@ -31,12 +36,16 @@ class rides extends Controller
     $assignDrivers = new assignDrivers($_SESSION['user_id']);
 
     // retrieve the list of drivers from the database
-    $drivers = $assignDrivers->getDrivers();
+    $vehicle = $assignDrivers->getVehicleByVehicleId($vehicle_id);
+    $supplier_id = $vehicle -> id;
+    $drivers = $assignDrivers->getDrivers($supplier_id);
+
+    
 
     // retrieve the selected vehicle information from the form data
-    $vehicle_id = $_POST['vehicleid'];
-    $vehicle_no = $_POST['vehicleno'];
-    $route = $_POST['route'];
+    $vehicle_id = $vehicle -> ve_id;
+    $vehicle_no = $vehicle -> vehicleno;
+    $route = $vehicle -> route;
 
     // pass the driver list and selected vehicle information to the view
     $data = [
@@ -79,6 +88,25 @@ class rides extends Controller
 
     // retrieve the list of vehicles for the current user from the database
     $vehicles = $assignDrivers->getRideInfo();
+
+    // pass the list of vehicles to the view
+    $data = [
+        'vehicles' => $vehicles
+        
+        
+    ];
+    $this->view('users/supplier/ongoing', $data);
+  }
+
+  public function viewCompleted(){
+    // load the assignDrivers model
+    require_once APPROOT . '/models/assignDrivers.php'; 
+
+    // create a new instance of the assignDrivers model, passing in the user ID
+    $assignDrivers = new assignDrivers($_SESSION['user_id']);
+
+    // retrieve the list of vehicles for the current user from the database
+    $vehicles = $assignDrivers->getCompletedRides();
 
     // pass the list of vehicles to the view
     $data = [

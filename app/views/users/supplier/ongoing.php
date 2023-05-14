@@ -26,9 +26,9 @@
                                 <h3>Ride ID <?php echo $vehicle->ve_id; ?></h3>
                             </div>
                             <div class="card-body">
-                                <h5 class="card-text">Vehicle No: <?php echo $vehicle->vehicleno; ?></h5>
-                                <h5 class="card-text">Driver ID: <?php echo $vehicle->driver_id; ?></h5>
-                                <h5 class="card-text">Started Time: <?php echo $vehicle->starttime; ?></h5>
+                                <h5 class="card-text">Vehicle No: <?php echo $vehicle->vehicleno; ?></h5><br>
+                                <h5 class="card-text">Driver ID: <?php echo $vehicle->driver_id; ?></h5><br>
+                                <h5 class="card-text">Started Time: <?php echo $vehicle->starttime; ?></h5><br>
                                 <h5 class="card-text">Route: <?php echo $vehicle->route; ?></h5>
                             </div>
                             <button class="view-btn">View on Map</button>
@@ -40,17 +40,17 @@
 
         <div id="completed" class="tabcontent">
             <div class="card-container">
-                <div class="ccard">
+                <div class="card">
                     <div class="card-header">
-                        <h3>Ride ID 001</h3>
+                        <h3>Ride ID <?php echo $vehicle->ve_id;?></h3>
                     </div>
                     <div class="card-body">
-                        <p>Vehicle No - WA 6789</p>
-                        <p>Driver ID - 011</p>
-                        <p>Date - 2023/02/02</p>
-                        <p>Route - Nugegoda, Kirulapana, Thibirigasyaya,Thunmulla</p>
-                        <p>Ride Status: Successfully Completed</p>
+                    <h5 class="card-text">Vehicle No: <?php echo $vehicle->vehicleno; ?></h5><br>
+                    <h5 class="card-text">Driver ID: <?php echo $vehicle->driver_id; ?></h5><br>
+                    <h5 class="card-text">Route: <?php echo $vehicle->route; ?></h5><br>
+                    <h5 class="card-text">Status: Completed Successfully</h5>
                     </div>
+                    <button class="remove-btn">Remove</button>
                 </div>
             </div>
         </div>

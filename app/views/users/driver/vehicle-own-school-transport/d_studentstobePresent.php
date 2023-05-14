@@ -32,45 +32,17 @@
                     <th>Student Name</th>
                     <th>Parent Contact</th>
                     <th>Location</th>
-                    <th>Confirm Absence</th>
-                    
+                    <th>Confirm Absence</th>   
                   </tr>
-                  <tr>
-              <td>Deepamal Shaminda</td>
-              <td>076-7671283</td>
-              <td>Pamankada</td>
-              <th><input type="checkbox"></th>
-            </tr>
-            <tr>
-              <td>Parindi Dewmini</td>
-              <td>070-2678678</td>
-              <td>Thimbirigasyaya</td>
-              <th><input type="checkbox"></th>
-            </tr>
-            <tr>
-              <td>Ishini Amandi</td>
-              <td>071-3688991</td>
-              <td>Nugegoda</td>
-              <th><input type="checkbox"></th>
-            </tr>
-            <tr>
-              <td>Naduni Manawasinghe</td>
-              <td>076-6778615</td>
-              <td>Bambalapitiya</td>
-              <th><input type="checkbox"></th>
-            </tr>
-            <tr>
-              <td>Surani sooriyaarachchi</td>
-              <td>077-2871877</td>
-              <td>Maharagama</td>
-              <th><input type="checkbox"></th>
-            </tr>
-            <tr>
-              <td>Thisara Bhagya</td>
-              <td>076-6781526</td>
-              <td>Kirulapone</td>
-              <th><input type="checkbox"></th>
-            </tr>
+                  <?php
+                    foreach($data['studentsToBePresent'] as $student){?>
+                    <tr>
+                    <td><?php echo $student-> child_name ?></td>
+                    <td><?php echo $student-> parent_contact ?></td>
+                    <td><?php echo $student-> location ?></td>
+                    <th><input type="checkbox"></th>
+                  </tr>
+                <?php } ?>  
           </table>
                 
         </div>

@@ -1,55 +1,54 @@
 <?php
-class D_ConnectionRequest
-{
-  protected $db;
+    class D_ConnectionRequest{
+        protected $db;
 
-  public function __construct()
-  {
-    $this->db = new Database;
-  }
+        public function __construct()
+        {
+            $this->db = new Database;
+        }
 
-  public function getRequestsFromVehicleSuppliers($driverId)
-  {
-    $this->db->query("SELECT
+        public function getRequestsFromVehicleSuppliers($userId)
+        {
+            $this->db->query("SELECT
             cr.req_id as 'request_id',
             u.name as 'fromWhom'
             FROM conn_request cr
             INNER JOIN user u ON u.us_id = cr.from_whom 
             WHERE cr.to_whom = :id AND cr.status = 'Pending'");
-    $this->db->bind(':id', $driverId);
-    $results = $this->db->resultSet();
-    return $results;
-  }
+            $this->db->bind(':id', $userId);
+            $results = $this->db->resultSet();
+            return $results;
+        }
 
-  public function getSentRequestsToVehicleSuppliers($driverId)
-  {
-    $this->db->query("SELECT
+        public function getSentRequestsToVehicleSuppliers($userId)
+        {
+            $this->db->query("SELECT
             cr.req_id as 'request_id',
             u.name as 'toWhom'
             FROM conn_request cr
             INNER JOIN user u ON u.us_id = cr.to_whom 
             WHERE cr.from_whom = :id AND cr.status = 'Pending'");
-    $this->db->bind(':id', $driverId);
-    $results = $this->db->resultSet();
-    return $results;
-  }
+            $this->db->bind(':id', $userId);
+            $results = $this->db->resultSet();
+            return $results;
+        }
 
-  // public function getListOfVehicleSuppliers()
-  // {
-  //     $this->db->query("SELECT
-  //     u.name as 'name',
-  //     v.id as 'supplier_id'
-  //     FROM vehicle v
-  //     INNER JOIN user u ON u.us_id = v.id
-  //     WHERE v.id NOT IN (SELECT from_whom from conn_request UNION 
-  //     SELECT to_whom FROM conn_request)");
-  //     $results = $this->db->resultSet();
-  //     return $results;
-  // }
+        // public function getListOfVehicleSuppliers()
+        // {
+        //     $this->db->query("SELECT
+        //     u.name as 'name',
+        //     v.id as 'supplier_id'
+        //     FROM vehicle v
+        //     INNER JOIN user u ON u.us_id = v.id
+        //     WHERE v.id NOT IN (SELECT from_whom from conn_request UNION 
+        //     SELECT to_whom FROM conn_request)");
+        //     $results = $this->db->resultSet();
+        //     return $results;
+        // }
 
-  public function getListOfVehicleSuppliers()
-  {
-    $this->db->query("SELECT
+        public function getListOfVehicleSuppliers()
+        {
+            $this->db->query("SELECT
             u.name as 'name',
             v.id as 'supplier_id'
             FROM vehicle v
@@ -60,9 +59,9 @@ class D_ConnectionRequest
             SELECT to_whom AS id FROM conn_request
             ) cr ON u.Us_id = cr.id
             WHERE cr.id IS NULL");
-    $results = $this->db->resultSet();
-    return $results;
-  }
+            $results = $this->db->resultSet();
+            return $results;
+        }
 
   public function acceptConnRequests($requestId)
   {

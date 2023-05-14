@@ -1,44 +1,39 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
 
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/dashboard.css">
-<link rel="stylesheet" href="<?php echo URLROOT; ?>/css/prequest.css">
+<link rel="stylesheet" href="<?php echo URLROOT; ?>/css/assigndr.css">
 <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-<!--<script type="text/javascript" src="<?php echo URLROOT; ?>/js/list.js"></script>-->
+
 <title><?php echo SITENAME; ?></title>
+
 <html>
 </head>
 
 <body>
 
-<?php require APPROOT . '/views/inc/sidebarnav.php' ;?>
+<?php require APPROOT . '/views/inc/sidebarnav.php'; ?>
      
 <div class="home-content">
   <h2>Assign or Change Drivers</h2>
   <br>
-  <div id="vehicle-cards">
-    <?php if(!empty($vehicles)): ?>
-      <?php foreach ($vehicles as $vehicle): ?>
-        <div class="card">
-        <img src="<?php echo URLROOT . '/public/vehicle_image/' . $vehicle->vehicle_image; ?>" alt="Vehicle Image">
-
-          <div class="card-content">
-            <h2><?php echo $vehicle->vehicleno; ?></h2>
-            <p>Vehicle ID: <?php echo $vehicle->ve_id; ?></p>
-            <div class="card-buttons">
-              <form action="assign-driver.php" method="POST">
-                <input type="hidden" name="vehicle_id" value="<?php echo $vehicle->ve_id; ?>">
-                <button type="submit">Assign Driver</button>
-              </form>
-              <form action="change-driver.php" method="POST">
-                <input type="hidden" name="vehicle_id" value="<?php echo $vehicle->ve_id; ?>">
-                <button type="submit">Change Driver</button>
-              </form>
-            </div>
-          </div>
-        </div>
-      <?php endforeach; ?>
-    <?php else: ?>
-      <p>No vehicles found.</p>
-    <?php endif; ?>
-  </div>
+  <?php if (!empty($data['vehicles'])): ?>
+    <?php foreach ($data['vehicles'] as $vehicle): ?>
+      <div class="card">
+      <div class="card-body">
+        
+    <img src="<?php echo URLROOT; ?>/vehicle_image/<?php echo $vehicle->vehicle_image ?>" alt="<?php echo $vehicle->vehicleno; ?>" class="card-img">
+    <h5 class="card-text">Vehicle ID: <?php echo $vehicle->ve_id; ?></h5>
+    <h5 class="card-title">Vehicle Number: <?php echo $vehicle->vehicleno; ?></h5>
+    <a href="<?php echo URLROOT?>/rides/assignDrivers"> <button type="button" class="btn btn-primary assign-btn"  >Assign</button></a>
+    <a href="<?php echo URLROOT?>/rides/changeDrivers"><button type="button" class="btn btn-secondary change-btn" >Change</button></a>
 </div>
+
+      </div>
+    <?php endforeach; ?>
+  <?php else: ?>
+    <p>No vehicles found.</p>
+  <?php endif; ?>
+</div>
+
+
+<!-- <?php echo $vehicle->vehicleno; ?> -->

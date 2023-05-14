@@ -2,6 +2,7 @@
 class Users extends Controller
 {public $userModel;
   public $driverModel;
+  public $verificationModel;
 
   public $registering_driver = array();
 
@@ -48,8 +49,8 @@ public function index()
         'user_role' => trim($_POST['user_role']),
         'password' => trim($_POST['password']),
         'confirm_password' => trim($_POST['confirm_password']),
-        // 'latitude' => trim($_POST['latitude']),
-        // 'longitude' => trim($_POST['longitude']),
+        'latitude' => trim($_POST['latitude']),
+        'longitude' => trim($_POST['longitude']),
         'name_err' => '',
         'nic_err' => '',
         'gender_err' => '',
@@ -146,8 +147,11 @@ public function index()
         // Register User
         if ($this->userModel->register($data)) {
           $registering_driver = $this->userModel->getUserByEmail($data);
+          $us_id = $registering_driver->us_id;
             if($this->userModel->isDriver($data)){
-              $this->createUserSession($registering_driver);
+              $driver = $this -> driverModel -> getDriverByUserId($us_id);
+              $vehicle = NULL;
+              $this->createUserSession($registering_driver, $driver, $vehicle);
               $us_id = $registering_driver->us_id;
               // $this->setGlobal($us_id);
               $this->view('users/driver/d_setvehicle', $registering_driver);
@@ -178,8 +182,8 @@ public function index()
         'password' => '',
         'user_role'=>'',
         'confirm_password' => '',
-        // 'latitude' => '',
-        // 'longitude' => '',
+        'latitude' => '',
+        'longitude' => '',
         'name_err' => '',
         'nic_err' => '',
         'gender_err' => '',
@@ -243,11 +247,14 @@ public function index()
           $us_id = $user -> us_id;
 
           $driver = $this -> driverModel -> getDriverByUserId($us_id);
+          
           $service_type = $driver -> service_type;
           $vehicle_status = $driver -> vehicle_status;
 
           if($vehicle_status == 'own' AND $service_type == 'school'){
             $this -> view('users/driver/vehicle-own-school-transport/d_dashboard-own-school', $data);
+            $driver_id = $driver -> dr_id;
+            $vehicle = $this->userModel->getVehicleByOwnDriverId($us_id);
           } elseif ($vehicle_status == 'own' AND $service_type == 'office'){
             $this -> view('users/driver/vehicle-own-office-transport/d_dashboard-own-office', $data);
           } elseif ($vehicle_status == 'find' AND $service_type == 'school'){
@@ -288,7 +295,7 @@ public function index()
 
       if($loggedInUser){
         // Create Session
-        $this->createUserSession($loggedInUser);
+        $this->createUserSession($loggedInUser, $driver, $vehicle);
       } else {
         $data['password_err'] = 'Password incorrect';
 
@@ -316,16 +323,61 @@ public function index()
     }
   }
 
-  public function createUserSession($user){
+  public function verify()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $data = [
+                'otp' => trim($_POST['otp']),
+                'error' => '',
+                'status' => ''
+            ];
+
+            $verified = $this->verificationModel->verifyOTP($data['otp']);
+
+            if (is_numeric($data['otp']) && $verified) {
+                if ($this->verificationModel->verify($verified->id)) {
+                    // set verification successful flash message
+                    // setFlash("verify","Your account has been verified",Flash::FLASH_SUCCESS);
+                    // redirect to the login of patient
+                    redirect('users/login');
+                } else {
+                    // set verification failed flash message
+                    // setFlash("verify","Account verification failed!",Flash::FLASH_DANGER);
+                    // redirect to the signup of patient
+                    redirect('users/register');
+                }
+            } else {
+                $data['error'] = "Invalid OTP";
+            }
+        } else {
+            $data = [
+                'otp' => '',
+                'error' => '',
+                'status' => ''
+            ];
+        }
+        $this->view('users/signupVerification',$data);
+}
+
+
+
+  public function createUserSession($user, $driver, $vehicle){
+    
     $_SESSION['user_id'] = $user->us_id;
     $_SESSION['user_email'] = $user->email;
     $_SESSION['user_name'] = $user->name;
+    $_SESSION['driver_id'] = $driver-> dr_id;
+    $vehicle = $this->userModel->getVehicleByOwnDriverId($_SESSION['user_id']);
+    $_SESSION['vehicle_id'] = $vehicle-> ve_id;
+
   }
 
   public function logout(){
     unset($_SESSION['user_id']);
     unset($_SESSION['user_email']);
     unset($_SESSION['user_name']);
+    unset($_SESSION['child_id']);
+    unset($_SESSION['parent_id']);
     session_destroy();
     redirect('users/login');
   }
@@ -345,10 +397,13 @@ public function index()
 
     $this->view('users/driver/d_setvehicle', $data);
     $loggedInUser = $this->userModel->login($data['email'], $data['password']);
-
+    $us_id = $loggedInUser->us_id;
+    $driver = $this -> driverModel -> getDriverByUserId($us_id);
+    $driver_id = $driver -> dr_id;
+    $vehicle = $this->userModel->getVehicleByOwnDriverId($data, $driver_id);
     if($loggedInUser){
       // Create Session
-      $this->createUserSession($loggedInUser);
+      $this->createUserSession($loggedInUser, $driver, $vehicle);
     } else {
       $data['password_err'] = 'Password incorrect';
 
@@ -364,10 +419,13 @@ public function index()
 
     $this->view('users/driver/d_servicetype', $data);
     $loggedInUser = $this->userModel->login($data['email'], $data['password']);
-
+    $us_id = $loggedInUser->us_id;
+    $driver = $this -> driverModel -> getDriverByUserId($us_id);
+    $driver_id = $driver -> dr_id;
+    $vehicle = $this->userModel->getVehicleByOwnDriverId($data, $driver_id);
     if($loggedInUser){
       // Create Session
-      $this->createUserSession($loggedInUser);
+      $this->createUserSession($loggedInUser, $driver, $vehicle);
     } else {
       $data['password_err'] = 'Password incorrect';
 

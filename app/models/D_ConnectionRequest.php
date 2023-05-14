@@ -7,7 +7,7 @@
             $this->db = new Database;
         }
 
-        public function getRequestsFromVehicleSuppliers($driverId)
+        public function getRequestsFromVehicleSuppliers($userId)
         {
             $this->db->query("SELECT
             cr.req_id as 'request_id',
@@ -15,12 +15,12 @@
             FROM conn_request cr
             INNER JOIN user u ON u.us_id = cr.from_whom 
             WHERE cr.to_whom = :id AND cr.status = 'Pending'");
-            $this->db->bind(':id', $driverId);
+            $this->db->bind(':id', $userId);
             $results = $this->db->resultSet();
             return $results;
         }
 
-        public function getSentRequestsToVehicleSuppliers($driverId)
+        public function getSentRequestsToVehicleSuppliers($userId)
         {
             $this->db->query("SELECT
             cr.req_id as 'request_id',
@@ -28,7 +28,7 @@
             FROM conn_request cr
             INNER JOIN user u ON u.us_id = cr.to_whom 
             WHERE cr.from_whom = :id AND cr.status = 'Pending'");
-            $this->db->bind(':id', $driverId);
+            $this->db->bind(':id', $userId);
             $results = $this->db->resultSet();
             return $results;
         }

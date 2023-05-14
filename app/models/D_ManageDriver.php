@@ -7,7 +7,7 @@
             $this->db = new Database;
         }
 
-        public function getRequestsFromParents($driverId)
+        public function getRequestsFromParents($userId)
         {
             $this->db->query("SELECT
             r.ride_request_id as 'request_id',
@@ -20,12 +20,12 @@
             INNER JOIN child c ON c.pr_id = p.pr_id
             INNER JOIN vehicle v ON v.ve_id = r.to_whom
             WHERE v.driver_id = :id AND r.status = 'Pending'");
-            $this->db->bind(':id', $driverId);
+            $this->db->bind(':id', $userId);
             $results = $this->db->resultSet();
             return $results;
         }
 
-        public function getRequestsFromOfficeWorkers($driverId)
+        public function getRequestsFromOfficeWorkers($userId)
         {
             $this->db->query("SELECT
             r.ride_request_id as 'request_id',
@@ -37,7 +37,7 @@
             INNER JOIN officeworker ow ON ow.us_id = u.us_id
             INNER JOIN vehicle v ON v.ve_id = r.to_whom
             WHERE v.driver_id = :id;");
-            $this->db->bind(':id', $driverId);
+            $this->db->bind(':id', $userId);
             $results = $this->db->resultSet();
             return $results;
         }
@@ -65,17 +65,17 @@
         }
 
 
-        public function viewOngoingTrip($driverId)
+        public function viewOngoingTrip($userId)
         {
             $this->db->query("SELECT * FROM trip_information WHERE driver_id = :id AND trip_status = 'Ongoing'");
-            $this->db->bind(':id',$driverId);
+            $this->db->bind(':id',$userId);
             return $this->db->resultSet();
         }
 
-        public function viewCompletedTrips($driverId)
+        public function viewCompletedTrips($userId)
         {
             $this->db->query("SELECT * FROM trip_information WHERE driver_id = :id AND trip_status = 'Completed'");
-            $this->db->bind(':id',$driverId);
+            $this->db->bind(':id',$userId);
             return $this->db->resultSet();
         }
 

@@ -204,7 +204,7 @@
       $data = [
         'student' => 'student'
       ];
-      $this->view('users/driver/d_studentstobeabsent', $data);
+      $this->view('users/driver/d_studentstobePresent', $data);
     }
 
     public function completedTrips(){

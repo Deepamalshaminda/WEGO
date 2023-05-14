@@ -11,6 +11,7 @@
 }
 
 .top-container{
+  padding-top: 5vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,7 +38,6 @@
 }
 
 .card-row-left{
-    align-items: center;
     justify-content: center;
     display: flex;
     background-color: #ffffff;
@@ -50,6 +50,8 @@
 
 table {
   border-collapse: collapse;
+  padding-top: 5vh;
+  margin-top: 5vh;
 }
 
 td, th {
@@ -60,6 +62,25 @@ td, th {
 
 tr:nth-child(even) {
   background-color: #a3bef8;
+}
+
+.earnings-input{
+  background-color: #4f99ca;
+  padding: 2vh;
+  color: white;
+  height: 5vh;
+  border-radius: 8px;
+  width: 20%;
+  border: none;
+
+}
+
+.btn-submit{
+  background-color: #483D8BFF;
+  color: white;
+  border: #483D8BFF 2px solid;
+  padding: 6px 20px;
+  border-radius: 8px;
 }
 
 .side-image{

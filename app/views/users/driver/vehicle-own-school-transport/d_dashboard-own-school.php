@@ -61,7 +61,7 @@
                 </a>
             </li>
             <li>
-                <a href="<?php echo URLROOT;?>/D_Own_School_Drivers/studentsToBeAbsent">
+                <a href="<?php echo URLROOT;?>/D_Own_School_Drivers/getPresentStudentForVehicle">
                     <i class='bx bx-coin-stack'></i>
                     <span class="links_name">Students to be Absent</span>
                 </a>

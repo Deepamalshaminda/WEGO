@@ -150,7 +150,8 @@ public function index()
           $us_id = $registering_driver->us_id;
             if($this->userModel->isDriver($data)){
               $driver = $this -> driverModel -> getDriverByUserId($us_id);
-              $this->createUserSession($registering_driver, $driver);
+              $vehicle = NULL;
+              $this->createUserSession($registering_driver, $driver, $vehicle);
               $us_id = $registering_driver->us_id;
               // $this->setGlobal($us_id);
               $this->view('users/driver/d_setvehicle', $registering_driver);
@@ -252,6 +253,8 @@ public function index()
 
           if($vehicle_status == 'own' AND $service_type == 'school'){
             $this -> view('users/driver/vehicle-own-school-transport/d_dashboard-own-school', $data);
+            $driver_id = $driver -> dr_id;
+            $vehicle = $this->userModel->getVehicleByOwnDriverId($us_id);
           } elseif ($vehicle_status == 'own' AND $service_type == 'office'){
             $this -> view('users/driver/vehicle-own-office-transport/d_dashboard-own-office', $data);
           } elseif ($vehicle_status == 'find' AND $service_type == 'school'){
@@ -292,7 +295,7 @@ public function index()
 
       if($loggedInUser){
         // Create Session
-        $this->createUserSession($loggedInUser, $driver);
+        $this->createUserSession($loggedInUser, $driver, $vehicle);
       } else {
         $data['password_err'] = 'Password incorrect';
 
@@ -356,11 +359,17 @@ public function index()
         $this->view('users/signupVerification',$data);
 }
 
-  public function createUserSession($user, $driver){
+
+
+  public function createUserSession($user, $driver, $vehicle){
+    
     $_SESSION['user_id'] = $user->us_id;
     $_SESSION['user_email'] = $user->email;
     $_SESSION['user_name'] = $user->name;
     $_SESSION['driver_id'] = $driver-> dr_id;
+    $vehicle = $this->userModel->getVehicleByOwnDriverId($_SESSION['user_id']);
+    $_SESSION['vehicle_id'] = $vehicle-> ve_id;
+
   }
 
   public function logout(){
@@ -390,9 +399,11 @@ public function index()
     $loggedInUser = $this->userModel->login($data['email'], $data['password']);
     $us_id = $loggedInUser->us_id;
     $driver = $this -> driverModel -> getDriverByUserId($us_id);
+    $driver_id = $driver -> dr_id;
+    $vehicle = $this->userModel->getVehicleByOwnDriverId($data, $driver_id);
     if($loggedInUser){
       // Create Session
-      $this->createUserSession($loggedInUser, $driver);
+      $this->createUserSession($loggedInUser, $driver, $vehicle);
     } else {
       $data['password_err'] = 'Password incorrect';
 
@@ -410,9 +421,11 @@ public function index()
     $loggedInUser = $this->userModel->login($data['email'], $data['password']);
     $us_id = $loggedInUser->us_id;
     $driver = $this -> driverModel -> getDriverByUserId($us_id);
+    $driver_id = $driver -> dr_id;
+    $vehicle = $this->userModel->getVehicleByOwnDriverId($data, $driver_id);
     if($loggedInUser){
       // Create Session
-      $this->createUserSession($loggedInUser, $driver);
+      $this->createUserSession($loggedInUser, $driver, $vehicle);
     } else {
       $data['password_err'] = 'Password incorrect';
 

@@ -80,20 +80,42 @@
     $data = [];
     $data['vehicle'] =  $this->vehicleModel->showVehicles();
     //view
-    $this->view('users/admin/vehicle');
+    $this->view('users/admin/vehicle',$data);
   }
   public function viewvehicle($ve_id){
     $data = [];
     $data['vehicle'] =  $this->vehicleModel->showVehiclesById($ve_id);
     //view
-    $this->view('users/admin/viewvehicle');
+    $this->view('users/admin/viewvehicle',$data);
   }
   public function addvehicle(){
     $data = [];
+    $data['vehicle'] =  $this->vehicleModel->showVehicles();
     //view
-    $this->view('users/admin/vehicleadd');
+    $this->view('users/admin/vehicleadd',$data);
   }
 
+  public function approve($ve_id){
+
+    if ($this->vehicleModel->approveVehicleRequests($ve_id)){
+      redirect('Admin/addvehicle');
+      return true;
+    };
+
+    $this->view('users/admin/vehicleadd');
+    return false;
+  }
+
+  public function deny($ve_id){
+
+    if ($this->vehicleModel->denyVehicleRequests($ve_id)){
+      redirect('Admin/addvehicle');
+      return true;
+    };
+
+    $this->view('users/admin/vehicleadd');
+    return false;
+  }
     public function transactions(){
       $data = [];
       $data['transactions'] =  $this->transactionModel->getTransactions();

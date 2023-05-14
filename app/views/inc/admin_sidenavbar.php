@@ -55,7 +55,7 @@
         
         
         <li class="log_out">
-          <a href="#">
+          <a href="<?php echo URLROOT?>/users/login">
             <div class='bx bx-log-out'></div>
             <span class="links_name">&nbsp; Log out</span>
           </a>

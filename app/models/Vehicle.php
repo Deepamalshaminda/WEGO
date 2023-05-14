@@ -64,4 +64,27 @@
       return $row;
   }
 
+  public function approveVehicleRequests($ve_id)
+  {
+      $this->db->query("UPDATE vehicle SET approve_status = 'Accepted' WHERE ve_id = :ve_id");
+      $this->db->bind(':ve_id', $ve_id);
+            if($this->db->execute()){
+                return true;
+              } else {
+                return false;
+              }
+  }  
+
+  public function denyVehicleRequests($ve_id)
+  {
+      $this->db->query("DELETE FROM vehicle WHERE ve_id = :ve_id");
+      $this->db->bind(':ve_id', $ve_id);
+            if($this->db->execute()){
+                return true;
+              } else {
+                return false;
+              }
   }
+
+
+}

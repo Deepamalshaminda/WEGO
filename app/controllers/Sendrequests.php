@@ -42,4 +42,14 @@ public function getSentRequests(){
   // print_r($data);
   $this->view('users/parent/sentrequest', $data);
 }
+
+ // delete request
+ public function deleteRequestById($id){
+
+  $sent = $this->SendrequestModel->deleteRequestById($id);
+  // $data = [
+  //   'children' => $children
+  // ];
+  $this->view('users/parent/parentdash');
+}
 }

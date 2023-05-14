@@ -42,6 +42,23 @@
             return $results;
         }
 
+        public function findStartAndEnd($vehicle_id){
+            $this->db->query("SELECT route FROM vehicles WHERE ve_id = :id");
+            $this->db->bind(':id', $vehicle_id);
+            $result = $this->db->single();
+        }
+
+        public function startTrip($data){
+            $this -> db -> query("INSERT INTO
+            trip_information (driver_id, start, destination, no_of_passengers, trip_status) VALUES (:user_id, :start, :destination, :no_of_passengers, :trip_status)           
+            ");
+            $this->db->bind(':user_id', $data['user_id']);
+            $this->db->bind(':start', $data['start']);
+            $this->db->bind(':destination', $data['destination']);
+            $this->db->bind(':no_of_passengers', $data['no_of_passengers']);
+            $this->db->bind(':trip_status', $data['trip_status']);
+        }
+
         
     }
 

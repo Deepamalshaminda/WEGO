@@ -75,6 +75,22 @@
             $this->view('users/driver/d_acceptconnrequest',$data);
       
           }
+
+          public function startTrip(){
+
+              $routeArray = $this -> Own_School_Driver_Model -> findStartAndEnd($_SESSION['vehicle_id']);
+              $start = trim($routeArray[0]);
+              $destination = trim(end($routeArray));
+            $data = [
+                'user_id' => $_SESSION['user_id'],
+                'start' => $start,
+                'destination' => $destination,
+                'no_of_passengers' => $no_of_passengers,
+                'trip_status' => "Ongoing"
+
+            ];
+            $this -> Own_School_Driver_Model -> startTrip($_SESSION['user_id']);
+          }
       
           public function getReceivedRequests(){
       

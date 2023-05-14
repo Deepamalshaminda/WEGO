@@ -114,6 +114,37 @@
     </section>
 
     <script>
+        const startButton = document.querySelector("#start");
+        const endButton = document.querySelector("#end");
+
+        startButton.addEventListener('click', () => {
+            startTrip();
+            startButton.classList.remove('active-link');
+            btnSuggessions.classList.add('inactive-link')
+        });
+        endButton.addEventListener('click', () => endTrip());
+
+        let start = null;
+        let end = null;
+
+        const startTrip = async() => {
+            const response = await fetch('http://localhost/projectwego/D_Own_School_Drivers/startTrip');
+            if(response.status == 200){
+                start = await response.json();
+                loadReceivedRequests(received_requests);
+            }
+        }
+
+        const endTrip = async() => {
+            const response = await fetch('http://localhost/projectwego/D_Own_School_Drivers/endTrip');
+            if(response.status == 200){
+                sent_requests = await response.json();
+                loadSentRequests(sent_requests);
+            }
+        }
+    </script>
+
+    <script>
         let sidebar = document.querySelector(".sidebar");
         let sidebarBtn = document.querySelector(".sidebarBtn");
         sidebarBtn.onclick = function () {

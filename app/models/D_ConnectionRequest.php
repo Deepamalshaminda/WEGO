@@ -63,46 +63,57 @@
             return $results;
         }
 
-        public function acceptConnRequests($requestId)
-        {
-            $this->db->query("UPDATE conn_request SET status = 'Accepted' WHERE req_id = :id");
-            $this->db->bind(':id', $requestId);
-            if($this->db->execute()){
-                return true;
-              } else {
-                return false;
-              }
-        }
-
-        public function declineConnRequests($requestId)
-        {
-            $this->db->query("DELETE FROM conn_request WHERE req_id = :id");
-            $this->db->bind(':id', $requestId);
-            if($this->db->execute()){
-                return true;
-              } else {
-                return false;
-              }
-        }
-
-        public function deleteSentRequest($requestId)
-        {
-            $this->db->query("DELETE FROM conn_request WHERE req_id = :id");
-            $this->db->bind(':id', $requestId);
-            if($this->db->execute()){
-                return true;
-              } else {
-                return false;
-              }
-        }
-
+  public function acceptConnRequests($requestId)
+  {
+    $this->db->query("UPDATE conn_request SET status = 'Accepted' WHERE req_id = :id");
+    $this->db->bind(':id', $requestId);
+    if ($this->db->execute()) {
+      return true;
+    } else {
+      return false;
     }
+  }
 
+  public function declineConnRequests($requestId)
+  {
+    $this->db->query("DELETE FROM conn_request WHERE req_id = :id");
+    $this->db->bind(':id', $requestId);
+    if ($this->db->execute()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
+  public function deleteSentRequest($requestId)
+  {
+    $this->db->query("DELETE FROM conn_request WHERE req_id = :id");
+    $this->db->bind(':id', $requestId);
+    if ($this->db->execute()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
+  public function makeRideRequest($data)
+  {
 
+    // echo 'inside the mode';
+    $current_timestamp = time();
+    $formatted_timestamp = date('Y-m-d H:i:s', $current_timestamp);
+    $this->db->query('INSERT INTO ride_request(sent_at,from_whom,to_whom,status) VALUES(:sent_at, :from_whom, :to_whom, :status)');
+    // Bind values
 
-
-
-
-
+    $this->db->bind(':sent_at', $formatted_timestamp);
+    $this->db->bind(':from_whom', $_SESSION['user_id']);
+    $this->db->bind(':to_whom', $data);
+    $this->db->bind(':status', 'Pending');
+    // Execute
+    if ($this->db->execute()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+}

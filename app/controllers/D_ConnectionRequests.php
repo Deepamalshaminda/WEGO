@@ -85,6 +85,18 @@
         return false;
       }
 
-  }
+    public function riderRequest(){
+      // echo 'inside the controller';
+      if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+        $results = $this->connRequestModel->makeRideRequest($_POST['to_whom']);
+        if ($results) {
+          $this->view('users/parent/parentdash');
+        } else {
+          die('Something went wrong');
+        }
+      }
+      
+    }
 
-  ?>
+  }

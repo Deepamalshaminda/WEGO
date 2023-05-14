@@ -24,8 +24,8 @@
     <div class="wrapper">
         <div class="left">
             <img src="../public/img/ch2.png" alt="user" width="100">
-            <h4><?php echo $data['child']->name ?></h4>
-            <p>Student</p>
+            <h4><?php echo $data['vehicle']->ve_id ?></h4>
+            <p>School service.</p>
         </div>
         <div class="right">
             <div class="info">
@@ -33,15 +33,17 @@
                 <br>
                 <div class="info_data">
                     <div class="data">
-                        <h4>Name : <?php echo $data['child']->name ?></h4>
+                        <h4>Vehicle no : <?php echo $data['vehicle']->vehicleno ?></h4>
                         <br>
-                        <h4>School : <?php echo $data['child']->school ?></h4>
+                        <h4>Model : <?php echo $data['vehicle']->model ?></h4>
                         <br>
-                        <h4>Address : <?php echo $data['child']->school_address ?></h4>
+                        <h4>Route : <?php echo $data['vehicle']->route ?></h4>
                         <br>
-                        <h4>DOB : <?php echo $data['child']->dob ?></h4>
+                        <h4>Start time : <?php echo $data['vehicle']->starttime ?></h4>
                         <br>
-                        <h4>Gender : <?php echo $data['child']->gender ?></h4>
+                        <h4>Ac/nonAC : <?php echo $data['vehicle']->Ac ?></h4>
+                        
+              <br>
                         <!--<p>Kevin Fernando</p>-->
                     </div>
                     <!-- <div class="data">
@@ -56,12 +58,15 @@
 
                 <div class="projects_data">
                     <div class="data">
-                        <button class="delete"><a href="<?php echo URLROOT ?>/Parents/editChild/<?php echo $data['child']->ch_id ?>">Edit child</a></button>
+                        <form action="<?php echo URLROOT; ?>/D_ConnectionRequests/riderRequest" method="post">
+                            
+                             
+                            <input type="text" name="to_whom" value="<?php echo $data['vehicle']->ve_id ?>" hidden>
+                            <button class="delete">Send request</a></button>
+                        </form>
 
                     </div>
-                    <div class="data">
-                        <button class="delete"><a href="<?php echo URLROOT ?>/Parents/deleteChild/<?php echo $data['child']->ch_id ?>">Delele child</a></button>
-                    </div>
+                    
                 </div>
             </div>
 

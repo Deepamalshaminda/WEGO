@@ -194,16 +194,26 @@
         return $row;
     }
 
-    public function updateUserStatus($userId, $account_status) {
-      $this->db->query("UPDATE user SET account_status = 'suspended' WHERE us_id = :us_id");
-      $this->db->bind(':us_id', $us_id);
-            if($this->db->execute()){
-                return true;
-              } else {
-                return false;
-              }
 
-      // Update the user's status in the database
-      // You can use an ORM or PDO to execute a SQL query
-  }
+  // public function suspendUser($us_id)
+  // {
+  //     $this->db->query("DELETE FROM user WHERE us_id = :us_id");
+  //     $this->db->bind(':us_id', $us_id);
+  //           if($this->db->execute()){
+  //               return true;
+  //             } else {
+  //               return false;
+  //             }
+  // }
+
+  public function suspendUser($us_id)
+{
+    $this->db->query("UPDATE complain SET action = 'Suspended' WHERE us_id = :us_id");
+    $this->db->bind(':us_id', $us_id);
+    if ($this->db->execute()) {
+        return true;
+    } else {
+        return false;
+    }
+}
   }

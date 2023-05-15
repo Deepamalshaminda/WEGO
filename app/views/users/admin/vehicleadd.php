@@ -14,81 +14,26 @@
 <body>
   <?php require APPROOT . '/views/inc/admin_sidenavbar.php' ;?>
   
-  <!-- <div class="container">
-    <form>
-<div class="row">
-<div class="col">
-<div class="input">
-   <lable for="name" class="fields"> Added by : </lable>
-   <input type = "text" name ="added by" id="addedby" />
-</div>
-<div class="input">
-   <lable for="vehicleno" class="fields"> Vehicle Number : </lable>
-   <input type = "text" name ="vehicleno" id="vehicleno" />
-</div>
-<div class="input">
-   <lable for="type" class="fields"> Vehicle Type : </lable>
-   <input type = "text" name ="type" id="type" />
-</div>
-<div class="input">
-   <lable for="model" class="fields"> Vehicle Model : </lable>
-   <input type = "text" name ="model" id="model" />
-</div>
-<div class="input">
-   <lable for="year" class="fields"> Manufactured Year : </lable>
-   <input type = "text" name ="year" id="year" />
-</div>
-</div>
-<div class="col">
-<div class="input">
-   <lable for="engineno" class="fields"> Engine Number : </lable>
-   <input type = "text" name ="engineno" id="engineno" />
-</div>
-<div class="input">
-   <lable for="chassisno" class="fields"> Chassis Number : </lable>
-   <input type = "text" name ="chassisno" id="chassisno" />
-</div>
-<div class="input">
-   <lable for="seats" class="fields"> No of seats : </lable>
-   <input type = "text" name ="seats" id="seats" />
-</div>
-<div class="input">
-   <lable for="document" class="file"> Vehicle Book  </lable>
-   <input type = "file" name ="document" id="document" />
-</div>
-<div class="input">
-   <lable for="document" class="file"> Insurance Card  </lable>
-   <input type = "file" name ="document" id="document" />
-</div>
-</div>
-<div class="btn-wrapper">
-                 <div class="data">
-                    <button class="approve"> Approve </button>
-                    <button class="deny"> Deny </button>
-                 </div>
-                 
-            </div>
-</div>
-</div> -->
 
 <div class="container">
 
 
 <form action="">
 <span id="message"></span>
- <div>   
-<h3 class="title"> Add Vehicle </h3>
+    <div>
+    <h3 class="title"> Add Vehicle </h3>
 </div>
+
     <div class="row">
     
 
         <div class="col">
 
-            
+           
 
             <div class="inputBox">
-                <span>Added By :</span>
-                <input type="text" >
+                <span>Added By :  </span>
+                <input type="text" value="<?php echo $data['vehicle']->name; ?>" >
             </div>
             <div class="inputBox">
                 <span>Vehicle Number :</span>
@@ -107,7 +52,7 @@
                 <input type="text" value="<?php echo $data['vehicle']->year; ?>">
             </div>
             <div class="inputBox">
-                <span> Vehicle Documents :</span>
+                <span>Vehicle Documents :</span>
                 
             </div>
             <div class="inputBox">
@@ -141,7 +86,7 @@
             </div>
             <div class="inputBox">
                 <span>Usual journey start time :</span>
-                <input type="text" value="<?php echo $data['vehicle']->starttime; ?>">
+                <input type="time" values="<?php echo $data['vehicle']->starttime; ?>">
             </div>
             <div class="inputBox">
                 <span>Seating capacity :</span>
@@ -152,7 +97,7 @@
                 <input type="text" value="<?php echo $data['vehicle']->Ac; ?>">
             </div>
             <div class="inputBox">
-                
+               
                 <?php if($data['vehicle']->vehicle_document): ?>
                     <a href="<?php echo URLROOT . '/Admin/download/' . $data['vehicle']->ve_id; ?>" class="download" download>Download</a>
 
@@ -165,7 +110,7 @@
             <button type="button" id="denyButton" class="deny" data-veid="<?php echo $data['vehicle']->ve_id; ?>">Deny</button>
             </div>
 
-            
+                </div>
 
         </div>
 

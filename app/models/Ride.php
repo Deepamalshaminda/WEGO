@@ -32,6 +32,31 @@ class Ride
         return $row;
     }
 
+
+
+// public function viewrides()
+// {
+//     $this->db->query('SELECT trip_information. * , vehicle. * FROM trip_information INNER JOIN vehicle ON trip_information.trip_id=vehicle.ve_id');
+//     $results = $this->db->resultSet();
+//     return $results;
+// }
+// public function viewridesById($trip_id)
+// {
+//     $this->db->query('SELECT trip_information. * , vehicle. * FROM trip_information INNER JOIN vehicle ON trip_information.trip_id=vehicle.ve_id
+//                       WHERE trip_information.trip_id = :trip_id');
+//     $this->db->bind(':trip_id', $trip_id);
+//     $row = $this->db->single();
+//     return $row;
+// }
+
+  public function calculateTotalRides(){
+
+    $this->db->query("SELECT COUNT(*) AS total_count FROM trip_information");
+
+    $row = $this->db->single();
+
+    return $row->total_count;
+}
     
 }
 

@@ -10,7 +10,7 @@
 <body>
   <div class="sidebar">
     <div class="logo-details">
-    <i><img src="../img/wego_logo.png" class="wego-logo" alt="wego-logo"></i>
+    <img src="../img/wego_logo.png" class="wego-logo" alt="wego-logo">
       <span class="logo_name">&nbsp; WeGo</span>
     </div>
       <ul class="nav-links">
@@ -34,9 +34,15 @@
           </a>
         </li>
         <li>
+          <a href="<?php echo URLROOT?>/Admin/vehicle">
+            <i class='bx bx-box' ></i>
+            <span class="links_name">&nbsp; Add Vehicles</span>
+          </a>
+        </li>
+        <li>
           <a href="<?php echo URLROOT?>/Admin/vehicles">
             <i class='bx bx-box' ></i>
-            <span class="links_name">&nbsp; Vehicles</span>
+            <span class="links_name">&nbsp; View Vehicles</span>
           </a>
         </li>
         <li>

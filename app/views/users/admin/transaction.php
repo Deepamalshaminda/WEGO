@@ -22,31 +22,13 @@
     <div class="home-content">
     <div class="tab">
         <button class="tablink" onclick="openPage('rides')" id="defaultOpen" >Rides</button>
-        <button class="tablink" onclick="openPage('reservations')" >Reservations</button>
         
     </div>
-    <div class="search-box">
-        <input type="text" placeholder="Search...">
-        <div class='bx bx-search' ></div>
-      </div>
     
 
 <div id="rides" class="tabcontent">
   <div class="friend-list" id="results">
-    <!-- <div class="friend-card">
-      
-      <div class="friend-name"><img src="../public/img/v1.png" class="friend-picture" >
-      <div class="details">
-      <p> Reservation Id : 001 </p> 
-      <p>Driver Id : 030 </p> 
-      <p>Vehicle Id : KT 8976 </p>
-      <p>Payments : Rs 2500.00 </p>
-      </div>
-      </div>
-      <br>
-      <br>
-      
-    </div> -->
+    
     <?php $count = 0; ?>
     <?php foreach($data['transactions'] as $transaction): ?>
       <?php if ($count >= 2) break; ?>
@@ -102,7 +84,6 @@ viewAllButton.addEventListener('click', () => {
           <p>${transaction.earning_rec_id}</p> 
           <p>Supplier Id : 025</p> 
           <p>Vehicle Id : ${transaction.vehicleno}</p> 
-          <p>No of Passengers : ${transaction.no_ofPassengers}</p> 
           <p>Amount : Rs ${transaction.total_earnings}</p>
         </div>
       </div>

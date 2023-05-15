@@ -15,15 +15,15 @@
       <div class="overview-boxes">
         <div class="box">
           <div class="right-side">
-            <div class="box-topic-link"> Today's Rides</div>
-            <div class="number">25</div>
+            <div class="box-topic-link"> Rides</div>
+            <div class="number"> <?php echo $data['total_rides']; ?> </div>
             
         </div>
         </div>
         <div class="box">
           <div class="right-side">
-            <div class="box-topic-link"> Today's Reservations</div>
-           <div class="number">30</div>
+            <div class="box-topic-link"> Vehicles </div>
+           <div class="number"><?php echo $data['total_vehicles']; ?></div>
           
           </div>
           
@@ -32,78 +32,53 @@
         
       </div>
 
-      <div class="sales-boxes">
-        <div class="recent-sales box">
-          
-          
-          
-        
 
-          <table class="graph">
-    <caption>Transactions Summary</caption>
-    <thead>
-      <tr>
-        <th scope="col">Month</th>
-        <th scope="col">Transactions</th>
-      </tr>
-    </thead><tbody>
-      <tr style="height:50%">
-        <th scope="row">January</th>
-        <td><span>50%</span></td>
-      </tr>
-      <tr style="height:55%">
-        <th scope="row">February</th>
-        <td><span>55%</span></td>
-      </tr>
-      <tr style="height:65%">
-        <th scope="row">March</th>
-        <td><span>65%</span></td>
-      </tr>
-      <tr style="height:30%">
-        <th scope="row">April</th>
-        <td><span>30%</span></td>
-      </tr>
-      <tr style="height:55%">
-        <th scope="row">May</th>
-        <td><span>55%</span></td>
-      </tr>
-      <tr style="height:67%">
-        <th scope="row">June</th>
-        <td><span>67%</span></td>
-      </tr>
-      <tr style="height:80%">
-        <th scope="row">Jully</th>
-        <td><span>80%</span></td>
-      </tr>
-      <tr style="height:66%">
-        <th scope="row">August</th>
-        <td><span>66%</span></td>
-      </tr>
-      <tr style="height:75%">
-        <th scope="row">September</th>
-        <td><span>75%</span></td>
-      </tr>
-      <tr style="height:70%">
-        <th scope="row">October</th>
-        <td><span>70%</span></td>
-      </tr>
-      <tr style="height:72%">
-        <th scope="row">November</th>
-        <td><span>72%</span></td>
-      </tr>
-      <tr style="height:54%">
-        <th scope="row">December</th>
-        <td><span>54%</span></td>
-      </tr>
-    </tbody>
-  </table>
-  </div> 
-    
+     <div class="sales-boxes">
+        <div class="recent-sales box">
+          <div class="title">Transactions Summary</div>
+          <div class="graph-card">
+      <h3 class="summery">Transactions Summary of last month</h3>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+  
+  
+    <canvas id="myChart"></canvas>
+    <script>
+      <?php
+        $data = [4, 3, 5, 4, 3, 1 , 5];
+      ?>
+      var ctx = document.getElementById('myChart').getContext('2d');
+      var chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saterday' , 'Sunday'],
+          datasets: [{
+            label: 'Transaction',
+            data: <?php echo json_encode($data) ?>,
+            backgroundColor: 'rgba(52, 45, 113)',
+            borderColor: 'rgba(0, 116, 203, 0.35)',
+            borderWidth: 0
+            
+            
+          }]
+        },
+        options: {
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true
+              }
+            }]
+          }
+        }
+      });
+    </script>
+          
+        </div></div>
           
         
         <div class="card">
             <div class="driver-topic">
-            Recently added users
+            Users
             </div>
             
             <div class="driver-details">

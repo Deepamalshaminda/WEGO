@@ -20,7 +20,7 @@
      
     <div class="home-content">
     <div class="tab">
-        <button class="tablink" onclick="openPage('add')" id="defaultOpen" > Add Vehicles </button>
+        
         <button class="tablink" onclick="openPage('view')" > View Vehicles </button>
         
     </div>
@@ -31,10 +31,10 @@
 
 <div id="add" class="tabcontent">
   <div class="friend-list">
-  <?php foreach($data['vehicles'] as $vehicle): ?>
+  <?php foreach($data['vehicle'] as $vehicle): ?>
     <div class="friend-card">
       
-      <div class="friend-name"><img src="../public/img/v3.png" class="friend-picture" > <?php echo $vehicle->vehicleno; ?> <br> Added By: Roshan Madushan </div>
+      <div class="friend-name"><img src="../public/img/v3.png" class="friend-picture" > <?php echo $vehicle->vehicleno; ?> <br> Added By: <?php echo $vehicle->name; ?> </div>
       <br>
       <br>
       <div class="friend-actions">
@@ -44,9 +44,9 @@
       </div>
     </div>
 
-    <div class="friend-card">
+    <!-- <div class="friend-card">
       
-      <div class="friend-name"><img src="../public/img/v3.png" class="friend-picture" > <?php echo $vehicle->vehicleno; ?> <br> Added By: Roshan Madushan </div>
+      <div class="friend-name"><img src="../public/img/v3.png" class="friend-picture" > <?php echo $vehicle->vehicleno; ?> <br> Added By: <?php echo $vehicle->name; ?></div>
       <br>
       <br>
       <div class="friend-actions">
@@ -54,7 +54,7 @@
       <button class="details-button"><a href="<?php echo URLROOT?>/Admin/addvehicle/<?php echo $vehicle->ve_id; ?>"> Add </a></button>
         
       </div>
-    </div>
+    </div> -->
     
     <?php endforeach; ?>
     <!-- <div class="friend-card">

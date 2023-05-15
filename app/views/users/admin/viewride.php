@@ -53,18 +53,7 @@
             </div>
         </div>
         <br>
-      
-      <div class="projects">
-            
-            <div class="projects_data">
-                 <div class="data">
-
-                 <button class="view-profile"><a href="<?php echo URLROOT?>/Viewdriverprofiles/viewdriverprofile">View Location</a></button>
-                    
-                 </div>
-
-            </div>
-        </div>
+     
       
         
     </div>

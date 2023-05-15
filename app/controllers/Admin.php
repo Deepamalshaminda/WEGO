@@ -87,9 +87,15 @@
 
 public function vehicles(){
   $data = [];
-  $data['vehicles']=$this->model('Vehicle')->showVehicles();
+  $data['vehicle']=$this->model('Vehicle')->showVehicles();
   //view
   $this->view('users/admin/vehicles',$data);
+}
+public function vehicle(){
+  $data = [];
+  $data['vehicle']=$this->model('Vehicle')->showVehicles();
+  //view
+  $this->view('users/admin/vehicle',$data);
 }
 public function viewvehicle($ve_id){
   $data = [];
@@ -155,8 +161,6 @@ if ($this->model('Vehicle')->approveVehicleRequests($ve_id)) {
 }
 }
 
-
-
 public function deny($ve_id){
 
   if ($this->model('Vehicle')->denyVehicleRequests($ve_id)){
@@ -187,16 +191,35 @@ public function deny($ve_id){
     $this->view('users/admin/viewuser' ,$data);
   }
   
-  public function suspendUser($us_id) {
-    $data = [];
-    $data['users'] =  $this->userModel->updateUserStatus($us_id, 'suspended');
+  
+  public function suspendUser($us_id){
 
-      //view
-    $this->view('users/admin/accountsuspended');
+    if ($this->model('User')->suspendUser($us_id)){
+      redirect('Admin/viewUser');
+      return true;
+    };
+  
+    $this->view('users/admin/viewUser');
+    return false;
   }
+  public function dashboard(){
 
+    $total_rides = $this->rideModel->calculateTotalRides();
+    $total_vehicles = $this->vehicleModel->calculateTotalVehicles();
+    $chart = $this->transactionModel->calculateTransactions();
+   
+
+    $data = [
+       'total_rides' => $total_rides,
+       'total_vehicles' => $total_vehicles,
+       'chart' => $chart,
+    
+    ];
+
+    $this->view('admin/admindash', $data);
+}
   
-  
+
 }
    
   

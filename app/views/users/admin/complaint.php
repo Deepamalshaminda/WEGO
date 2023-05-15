@@ -19,10 +19,7 @@
     <div class="tab">
       <button class=" tablink" onclick="openPage('sendrequests')" id="defaultOpen">Complaints</button>
     </div>
-    <div class="search-box">
-      <input type="text" placeholder="Search...">
-      <div class='bx bx-search'></div>
-    </div>
+    
     <div id="Parentrequests" class="tabcontent">
       <div class="friend-list">
         <?php foreach($data['complaints'] as $complaint): ?>

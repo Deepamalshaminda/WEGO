@@ -16,14 +16,14 @@
         <div class="box">
           <div class="right-side">
             <div class="box-topic-link"> Rides</div>
-            <div class="number"> <?php echo $data['total_rides']; ?> </div>
+            <div class="number"> 125 </div>
             
         </div>
         </div>
         <div class="box">
           <div class="right-side">
             <div class="box-topic-link"> Vehicles </div>
-           <div class="number"><?php echo $data['total_vehicles']; ?></div>
+           <div class="number"> 50 </div>
           
           </div>
           

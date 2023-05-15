@@ -194,12 +194,16 @@
         return $row;
     }
 
-    // public function getUsersByrole($role_id)
-    // {
-    //     $this->db->query('SELECT * FROM user WHERE role_id = :role_id');
-    //     $this->db->bind(':role_id', $role_id);
-    //     $row = $this->db->single();
-    //     return $row;
-    // }
+    public function updateUserStatus($userId, $account_status) {
+      $this->db->query("UPDATE user SET account_status = 'suspended' WHERE us_id = :us_id");
+      $this->db->bind(':us_id', $us_id);
+            if($this->db->execute()){
+                return true;
+              } else {
+                return false;
+              }
 
+      // Update the user's status in the database
+      // You can use an ORM or PDO to execute a SQL query
+  }
   }

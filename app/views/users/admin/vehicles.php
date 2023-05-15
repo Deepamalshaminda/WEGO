@@ -31,7 +31,7 @@
 
 <div id="add" class="tabcontent">
   <div class="friend-list">
-  <?php foreach($data['vehicle'] as $vehicle): ?>
+  <?php foreach($data['vehicles'] as $vehicle): ?>
     <div class="friend-card">
       
       <div class="friend-name"><img src="../public/img/v3.png" class="friend-picture" > <?php echo $vehicle->vehicleno; ?> <br> Added By: Roshan Madushan </div>

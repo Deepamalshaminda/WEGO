@@ -28,16 +28,18 @@
       </div>
         <div id="ongoing" class="tabcontent">
         <div class="friend-list">
+        <?php foreach($data['rides'] as $trip_information): ?>
     <div class="friend-card">
       
-      <div class="friend-name"><img src="../public/img/v5.png" class="friend-picture" >Route : Kandy-Galle</div>
+      <div class="friend-name"><img src="../public/img/v5.png" class="friend-picture" > Start : <?php echo $trip_information->start; ?></div>
       <br>
       <br>
       <div class="friend-actions">
-        <button class="accept-button"><a href="<?php echo URLROOT?>/Admin/viewride"> View </a></button>
+        <button class="accept-button"><a href="<?php echo URLROOT?>/Admin/viewride/<?php echo $trip_information->trip_id; ?>"> View </a></button>
       </div>
     </div>
-    <div class="friend-card">
+    <?php endforeach; ?>
+    <!-- <div class="friend-card">
       
       <div class="friend-name"><img src="../public/img/v2.png" class="friend-picture" >Route : Kaluthara-Panadura</div>
       <br>
@@ -178,7 +180,7 @@
         <button class="accept-button">View</button>
        
       </div>
-    </div>
+    </div> -->
   </div>
   
   

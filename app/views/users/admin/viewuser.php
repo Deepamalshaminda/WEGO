@@ -55,13 +55,34 @@
       
     
             
-            <div class="projects_data">
-                 <div class="data">
-                    <button class="suspend">Suspend Account</button>
-                    
-                 </div>
-                 
-            </div>
+        <div class="projects_data">
+  <div class="data">
+    <button class="suspend" data-user-id="<?php echo $data['users']->us_id; ?>">
+      <?php echo $data['users']->account_status; ?>Suspend Account
+    </button>
+  </div>
+</div>
+
+<script>
+$(document).ready(function() {
+  $('.suspend').click(function() {
+    var userId = $(this).data('user-id');
+    $.ajax({
+      type: 'POST',
+      url: 'admin/suspendUser',
+      data: { us_id: userId },
+      success: function(response) {
+        // Handle the response from the server
+        console.log(response);
+      },
+      error: function() {
+        // Handle any errors that occur during the request
+      }
+    });
+  });
+});
+</script>
+
       
         
     </div>

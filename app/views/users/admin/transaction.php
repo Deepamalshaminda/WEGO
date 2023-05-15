@@ -56,8 +56,7 @@
         <div class="details">
           <p> <?php echo $transaction->earning_rec_id; ?> </p> 
           <p>Supplier Id : 025 </p> 
-          <p>Vehicle Id : <?php echo $transaction->vehicleno;?> </p> 
-          <p>No of Passengers : <?php echo $transaction->no_ofPassengers;?> </p> 
+          <p>Vehicle No : <?php echo $transaction->vehicleno;?> </p> 
           <p>Amount : Rs <?php echo $transaction->total_earnings;?> </p>
         </div>
       </div>
@@ -103,7 +102,7 @@ viewAllButton.addEventListener('click', () => {
           <p>${transaction.earning_rec_id}</p> 
           <p>Supplier Id : 025</p> 
           <p>Vehicle Id : ${transaction.vehicleno}</p> 
-          <p>No of Passengers : 24</p> 
+          <p>No of Passengers : ${transaction.no_ofPassengers}</p> 
           <p>Amount : Rs ${transaction.total_earnings}</p>
         </div>
       </div>

@@ -12,6 +12,7 @@
       $this->transactionModel = $this->model('Transaction');
       $this->userModel = $this->model('User');
       $this->vehicleModel = $this->model('Vehicle');
+      $this->rideModel = $this->model('Ride');
       // $this->rideModel = $this->model('Ride');
       
 
@@ -62,9 +63,17 @@
 
     public function rideschedule(){
       $data = [];
-      // $data['rides'] =  $this->rideModel->getRides();
+      $data['rides'] =  $this->rideModel->viewrides();
+      //view
     //view
-    $this->view('users/admin/rideschedule');
+    $this->view('users/admin/rideschedule',$data);
+  }
+
+  public function viewride($trip_id){
+    $data = [];
+    $data['rides'] =  $this->rideModel->viewridesById($trip_id);
+    //view
+    $this->view('users/admin/viewride',$data);
   }
 
   public function pendingride(){
@@ -76,46 +85,88 @@
 
 
 
-  public function vehicle(){
-    $data = [];
-    $data['vehicle'] =  $this->vehicleModel->showVehicles();
-    //view
-    $this->view('users/admin/vehicle',$data);
+public function vehicles(){
+  $data = [];
+  $data['vehicles']=$this->model('Vehicle')->showVehicles();
+  //view
+  $this->view('users/admin/vehicles',$data);
+}
+public function viewvehicle($ve_id){
+  $data = [];
+  $data['vehicle']=$this->model('Vehicle')->showVehiclesById($ve_id);
+  //view
+  $this->view('users/admin/viewvehicle',$data);
+}
+public function addvehicle($ve_id){
+  $data = [];
+  $data['vehicle'] =  $this->model('Vehicle')->showVehiclesById($ve_id);
+  //view
+  $this->view('users/admin/vehicleadd',$data);
+}
+
+public function download($ve_id)
+{
+  $vehicle = $this->model('Vehicle')->showVehiclesById($ve_id);
+
+  
+  if (!$vehicle) {
+      flash('error', 'Vehicle not found');
+      redirect('vehicles');
   }
-  public function viewvehicle($ve_id){
-    $data = [];
-    $data['vehicle'] =  $this->vehicleModel->showVehiclesById($ve_id);
-    //view
-    $this->view('users/admin/viewvehicle',$data);
-  }
-  public function addvehicle(){
-    $data = [];
-    $data['vehicle'] =  $this->vehicleModel->showVehicles();
-    //view
-    $this->view('users/admin/vehicleadd',$data);
+
+  
+  if (!$vehicle->vehicle_document) {
+      flash('error', 'No document uploaded');
+      redirect('vehicles');
   }
 
-  public function approve($ve_id){
+  // file path
+  $file = APPROOT . '/../public/' . $vehicle->vehicle_document;
 
-    if ($this->vehicleModel->approveVehicleRequests($ve_id)){
-      redirect('Admin/addvehicle');
-      return true;
-    };
 
-    $this->view('users/admin/vehicleadd');
-    return false;
+  
+  if (!file_exists($file)) {
+      flash('error', 'File not found');
+      redirect('vehicles');
   }
 
-  public function deny($ve_id){
+  //headers
+  header('Content-Description: File Transfer');
+  header('Content-Type: application/octet-stream');
+  header('Content-Disposition: attachment; filename="' . basename($file) . '"');
+  header('Expires: 0');
+  header('Cache-Control: must-revalidate');
+  header('Pragma: public');
+  header('Content-Length: ' . filesize($file));
 
-    if ($this->vehicleModel->denyVehicleRequests($ve_id)){
-      redirect('Admin/addvehicle');
-      return true;
-    };
+  
+  readfile($file);
+}
 
-    $this->view('users/admin/vehicleadd');
-    return false;
-  }
+
+public function approve($ve_id)
+{
+if ($this->model('Vehicle')->approveVehicleRequests($ve_id)) {
+  redirect('Admin/addvehicle');
+  return true;
+} else {
+  $this->view('users/admin/vehicle');
+  return false;
+}
+}
+
+
+
+public function deny($ve_id){
+
+  if ($this->model('Vehicle')->denyVehicleRequests($ve_id)){
+    redirect('Admin/addvehicle');
+    return true;
+  };
+
+  $this->view('users/admin/vehicleadd');
+  return false;
+}
     public function transactions(){
       $data = [];
       $data['transactions'] =  $this->transactionModel->getTransactions();
@@ -135,14 +186,18 @@
     //view
     $this->view('users/admin/viewuser' ,$data);
   }
-  public function viewride(){
-    $data = [
-      'title' => 'viewride'
-    ];
-    //view
-    $this->view('users/admin/viewride');
+  
+  public function suspendUser($us_id) {
+    $data = [];
+    $data['users'] =  $this->userModel->updateUserStatus($us_id, 'suspended');
+
+      //view
+    $this->view('users/admin/accountsuspended');
   }
 
+  
+  
+}
    
-  }
+  
   

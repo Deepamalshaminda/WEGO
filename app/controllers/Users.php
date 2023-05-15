@@ -253,10 +253,12 @@ public function index()
 
           if($vehicle_status == 'own' AND $service_type == 'school'){
             $this -> view('users/driver/vehicle-own-school-transport/d_dashboard-own-school', $data);
-            $driver_id = $driver -> dr_id;
+            $driver_id = $driver -> driver_id;
             $vehicle = $this->userModel->getVehicleByOwnDriverId($us_id);
           } elseif ($vehicle_status == 'own' AND $service_type == 'office'){
             $this -> view('users/driver/vehicle-own-office-transport/d_dashboard-own-office', $data);
+            $driver_id = $driver -> driver_id;
+            $vehicle = $this->userModel->getVehicleByOwnDriverId($us_id);
           } elseif ($vehicle_status == 'find' AND $service_type == 'school'){
             $this -> view('users/driver/vehicle-find-school-transport/d_dashboard-find-school', $data);
           }elseif ($vehicle_status == 'find' AND $service_type == 'office'){
@@ -366,7 +368,7 @@ public function index()
     $_SESSION['user_id'] = $user->us_id;
     $_SESSION['user_email'] = $user->email;
     $_SESSION['user_name'] = $user->name;
-    $_SESSION['driver_id'] = $driver-> dr_id;
+    $_SESSION['driver_id'] = $driver-> driver_id;
     $vehicle = $this->userModel->getVehicleByOwnDriverId($_SESSION['user_id']);
     $_SESSION['vehicle_id'] = $vehicle-> ve_id;
 
@@ -399,7 +401,7 @@ public function index()
     $loggedInUser = $this->userModel->login($data['email'], $data['password']);
     $us_id = $loggedInUser->us_id;
     $driver = $this -> driverModel -> getDriverByUserId($us_id);
-    $driver_id = $driver -> dr_id;
+    $driver_id = $driver -> driver_id;
     $vehicle = $this->userModel->getVehicleByOwnDriverId($data, $driver_id);
     if($loggedInUser){
       // Create Session
@@ -421,7 +423,7 @@ public function index()
     $loggedInUser = $this->userModel->login($data['email'], $data['password']);
     $us_id = $loggedInUser->us_id;
     $driver = $this -> driverModel -> getDriverByUserId($us_id);
-    $driver_id = $driver -> dr_id;
+    $driver_id = $driver -> driver_id;
     $vehicle = $this->userModel->getVehicleByOwnDriverId($data, $driver_id);
     if($loggedInUser){
       // Create Session

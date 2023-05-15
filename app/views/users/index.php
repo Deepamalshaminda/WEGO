@@ -23,18 +23,7 @@
             <h4><a class="top-link" href="<?php echo URLROOT?>/users/register">SIGNUP</a></h4>
         </div>
     </div>
-    <div class="col-12 bottom">
-        <div class="col-12 ow-pr">
-            <div class="col-3 card">
-                <p><strong class="strong">WEGO</strong> is a web app that simplifies transport management for both 
-                offices and schools. Our platform connects users with trusted drivers, providing a hassle-free way 
-                to find reliable and safe transportation for your employees or children. Whether you're a driver 
-                looking for work or a business in need of transportation services, Wego makes it easy to find and 
-                book the right option for you. Join our community today and experience stress-free transport management 
-                like never before!</p>
-            </div>
-        </div> 
-    </div>
+    
     <div class="col-12 bottom-2">
         <div class="col-12">
             <div class="col-4 out-login-container">
@@ -45,14 +34,36 @@
                     </div>
                 </div>
             </div>
-            <div class="col-4 out-login-container">
+            <div class="col-3 card">
+                        <p><strong class="strong">WEGO</strong> is a web app that simplifies transport management for both 
+                        offices and schools. Our platform connects users with trusted drivers, providing a hassle-free way 
+                        to find reliable and safe transportation for your employees or children. Whether you're a driver 
+                        looking for work or a business in need of transportation services, Wego makes it easy to find and 
+                        book the right option for you. Join our community today and experience stress-free transport management 
+                        like never before!</p>
+            </div>
+            <!-- <div class="col-4 out-login-container">
                 <div class="col-8 login-container-explore-vehicle">
                     <h3 class="add-margin-explore-vehicle">explore Our Vehicle Gallery without Login !!</h3>
                     <div class="btn-container col-12">
                         <div class="btn-submit"><a href="<?php echo URLROOT?>/users/login">Explore</a></div>
                     </div>
                 </div>
-            </div>
+            </div> -->
+            <!-- <div class="col-12 bottom">
+                <div class="col-12 ow-pr">
+                    <div class="col-3 card">
+                        <p><strong class="strong">WEGO</strong> is a web app that simplifies transport management for both 
+                        offices and schools. Our platform connects users with trusted drivers, providing a hassle-free way 
+                        to find reliable and safe transportation for your employees or children. Whether you're a driver 
+                        looking for work or a business in need of transportation services, Wego makes it easy to find and 
+                        book the right option for you. Join our community today and experience stress-free transport management 
+                        like never before!</p>
+                    </div>
+                </div> 
+            </div> -->
+
+
             <div class="col-4 out-login-container">
                 <div class="col-6 login-container">
                 <h3 class="add-margin">New user?</h3>

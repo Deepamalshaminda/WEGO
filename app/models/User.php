@@ -175,5 +175,15 @@
         } else {
           return false;
         }
-    } 
+    }
+    public function getUserById($id)
+  {
+    $this->db->query('SELECT * FROM user WHERE us_id = :id');
+    // Bind value
+    $this->db->bind(':id', $id);
+
+    $row = $this->db->single();
+
+    return $row;
+  }
   }

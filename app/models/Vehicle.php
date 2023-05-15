@@ -37,7 +37,7 @@ class Vehicle
   }
 
     public function addvehicle($data,$fileVehicleImage){
-      $this->db->query('INSERT INTO vehicle (vehicleno, model, color, year, address, route, starttime, seatingcapacity, Ac, expirylicence, service_type, comments, vehicle_image, vehicle_document, id) VALUES(:vehicleno, :model, :color, :year, :address, :route, :starttime, :seatingcapacity, :Ac, :expirylicence, :service_type, :comments, :vehicle_image, :vehicle_document, :id)');
+      $this->db->query('INSERT INTO vehicle (vehicleno, model, color, year, address, route, starttime, seatingcapacity, Ac, expirylicence, service_type, charge_for_a_km, comments, vehicle_image, vehicle_document, id) VALUES(:vehicleno, :model, :color, :year, :address, :route, :starttime, :seatingcapacity, :Ac, :expirylicence, :service_type, :charge_for_a_km, :comments, :vehicle_image, :vehicle_document, :id)');
       // Bind values
       $this->db->bind(':vehicleno', $data['vehicleno']);
       //$this->db->bind(':user id', $data['user id']);
@@ -53,6 +53,7 @@ class Vehicle
       $this->db->bind(':expirylicence', $data['expirylicence']);
       $this->db->bind(':service_type', $data['service_type']);
       $this->db->bind(':comments', $data['comments']);
+      $this->db->bind(':charge_for_a_km', $data['charge_for_a_km']);
       $this->db->bind(':vehicle_image', $fileVehicleImage['image_name']);
       $this->db->bind(':vehicle_document', $data['vehicle_document']);
 

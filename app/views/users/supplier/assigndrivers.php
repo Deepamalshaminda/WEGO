@@ -16,7 +16,7 @@
     <h2>Choose your driver from here...</h2>
     <br>
     <br>
-    <form action="<?php echo URLROOT; ?>/rides/assignDrivers" method="post">
+    <form action="<?php echo URLROOT; ?>/rides/assignDriverToVehicle" method="post">
     <label for="vehicleid">Vehicle ID:</label>
     <input type="text" id="vehicleid" name="vehicleid" value="<?php echo $data['vehicle_id']; ?>">
 <br>
@@ -30,9 +30,9 @@
 <select id="driverid" name="driverid">
     <option value="select">-Select</option>
     
-    <!--<?php foreach($data['drivers'] as $drivers): ?>-->
-        <option value="<?php echo $drivers->us_id; ?>">Driver ID <?php echo $data['drivers']; ?></option>
-   <!-- <?php endforeach; ?>-->
+    <?php foreach($data['drivers'] as $drivers): ?>
+        <option value="<?php echo $drivers->driver_id; ?>">Driver ID <?php echo $drivers->driver_id; ?></option>
+   <?php endforeach; ?>
 </select>
 
   <br>

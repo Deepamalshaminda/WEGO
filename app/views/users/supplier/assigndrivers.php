@@ -21,18 +21,18 @@
     <input type="text" id="vehicleid" name="vehicleid" value="<?php echo $data['vehicle_id']; ?>">
 <br>
 <label for="vehicleno">Vehicle No:</label>
-<input type="text" id="vehicleno" name="vehicleno" value="<?php echo $data['vehicle'];?>">
+<input type="text" id="vehicleno" name="vehicleno" value="<?php echo $data['vehicle_no'];?>">
 <br>
 <label for="route">Route:</label>
-<input type="text" id="route" name="route" value="<?php echo $data['vehicle']; ?>">
+<input type="text" id="route" name="route" value="<?php echo $data['route']; ?>">
 <br>
 <label for="driverid">Choose a Driver:</label>
 <select id="driverid" name="driverid">
     <option value="select">-Select</option>
     
-    <?php foreach($data['drivers'] as $driver): ?>
-        <option value="<?php echo $driver->us_id; ?>">Driver ID <?php echo $data['driver']; ?></option>
-    <?php endforeach; ?>
+    <!--<?php foreach($data['drivers'] as $drivers): ?>-->
+        <option value="<?php echo $drivers->us_id; ?>">Driver ID <?php echo $data['drivers']; ?></option>
+   <!-- <?php endforeach; ?>-->
 </select>
 
   <br>

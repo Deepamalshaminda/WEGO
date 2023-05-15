@@ -16,7 +16,7 @@ class AssignDrivers {
         return $vehicles;
     }
 
-    // retrieve all drivers from the database
+    // retrieve all drivers from the database of supplier
     public function getDrivers() {
         $this->db->query('SELECT driver_id from driver WHERE id = 154');
         $drivers = $this->db->resultSet();

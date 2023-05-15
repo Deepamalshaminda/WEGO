@@ -1,153 +1,66 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
 
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/dashboard.css">
-<link rel="stylesheet" href="<?php echo URLROOT; ?>/css/prequest.css">
+<link rel="stylesheet" href="<?php echo URLROOT; ?>/css/requestcards.css">
 <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-<script type="text/javascript" src="<?php echo URLROOT; ?>/js/list.js"></script>
+
 <title><?php echo SITENAME; ?></title>
 <html>
 </head>
 
-
 <body>
 
-
 <?php require APPROOT . '/views/inc/sidebarnav.php' ;?>
-     
-    <div class="home-content">
-<button class="tablink" onclick="openPage('Parentrequests')" id="defaultOpen" >Parent Requests</button>
-<button class="tablink" onclick="openPage('PAccepted')" >Accepted Parent Requests</button>
 
-<!--<div id="Parentrequests" class="tabcontent">
-  <div class="friend-list">
-    <div class="friend-card">
-      
-      <div class="friend-name"><img src="../public/img/ac1.png" class="friend-picture" >Sheron Kingsley</div>
-      <br>
-      <br>
-      <div class="friend-actions">
-        <button class="accept-button">Accept</button>
-        <button class="delete-button">Delete</button>
-      </div>
-    </div>
-    <div class="friend-card">
-      
-      <div class="friend-name"><img src="../public/img/ac8.png " class="friend-picture" >Jane De Silva</div> 
-      <br>
-      <br>
-      <div class="friend-actions">
-        <button class="accept-button">Accept</button>
-        <button class="delete-button">Delete</button>
-      </div>
-    </div>
-    <div class="friend-card">
-      
-      <div class="friend-name"><img src="../public/img/o1.png" class="friend-picture" >Anne De Zoysa</div>
-      <br>
-      <br>
-      <div class="friend-actions">
-        <button class="accept-button">Accept</button>
-        <button class="delete-button">Delete</button>
-      </div>
-    </div>
-    <div class="friend-card">
-      
-      <div class="friend-name"><img src="../public/img/w1.png" class="friend-picture" >John Fernando</div>
-      <br>
-      <br>
-      <div class="friend-actions">
-        <button class="accept-button">Accept</button>
-        <button class="delete-button">Delete</button>
-      </div>
-    </div>
-    <div class="friend-card">
-      
-      <div class="friend-name"><img src="../public/img/o6.png" class="friend-picture" >George Perera</div>
-      <br>
-      <br>
-      <div class="friend-actions">
-        <button class="accept-button">Accept</button>
-        <button class="delete-button">Delete</button>
-      </div>
-    </div>
-
-    <div class="friend-card">
-      
-      <div class="friend-name"><img src="../public/img/w5.png" class="friend-picture" >Melissa De Silva</div>
-      <br>
-      <br>
-      <div class="friend-actions">
-        <button class="accept-button">Accept</button>
-        <button class="delete-button">Delete</button>
-      </div>
+<div class="home-content">
+  <br>
+  <h2>Parent Requests</h2>
+  <br>
+  <br>
+  <?php foreach ($data['users'] as $user): ?>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-text">Parent ID: <?php echo $user->us_id; ?></h5>
+      <h5 class="card-title"> <?php echo $user->name; ?></h5>
+      <h5 class="card-text">To Vehicle: <?php echo $vehicle->vehicleno; ?></h5>
+      <button type="button" class="btn btn-primary accept-btn" >Accept</button>
+      <button type="button" class="btn btn-secondary remove-btn">Remove</button>
     </div>
   </div>
-  
-  
-  </div>
+<?php endforeach; ?>
+ 
+</div>
+   
 
-<div id="PAccepted" class="tabcontent">
-  <div class="friend-list">
-    <div class="friend-card">
-      
-      <div class="friend-name"><img src="../public/img/p4.png" class="friend-picture" >Adam Awishka</div>
-      <br>
-      <br>
-      <div class="friend-actions">
-        <button class="details-button">View Details</button>
-       
-      </div>
-    </div>
-    <div class="friend-card">
-      
-      <div class="friend-name"><img src="../public/img/p8.png" class="friend-picture" >Susan Perera</div>
-      <br>
-      <br>
-      <div class="friend-actions">
-        <button class="details-button">View Details</button>
-      </div>
-    </div>
-    <div class="friend-card">
-      
-      <div class="friend-name"><img src="../public/img/p7.png" class="friend-picture" >Arthur Fernando</div>
-      <br>
-      <br>
-      <div class="friend-actions">
-        <button class="details-button">View Details</button>
-      </div>
-    </div>
-    <div class="friend-card">
-      
-      <div class="friend-name"><img src="../public/img/ac4.png" class="friend-picture" >Peter Perera</div>
-      <br>
-      <br>
-      <div class="friend-actions">
-        <button class="details-button">View Details</button>
-      </div>
-    </div>
-  
-</div>-->
-
-<div id="Parentrequests" class="tabcontent">
-  <div class="friend-list">
-    <?php foreach ($data['parentRequests'] as $request): ?>
-      <div class="friend-card">
-        <div class="friend-name">
-          <img src="<?php echo $request['picture']; ?>" class="friend-picture">
-          <?php echo $request['name']; ?>
-        </div>
-        <br>
-        <br>
-        <div class="friend-actions">
-          <button class="accept-button">Accept</button>
-          <button class="delete-button">Delete</button>
-        </div>
-      </div>
-    <?php endforeach; ?>
-  </div>
+  </div> 
 </div>
 
     </body>
+    <!-- <script>
+ var acceptBtns = document.querySelectorAll('.accept-btn');
+acceptBtns.forEach(function(acceptBtn) {
+  acceptBtn.addEventListener('click', function() {
+    // Update the button text
+    this.textContent = 'Accepted';
+    
+    // Make an AJAX request to update the database
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '<?php echo URLROOT; ?>/prequests/viewParentRequest');
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onload = function() {
+      if (xhr.status === 200) {
+        
+        console.log(xhr.responseText);
+      } else {
+        console.log('Request failed. Returned status of ' + xhr.status);
+      }
+    };
+    xhr.send('req_id=' + this.id.substring(9) + '&status=Accepted');
+  });
+});
+
+</script> -->
+
 
 
 

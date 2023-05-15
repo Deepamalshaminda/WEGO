@@ -37,8 +37,8 @@ class rides extends Controller
 
     // retrieve the list of drivers from the database
     $vehicle = $assignDrivers->getVehicleByVehicleId($vehicle_id);
-    $supplier_id = $vehicle -> id;
-    $drivers = $assignDrivers->getDrivers($supplier_id);
+    $drivers = $assignDrivers->getDrivers();
+    
 
     
 
@@ -46,6 +46,7 @@ class rides extends Controller
     $vehicle_id = $vehicle -> ve_id;
     $vehicle_no = $vehicle -> vehicleno;
     $route = $vehicle -> route;
+    
 
     // pass the driver list and selected vehicle information to the view
     $data = [
@@ -57,23 +58,23 @@ class rides extends Controller
     $this->view('users/supplier/assigndrivers', $data);
   }
 
-  public function assignDriverToVehicle(){
+  //public function assignDriverToVehicle(){
     // load the assignDrivers model
-    require_once APPROOT . '/models/assignDrivers.php'; 
+   // require_once APPROOT . '/models/assignDrivers.php'; 
 
     // create a new instance of the assignDrivers model
-    $assignDrivers = new assignDrivers($_SESSION['user_id']);
+    //$assignDrivers = new assignDrivers($_SESSION['user_id']);
 
     // retrieve the selected driver and vehicle information from the form data
-    $driver_id = $_POST['driverid'];
-    $vehicle_id = $_POST['vehicleid'];
+    //$driver_id = $_POST['driverid'];
+    //$vehicle_id = $_POST['vehicleid'];
 
     // assign the selected driver to the selected vehicle in the database
-    $assignDrivers->assignDriverToVehicle($driver_id, $vehicle_id);
+    //$assignDrivers->assignDriverToVehicle($driver_id, $vehicle_id);
 
     // redirect back to the assignChangeDrivers page
-    redirect('rides/assignChangeDrivers');
-  }
+    //redirect('rides/assignChangeDrivers');
+  //}
  // public function viewRideInfo(){
     //view
    // $this->view('users/supplier/ongoing');

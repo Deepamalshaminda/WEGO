@@ -18,7 +18,7 @@
        <h1 class="childtopic">Fill your child's details here..</h1>
        <br>
        <section class="formback">
-       <form action="<?php echo URLROOT; ?>/parents/addchild" method="post">
+       <form action="<?php echo URLROOT; ?>/parents/addchild" method="post" enctype="multipart/form-data">
       <div class="container">
        <br>
         <h1 class="topic">Please fill this form with your child's details</h1>
@@ -68,7 +68,22 @@
                                    value="<?php echo $data['school_address']; ?>"> <br>
                             <span class="invalid-feedback"><?php echo $data['school_address_err']; ?></span>
                      </div>
+
+                     <div class="field">
+                            <label for="distance_to_school">Distance to school(km) <sup>*</sup></label> <br>
+                            <input type="text" name="distance_to_school" size="30" placeholder="Enter distance to school in km" required
+                                   class="input-y <?php echo (!empty($data['distance_to_school_err'])) ? 'is-invalid' : ''; ?>"
+                                   value="<?php echo $data['distance_to_school']; ?>"> <br>
+                            <span class="invalid-feedback"><?php echo $data['distance_to_school_err']; ?></span>
+                     </div>
                     
+                     <div class="field">
+                            <label for="child_image">upload a profile picture <sup>*</sup></label> <br>
+                            <input type="file" name="child_image" size="30" placeholder="Upload a profile picture of the child" required
+                                   class="input-y <?php echo (!empty($data['child_image'])) ? 'is-invalid' : ''; ?>"
+                                   value="<?php echo $data['child_image']; ?>"> <br>
+                            <span class="invalid-feedback"><?php echo $data['child_image_err']; ?></span>
+                     </div>
 
                     
 

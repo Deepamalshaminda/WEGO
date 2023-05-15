@@ -42,6 +42,8 @@
                         <h4>DOB : <?php echo $data['child']->dob ?></h4>
                         <br>
                         <h4>Gender : <?php echo $data['child']->gender ?></h4>
+                        <br>
+                        <h4>Distance to school(100km) : <?php echo $data['child']->distance_to_school ?></h4>
                         <!--<p>Kevin Fernando</p>-->
                     </div>
                     <!-- <div class="data">

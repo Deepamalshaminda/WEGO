@@ -10,7 +10,7 @@ class Attendencechild
 
     public function getChildById($id)
     {
-        $this->db->query('SELECT * FROM child WHERE id = :id');
+        $this->db->query('SELECT * FROM child WHERE ch_id = :id');
         $this->db->bind(':id', $id);
         $child = $this->db->single();
         return $child;

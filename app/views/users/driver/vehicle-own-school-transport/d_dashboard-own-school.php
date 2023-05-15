@@ -113,36 +113,36 @@
        
     </section>
 
-    <script>
-        const startButton = document.querySelector("#start");
-        const endButton = document.querySelector("#end");
-
-        startButton.addEventListener('click', () => {
-            startTrip();
-            startButton.classList.remove('active-link');
-            btnSuggessions.classList.add('inactive-link')
-        });
-        endButton.addEventListener('click', () => endTrip());
-
-        let start = null;
-        let end = null;
-
-        const startTrip = async() => {
-            const response = await fetch('http://localhost/projectwego/D_Own_School_Drivers/startTrip');
-            if(response.status == 200){
-                start = await response.json();
-                loadReceivedRequests(received_requests);
-            }
-        }
-
-        const endTrip = async() => {
-            const response = await fetch('http://localhost/projectwego/D_Own_School_Drivers/endTrip');
-            if(response.status == 200){
-                sent_requests = await response.json();
-                loadSentRequests(sent_requests);
-            }
-        }
-    </script>
+<!--    <script>-->
+<!--        const startButton = document.querySelector("#start");-->
+<!--        const endButton = document.querySelector("#end");-->
+<!---->
+<!--        startButton.addEventListener('click', () => {-->
+<!--            startTrip();-->
+<!--            startButton.classList.remove('start-button');-->
+<!--            btnSuggessions.classList.add('end-button')-->
+<!--        });-->
+<!--        endButton.addEventListener('click', () => endTrip());-->
+<!---->
+<!--        let start = null;-->
+<!--        let end = null;-->
+<!---->
+<!--        const startTrip = async() => {-->
+<!--            const response = await fetch('http://localhost/projectwego/D_Own_School_Drivers/startTrip');-->
+<!--            if(response.status == 200){-->
+<!--                start = await response.json();-->
+<!--                loadReceivedRequests(received_requests);-->
+<!--            }-->
+<!--        }-->
+<!---->
+<!--        const endTrip = async() => {-->
+<!--            const response = await fetch('http://localhost/projectwego/D_Own_School_Drivers/endTrip');-->
+<!--            if(response.status == 200){-->
+<!--                sent_requests = await response.json();-->
+<!--                loadSentRequests(sent_requests);-->
+<!--            }-->
+<!--        }-->
+<!--    </script>-->
 
     <script>
         let sidebar = document.querySelector(".sidebar");
@@ -176,12 +176,68 @@
     </div>
   </div>
 </div>
-<div class="trip-button-div col-12">
-      <a href="<?php echo URLROOT;?>/D_Own_School_Drivers/startTrip"><button class="trip-button">
-        <h2>Start Trip on <?php $currentDate = date("Y-m-d");
-        echo $currentDate;?></h2>
-      </button></a>
-</div>
+<!--<div class="trip-button-div col-12">-->
+<!--      <a href="--><?php //echo URLROOT;?><!--/D_Own_School_Drivers/startTrip"><button class="trip-button">-->
+<!--        <h2>Start Trip on --><?php //$currentDate = date("Y-m-d");
+//        echo $currentDate;?><!--</h2>-->
+<!--      </button></a>-->
+<!--</div>-->
+
+    <div class="trip-button-div col-12">
+        <button id="start-trip-btn" class="trip-button" onclick="startTrip(<?php echo $_SESSION['vehicle_id'] ?>)">
+            <h2>Start Trip on <?php $currentDate = date("Y-m-d"); echo $currentDate;?></h2>
+        </button>
+    </div>
+
+
+    <script>
+        function startTrip(vehicleId) {
+            // Change button text and color
+            var btn = document.getElementById("start-trip-btn");
+            btn.innerHTML = "<h2>End Trip on <?php $currentDate = date("Y-m-d"); echo $currentDate;?></h2>";
+            btn.style.backgroundColor = "red";
+
+            // fetchStartTrip(vehicleId);
+            
+            // // Call startTrip function using AJAX
+            // var xhttp = new XMLHttpRequest();
+            // xhttp.onreadystatechange = function() {
+            //     if (this.readyState == 4 && this.status == 200) {
+            //         // Handle server response if necessary
+            //     }
+            // };
+            // xhttp.open("GET", "<?php echo URLROOT;?>/D_Own_School_Drivers/startTrip", true);
+            // xhttp.send();
+
+            
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '<?php echo URLROOT;?>/D_Own_School_Drivers/startTrip', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+            xhr.onload = function () {
+              if (xhr.status === 200) {
+                const response = xhr.responseText;
+                console.log(response);
+                
+                // displayQueryResults(response);
+              } else {
+                console.error('Error running the SQL query: ', xhr.responseText);
+              }
+            };
+
+          
+            const data = 'runQuery=true&pvehicleid='.vehicleId; // POST parameter to indicate that the query should be executed
+            xhr.send(data);
+          
+        }
+
+        // const fetchStartTrip = async(vehicleId) => {
+        //   window.location.href = 'http://localhost/projectwego/D_Own_School_Drivers/startTrip/' + vehicleId;
+        //   console.log("Su");
+        // }
+
+       
+    </script>
 
 <div class="map-div col-12">
   <div class="map-container col-10">

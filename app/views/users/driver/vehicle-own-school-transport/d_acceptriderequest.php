@@ -55,8 +55,8 @@
                  </div>
  
                  <div class="btn-container col-12">
-                     <button class="button"><a class="link" href="<?php echo URLROOT?>/D_ManageDrivers/accept/<?php echo $request->request_id?>">Accept</a></button>
-                     <button class="button"><a class="link" href="<?php echo URLROOT?>/D_ManageDrivers/decline/<?php echo $request->request_id?>">Declline</a></button>
+                     <button class="button"><a class="link" href="<?php echo URLROOT?>/D_Own_School_Drivers/acceptRideRequest/<?php echo $request->request_id?>">Accept</a></button>
+                     <button class="button"><a class="link" href="<?php echo URLROOT?>/D_Own_School_Drivers/declineRideRequest/<?php echo $request->request_id?>">Declline</a></button>
                  </div>
              </div>
          </div>

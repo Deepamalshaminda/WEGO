@@ -7,7 +7,7 @@
             $this->db = new Database;
         }
 
-        public function getPaymentForVehicle($driverId)
+        public function getPaymentForVehicle($userId,$month, $year)
         {
             $this->db->query("SELECT
             sum(p.amount) as 'amount',
@@ -16,11 +16,47 @@
             FROM payment p
             INNER JOIN user u ON u.us_id = p.user_id
             INNER JOIN vehicle v on v.ve_id = p.ve_id
-            WHERE v.driver_id = :id
+            WHERE v.driver_id = :id AND YEAR(p.date) = :year AND MONTH(p.date) = :month
             GROUP BY date(p.date)");
-            $this->db->bind(':id', $driverId);
+            $this->db->bind(':id', $userId);
+            $this->db->bind(':year', $year);
+            $this->db->bind(':month', $month);
             $results = $this->db->resultSet();
             return $results;
+        }
+
+        public function getPresentStudentForVehicle($vehicle_id)
+        {
+            $this->db->query("SELECT
+            c.name as 'child_name',
+            u.contactNumber as 'parent_contact',
+            u.address as 'location'
+            FROM child c
+            INNER JOIN user u ON u.us_id = c.pr_id
+            INNER JOIN vehicle v ON v.ve_id = c.ve_id
+            INNER JOIN student_attendance s ON s.studentid = c.ch_id
+            WHERE c.ve_id = :vehicle_id AND s.mark = 1
+            ");
+            $this->db->bind(':vehicle_id', $vehicle_id);
+            $results = $this->db->resultSet();
+            return $results;
+        }
+
+        public function findStartAndEnd($vehicle_id){
+            $this->db->query("SELECT route FROM vehicles WHERE ve_id = :id");
+            $this->db->bind(':id', $vehicle_id);
+            $result = $this->db->single();
+        }
+
+        public function startTrip($data){
+            $this -> db -> query("INSERT INTO
+            trip_information (driver_id, start, destination, no_of_passengers, trip_status) VALUES (:user_id, :start, :destination, :no_of_passengers, :trip_status)           
+            ");
+            $this->db->bind(':user_id', $data['user_id']);
+            $this->db->bind(':start', $data['start']);
+            $this->db->bind(':destination', $data['destination']);
+            $this->db->bind(':no_of_passengers', $data['no_of_passengers']);
+            $this->db->bind(':trip_status', $data['trip_status']);
         }
 
         

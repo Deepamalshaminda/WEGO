@@ -66,6 +66,28 @@ class AssignDrivers {
         $vehicles = $this->db->resultSet();
         return $vehicles;
     }
+    public function getDriverEmail(){
+        $this->db->query('SELECT email
+        FROM user 
+        INNER JOIN driver ON driver.driver_id = user.us_id');
+        $vehicles = $this->db->resultSet();
+        return $vehicles;
+        
+
+    }
+    public function getDriverEmailbyID($id){
+        $this->db->query('SELECT email
+        FROM user 
+        INNER JOIN driver ON driver.driver_id = user.us_id
+        WHERE driver_id = :driver_id ');
+        $this->db->bind(':driver_id', $id);
+        $vehicles = $this->db->single();
+        return $vehicles->email;
+        
+
+    }
+
+    
     
     }
     

@@ -11,7 +11,7 @@
     <title><?php echo SITENAME; ?></title>
 </head>
 <body>
-  <?php require APPROOT.'/views/inc/d_sidenavbar.php';?>
+  <?php require APPROOT.'/views/inc/d_sidenavbar-own-school.php';?>
 
   <main class="full-page">
 

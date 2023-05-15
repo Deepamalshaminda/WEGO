@@ -3,7 +3,7 @@
       public $viewDashboardModel;
       public $model;
       public $connRequestModel;
-      public $Own_Office_Driver_Model;
+      public $Own_School_Driver_Model;
       public $Attendencechild;
   
       public function __construct(){
@@ -14,27 +14,57 @@
         $this->model = $this->model('D_ManageDriver');
         $this->connRequestModel = $this->model('D_ConnectionRequest');
         $this->viewDashboardModel = $this->model('viewDashboard');
-        $this->Own_Office_Driver_Model = $this->model('D_Own_School_Driver');
+        $this->Own_School_Driver_Model = $this->model('D_Own_School_Driver');
         $this->Attendencechild = $this->model('Attendencechild');
           }
 
           public function viewEarnings()
           {
-              //view
-              $payments = $this->Own_Office_Driver_Model->getPaymentForVehicle($_SESSION['user_id']);
-  
+              $month = date('m');
+              $year = date('Y');
+              $monthName = date('F', mktime(0, 0, 0, $month, 1));
+              $payments = $this->Own_School_Driver_Model->getPaymentForVehicle($_SESSION['user_id'], $month, $year);
               $data = [
-                  'payments' => $payments
+                'payments' => $payments,
+                'month' => $month,
+                'monthName' => $monthName,
+                'year' => $year
+
               ];
-  
-              // foreach ($children as $child) {
-              //     $ch_id = $child->ch_id;
-              //     $marked = $this->Attendencechild->getAttendance($ch_id);
-              //     $child->marked = $marked;
-              // }
-  
               $this->view('users/driver/vehicle-own-school-transport/d_viewearnings', $data);
           } 
+
+
+          public function viewEarningsForAMonth(){
+            // Get the month and year values from the form
+            $earningsMonth = $_POST['earningsMonth'];
+
+            // Extract the year and month values from the earningsMonth string
+            $year = substr($earningsMonth, 0, 4);
+            $month = substr($earningsMonth, 5, 2);
+            $monthName = date('F', mktime(0, 0, 0, $month, 1));
+
+            // Pass the year and month values to the viewEarnings function
+            $payments = $this->Own_School_Driver_Model->getPresentStudentForVehicle($_SESSION['user_id'], $month, $year );
+            $data = [
+              'payments' => $payments,
+              'month' => $month,
+              'monthName' => $monthName,
+              'year' => $year
+
+            ];
+            $this->view('users/driver/vehicle-own-school-transport/d_viewearnings', $data);
+          }
+
+          public function getPresentStudentForVehicle(){
+            echo $_SESSION['vehicle_id'];
+            
+            $studentsToBePresent = $this->Own_School_Driver_Model->getPresentStudentForVehicle($_SESSION['vehicle_id']);
+            $data = [
+              'studentsToBePresent' => $studentsToBePresent
+            ];
+            $this->view('users/driver/vehicle-own-school-transport/d_studentstobePresent', $data);
+          }
       
           public function ConnectionRequests(){
       
@@ -44,6 +74,22 @@
       
             $this->view('users/driver/d_acceptconnrequest',$data);
       
+          }
+
+          public function startTrip(){
+
+              $routeArray = $this -> Own_School_Driver_Model -> findStartAndEnd($_SESSION['vehicle_id']);
+              $start = trim($routeArray[0]);
+              $destination = trim(end($routeArray));
+            $data = [
+                'user_id' => $_SESSION['user_id'],
+                'start' => $start,
+                'destination' => $destination,
+                'no_of_passengers' => $no_of_passengers,
+                'trip_status' => "Ongoing"
+
+            ];
+            $this -> Own_School_Driver_Model -> startTrip($_SESSION['user_id']);
           }
       
           public function getReceivedRequests(){
@@ -115,13 +161,7 @@
     
         public function index(){
           
-          $requests = $this->model->getVehicleDetails();
-    
-          $data = [
-            'requests' => $requests
-          ];
-    
-          $this->view('users/driver/vehicle-own-school-transport/d_viewvehicle', $data);
+          die("Something went wrong");
         }
     
         public function RideRequests(){
@@ -196,14 +236,6 @@
         public function getDriverByUserId($us_id){
           $driver = $this -> model -> getDriverByUserId($us_id);
           return $driver;
-        }
-
-        public function studentsToBeAbsent(){
-          //$dashboard = $this->viewDashboardModel->viewDashboard();
-          $data = [
-            'student' => 'student'
-          ];
-          $this->view('users/driver/vehicle-own-school-transport/d_studentstobeabsent', $data);
         }
     
         public function completedTrips(){

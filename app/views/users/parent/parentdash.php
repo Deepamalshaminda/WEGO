@@ -33,7 +33,7 @@
         </div>
         <div class="box">
           <div class="right-side">
-            <div class="box-topic-link"><a href="<?php echo URLROOT ?>/Sentrequests/sentrequest"> Sent requests </a></div>
+            <div class="box-topic-link"><a href="<?php echo URLROOT ?>/Sendrequests/getSentRequests"> Sent requests </a></div>
             <!-- <div class="number">10</div>-->
 
           </div>

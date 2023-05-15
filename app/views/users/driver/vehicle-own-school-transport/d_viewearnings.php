@@ -17,23 +17,30 @@
 
     <div class="top-container col-12">
         <div class="top-container-right col-6">
-            <h3>Earnings for vehicle</h3>
+            <h3>Earnings for vehicle<?php echo $_SESSION['vehicle_id']?></h3>
         </div>
     </div>
 
       <div class="card-row col-12">
         <div class="card-row-left col-12">
           <div class="card-row-left-container col-8">
-            <table class="col-12">
+            <div>
+              <form action="<?php echo URLROOT; ?>/D_Own_School_Drivers/viewEarningsForAMonth" method="post">
+                <label for="Select month"><h3>Selct month</h3></label>
+                <input type="month" id="earningsMonth" name="earningsMonth" class="earnings-input">
+                <input type="submit" class="btn-submit">
+              </form>
+            </div>
+            <table class="col-12 table">
                 <tr>
                   <td colspan="3">
-                    <h1>Earnings For Month January - 2023</h1>
+                    <h1>Earnings For Month <?php echo $data['monthName']?> of <?php echo $data['year']?></h1>
                   </td>
                 </tr>
                 <tr>
-                  <th>Ride ID</th>
-                  <th>Start - Destination</th>
-                  <th>Price</th>
+                  <th>Payment Date</th>
+                  <th>Passenger Name</th>
+                  <th>Amount</th>
                 </tr>
                 <?php foreach($data['payments'] as $payment){ ?>
                   <tr>
@@ -43,6 +50,9 @@
                   </tr>
                 <?php } ?>  
             </table> 
+          </div>
+          <div>
+            <img src="<?php echo URLROOT?>/img/earnings.png" alt="Earnings">
           </div>
         </div>
       </div>

@@ -124,7 +124,7 @@ const loadSuggestedVehicleSuppliers = (requests) => {
         receivedRequests.innerHTML = result;
     }
     else{
-        result = "No Suggessions";
+        result = "No Suggestions";
     }
 }
 

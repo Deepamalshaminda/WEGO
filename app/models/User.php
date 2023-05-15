@@ -8,7 +8,7 @@
 
     // Regsiter user
     public function register($data){
-      $this->db->query('INSERT INTO user (name, nic, gender, dob, province, district, nearestTown, address, contactNumber, email, password, role_id,latitude, longitude) VALUES(:name, :nic, :gender, :dob, :province, :district, :nearestTown, :address, :contactNumber, :email, :password, :role_id, :latitude, :longitude)');
+      $this->db->query('INSERT INTO user (name, nic, gender, dob, province, district, nearestTown, address, contactNumber, email, password, role_id,latitude, longitude, profile_image) VALUES(:name, :nic, :gender, :dob, :province, :district, :nearestTown, :address, :contactNumber, :email, :password, :role_id, :latitude, :longitude, :profile_image)');
       // Bind values
       $this->db->bind(':name', $data['name']);
       $this->db->bind(':nic', $data['nic']);
@@ -24,6 +24,7 @@
       $this->db->bind(':role_id', $data['user_role']);
       $this->db->bind(':latitude', $data['latitude']);
       $this->db->bind(':longitude', $data['longitude']);
+      $this->db->bind(':profile_image', $data['profile_image']);
       
 
       // Execute
@@ -75,6 +76,19 @@
         }
     }
 
+    public function getVehicleByOwnDriverId($us_id){
+      $this->db->query('SELECT * FROM vehicle WHERE driver_id = :user_id');
+      $this->db->bind(':user_id', $us_id);
+      $row = $this->db->asAnArray();
+            //$row = $this->db->asAnArray();
+            if($row){
+                $row = $this->db->single();
+                return $row;
+            } else {
+                return false;
+            }
+    }
+
     public function ownVehicle($email){
       $this->db->query('SELECT * FROM user WHERE email = :email');
       $this->db->bind(':email', $email);
@@ -106,11 +120,11 @@
 
 
 
-    public function updateDriversVehicleOwnershipAsOwnVehicle($driverId)
+    public function updateDriversVehicleOwnershipAsOwnVehicle($userId)
     {
 
         $this->db->query("INSERT INTO driver (us_id, vehicle_status) VALUES (:us_id, :vehicle_status)");
-        $this->db->bind(':us_id', $driverId);
+        $this->db->bind(':us_id', $userId);
         $this->db->bind(':vehicle_status', 'own');
          // $results = $this->db->resultSet();
 
@@ -121,14 +135,13 @@
         }
     }
 
-    public function updateDriversVehicleOwnershipAsFindVehicle($driverId)
+    public function updateDriversVehicleOwnershipAsFindVehicle($userId)
     {
 
         $this->db->query("INSERT INTO driver (us_id, vehicle_status) VALUES (:us_id, :vehicle_status)");
-        $this->db->bind(':us_id', $driverId);
+        $this->db->bind(':us_id', $userId);
         $this->db->bind(':vehicle_status', 'find');
         // $results = $this->db->resultSet();
-
         if($this->db->execute()){
           return true;
         } else {
@@ -137,12 +150,12 @@
         
     }
     
-    public function updateServiceTypeAsSchoolService($driverId)
+    public function updateServiceTypeAsSchoolService($userId)
     {
         $this->db->query("UPDATE driver SET service_type = :service_type WHERE us_id = :us_id");
-        $this->db->bind(':us_id', $driverId);
+        $this->db->bind(':us_id', $userId);
         $this->db->bind(':service_type', 'school');
-         // $results = $this->db->resultSet();
+        // $results = $this->db->resultSet();
 
          if($this->db->execute()){
           return true;
@@ -151,10 +164,10 @@
         }
     } 
     
-    public function updateServiceTypeAsOfficeService($driverId)
+    public function updateServiceTypeAsOfficeService($userId)
     {
         $this->db->query("UPDATE driver SET service_type = :service_type WHERE us_id = :us_id");
-        $this->db->bind(':us_id', $driverId);
+        $this->db->bind(':us_id', $userId);
         $this->db->bind(':service_type', 'office');
          // $results = $this->db->resultSet();
 
@@ -163,5 +176,15 @@
         } else {
           return false;
         }
-    } 
+    }
+    public function getUserById($id)
+  {
+    $this->db->query('SELECT * FROM user WHERE us_id = :id');
+    // Bind value
+    $this->db->bind(':id', $id);
+
+    $row = $this->db->single();
+
+    return $row;
+  }
   }

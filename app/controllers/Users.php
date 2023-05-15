@@ -77,24 +77,36 @@ public function index()
       //];
 
       // Validate Email
-      if (empty($data['email'])) {
-        $data['email_err'] = 'Please enter email';
-      } else {
-        // Check email
-        if ($this->userModel->findUserByEmail($data['email'])) {
+if (empty($data['email'])) {
+  $data['email_err'] = 'Please enter email';
+} else {
+  // Check email format
+  if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+      $data['email_err'] = 'Invalid email format';
+  } else {
+      // Check if email already exists in database
+      if ($this->userModel->findUserByEmail($data['email'])) {
           $data['email_err'] = 'Email is already taken';
-        }
       }
-
-      // Validate Name
+  }
+}
+  // Validate Name
       if (empty($data['name'])) {
         $data['name_err'] = 'Please enter name';
       }
 
       // Validate NIC
-      if (empty($data['nic'])) {
-        $data['nic_err'] = 'Please enter NIC';
-      }
+if (empty($data['nic'])) {
+  $data['nic_err'] = 'Please enter NIC';
+} else {
+  $nic = $data['nic'];
+  $new_nic_regex = '/^[0-9]{12}$/'; // New NIC format: 12 digits
+  $old_nic_regex = '/^[0-9]{9}[vVxX]$/'; // Old NIC format: 9 digits followed by 'v', 'V', 'x' or 'X'
+  if (!preg_match($new_nic_regex, $nic) && !preg_match($old_nic_regex, $nic)) {
+    $data['nic_err'] = 'Please enter a valid NIC number';
+  }
+}
+
 
       // Validate grnder
       if (empty($data['gender'])) {
@@ -126,17 +138,23 @@ public function index()
         $data['address_err'] = 'Please enter address';
       }
 
-      // Validate contactno
-      if (empty($data['contactNumber'])) {
-        $data['contactNumber_err'] = 'Please enter contact No';
-      }
+      // Validate contact number
+if (empty($data['contactNumber'])) {
+  $data['contactNumber_err'] = 'Please enter contact number';
+} else if (!preg_match('/^\d{10}$/', $data['contactNumber'])) {
+  $data['contactNumber_err'] = 'Contact number must have exactly 10 digits';
+}
 
-      // Validate Password
-      if (empty($data['password'])) {
-        $data['password_err'] = 'Please enter password';
-      } elseif (strlen($data['password']) < 6) {
-        $data['password_err'] = 'Password must be at least 6 characters';
-      }
+
+    // Validate Password
+if (empty($data['password'])) {
+  $data['password_err'] = 'Please enter password';
+} elseif (strlen($data['password']) < 6) {
+  $data['password_err'] = 'Password must be at least 6 characters';
+} elseif (!preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/", $data['password'])) {
+  $data['password_err'] = 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character';
+}
+
 
       // Validate Confirm Password
       if (empty($data['confirm_password'])) {

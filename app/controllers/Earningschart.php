@@ -16,22 +16,20 @@ public function viewEarnings(){
             $this->view('users/supplier/earnings');
 }
 
-public function thisMonthIncome(){
 
- // Get the current month and year
- $current_month = date('m');
- $current_year = date('Y');
+public function  thisMonthIncome()  {
+	$earnings_model = $this->model('Earnings');
+	$earnings_data = $earnings_model->get_earnings_by_vehicle_and_month();
 
- // Get the total earnings for each vehicle for the current month
- $earnings_model = $this->model('Earnings');
- $earnings_data = $earnings_model->get_earnings_by_vehicle_and_month($current_month, $current_year);
+	$data = [
+		'amounts' => $earnings_data['amounts'],
+		'dates' => $earnings_data['dates']
+	];
 
- // Pass the data to the view
- $data = [
-     'earnings_data' => $earnings_data,
- ];
- $this->view('users/supplier/thisMonthIncome', $data);
+	$this->view('users/supplier/thisMonthIncome', $data);
 }
+
+
 }
 
 

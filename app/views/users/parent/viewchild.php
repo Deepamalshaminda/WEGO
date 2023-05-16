@@ -23,7 +23,7 @@
 
     <div class="wrapper">
         <div class="left">
-            <img src="../public/img/ch2.png" alt="user" width="100">
+            <img src="<?=URLROOT?>/child_image/<?=$data['child']->child_image?>" alt="user" width="100">
             <h4><?php echo $data['child']->name ?></h4>
             <p>Student</p>
         </div>

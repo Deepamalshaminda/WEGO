@@ -23,7 +23,7 @@
           <?php foreach ($data['children'] as $child) : ?>
             <div class="friend-card">
 
-              <div class="friend-name"><?php echo $child->name ?></div>
+            <div class="friend-name"><img src="../public/child_image/<?php echo $child->child_image; ?>" class="friend-picture" ><?php echo $child->name ?></div>
               <br>
               <br>
               <div class="friend-actions">

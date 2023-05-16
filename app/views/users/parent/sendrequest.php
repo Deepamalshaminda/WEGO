@@ -21,7 +21,7 @@
         <?php if (!empty($data['vehicles'])): ?>
           <?php foreach ($data['vehicles'] as $vehicle): ?>
             <div class="friend-card">
-            <div class="friend-name"><img src="../public/vehicle_image/<?php echo $vehicle->vehicle_image; ?>" class="friend-picture" ><?php echo $vehicle->vehicleno ?></div> 
+            <div class="friend-name"><img src="../public/vehicle_image/<?php echo $vehicle->vehicle_image; ?>." class="friend-picture" ></div> 
               <div class="friend-name1" >Service type : <?php echo $vehicle->service_type; ?></div>
               <div class="friend-name1" >Route : <?php echo $vehicle->route; ?></div>
               <div class="friend-name1" >Start time : <?php echo $vehicle->starttime; ?></div>

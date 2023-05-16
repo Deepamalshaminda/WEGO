@@ -22,6 +22,12 @@ body {
     /* text-align: center;*/
   }
    
+
+  .label-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   
 
   
@@ -61,12 +67,36 @@ body {
     margin-right: 60px;
     border-radius: 50%;
   }
+
+  .friend-picture1 {
+    width: 100px;
+    height: 100px;
+    align-items: center;
+    border-radius: 50%;
+  }
   
   
   .friend-name {
     font-size: 20px;
     margin-top: 0px;
     padding: 20px;
+  }
+
+  .friend-name1 {
+    font-size: 16px;
+    font-weight: 550;
+    margin-top: 0px;
+    margin-left: 5%;
+    padding: 2px;
+    text-align: left;
+  }
+  .friend-name2 {
+    font-size: 16px;
+    font-weight: 550;
+    margin-top: 0px;
+    margin-left: 5%;
+    padding: 2px;
+    text-align: center;
   }
   
   .friend-actions {
@@ -107,6 +137,21 @@ body {
     font-size: 12px;
     cursor: pointer;
     margin-right: 50%;
+    
+  }
+
+  .request-button{
+    background-color: rgb(43, 43, 149);
+    color: white;
+    width:28%;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 20px;
+    font-size: 12px;
+    cursor: pointer;
+    align-items: center;
+    margin-bottom: 5%;
+    margin-top: 5%;
     
   }
 

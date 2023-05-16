@@ -4,7 +4,7 @@
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/_base.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/register.css">
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCykzd2-mQTQdSMQNh8PxrWAnDBgqjf_Xg&libraries=places"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAzuu8sa68aSnLNQI2WrDHsXc3Uyq5m3fY&libraries=places"></script>
     <title><?php echo SITENAME; ?></title>
 </head>
 <body onload="initMap()">
@@ -39,7 +39,7 @@
                                    <h2 class="topic">Create An Account</h2>
                                    </div>
 
-                                   <form action="<?php echo URLROOT; ?>/users/register" method="post">
+                                   <form action="<?php echo URLROOT; ?>/users/register" method="post" enctype="multipart/form-data">
                                    <div class="left-column col-6">
 
                                           <div class="field">
@@ -56,7 +56,7 @@
                                                  <label for="map">Select your default location</label>
                                                  <div class="space" style="height: 50vh; margin : 20px;">
                                                         <div id="map" style="height: 50vh; width: 100%; margin: 20px;">
-                                                        <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCykzd2-mQTQdSMQNh8PxrWAnDBgqjf_Xg&callback=Function.prototype"></script>-->
+                                                        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCykzd2-mQTQdSMQNh8PxrWAnDBgqjf_Xg&callback=Function.prototype"></script>
                                                                <script>
                                                                       function initMap() {
                                                                       var colombo = {lat: 6.9271, lng: 79.8612};
@@ -189,7 +189,13 @@
                                                         class="input <?php echo (!empty($data['confirm_password_err'])) ? 'is-invalid' : ''; ?>"
                                                         value="<?php echo $data['confirm_password']; ?>"> <br>
                                                  <span class="invalid-feedback"><?php echo $data['confirm_password_err']; ?></span>
-                                          </div>         
+                                          </div>  
+                                          
+                                          <div class="field">
+                                          <label for="profile_image">Upload your photo<sup>*</sup></label>
+                <input type="file" name="profile_image" class="controls <?php echo (!empty($data['profile_image_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['profile_image']; ?>">
+                <span class="invalid-feedback"><?php echo $data['profile_image_err']; ?></span>
+                                          </div>  
                                    
                                    </div>
 
@@ -203,40 +209,10 @@
                                    </div>
                                    </form>
                             </div>
-
                      </div>
-
-                     <div class="field">
-                            <label for="nearestTown">Nearest Town <sup>*</sup></label> <br>
-                            <input type="text" name="nearestTown" size="30" placeholder="Enter nearest town"
-                                   class="input <?php echo (!empty($data['nearestTown_err'])) ? 'is-invalid' : ''; ?>"
-                                   value="<?php echo $data['nearestTown']; ?>"> <br>
-                            <span class="invalid-feedback"><?php echo $data['nearestTown_err']; ?></span>
-                     </div>
-
-                     <div class="field">
-                            <label for="email">Email <sup>*</sup></label> <br>
-                            <input type="email" name="email" size="30" placeholder="Enter email"
-                                   class="input <?php echo (!empty($data['email_err'])) ? 'is-invalid' : ''; ?>"
-                                   value="<?php echo $data['email']; ?>"> <br>
-                            <span class="invalid-feedback"><?php echo $data['email_err']; ?></span>
-                     </div>
-
-                     <div class="field">
-                            <label for="confirm_password">Confirm Password <sup>*</sup></label> <br>
-                            <input type="password" name="confirm_password" size="30" placeholder="Re-enter password"
-                                   class="input <?php echo (!empty($data['confirm_password_err'])) ? 'is-invalid' : ''; ?>"
-                                   value="<?php echo $data['confirm_password']; ?>"> <br>
-                            <span class="invalid-feedback"><?php echo $data['confirm_password_err']; ?></span>
-                     </div>         
-                    
               </div>
-              <div class="btn-wrapper">
-                    <button class="btn-register">Register</button>
-                    <button class="btn-cancel">Cancel</button>
-              </div>
-              </form>
        </div>
-</div>
-
-<?php require APPROOT . '/views/inc/footer.php'; ?>
+    </div>
+    
+</body>
+</html>

@@ -18,12 +18,12 @@
  <div class="list">
  <div class="card">
 <a href="<?php echo URLROOT?>/rides/assignChangeDrivers">
-  <div class="details">Assign Drivers for Rides</div>
+  <div class="details">Assign Drivers for Vehicles</div>
 </a> 
 </div>
 <div class="card">
 <a href="<?php echo URLROOT?>/rides/viewRideInfo">    
-  <div class="details">View Rides</div>
+  <div class="details">View Ongoing and Completed Rides</div>
   
 </div>
 <div class="ride-image"><img src="../public/img/image1.svg"></div>

@@ -11,6 +11,7 @@
 }
 
 .top-container{
+  padding-top: 5vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,27 +19,28 @@
 
 .top-container-left{
   position: relative;
-  background-color: rgb(192, 185, 185);
+  background-color: #24244A;
   height: 10vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  color: white;
 }
 
 .top-container-right{
-  background-color: rgb(181, 177, 177);
+  background-color: #24244A;
   float: left;
   height: 10vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  color: white;
 }
 
 .card-row-left{
-    align-items: center;
     justify-content: center;
     display: flex;
-    background-color: #EEEDED;
+    background-color: #ffffff;
     height: 79.5vh;
 }
 
@@ -48,16 +50,37 @@
 
 table {
   border-collapse: collapse;
+  padding-top: 5vh;
+  margin-top: 5vh;
 }
 
 td, th {
-  border: 1px solid #2f2e2e;
+  border: 1px solid #bebebe;
   text-align: left;
   padding: 8px;
 }
 
 tr:nth-child(even) {
-  background-color: #dddddd;
+  background-color: #a3bef8;
+}
+
+.earnings-input{
+  background-color: #4f99ca;
+  padding: 2vh;
+  color: white;
+  height: 5vh;
+  border-radius: 8px;
+  width: 20%;
+  border: none;
+
+}
+
+.btn-submit{
+  background-color: #483D8BFF;
+  color: white;
+  border: #483D8BFF 2px solid;
+  padding: 6px 20px;
+  border-radius: 8px;
 }
 
 .side-image{

@@ -2,6 +2,7 @@
 class Users extends Controller
 {public $userModel;
   public $driverModel;
+  public $verificationModel;
 
   public $registering_driver = array();
 
@@ -48,8 +49,9 @@ public function index()
         'user_role' => trim($_POST['user_role']),
         'password' => trim($_POST['password']),
         'confirm_password' => trim($_POST['confirm_password']),
-        // 'latitude' => trim($_POST['latitude']),
-        // 'longitude' => trim($_POST['longitude']),
+        'latitude' => trim($_POST['latitude']),
+        'longitude' => trim($_POST['longitude']),
+        'profile_image' => !empty($_POST['profile_image']) ? trim(implode(',', (array)$_POST['profile_image'])) : '',
         'name_err' => '',
         'nic_err' => '',
         'gender_err' => '',
@@ -62,28 +64,49 @@ public function index()
         'email_err' => '',
         'password_err' => '',
         'confirm_password_err' => '',
+        'profile_image_err' => '',
 
       ];
 
-      // Validate Email
-      if (empty($data['email'])) {
-        $data['email_err'] = 'Please enter email';
-      } else {
-        // Check email
-        if ($this->userModel->findUserByEmail($data['email'])) {
-          $data['email_err'] = 'Email is already taken';
-        }
-      }
+      //$fileProfileImage = [
+        //'image_name'=>$_FILES['profile_image']['name'],
+        //'image_type'=>$_FILES['profile_image']['type'],
+        //'image_size'=>$_FILES['profile_image']['size'],
+        //'image_tempName'=>$_FILES['profile_image']['temp_name'],
+        //'upload_location'=> PUBROOT . '/public/img/profile_image/'
+      //];
 
-      // Validate Name
+      // Validate Email
+if (empty($data['email'])) {
+  $data['email_err'] = 'Please enter email';
+} else {
+  // Check email format
+  if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+      $data['email_err'] = 'Invalid email format';
+  } else {
+      // Check if email already exists in database
+      if ($this->userModel->findUserByEmail($data['email'])) {
+          $data['email_err'] = 'Email is already taken';
+      }
+  }
+}
+  // Validate Name
       if (empty($data['name'])) {
         $data['name_err'] = 'Please enter name';
       }
 
       // Validate NIC
-      if (empty($data['nic'])) {
-        $data['nic_err'] = 'Please enter NIC';
-      }
+if (empty($data['nic'])) {
+  $data['nic_err'] = 'Please enter NIC';
+} else {
+  $nic = $data['nic'];
+  $new_nic_regex = '/^[0-9]{12}$/'; // New NIC format: 12 digits
+  $old_nic_regex = '/^[0-9]{9}[vVxX]$/'; // Old NIC format: 9 digits followed by 'v', 'V', 'x' or 'X'
+  if (!preg_match($new_nic_regex, $nic) && !preg_match($old_nic_regex, $nic)) {
+    $data['nic_err'] = 'Please enter a valid NIC number';
+  }
+}
+
 
       // Validate grnder
       if (empty($data['gender'])) {
@@ -115,17 +138,23 @@ public function index()
         $data['address_err'] = 'Please enter address';
       }
 
-      // Validate contactno
-      if (empty($data['contactNumber'])) {
-        $data['contactNumber_err'] = 'Please enter contact No';
-      }
+      // Validate contact number
+if (empty($data['contactNumber'])) {
+  $data['contactNumber_err'] = 'Please enter contact number';
+} else if (!preg_match('/^\d{10}$/', $data['contactNumber'])) {
+  $data['contactNumber_err'] = 'Contact number must have exactly 10 digits';
+}
 
-      // Validate Password
-      if (empty($data['password'])) {
-        $data['password_err'] = 'Please enter password';
-      } elseif (strlen($data['password']) < 6) {
-        $data['password_err'] = 'Password must be at least 6 characters';
-      }
+
+    // Validate Password
+if (empty($data['password'])) {
+  $data['password_err'] = 'Please enter password';
+} elseif (strlen($data['password']) < 6) {
+  $data['password_err'] = 'Password must be at least 6 characters';
+} elseif (!preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/", $data['password'])) {
+  $data['password_err'] = 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character';
+}
+
 
       // Validate Confirm Password
       if (empty($data['confirm_password'])) {
@@ -136,24 +165,63 @@ public function index()
         }
       }
 
+      //validate profile images
+      if (isset($_FILES['profile_image']) && !empty($_FILES['profile_image']['name'])) {
+        $allowed_extensions = array('jpg','png','jpeg');
+        $file_name = $_FILES['profile_image']['name'];
+        $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
+      
+        // Check if file extension is allowed
+        if (!in_array($file_ext, $allowed_extensions)) {
+          $data['profile_image_err'] = 'Invalid file type';
+        }
+      
+        // Check if file size is less than 10 MB
+        elseif ($_FILES['profile_image']['size'] > 5485760) {
+          $data['profile_image_err'] = 'File size exceeded. Please upload an image with size less than 5 MB.';
+        }
+        else {
+          $file_tmp = $_FILES['profile_image']['tmp_name'];
+          $file_destination = 'C:\xampp\htdocs\projectwego\public\img\profile_image\\' . $file_name;
+      
+          echo realpath($file_destination);
+      
+          if (move_uploaded_file($file_tmp, $file_destination)) {
+            
+            $data['profile_image'] = $file_destination;
+          } else {
+            $data['profile_image_err'] = 'Error uploading image.';
+          }
+          
+        }
+        
+      } else {
+        $data['profile_image_err'] = 'Please upload an image of you.';
+      }
+
+
       // Make sure errors are empty
-      if (empty($data['email_err']) && empty($data['name_err']) && empty($data['nic_err']) && empty($data['gender_err']) && empty($data['dob_err']) && empty($data['province_err']) && empty($data['district_err']) && empty($data['nearestTown_err']) && empty($data['address_err']) && empty($data['contactNumber_err']) && empty($data['password_err']) && empty($data['confirm_password_err'])) {
+      if (empty($data['email_err']) && empty($data['name_err']) && empty($data['nic_err']) && empty($data['gender_err']) && empty($data['dob_err']) && empty($data['province_err']) && empty($data['district_err']) && empty($data['nearestTown_err']) && empty($data['address_err']) && empty($data['contactNumber_err']) && empty($data['password_err']) && empty($data['confirm_password_err'])  && empty($data['profile_image_err'])) {
         // Validated
+        
 
         // Hash Password
         $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
 
+
+
         // Register User
         if ($this->userModel->register($data)) {
           $registering_driver = $this->userModel->getUserByEmail($data);
+          $us_id = $registering_driver->us_id;
             if($this->userModel->isDriver($data)){
-              $this->createUserSession($registering_driver);
+              $driver = $this -> driverModel -> getDriverByUserId($us_id);
+              $vehicle = NULL;
+              $this->createUserSession($registering_driver, $driver, $vehicle);
               $us_id = $registering_driver->us_id;
               // $this->setGlobal($us_id);
               $this->view('users/driver/d_setvehicle', $registering_driver);
             }else{
-              redirect('users/login');
-              die('Something went wrong');
               redirect('users/login');
             }
         } else {
@@ -180,8 +248,9 @@ public function index()
         'password' => '',
         'user_role'=>'',
         'confirm_password' => '',
-        // 'latitude' => '',
-        // 'longitude' => '',
+        'latitude' => '',
+        'longitude' => '',
+        'profile_image' => '',
         'name_err' => '',
         'nic_err' => '',
         'gender_err' => '',
@@ -193,7 +262,8 @@ public function index()
         'contactNumber_err' => '',
         'email_err' => '',
         'password_err' => '',
-        'confirm_password_err' => ''
+        'confirm_password_err' => '',
+        'profile_image_err'=> ''
       ];
 
       // Load view
@@ -214,10 +284,8 @@ public function index()
       $data = [
         'email' => trim($_POST['email']),
         'password' => trim($_POST['password']),
-        // 'role_id' => trim($_POST['user-role']),
         'email_err' => '',
-        'password_err' => '',
-        // 'role_id_err'=>'',
+        'password_err' => ''
       ];
 
       // Validate Email
@@ -247,17 +315,22 @@ public function index()
           $us_id = $user -> us_id;
 
           $driver = $this -> driverModel -> getDriverByUserId($us_id);
+          
           $service_type = $driver -> service_type;
           $vehicle_status = $driver -> vehicle_status;
 
           if($vehicle_status == 'own' AND $service_type == 'school'){
-            $this -> view('users/driver/vehicle-own-school-transport/d_dashboard_OS', $data);
+            $this -> view('users/driver/vehicle-own-school-transport/d_dashboard-own-school', $data);
+            $driver_id = $driver -> driver_id;
+            $vehicle = $this->userModel->getVehicleByOwnDriverId($us_id);
           } elseif ($vehicle_status == 'own' AND $service_type == 'office'){
-            redirect('D_Own_Office_Drivers/viewDashboard', $data);
+            $this -> view('users/driver/vehicle-own-office-transport/d_dashboard-own-office', $data);
+            $driver_id = $driver -> driver_id;
+            $vehicle = $this->userModel->getVehicleByOwnDriverId($us_id);
           } elseif ($vehicle_status == 'find' AND $service_type == 'school'){
-            redirect('D_Find_School_Drivers/viewDashboard', $data);
+            $this -> view('users/driver/vehicle-find-school-transport/d_dashboard-find-school', $data);
           }elseif ($vehicle_status == 'find' AND $service_type == 'office'){
-            redirect('D_Find_Office_Drivers/viewDashboard', $data);
+            $this -> view('users/driver/vehicle-find-office-transport/d_dashboard-find-office', $data);
           }else {
             $this -> view('users/index');
           }
@@ -292,7 +365,7 @@ public function index()
 
       if($loggedInUser){
         // Create Session
-        $this->createUserSession($loggedInUser);
+        $this->createUserSession($loggedInUser, $driver, $vehicle);
       } else {
         $data['password_err'] = 'Password incorrect';
 
@@ -320,16 +393,61 @@ public function index()
     }
   }
 
-  public function createUserSession($user){
+  public function verify()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $data = [
+                'otp' => trim($_POST['otp']),
+                'error' => '',
+                'status' => ''
+            ];
+
+            $verified = $this->verificationModel->verifyOTP($data['otp']);
+
+            if (is_numeric($data['otp']) && $verified) {
+                if ($this->verificationModel->verify($verified->id)) {
+                    // set verification successful flash message
+                    // setFlash("verify","Your account has been verified",Flash::FLASH_SUCCESS);
+                    // redirect to the login of patient
+                    redirect('users/login');
+                } else {
+                    // set verification failed flash message
+                    // setFlash("verify","Account verification failed!",Flash::FLASH_DANGER);
+                    // redirect to the signup of patient
+                    redirect('users/register');
+                }
+            } else {
+                $data['error'] = "Invalid OTP";
+            }
+        } else {
+            $data = [
+                'otp' => '',
+                'error' => '',
+                'status' => ''
+            ];
+        }
+        $this->view('users/signupVerification',$data);
+}
+
+
+
+  public function createUserSession($user, $driver, $vehicle){
+    
     $_SESSION['user_id'] = $user->us_id;
     $_SESSION['user_email'] = $user->email;
     $_SESSION['user_name'] = $user->name;
+    $_SESSION['driver_id'] = $driver-> driver_id;
+    $vehicle = $this->userModel->getVehicleByOwnDriverId($_SESSION['user_id']);
+    $_SESSION['vehicle_id'] = $vehicle-> ve_id;
+
   }
 
   public function logout(){
     unset($_SESSION['user_id']);
     unset($_SESSION['user_email']);
     unset($_SESSION['user_name']);
+    unset($_SESSION['child_id']);
+    unset($_SESSION['parent_id']);
     session_destroy();
     redirect('users/login');
   }
@@ -349,10 +467,13 @@ public function index()
 
     $this->view('users/driver/d_setvehicle', $data);
     $loggedInUser = $this->userModel->login($data['email'], $data['password']);
-
+    $us_id = $loggedInUser->us_id;
+    $driver = $this -> driverModel -> getDriverByUserId($us_id);
+    $driver_id = $driver -> driver_id;
+    $vehicle = $this->userModel->getVehicleByOwnDriverId($data, $driver_id);
     if($loggedInUser){
       // Create Session
-      $this->createUserSession($loggedInUser);
+      $this->createUserSession($loggedInUser, $driver, $vehicle);
     } else {
       $data['password_err'] = 'Password incorrect';
 
@@ -368,10 +489,13 @@ public function index()
 
     $this->view('users/driver/d_servicetype', $data);
     $loggedInUser = $this->userModel->login($data['email'], $data['password']);
-
+    $us_id = $loggedInUser->us_id;
+    $driver = $this -> driverModel -> getDriverByUserId($us_id);
+    $driver_id = $driver -> driver_id;
+    $vehicle = $this->userModel->getVehicleByOwnDriverId($data, $driver_id);
     if($loggedInUser){
       // Create Session
-      $this->createUserSession($loggedInUser);
+      $this->createUserSession($loggedInUser, $driver, $vehicle);
     } else {
       $data['password_err'] = 'Password incorrect';
 

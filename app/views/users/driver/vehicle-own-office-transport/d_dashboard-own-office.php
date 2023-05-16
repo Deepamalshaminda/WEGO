@@ -620,7 +620,7 @@
     </script>
   </head>
 
-<?php require APPROOT . '/views/inc/d_sidenavbar-own-office'; ?>
+<?php require APPROOT . '/views/inc/d_sidenavbar-own-office.php'; ?>
 
 
 <main class="full-page">

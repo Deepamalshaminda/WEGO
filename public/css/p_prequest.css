@@ -90,6 +90,14 @@ body {
     padding: 2px;
     text-align: left;
   }
+  .friend-name2 {
+    font-size: 16px;
+    font-weight: 550;
+    margin-top: 0px;
+    margin-left: 5%;
+    padding: 2px;
+    text-align: center;
+  }
   
   .friend-actions {
     position: absolute;

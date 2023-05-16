@@ -22,18 +22,18 @@
             <span class="links_name">&nbsp;Dashboard</span>
           </a>
         </li>
-        <li>
-          <a href="<?php echo URLROOT ?>/Sendrequests/sendrequest">
+       
+           <!--<a href="/Sendrequests/sendrequest">
             <i class='bx bx-box'></i>
             <span class="links_name">&nbsp;Send requests</span>
           </a>
         </li>
-        <li>
-          <a href="<?php echo URLROOT ?>/Makereservations/makereservation">
+       <li>
+          <a href="/Makereservations/makereservation">
             <i class='bx bx-list-ul'></i>
             <span class="links_name">&nbsp;Make reservations</span>
           </a>
-        </li>
+        </li>-->
         <li>
           <a href="<?php echo URLROOT ?>/Complaints">
             <i class='bx bx-list-ul'></i>

@@ -25,6 +25,26 @@
             return $results;
         }
 
+        public function getRequestsFromParents($userId)
+        {
+            $this->db->query("SELECT
+            r.ride_request_id as 'request_id',
+            u.name as 'fromWhom',
+            u.address as 'fromWhere',
+            c.school_address as 'toWhere'
+            FROM ride_request r
+            INNER JOIN user u ON u.us_id = r.from_whom 
+            INNER JOIN parent p ON p.us_id = u.us_id
+            INNER JOIN child c ON c.pr_id = p.pr_id
+            INNER JOIN vehicle v ON v.ve_id = r.to_whom
+            WHERE v.driver_id = :id AND r.status = 'Pending'");
+            $this->db->bind(':id', $userId);
+
+            $results = $this->db->resultSet();
+        
+            return $results;
+        }
+
         public function getPresentStudentForVehicle($vehicle_id)
         {
             $this->db->query("SELECT
@@ -43,20 +63,35 @@
         }
 
         public function findStartAndEnd($vehicle_id){
-            $this->db->query("SELECT route FROM vehicles WHERE ve_id = :id");
+            $this->db->query("SELECT route FROM vehicle WHERE ve_id = :id");
             $this->db->bind(':id', $vehicle_id);
             $result = $this->db->single();
+            return $result;
         }
 
         public function startTrip($data){
             $this -> db -> query("INSERT INTO
-            trip_information (driver_id, start, destination, no_of_passengers, trip_status) VALUES (:user_id, :start, :destination, :no_of_passengers, :trip_status)           
+            trip_information (driver_id, ve_id, start, destination, no_of_passengers, trip_status) VALUES (:user_id, :ve_id, :start, :destination, :no_of_passengers, :trip_status)           
             ");
             $this->db->bind(':user_id', $data['user_id']);
+            $this->db->bind(':ve_id', $data['ve_id']);
             $this->db->bind(':start', $data['start']);
             $this->db->bind(':destination', $data['destination']);
             $this->db->bind(':no_of_passengers', $data['no_of_passengers']);
             $this->db->bind(':trip_status', $data['trip_status']);
+            if($this->db->execute()){
+                return true;
+              } else {
+                return false;
+              }
+        }
+
+        public function checkOngoingTrip($vehicleId){
+            $this->db->query("SELECT DATE(date) as trip_date FROM `trip_information` WHERE ve_id = :id AND trip_status = 'Ongoing'");
+            $this->db->bind(':id', $vehicleId);
+            $result = $this->db->single();
+            return $result;
+
         }
 
         

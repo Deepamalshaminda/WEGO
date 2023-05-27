@@ -27,7 +27,7 @@
             <div>
               <form action="<?php echo URLROOT; ?>/D_Own_School_Drivers/viewEarningsForAMonth" method="post">
                 <label for="Select month"><h3>Selct month</h3></label>
-                <input type="month" id="earningsMonth" name="earningsMonth" class="earnings-input">
+                <input type="month" id="earningsMonth" name="earningsMonth" class="earnings-input" selected="<?php echo $data['monthName']?>">
                 <input type="submit" class="btn-submit">
               </form>
             </div>

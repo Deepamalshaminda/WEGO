@@ -21,16 +21,11 @@
         <img src ="../public/img/v5.png" 
         alt="user" width="100">
         <br>
-        <h6 class="name">Vehicle No - PA 2456 <br> Van(HIACE)</h6>
-         <p class="name" >Driver ID  -  008</p>
+        <h6 class="name">Vehicle No <?php echo $data['rides']->vehicleno; ?></h6>
+         <p class="name" >Driver ID  - <?php echo $data['rides']->driver_id; ?> </p>
 
          <br>
-         <p class="name"><b>Overall Rating</b></p>
-<div class="name"><span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span></div>
+         
     </div>
     <div class="right">
         <div class="info"> 
@@ -39,15 +34,17 @@
             <div class="info_data">
                  <div class="data">
 
-                    <h4>Date  - 2023/02/05</h4>
+                    <h4>Date  - <?php echo $data['rides']->date; ?></h4>
 
                     
                     <br>
-                    <h4>Route : Panadura - Moratuwa - Ratmalana - Mt. Lavinia (Galkissa) - Dehiwala</h4>
-
-                    <h4>End Time  - 9:00 AM</h4>
+                    <h4>Starting Place : <?php echo $data['rides']->start; ?></h4>
                     <br>
-                    <h4>Available Seats : 5</h4>
+                    <h4>Starting Place : <?php echo $data['rides']->destination; ?></h4>
+
+                    
+                    <br>
+                    <h4>No of Passengers  : <?php echo $data['rides']->no_of_passengers; ?></h4>
                   
                 </div>
 
@@ -56,18 +53,7 @@
             </div>
         </div>
         <br>
-      
-      <div class="projects">
-            
-            <div class="projects_data">
-                 <div class="data">
-
-                 <button class="view-profile"><a href="<?php echo URLROOT?>/Viewdriverprofiles/viewdriverprofile">View Location</a></button>
-                    
-                 </div>
-
-            </div>
-        </div>
+     
       
         
     </div>

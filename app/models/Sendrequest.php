@@ -24,7 +24,7 @@ class Sendrequest {
       return $vehicle;
   }
 
-  //view sent requests
+  //view all sent requests
   public function getSentRequests() {
     $this->db->query('SELECT * FROM ride_request;');
     
@@ -32,6 +32,23 @@ class Sendrequest {
     
     return $sent;
 }
+
+ //view one sent request
+ public function getSentRequestById($id){
+    $this->db->query('SELECT * FROM ride_request WHERE ride_request_id = :id');
+    $this->db->bind(':id', $id);
+    $sentr = $this->db->single();
+    return $sentr;
+}
+
+public function deleteRequestById($id){
+    $this->db->query('DELETE FROM ride_request WHERE ride_request_id_id = :id');
+    $this->db->bind(':id', $id);
+    $sentr = $this->db->single();
+
+    // $children = Child::getChildren();
+    return $sentr;
+  }
 }
 
  // retrieve all vehicles 

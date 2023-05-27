@@ -10,48 +10,50 @@
 <body>
   <div class="sidebar">
     <div class="logo-details">
-<<<<<<< Updated upstream
-    <i><img src="../img/wego_logo.png" class="wego-logo" alt="wego-logo"></i>
-=======
-    <i><img src="../public/img/wego_logo.png" class="wego-logo" alt="wego-logo"></i>
->>>>>>> Stashed changes
+    <img src="../img/wego_logo.png" class="wego-logo" alt="wego-logo">
       <span class="logo_name">&nbsp; WeGo</span>
     </div>
       <ul class="nav-links">
       <li>
         <a href="<?php echo URLROOT?>/Admin/a_dashboard">
-            <div class='bx bx-grid-alt' ></div>
+            <i class='bx bx-grid-alt' ></i>
             <span class="links_name">&nbsp; Dashboard</span>
           </a>
         </li>
         <li>
           <a href="<?php echo URLROOT?>/Admin/viewprofile">
-            <div class='bx bx-coin-stack' ></div>
+            <i class='bx bx-list-ul' ></i>
             <span class="links_name">&nbsp; View Users</span>
           </a>
         </li>
         
         <li>
           <a href="<?php echo URLROOT?>/Admin/rideschedule">
-            <div class='bx bx-list-ul' ></div>
+            <i class='bx bx-box' ></i>
             <span class="links_name">&nbsp; Rides</span>
           </a>
         </li>
         <li>
+          <a href="<?php echo URLROOT?>/Admin/vehicle">
+            <i class='bx bx-box' ></i>
+            <span class="links_name">&nbsp; Add Vehicles</span>
+          </a>
+        </li>
+        <li>
           <a href="<?php echo URLROOT?>/Admin/vehicles">
-            <div class='bx bx-user' ></div>
-            <span class="links_name">&nbsp; Vehicles</span>
+            <i class='bx bx-box' ></i>
+            <span class="links_name">&nbsp; View Vehicles</span>
           </a>
         </li>
         <li>
           <a href="<?php echo URLROOT?>/Admin/transactions">
-            <div class='bx bx-pie-chart-alt-2' ></div>
+            <i class='bx bx-pie-chart-alt-2' ></i>
             <span class="links_name">&nbsp; Transactions</span>
           </a>
         </li>
         <li>
         <a href="<?php echo URLROOT?>/Admin/complaints">
-            <div class='bx bx-book-alt' ></div>
+            <i class='bx bx-coin-stack' ></i>
             <span class="links_name">&nbsp; Complaints</span>
           </a>
         </li>
@@ -59,8 +61,8 @@
         
         
         <li class="log_out">
-          <a href="#">
-            <div class='bx bx-log-out'></div>
+          <a href="<?php echo URLROOT?>/users/login">
+            <i class='bx bx-log-out'></i>
             <span class="links_name">&nbsp; Log out</span>
           </a>
         </li>

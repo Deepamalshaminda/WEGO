@@ -78,18 +78,41 @@
 
           public function startTrip(){
 
-              $routeArray = $this -> Own_School_Driver_Model -> findStartAndEnd($_SESSION['vehicle_id']);
-              $start = trim($routeArray[0]);
-              $destination = trim(end($routeArray));
+//              $routeArray = $this -> Own_School_Driver_Model -> findStartAndEnd($_SESSION['vehicle_id']);
+//              $start = trim($routeArray[0]);
+//              $destination = trim(end($routeArray));
+            
+
+            if(($_SERVER['REQUEST_METHOD'] == 'POST')) {
+
+
+                $routeArray = $this -> Own_School_Driver_Model -> findStartAndEnd($_SESSION['vehicle_id']);
+                // $start = 1;
+                $vehicle_ID = $_SESSION['vehicle_id'];
+                $array = explode(", ", $routeArray->route);
+
+                print_r($array);
+                
+                // $destination =  2;
+
+                $start = $array[0];
+                $destination = $array[count($array)-1];
+                
             $data = [
                 'user_id' => $_SESSION['user_id'],
                 'start' => $start,
                 'destination' => $destination,
-                'no_of_passengers' => $no_of_passengers,
+                'no_of_passengers' => 2,
+                've_id' => $vehicle_ID,
                 'trip_status' => "Ongoing"
 
             ];
-            $this -> Own_School_Driver_Model -> startTrip($_SESSION['user_id']);
+              
+                $this->Own_School_Driver_Model->startTrip($data);
+                 
+              
+              $this->view('users/driver/vehicle-own-school-transport/d_dashboard-own-school');
+            }
           }
       
           public function getReceivedRequests(){
@@ -108,6 +131,28 @@
       
             $this->sendJson($this->connRequestModel->getListOfVehicleSuppliers($_SESSION['user_id']));
             
+          }
+
+          public function acceptRideRequest($requestId){
+
+            if ($this->model->acceptRideRequests($requestId)){
+              redirect('D_Own_School_Drivers/RideRequests');
+              return true;
+            };
+      
+            $this->view('users/driver/vehicle-own-school-transport/d_acceptriderequest');
+            return false;
+          }
+      
+          public function declineRideRequest($requestId){
+      
+            if ($this->model->declineRideRequests($requestId)){
+              redirect('D_Own_School_Drivers/RideRequests');
+              return true;
+            };
+            
+            $this->view('users/driver/vehicle-own-school-transport/d_acceptriderequest');
+            return false;
           }
       
       
@@ -165,8 +210,8 @@
         }
     
         public function RideRequests(){
-    
-          $requests = $this->model->getRequestsFromParents($_SESSION['user_id']);
+   
+          $requests = $this->Own_School_Driver_Model->getRequestsFromParents($_SESSION['user_id']);
       
           $data = [
               'vehicle' =>'' ,
@@ -245,6 +290,18 @@
           ];
           $this->view('users/driver/vehicle-own-school-transport/d_completedtrips', $data);
         }
+        public function checkOngoingTrip(){
+          $ongoingTrip = $this-> model -> checkOngoingTrip($_SESSION['vehicle_id']);
+          $trip_date = $ongoingTrip['trip_date'];
+          $currentDate = date("Y-m-d");
+          
+          if($trip_date == $currentDate){
+            return true;
+          }else{
+            return false;
+          }
+        }
     }
+    
 
 ?>

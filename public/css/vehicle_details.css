@@ -11,7 +11,7 @@
   .container form{
     padding:20px;
     width:600px;
-    height: 625px;
+    height: 650px;
     background: #fff;
     box-shadow: 0 5px 10px rgba(0,0,0,.1);
     margin-top: 5%;
@@ -86,22 +86,39 @@
   .container form .submit-btn:hover{
     background: #074889;
   }
-    .inputBox .approve-button, .deny-button {
-        padding: 10px 20px;
-        border: none;
-        border-radius: 20px;
-        font-size: 12px;
-        cursor: pointer;
+
+      .approve {
+        background-color: #4CAF50; /* Green background */
+        color: white; /* White text */
+        border: none; /* Remove borders */
+        border-radius: 5px; /* Rounded corners */
+        padding: 12px 24px; /* Padding */
+        text-align: center; /* Center text */
+        text-decoration: none; /* Remove underline */
+        display: inline-block; /* Display as inline-block */
+        font-size: 16px; /* Font size */
+        cursor: pointer; /* Add cursor on hover */
       }
       
-      .inputBox .approve-button {
-        background-color: rgb(53, 13, 108);
-        color: white;
-        margin-right: 1%;
+      .approve:hover {
+        background-color: #3e8e41; /* Darker green on hover */
+      }
+
+      .deny {
+        background-color: red; /* red background */
+        color: white; /* White text */
+        border: none; /* Remove borders */
+        border-radius: 5px; /* Rounded corners */
+        padding: 12px 24px; /* Padding */
+        text-align: center; /* Center text */
+        text-decoration: none; /* Remove underline */
+        display: inline-block; /* Display as inline-block */
+        font-size: 16px; /* Font size */
+        cursor: pointer; /* Add cursor on hover */
       }
       
-      .inputBox .deny-button {
-        background-color: rgb(107, 107, 217);
-        color: white;
+      .deny:hover {
+        background-color: red; /* Darker green on hover */
       }
+      
   

@@ -27,6 +27,7 @@
     <h5 class="card-title">Vehicle Number: <?php echo $vehicle->vehicleno; ?></h5>
     <a href="<?php echo URLROOT?>/rides/assignDrivers/<?php echo $vehicle->ve_id; ?>"> <button type="button" class="btn btn-primary assign-btn" value="assign" onclick="assignDriver(<?php echo $vehicle->ve_id; ?>)">Assign</button></a>
     <a href="<?php echo URLROOT?>/rides/changeDrivers"><button type="button" class="btn btn-secondary change-btn" >Change</button></a>
+    <a href="<?php echo URLROOT?>/rides/viewVehicleDetails/<?php echo $vehicle->ve_id; ?>"> <button type="button" class="btn btn-primary assign-btn" value="view" onclick="viewVehicleDetail(<?php echo $vehicle->ve_id; ?>)">View Vehicle Details</button></a>
 </div>
 
       </div>
@@ -43,6 +44,19 @@
   var path = document.querySelector('.assign-btn').value;
   if (path === 'assign') {
     window.location.href = "http://localhost/projectwego/rides/assignDrivers/" + $vehicle_id;
+    if(response.status == 200){
+      console.log("Successful");
+    }
+  }
+}
+</script>
+
+<script>
+  function viewVehicleDetail($vehicle_id) {
+  console.log($vehicle_id)
+  var path = document.querySelector('.view-btn').value;
+  if (path === 'view') {
+    window.location.href = "http://localhost/projectwego/rides/viewVehicleDetails/" + $vehicle_id;
     if(response.status == 200){
       console.log("Successful");
     }

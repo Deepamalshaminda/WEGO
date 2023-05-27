@@ -22,11 +22,12 @@
           <?php foreach ($data['sent'] as $sent): ?>
             <div class="friend-card">
               <div class=""><img src="../public/img/v1.png" class="friend-picture1"></div>
-              <div class="friend-name1" >Sent date and time : <?php echo $sent->sent_at; ?></div>
-              <div class="friend-name1" >Sent vehicle id : <?php echo $sent->to_whom; ?></div>
-              <div class="friend-name1" >Status : <?php echo $sent->status; ?></div>
+              <div class="friend-name2" >Sent date and time : <?php echo $sent->sent_at; ?></div>
+              <div class="friend-name2" >Sent to : <?php echo $sent->to_whom; ?></div>
+              <div class="friend-name2" >Status : <?php echo $sent->status; ?></div>
               
-              <button class="request-button"><a href="<?php echo URLROOT?>/Sendrequests/getSentRequests/<?php echo $sent->ride_request_id;?>">Remove request</a></button>
+              
+              <button class="request-button"><a href="<?php echo URLROOT?>/Sendrequests/getSentRequests/<?php echo $sent->ride_request_id;?>">View Details</a></button>
               
             </div>
           <?php endforeach; ?>

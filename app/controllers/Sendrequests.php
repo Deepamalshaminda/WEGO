@@ -30,7 +30,7 @@ public function getVehicleById($id){
   ];
   $this->view('users/parent/viewvehicle', $data);
 }
-
+//view all sent requests
 public function getSentRequests(){
     
     
@@ -41,6 +41,15 @@ public function getSentRequests(){
 
   // print_r($data);
   $this->view('users/parent/sentrequest', $data);
+}
+
+//view one sent request
+public function getSentRequestById($id){
+  $sentr = $this->SendrequestModel->getSentRequestById($id);
+  $data = [
+    'sentr' => $sentr
+  ];
+  $this->view('users/parent/sentrequestdetails', $data);
 }
 
  // delete request

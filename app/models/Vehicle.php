@@ -69,4 +69,49 @@ class Vehicle
 
       
     }
-  }    
+
+    public function showVehicles()
+  {
+      $this->db->query('SELECT vehicle. * , user. * FROM vehicle INNER JOIN user ON vehicle.id=user.us_id');
+      $results = $this->db->resultSet();
+      return $results;
+  }
+  public function showVehiclesById($ve_id)
+  {
+      $this->db->query('SELECT vehicle. * , user. * FROM vehicle INNER JOIN user ON vehicle.id=user.us_id WHERE vehicle.ve_id = :ve_id');
+      $this->db->bind(':ve_id', $ve_id);
+      $row = $this->db->single();
+      return $row;
+  }
+
+  public function approveVehicleRequests($ve_id)
+  {
+      $this->db->query("UPDATE vehicle SET approve_status = 'Accepted' WHERE ve_id = :ve_id");
+      $this->db->bind(':ve_id', $ve_id);
+            if($this->db->execute()){
+                return true;
+              } else {
+                return false;
+              }
+  }  
+
+  public function denyVehicleRequests($ve_id)
+  {
+      $this->db->query("DELETE FROM vehicle WHERE ve_id = :ve_id");
+      $this->db->bind(':ve_id', $ve_id);
+            if($this->db->execute()){
+                return true;
+              } else {
+                return false;
+              }
+  }
+
+  public function calculateTotalVehicles(){
+
+    $this->db->query("SELECT COUNT(*) AS total_count FROM vehicle");
+
+    $row = $this->db->single();
+
+    return $row->total_count;
+}
+}    

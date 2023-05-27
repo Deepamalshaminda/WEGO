@@ -32,14 +32,14 @@
                   </optgroup>
                 </select>
                 </br></br>
-                <label for="reservations">Select Reservation ID:</label>
+                <!--<label for="reservations">Select Reservation ID:</label>
                 <select name="reservations" id="reservations">
                   <optgroup label="Reservation ID">
                     <?php foreach ($data['reservations'] as $reservation) : ?>
                       <option value="<?php echo $reservation->reservation_id ?>">Reservation ID: <?php echo $reservation->reservation_id ?> - <?php echo $reservation->ve_id ?> - <?php echo $reservation->date ?></option>
                     <?php endforeach; ?>
                   </optgroup>
-                </select>
+                </select>-->
                 </br></br></br></br>
                 <div class="row">
                   <span>Complaint</span>

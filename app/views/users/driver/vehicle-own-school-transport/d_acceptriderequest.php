@@ -21,6 +21,7 @@
 </div>
 
 <div class="request-row col-12">
+    
         <?php foreach($data['requests'] as $request){ ?>
              <div class="left-request col-6">
              <div class="left-request-container col-6">

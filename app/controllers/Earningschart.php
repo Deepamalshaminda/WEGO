@@ -11,7 +11,7 @@ public $userModel;
   }
 
 
-public function viewEarnings(){
+public function viewEarnings(){ 
             //view
             $this->view('users/supplier/earnings');
 }

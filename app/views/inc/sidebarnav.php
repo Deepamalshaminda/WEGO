@@ -48,12 +48,7 @@
           </a>
         </li>
         
-        <li>
-          <a href="<?php echo URLROOT?>/DriverAttendance/viewDriverAttendance">
-            <i class='bx bx-calendar-check' ></i>
-            <span class="links_name">&nbsp; Driver Attendace</span>
-          </a>
-        </li>
+        
         
         <li class="log_out">
           <a href="<?php echo URLROOT?>/Users/logout">

@@ -10,6 +10,7 @@ public $userModel;
   }
 
   public function dashboard(){
+    
     //view
     $this->view('users/parent/parentdash');
 }

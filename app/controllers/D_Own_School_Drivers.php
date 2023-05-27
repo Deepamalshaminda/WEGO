@@ -210,8 +210,8 @@
         }
     
         public function RideRequests(){
-    
-          $requests = $this->model->getRequestsFromParents($_SESSION['user_id']);
+   
+          $requests = $this->Own_School_Driver_Model->getRequestsFromParents($_SESSION['user_id']);
       
           $data = [
               'vehicle' =>'' ,

@@ -234,7 +234,7 @@
     }
 }
 
-    }
+    
     public function getUserById($id)
   {
     $this->db->query('SELECT * FROM user WHERE us_id = :id');

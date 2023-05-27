@@ -18,7 +18,9 @@ class Attendencechild
 
     public function getChildren()
     {
+
         $user_id = $_SESSION['user_id'];
+        
         $this->db->query('SELECT * FROM parent WHERE us_id = :user_id');
         $this->db->bind(':user_id', $user_id);
         $result = $this->db->single();

@@ -132,29 +132,6 @@
             $this->sendJson($this->connRequestModel->getListOfVehicleSuppliers($_SESSION['user_id']));
             
           }
-
-          public function acceptRideRequest($requestId){
-
-            if ($this->model->acceptRideRequests($requestId)){
-              redirect('D_Own_School_Drivers/RideRequests');
-              return true;
-            };
-      
-            $this->view('users/driver/vehicle-own-school-transport/d_acceptriderequest');
-            return false;
-          }
-      
-          public function declineRideRequest($requestId){
-      
-            if ($this->model->declineRideRequests($requestId)){
-              redirect('D_Own_School_Drivers/RideRequests');
-              return true;
-            };
-            
-            $this->view('users/driver/vehicle-own-school-transport/d_acceptriderequest');
-            return false;
-          }
-      
       
           public function accept($requestId){
       
@@ -218,9 +195,33 @@
               'user' => '',
               'requests' => $requests
           ];
+          print_r($data);
     
           $this->view('users/driver/vehicle-own-school-transport/d_acceptriderequest', $data);
         }
+
+        public function acceptRideRequest($requestId){
+
+          if ($this->Own_School_Driver_Model->acceptRideRequests($requestId)){
+            redirect('D_Own_School_Drivers/RideRequests');
+            return true;
+          };
+    
+          $this->view('users/driver/vehicle-own-school-transport/d_acceptriderequest');
+          return false;
+        }
+    
+        public function declineRideRequest($requestId){
+    
+          if ($this->Own_School_Driver_Model->declineRideRequests($requestId)){
+            redirect('D_Own_School_Drivers/RideRequests');
+            return true;
+          };
+          
+          $this->view('users/driver/vehicle-own-school-transport/d_acceptriderequest');
+          return false;
+        }
+    
     
         // public function accept($requestId){
     

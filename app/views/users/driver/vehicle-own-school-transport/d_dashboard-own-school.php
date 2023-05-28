@@ -10,10 +10,9 @@
   <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/_base.css">
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/handlebars/4.7.7/handlebars.min.js"></script> -->
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-
     <link rel="stylesheet" type="text/css" href="<?php echo URLROOT; ?>/css/d_map.css" />
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
-            integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/sweetalert@2/dist/sweetalert.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.0.1/index.global.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
@@ -81,11 +80,28 @@
             </li>
 
             <li class="log_out">
-                <a href="<?php echo URLROOT;?>/Users/logout">
-                    <i class='bx bx-log-out'></i>
-                    <span class="links_name">Log out</span>
-                </a>
+              <a href="#" onclick="confirmLogout()">
+                <i class='bx bx-log-out'></i>
+                <span class="links_name">Log out</span>
+              </a>
             </li>
+
+            <script>
+            function confirmLogout() {
+              swal({
+                title: "Are you sure?",
+                text: "You will be logged out",
+                icon: "warning",
+                buttons: ["Cancel", "Logout"],
+                dangerMode: true,
+              }).then((confirm) => {
+                if (confirm) {
+                  window.location.href = '<?php echo URLROOT; ?>/Users/logout';
+                }
+              });
+            }
+            </script>
+
         </ul>
     </div>
 

@@ -18,167 +18,27 @@
      
     <div class="home-content">
     <div class="tab">
-        <button class="tablink" onclick="openPage('ongoing')" id="defaultOpen" >Ongoing Rides</button>
-        <button class="tablink" onclick="openPage('pending')" >Pending Rides</button>
-        <button class="tablink" onclick="openPage('completed')" >Completed Rides</button>
+        <button class="tablink" onclick="openPage('ongoing')" id="defaultOpen" > Rides</button>
+        
     </div>   
-    <div class="search-box">
-        <input type="text" placeholder="Search...">
-        <div class='bx bx-search' ></div>
-      </div>
+   
         <div id="ongoing" class="tabcontent">
         <div class="friend-list">
+        <?php if (!empty($data)) :?> 
+        <?php foreach($data['rides'] as $trip_information): ?>
     <div class="friend-card">
       
-      <div class="friend-name"><img src="../public/img/v5.png" class="friend-picture" >Route : Kandy-Galle</div>
+      <div class="friend-name"><img src="../public/img/v5.png" class="friend-picture" > Start : <?php echo $trip_information->start; ?></div>
+      
       <br>
       <br>
       <div class="friend-actions">
-        <button class="accept-button"><a href="<?php echo URLROOT?>/Admin/viewride"> View </a></button>
+        <button class="accept-button"><a href="<?php echo URLROOT?>/Admin/viewride/<?php echo $trip_information->trip_id; ?>"> View </a></button>
       </div>
     </div>
-    <div class="friend-card">
-      
-      <div class="friend-name"><img src="../public/img/v2.png" class="friend-picture" >Route : Kaluthara-Panadura</div>
-      <br>
-      <br>
-      <div class="friend-actions">
-        <button class="accept-button">View</button>
-      </div>
-    </div>
-    <div class="friend-card">
-      
-      <div class="friend-name"><img src="../public/img/v6.png" class="friend-picture" >Route : Pettah-Nugegoda</div>
-      <br>
-      <br>
-      <div class="friend-actions">
-        <button class="accept-button">View</button>
-      </div>
-    </div>
-    <div class="friend-card">
-      
-      <div class="friend-name"><img src="../public/img/v11.png" class="friend-picture" >Route : Nugegoda-Colombo</div>
-      <br>
-      <br>
-      <div class="friend-actions">
-        <button class="accept-button">View</button>
-      </div>
-    </div>
-
-</div>
-</div>
-
-<div id="pending" class="tabcontent">
-        <div class="friend-list">
-    <div class="friend-card">
-      
-      <div class="friend-name"><img src="../public/img/v3.png" class="friend-picture" >Route : Panadura-Dehiwala</div>
-      <br>
-      <br>
-      <div class="friend-actions">
-        <button class="accept-button">View</button>
-      </div>
-    </div>
-
-    <div class="friend-card">
-      
-      <div class="friend-name"><img src="../public/img/v9.png" class="friend-picture" >Route : Negombo-Pettah</div>
-      <br>
-      <br>
-      <div class="friend-actions">
-        <button class="accept-button">View</button>
-      </div>
-    </div>
-    <div class="friend-card">
-      
-
-      <div class="friend-name"><img src="../public/img/v9.png" class="friend-picture" >Route : Negombo-Pettah</div>
-      <br>
-      <br>
-      <div class="friend-actions">
-        <button class="accept-button">View</button>
-
-      </div>
-    </div>
-    <div class="friend-card">
-      
-
-      <div class="friend-name"><img src="../public/img/v9.png" class="friend-picture" >Route : Negombo-Pettah</div>
-      <br>
-      <br>
-      <div class="friend-actions">
-        <button class="accept-button">View</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-        
-
-<div id="completed" class="tabcontent">
-        
-<div class="friend-list">
-    <div class="friend-card">
-      
-      <div class="friend-name"><img src="../public/img/v6.png" class="friend-picture" >Route : Colombo-Kandy</div>
-      <br>
-      <br>
-      <div class="friend-actions">
-        <button class="accept-button"><a href="<?php echo URLROOT?>/Viewsentrequests/viewsentrequest"> View</a></button>
-        
-      </div>
-    </div>
-    <div class="friend-card">
-      
-      <div class="friend-name"><img src="../public/img/v7.png" class="friend-picture" >Route : Galle-Kandy</div>
-      <br>
-      <br>
-      <div class="friend-actions">
-        <button class="accept-button">View</button>
-        
-      </div>
-    </div>
-    <div class="friend-card">
-      
-      <div class="friend-name"><img src="../public/img/v8.png" class="friend-picture" >Route : Pettah-Nugegoda</div>
-      <br>
-      <br>
-      <div class="friend-actions">
-        <button class="accept-button">View</button>
-      </div>
-    </div>
-    <div class="friend-card">
-      
-
-      <div class="friend-name"><img src="../public/img/v9.png" class="friend-picture" >Route : Kandy-Colombo</div>
-      <br>
-      <br>
-      <div class="friend-actions">
-        <button class="accept-button">View</button>
-       
-      </div>
-    </div>
-    <div class="friend-card">
-      
-      <div class="friend-name"><img src="../public/img/v10.png" class="friend-picture" >Route : Negombo-Kandy</div>
-      <br>
-      <br>
-      <div class="friend-actions">
-        <button class="accept-button">View</button>
-        
-      </div>
-    </div>
-
-    <div class="friend-card">
-      
-      <div class="friend-name"><img src="../public/img/v12.png" class="friend-picture" >Route : Pettah-Negombo</div>
-      <br>
-      <br>
-      <div class="friend-actions">
-        <button class="accept-button">View</button>
-       
-      </div>
-    </div>
+    <?php endforeach; ?>
+    <?php endif ;?>
+    
   </div>
   
   

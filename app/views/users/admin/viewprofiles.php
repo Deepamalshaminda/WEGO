@@ -13,16 +13,11 @@
      
     <div class="home-content">
 <div class="tab">
-        <button class="tablink" onclick="openPage('drivers')" id="defaultOpen" >Drivers</button>
-        <button class="tablink" onclick="openPage('Vehicle Suppliers')" >Vehicle Suppliers</button>
-        <button class="tablink" onclick="openPage('parents')" >Parents</button>
-        <button class="tablink" onclick="openPage('officeworkers')" >Office Workers</button>
+        <button class="tablink" onclick="openPage('drivers')" id="defaultOpen" > Users </button>
+        
     </div>   
-
-    <div class="search-box">
-        <input type="text" placeholder="Search...">
-        <div class='bx bx-search' ></div>
-      </div>
+<br>
+    
 
 <div id="drivers" class="tabcontent">
   <div class="friend-list">

@@ -39,7 +39,7 @@
                                    <h2 class="topic">Create An Account</h2>
                                    </div>
 
-                                   <form action="<?php echo URLROOT; ?>/users/register" method="post">
+                                   <form action="<?php echo URLROOT; ?>/users/register" method="post" enctype="multipart/form-data">
                                    <div class="left-column col-6">
 
                                           <div class="field">
@@ -189,7 +189,13 @@
                                                         class="input <?php echo (!empty($data['confirm_password_err'])) ? 'is-invalid' : ''; ?>"
                                                         value="<?php echo $data['confirm_password']; ?>"> <br>
                                                  <span class="invalid-feedback"><?php echo $data['confirm_password_err']; ?></span>
-                                          </div>         
+                                          </div>  
+                                          
+                                          <div class="field">
+                                          <label for="profile_image">Upload your photo<sup>*</sup></label>
+                <input type="file" name="profile_image" class="controls <?php echo (!empty($data['profile_image_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['profile_image']; ?>">
+                <span class="invalid-feedback"><?php echo $data['profile_image_err']; ?></span>
+                                          </div>  
                                    
                                    </div>
 

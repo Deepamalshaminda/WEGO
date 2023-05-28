@@ -27,8 +27,8 @@
   }
 
   .view-btn{
-    margin-top: 10px;
-    margin-left: 170px;
+    
+    margin-left: 150px;
     padding: 8px 10px;
     background-color: rgb(8, 21, 65);
     color: white;
@@ -49,4 +49,18 @@
     margin-bottom: 20px;
     border-radius: 10px;
     margin-left: 15px;
+  }
+
+  .remove-btn{
+    
+    margin-left: 150px;
+    padding: 6px 7px;
+    background-color: white;
+    color: rgb(226, 52, 52);
+    border-width: 4px;
+    border-radius: 8px;
+    cursor: pointer;
+    max-width: max-content;
+    margin-bottom: 5%;
+    border-color:rgb(216, 31, 31) ;
   }

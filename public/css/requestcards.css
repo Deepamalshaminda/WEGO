@@ -1,0 +1,78 @@
+.card {
+    width: 45%;
+    margin: 10px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 220px;
+  }
+  
+  .card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .card-text,
+  .card-title {
+    text-align: center;
+  }
+  
+  .btn {
+    margin-top: 10px;
+    display: flex;
+    width: 60%;
+  }
+  
+  .card img {
+    max-width: 100px;
+    height: auto;
+    margin-right: 20px;
+    border-radius: 10px;
+  }
+  
+  .card-text {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  .card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .accept-btn {
+    background-color: rgb(35, 8, 109);
+    margin-right: 10px;
+    border-radius: 5px;
+    color: white;
+  }
+  
+  .remove-btn {
+    background-color: rgb(98, 143, 226);
+    margin-right: 10px;
+    border-radius: 5px;
+    color: white;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .card {
+      width: 90%;
+      margin: 10px auto;
+      height: auto;
+      flex-direction: column;
+    }
+    
+    .card img {
+      max-width: 50px;
+      margin-right: 10px;
+    }
+  }
+  

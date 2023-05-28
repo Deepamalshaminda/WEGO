@@ -48,7 +48,7 @@
              
     <div class="select-menu">
     <div class="select-btn">
-            <span class="sBtn-text"> Respond <img src="../public/img/chevron-down-regular-24.png"> </span>
+            <span class="sBtn-text"> Respond  </span>
             
         </div>
         <ul class="options">

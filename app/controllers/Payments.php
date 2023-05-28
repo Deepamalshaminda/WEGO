@@ -66,13 +66,15 @@ class Payments extends Controller
       $vehicle = $_POST['cars'];
 
       $attendance = $this->Attendencechild->getMonthlyAttendance($date, $ch_id);
+      $student_details = $this->Attendencechild->getChildById($ch_id);
       $userDetails = $this->User->getUserById($_SESSION['user_id']);
       $payemnt_id = $this->Payment->getLatestPaymentID() + 1;
       $vehicle_details = $this->Vehicle->getVehicleByNumber($vehicle)[0];
 
-      $charge_for_a_day = number_format($vehicle_details->charge_for_a_day);
+      $charge_for_a_km = number_format($vehicle_details->charge_for_a_km);
+      $distance_to_school = number_format($student_details->distance_to_school);
       $reason = $date . " " . "Payment";
-      $amount = $charge_for_a_day * $attendance;
+      $amount = $charge_for_a_km * $attendance * $distance_to_school;
       $currency = "LKR";
 
       $gatewayDetails = $this->Payment->getGatewayDetails();

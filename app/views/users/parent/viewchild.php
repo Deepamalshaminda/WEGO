@@ -1,4 +1,4 @@
-s<?php require APPROOT . '/views/inc/header.php'; ?>
+<?php require APPROOT . '/views/inc/header.php'; ?>
 
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/dashboard.css">
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/p_prequest.css">
@@ -23,7 +23,7 @@ s<?php require APPROOT . '/views/inc/header.php'; ?>
 
     <div class="wrapper">
         <div class="left">
-            <img src="../public/img/ch2.png" alt="user" width="100">
+            <img src="<?=URLROOT?>/child_image/<?=$data['child']->child_image?>" alt="user" width="100">
             <h4><?php echo $data['child']->name ?></h4>
             <p>Student</p>
         </div>
@@ -42,6 +42,8 @@ s<?php require APPROOT . '/views/inc/header.php'; ?>
                         <h4>DOB : <?php echo $data['child']->dob ?></h4>
                         <br>
                         <h4>Gender : <?php echo $data['child']->gender ?></h4>
+                        <br>
+                        <h4>Distance to school(100km) : <?php echo $data['child']->distance_to_school ?></h4>
                         <!--<p>Kevin Fernando</p>-->
                     </div>
                     <!-- <div class="data">

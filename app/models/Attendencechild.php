@@ -10,7 +10,7 @@ class Attendencechild
 
     public function getChildById($id)
     {
-        $this->db->query('SELECT * FROM child WHERE id = :id');
+        $this->db->query('SELECT * FROM child WHERE ch_id = :id');
         $this->db->bind(':id', $id);
         $child = $this->db->single();
         return $child;
@@ -18,7 +18,9 @@ class Attendencechild
 
     public function getChildren()
     {
+
         $user_id = $_SESSION['user_id'];
+        
         $this->db->query('SELECT * FROM parent WHERE us_id = :user_id');
         $this->db->bind(':user_id', $user_id);
         $result = $this->db->single();

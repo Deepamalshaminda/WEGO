@@ -24,7 +24,7 @@
     <img src ="../public/img/us1.jpg" 
         alt="user" width="100">
         <h4> <?php echo $data['users']->name; ?> </h4>
-         <p> <?php echo $data['users']->role_id; ?> </p>
+         <p> <?php echo $data['users']->user_role; ?> </p>
     </div>
     <div class="right">
         <div class="info">
@@ -55,13 +55,70 @@
       
     
             
-            <div class="projects_data">
-                 <div class="data">
-                    <button class="suspend">Suspend Account</button>
-                    
-                 </div>
-                 
-            </div>
+        <div class="projects_data">
+    <div class="data">
+        <button type="button" id="suspendButton" class="suspend" data-usid="<?php echo $data['users']->us_id; ?>">Suspend Account</button>
+    </div>
+
+    <script>
+        document.getElementById('suspendButton').addEventListener('click', function(event) {
+            event.preventDefault(); 
+            var us_id = this.getAttribute('data-usid');
+            console.log(us_id);
+            suspendUser(us_id); 
+        });
+
+        function suspendUser(us_id) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', "<?php echo URLROOT . '/Admin/suspendUser/' ?>" + us_id, true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        console.log(xhr.responseText);
+                        var successMessage = document.getElementById('message');
+                        successMessage.style.display = 'block';
+                        successMessage.style.backgroundColor = "Red";
+                        successMessage.innerHTML = 'User Account Suspended';
+                    } else {
+                        console.error('Error:', xhr.status);
+                    }
+                }
+            };
+            xhr.send();
+        }
+    </script>
+
+
+
+<!-- document.getElementById('denyButton').addEventListener('click', function(event) {
+    event.preventDefault(); 
+
+    var ve_id = this.getAttribute('data-veid');
+    console.log(ve_id);
+    
+    deny(ve_id); 
+    
+  });
+  
+  function deny(ve_id) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', "<?php echo URLROOT . '/Admin/deny/' ?>" + ve_id, true);
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+          console.log(xhr.responseText);
+            var successMessage = document.getElementById('message');
+            successMessage.style.display = 'block';
+            successMessage.style.backgroundColor = "Red";
+            successMessage.innerHTML = 'Vehicle Deleted Successfully';
+        } else {
+            console.error('Error:', xhr.status);
+        }
+      }
+    };
+    xhr.send();
+  } -->
+
       
         
     </div>

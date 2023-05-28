@@ -1,6 +1,7 @@
 <?php
   class Admin extends Controller {
     public $userModel;
+    
     public function __construct(){
       if(!isLoggedIn()){
         redirect('Admin/a_dashboard');
@@ -11,6 +12,8 @@
       $this->profileModel = $this->model('Profile');
       $this->transactionModel = $this->model('Transaction');
       $this->userModel = $this->model('User');
+      $this->vehicleModel = $this->model('Vehicle');
+      $this->rideModel = $this->model('Ride');
       // $this->rideModel = $this->model('Ride');
       
 
@@ -36,12 +39,58 @@
 
     
     public function a_dashboard(){
+    $total_rides = $this->rideModel->calculateTotalRides();
+    $total_vehicles = $this->vehicleModel->calculateTotalVehicles();
+    $total_users = $this->userModel->calculateTotalUsers();
+    // $chart = $this->transactionModel->calculateTransactions();
+
+    
       $data = [
+        'total_rides' => $total_rides,
+        'total_vehicles' => $total_vehicles,
+        'total_users' => $total_users,
         'title' => 'Admin'
       ];
     
       $this->view('users/admin/admindash', $data);
     }
+    public function adduser(){
+      
+    //     // Check for POST
+    // if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    //   // Process form
+
+    //   // Sanitize POST data
+    //   $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+      // Init data
+      $data = [
+        'name' => $name,
+        'nic' => $nic, 
+        'gender' => $gender ,
+        'dob' => $dob,
+        'province' => $province,
+        'district' => $district,
+        'nearestTown' => $nearestTown,
+        'address' => $address,
+        'contactNumber' => $contactNumber,
+        'email' => $email,
+        'user_role' => $user_role,
+        'password' => $password,
+        
+        
+      ];
+
+       
+        $this->view('users/admin/adduser', $data);
+
+       
+        }
+      
+    
+ 
+  
+   
     
   
     public function complaints()
@@ -61,9 +110,17 @@
 
     public function rideschedule(){
       $data = [];
-      // $data['rides'] =  $this->rideModel->getRides();
+      $data['rides'] =  $this->rideModel->viewrides();
+      //view
     //view
-    $this->view('users/admin/rideschedule');
+    $this->view('users/admin/rideschedule',$data);
+  }
+
+  public function viewride($trip_id){
+    $data = [];
+    $data['rides'] =  $this->rideModel->viewridesById($trip_id);
+    //view
+    $this->view('users/admin/viewride',$data);
   }
 
   public function pendingride(){
@@ -73,24 +130,94 @@
   $this->view('users/admin/pendingride');
 }
 
-  public function vehicles(){
-    $data = [];
-    $data['vehicle'] =  $this->vehicleModel->showVehicles();
-    //view
-    $this->view('users/admin/vehicle');
-  }
-  public function viewvehicle($ve_id){
-    $data = [];
-    $data['vehicle'] =  $this->vehicleModel->showVehiclesById($ve_id);
-    //view
-    $this->view('users/admin/viewvehicle');
-  }
-  public function addvehicle(){
-    $data = [];
-    //view
-    $this->view('users/admin/vehicleadd');
+
+
+public function vehicles(){
+  $data = [];
+  $data['vehicle']=$this->model('Vehicle')->showVehicles();
+  //view
+  $this->view('users/admin/vehicles',$data);
+}
+public function vehicle(){
+  $data = [];
+  $data['vehicle']=$this->model('Vehicle')->showVehicles();
+  //view
+  $this->view('users/admin/vehicle',$data);
+}
+public function viewvehicle($ve_id){
+  $data = [];
+  $data['vehicle']=$this->model('Vehicle')->showVehiclesById($ve_id);
+  //view
+  $this->view('users/admin/viewvehicle',$data);
+}
+public function addvehicle($ve_id){
+  $data = [];
+  $data['vehicle'] =  $this->model('Vehicle')->showVehiclesById($ve_id);
+  //view
+  $this->view('users/admin/vehicleadd',$data);
+}
+
+public function download($ve_id)
+{
+  $vehicle = $this->model('Vehicle')->showVehiclesById($ve_id);
+
+  
+  if (!$vehicle) {
+      flash('error', 'Vehicle not found');
+      redirect('vehicles');
   }
 
+  
+  if (!$vehicle->vehicle_document) {
+      flash('error', 'No document uploaded');
+      redirect('vehicles');
+  }
+
+  // file path
+  $file = APPROOT . '/../public/' . $vehicle->vehicle_document;
+
+
+  
+  if (!file_exists($file)) {
+      flash('error', 'File not found');
+      redirect('vehicles');
+  }
+
+  //headers
+  header('Content-Description: File Transfer');
+  header('Content-Type: application/octet-stream');
+  header('Content-Disposition: attachment; filename="' . basename($file) . '"');
+  header('Expires: 0');
+  header('Cache-Control: must-revalidate');
+  header('Pragma: public');
+  header('Content-Length: ' . filesize($file));
+
+  
+  readfile($file);
+}
+
+
+public function approve($ve_id)
+{
+if ($this->model('Vehicle')->approveVehicleRequests($ve_id)) {
+  redirect('Admin/addvehicle');
+  return true;
+} else {
+  $this->view('users/admin/vehicle');
+  return false;
+}
+}
+
+public function deny($ve_id){
+
+  if ($this->model('Vehicle')->denyVehicleRequests($ve_id)){
+    redirect('Admin/addvehicle');
+    return true;
+  };
+
+  $this->view('users/admin/vehicleadd');
+  return false;
+}
     public function transactions(){
       $data = [];
       $data['transactions'] =  $this->transactionModel->getTransactions();
@@ -110,14 +237,32 @@
     //view
     $this->view('users/admin/viewuser' ,$data);
   }
-  public function viewride(){
-    $data = [
-      'title' => 'viewride'
-    ];
-    //view
-    $this->view('users/admin/viewride');
-  }
-
-   
-  }
   
+  
+  public function suspendUser($us_id){
+
+    if ($this->model('User')->suspendUser($us_id)){
+      redirect('Admin/viewUser');
+      return true;
+    };
+  
+    $this->view('users/admin/viewUser');
+    return false;
+  }
+  public function activateUser($us_id){
+
+    if ($this->model('User')->activateUser($us_id)){
+      redirect('Admin/viewUser');
+      return true;
+    };
+  
+    $this->view('users/admin/viewUser');
+    return false;
+  }
+  public function dashboard(){
+
+    
+}
+  
+
+}

@@ -36,8 +36,8 @@ class Vehicle
     return $results;
   }
 
-    public function addvehicle($data){
-      $this->db->query('INSERT INTO vehicle (vehicleno, model, color, year, address, route, starttime, seatingcapacity, Ac, expirylicence, service_type, comments, vehicle_image, vehicle_document, id) VALUES(:vehicleno, :model, :color, :year, :address, :route, :starttime, :seatingcapacity, :Ac, :expirylicence, :service_type, :comments, :vehicle_image, :vehicle_document, :id)');
+    public function addvehicle($data,$fileVehicleImage){
+      $this->db->query('INSERT INTO vehicle (vehicleno, model, color, year, address, route, starttime, seatingcapacity, Ac, expirylicence, service_type, charge_for_a_km, comments, vehicle_image, vehicle_document, id) VALUES(:vehicleno, :model, :color, :year, :address, :route, :starttime, :seatingcapacity, :Ac, :expirylicence, :service_type, :charge_for_a_km, :comments, :vehicle_image, :vehicle_document, :id)');
       // Bind values
       $this->db->bind(':vehicleno', $data['vehicleno']);
       //$this->db->bind(':user id', $data['user id']);
@@ -53,12 +53,13 @@ class Vehicle
       $this->db->bind(':expirylicence', $data['expirylicence']);
       $this->db->bind(':service_type', $data['service_type']);
       $this->db->bind(':comments', $data['comments']);
-      $this->db->bind(':vehicle_image', $data['vehicle_image']);
+      $this->db->bind(':charge_for_a_km', $data['charge_for_a_km']);
+      $this->db->bind(':vehicle_image', $fileVehicleImage['image_name']);
       $this->db->bind(':vehicle_document', $data['vehicle_document']);
 
       $this->db->bind(':id', $data['userid']);
     
-      
+      //move_uploaded_file($fileVehicleImage['image_tempName'],$fileVehicleImage['upload_location'].$fileVehicleImage['image_name']);
       // Execute
       if($this->db->execute()){
         return true;
@@ -68,4 +69,49 @@ class Vehicle
 
       
     }
-  }    
+
+    public function showVehicles()
+  {
+      $this->db->query('SELECT vehicle. * , user. * FROM vehicle INNER JOIN user ON vehicle.id=user.us_id');
+      $results = $this->db->resultSet();
+      return $results;
+  }
+  public function showVehiclesById($ve_id)
+  {
+      $this->db->query('SELECT vehicle. * , user. * FROM vehicle INNER JOIN user ON vehicle.id=user.us_id WHERE vehicle.ve_id = :ve_id');
+      $this->db->bind(':ve_id', $ve_id);
+      $row = $this->db->single();
+      return $row;
+  }
+
+  public function approveVehicleRequests($ve_id)
+  {
+      $this->db->query("UPDATE vehicle SET approve_status = 'Accepted' WHERE ve_id = :ve_id");
+      $this->db->bind(':ve_id', $ve_id);
+            if($this->db->execute()){
+                return true;
+              } else {
+                return false;
+              }
+  }  
+
+  public function denyVehicleRequests($ve_id)
+  {
+      $this->db->query("DELETE FROM vehicle WHERE ve_id = :ve_id");
+      $this->db->bind(':ve_id', $ve_id);
+            if($this->db->execute()){
+                return true;
+              } else {
+                return false;
+              }
+  }
+
+  public function calculateTotalVehicles(){
+
+    $this->db->query("SELECT COUNT(*) AS total_count FROM vehicle");
+
+    $row = $this->db->single();
+
+    return $row->total_count;
+}
+}    

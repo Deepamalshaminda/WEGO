@@ -45,19 +45,19 @@ class Email
         $this->template = URLROOT . "/templates/email.php";
 
         try {
-            $this->mail->setFrom($this->sender, 'DonateUs');
+            $this->mail->setFrom($this->sender, 'WEGO');
             $this->mail->addAddress($this->receiver);
             $this->mail->addReplyTo($this->sender);
 
             $this->mail->isHTML(true);
-            $this->mail->Subject = "DonateUs Account Verification";
+            $this->mail->Subject = "WEGO Account Verification";
 
             if (file_exists($this->template)) {
                 $this->mail->Body = "<h1 style='text-align: center; margin-top: 40px;'>Hello " . $receiverName . ",</h1>" . file_get_contents($this->template) .
                     "<br><h4 style='text-align: center;'>The verification code is : <b>" . $OTPCode . "<b></h4>";
             } else {
                 $this->mail->Body = "<h1 style='text-align: center; margin-top: 40px;'>Hello " . $receiverName . ",</h1>
-                    <h2 style='color: #0A2558;'>Welcome To DonateUs</h2>
+                    <h2 style='color: #0A2558;'>Welcome To WEGO</h2>
                     <h4>Before using our service there is one more little thing to do. Please use the below OTP to verify your account.</h4>
                     <h3 style='color: #0A2558;'>Thank You!</h3>
                     <h4 style='text-align: center;'>The verification code is : <b>" . $OTPCode . "<b></h4>";
@@ -75,12 +75,12 @@ class Email
     public function sendPasswordResetEmail($resetLink)
     {
         try {
-            $this->mail->setFrom($this->sender, 'DonateUs');
+            $this->mail->setFrom($this->sender, 'WEGO');
             $this->mail->addAddress($this->receiver);
             $this->mail->addReplyTo($this->sender);
 
             $this->mail->isHTML(true);
-            $this->mail->Subject = "DonateUs Password Reset";
+            $this->mail->Subject = "WEGO Password Reset";
             $receiverName = "User";
 
             $this->mail->Body = "<h1 style='text-align: center; margin-top: 40px;'>Hello " . $receiverName . ",</h1>
@@ -94,7 +94,7 @@ class Email
                 <br><br>
                 Regards,
                 <br>
-                DonateUs</h4>";
+                WEGO</h4>";
             $this->mail->send();
         } catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: {$this->mail->ErrorInfo}";
@@ -104,20 +104,20 @@ class Email
     /**
      * @return void
      */
-    public function sendUserAcceptanceEmail()
+    public function sendUserAssigningEmail()
     {
         try {
-            $this->mail->setFrom($this->sender, 'DonateUs');
+            $this->mail->setFrom($this->sender, 'WEGO');
             $this->mail->addAddress($this->receiver);
             $this->mail->addReplyTo($this->sender);
 
             $this->mail->isHTML(true);
-            $this->mail->Subject = "DonateUs Account Accepted";
+            $this->mail->Subject = "WEGO - Vehicle Assigning";
             $receiverName = "User";
 
             $this->mail->Body = "<h1 style='text-align: center; margin-top: 40px;'>Hello " . $receiverName . ",</h1>
-                    <h2 style='color: #0A2558;'>Welcome To DonateUs</h2>
-                    <h4>Your account has been accepted. You can login from <a href='http://localhost/DonateUs/users/login'>here</a>.</h4>
+                    <h2 style='color: #0A2558;'>Vehicle Assigning</h2>
+                    <h4>You have assigned to a Vehicle .<a href='http://localhost/projectwego/users/login'>here</a>.</h4>
                     <h3 style='color: #0A2558;'>Thank You!</h3>";
             $this->mail->send();
         } catch (Exception $e) {
@@ -131,16 +131,16 @@ class Email
     public function sendUserRejectionEmail()
     {
         try {
-            $this->mail->setFrom($this->sender, 'DonateUs');
+            $this->mail->setFrom($this->sender, 'WEGO');
             $this->mail->addAddress($this->receiver);
             $this->mail->addReplyTo($this->sender);
 
             $this->mail->isHTML(true);
-            $this->mail->Subject = "DonateUs Account Accepted";
+            $this->mail->Subject = "WEGO Account Accepted";
             $receiverName = "User";
 
             $this->mail->Body = "<h1 style='text-align: center; margin-top: 40px;'>Hello " . $receiverName . ",</h1>
-                    <h2 style='color: #0A2558;'>Welcome To DonateUs</h2>
+                    <h2 style='color: #0A2558;'>Welcome To WEGO</h2>
                     <h4>We are sorry to you that your account has been rejected.</h4>
                     <h3 style='color: #0A2558;'>Thank You!</h3>";
             $this->mail->send();
@@ -155,7 +155,7 @@ class Email
     public function sendReqAcceptanceEmail()
     {
         try {
-            $this->mail->setFrom($this->sender, 'DonateUs');
+            $this->mail->setFrom($this->sender, 'WEGO');
             $this->mail->addAddress($this->receiver);
             $this->mail->addReplyTo($this->sender);
 
@@ -164,7 +164,7 @@ class Email
             $receiverName = "User";
 
             $this->mail->Body = "<h1 style='text-align: center; margin-top: 40px;'>Hello " . $receiverName . ",</h1>
-                    <h2 style='color: #0A2558;'>Welcome To DonateUs</h2>
+                    <h2 style='color: #0A2558;'>Welcome To WEGO</h2>
                     <h4>Your donation request has been accepted. You can view more details at ongoing request tab.</h4>
                     <h3 style='color: #0A2558;'>Thank You!</h3>";
             $this->mail->send();
@@ -179,7 +179,7 @@ class Email
     public function sendEventAcceptanceEmail()
     {
         try {
-            $this->mail->setFrom($this->sender, 'DonateUs');
+            $this->mail->setFrom($this->sender, 'WEGO');
             $this->mail->addAddress($this->receiver);
             $this->mail->addReplyTo($this->sender);
 
@@ -188,7 +188,7 @@ class Email
             $receiverName = "User";
 
             $this->mail->Body = "<h1 style='text-align: center; margin-top: 40px;'>Hello " . $receiverName . ",</h1>
-                    <h2 style='color: #0A2558;'>Welcome To DonateUs</h2>
+                    <h2 style='color: #0A2558;'>Welcome To WEGO</h2>
                     <h4>Your event request has been accepted. You can view more details at ongoing events tab.</h4>
                     <h3 style='color: #0A2558;'>Thank You!</h3>";
             $this->mail->send();
@@ -203,7 +203,7 @@ class Email
     public function sendReqRejectionEmail()
     {
         try {
-            $this->mail->setFrom($this->sender, 'DonateUs');
+            $this->mail->setFrom($this->sender, 'WEGO');
             $this->mail->addAddress($this->receiver);
             $this->mail->addReplyTo($this->sender);
 
@@ -212,7 +212,7 @@ class Email
             $receiverName = "User";
 
             $this->mail->Body = "<h1 style='text-align: center; margin-top: 40px;'>Hello " . $receiverName . ",</h1>
-                    <h2 style='color: #0A2558;'>Welcome To DonateUs</h2>
+                    <h2 style='color: #0A2558;'>Welcome To WEGO</h2>
                     <h4>We are sorry to you that your donation request has been accepted. You can view more details at rejected request tab.</h4>
                     <h3 style='color: #0A2558;'>Thank You!</h3>";
             $this->mail->send();
@@ -227,7 +227,7 @@ class Email
     public function sendEventRejectionEmail()
     {
         try {
-            $this->mail->setFrom($this->sender, 'DonateUs');
+            $this->mail->setFrom($this->sender, 'WEGO');
             $this->mail->addAddress($this->receiver);
             $this->mail->addReplyTo($this->sender);
 
@@ -236,7 +236,7 @@ class Email
             $receiverName = "User";
 
             $this->mail->Body = "<h1 style='text-align: center; margin-top: 40px;'>Hello " . $receiverName . ",</h1>
-                    <h2 style='color: #0A2558;'>Welcome To DonateUs</h2>
+                    <h2 style='color: #0A2558;'>Welcome To WEGO</h2>
                     <h4>We are sorry to you that your event request has been accepted. You can view more details at rejcted events tab.</h4>
                     <h3 style='color: #0A2558;'>Thank You!</h3>";
             $this->mail->send();

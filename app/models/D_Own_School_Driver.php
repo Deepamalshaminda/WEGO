@@ -140,7 +140,12 @@
         }
 
         
-
+        public function getProfileDetails($userId){
+            $this->db->query("SELECT * FROM user WHERE us_id = :us_id");
+            $this->db->bind(':us_id', $userId);
+            $result = $this->db->single();
+            return $result;
+        }
         
     }
 

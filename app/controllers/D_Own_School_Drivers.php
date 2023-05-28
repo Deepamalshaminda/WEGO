@@ -314,8 +314,11 @@
         // }
         
         public function viewProfile(){
+          $userId = $_SESSION['user_id'];
+          $user = $this->Own_School_Driver_Model->getProfileDetails($userId);
           $data = [
             'title' => 'Profile',
+            'user' => $user
           ];
     
           $this->view('users/driver/vehicle-own-school-transport/d_driver_profile', $data);

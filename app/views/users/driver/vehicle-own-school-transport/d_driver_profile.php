@@ -18,7 +18,7 @@
     <div class="left">
         <img src ="<?php echo URLROOT; ?>/img/1.png" 
         alt="user" width="100">
-        <h4>Deepamal Shaminda</h4>
+        <h4><?php echo $data['user']->name?></h4>
          <p>Driver</p>
     </div>
     <div class="right">
@@ -26,43 +26,43 @@
             <table>
                 <tr>
                     <td><h3>Name</h3></td>
-                    <td>Deepamal Shaminda</td>
+                    <td><?php echo $data['user']->name?></td>
                 </tr>
                 <tr>
-                    <td><h3>Driver ID</h3></td>
-                    <td>D507</td>
+                    <td><h3>User ID</h3></td>
+                    <td><?php echo $data['user']->us_id?></td>
                 </tr>
                 <tr>
                     <td><h3>Gender</h3></td>
-                    <td>Male</td>
+                    <td><?php echo $data['user']->gender?></td>
                 </tr>
                 <tr>
                     <td><h3>DOB</h3></td>
-                    <td>1999/01/13</td>
+                    <td><?php echo $data['user']->dob?></td>
                 </tr>
                 <tr>
                     <td><h3>Province</h3></td>
-                    <td>Sothern</td>
+                    <td><?php echo $data['user']->province?></td>
                 </tr>
                 
                 <tr>
                     <td><h3>District</h3></td>
-                    <td>Colombo</td>
+                    <td><?php echo $data['user']->district?></td>
                 </tr>
 
                 <tr>
-                    <td><h3>Naearest Junction</h3></td>
-                    <td>Pamankada</td>
+                    <td><h3>Naearest Town</h3></td>
+                    <td><?php echo $data['user']->nearestTown?></td>
                 </tr>
 
                 <tr>
                     <td><h3>Contact Number</h3></td>
-                    <td>0766544829</td>
+                    <td><?php echo $data['user']->contactNumber?></td>
                 </tr>
 
                 <tr>
                     <td><h3>Email</h3></td>
-                    <td>deepamalsh@gmail.com</td>
+                    <td><?php echo $data['user']->email?></td>
                 </tr>
                 <tr>
                     <td><h3>Vehicles</h3></td>

@@ -70,6 +70,7 @@
 
         public function getPresentStudentForVehicle($vehicle_id)
         {
+            $currentDate = date("Y-m-d");
             $this->db->query("SELECT
             c.name as 'child_name',
             u.contactNumber as 'parent_contact',
@@ -78,9 +79,10 @@
             INNER JOIN user u ON u.us_id = c.pr_id
             INNER JOIN vehicle v ON v.ve_id = c.ve_id
             INNER JOIN student_attendance s ON s.studentid = c.ch_id
-            WHERE c.ve_id = :vehicle_id AND s.mark = 1
+            WHERE c.ve_id = :vehicle_id AND s.mark = 1 AND s.attendancedate = :current_date
             ");
             $this->db->bind(':vehicle_id', $vehicle_id);
+            $this->db->bind(':current_date', $currentDate);
             $results = $this->db->resultSet();
             return $results;
         }
@@ -109,10 +111,30 @@
               }
         }
 
+        public function endTrip($data){
+            $this->db->query("UPDATE trip_information SET trip_status = 'Completed' WHERE ve_id = :id AND DATE(date) = :date" );
+            $this->db->bind(':id', $data['ve_id']);
+            $this->db->bind(':date', $data['date']);
+            if($this->db->execute()){
+                return true;
+              } else {
+                return false;
+              }
+        }
+
+        public function checkTripsOnSameDate($data){
+            $this->db->query("SELECT trip_id, trip_status FROM trip_information WHERE DATE(date) = :date AND ve_id = :ve_id");
+            $this->db->bind(':ve_id', $data['ve_id']);
+            $this->db->bind(':date', $data['date']);
+            $result = $this->db->resultSet();
+            return $result;
+            
+        }
+
         public function checkOngoingTrip($vehicleId){
             $this->db->query("SELECT DATE(date) as trip_date FROM `trip_information` WHERE ve_id = :id AND trip_status = 'Ongoing'");
             $this->db->bind(':id', $vehicleId);
-            $result = $this->db->single();
+            $result = $this->db->resultSet();
             return $result;
 
         }

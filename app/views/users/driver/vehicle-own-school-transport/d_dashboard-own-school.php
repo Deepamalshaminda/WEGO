@@ -174,84 +174,122 @@
 
 <main class="full-page">
 <div class="top-row col-12">
-  <div class="btn-1-container col-3">
-    <div class="btn-1 col-10">
-      <a href="<?php echo URLROOT;?>/D_Own_School_Drivers/studentsToBeAbsent"><h1>Students To Be Absent</h1></a>
-    </div>
-  </div>
-
-  <div class="btn-1-container col-3">
-    <div class="btn-1 col-10">
-      <a href="#"><h1>Reservation Requests</h1></a>
-    </div>
-  </div>
-
-  <div class="btn-1-container col-3">
-    <div class="btn-1 col-10">
-      <a href="#"><h1>Earnings Statistics</h1></a>
-    </div>
-  </div>
 </div>
-<!--<div class="trip-button-div col-12">-->
-<!--      <a href="--><?php //echo URLROOT;?><!--/D_Own_School_Drivers/startTrip"><button class="trip-button">-->
-<!--        <h2>Start Trip on --><?php //$currentDate = date("Y-m-d");
-//        echo $currentDate;?><!--</h2>-->
-<!--      </button></a>-->
-<!--</div>-->
 
-    <div class="trip-button-div col-12">
-        <button id="start-trip-btn" class="trip-button" onclick="startTrip(<?php echo $_SESSION['vehicle_id'] ?>)">
-            <h2>Start Trip on <?php $currentDate = date("Y-m-d"); echo $currentDate;?></h2>
-        </button>
+<?php function callTocheckTripsOnSameDate(){
+  
+}?>
+
+    <div class="trip-button-div col-12" id="trip-button-div">
+  
     </div>
+    
 
 
     <script>
+      const btnDiv = document.getElementById('trip-button-div');
+      document.addEventListener('DOMContentLoaded',callTocheckTripsOnSameDate());
+
+      async function callTocheckTripsOnSameDate(){
+
+        const response = await fetch(`<?php echo URLROOT;?>/D_Own_School_Drivers/checkTripsOnSameDate`);
+        if(response.status == 200){
+          let data = await response.json();
+          console.log(data);
+          if(data.length == 0){
+            btnDiv.innerHTML = `<button id="start-trip-btn" class="trip-button" onclick="startTrip(<?php echo $_SESSION['vehicle_id'] ?>)" value="start">
+                      <h2>Start Trip on <?php $currentDate = date("Y-m-d"); echo $currentDate;?></h2>
+                      </button>`;
+          }else if(data[0].trip_status == 'Ongoing'){
+            btnDiv.innerHTML = `<button id="start-trip-btn" class="trip-button" onclick="startTrip(<?php echo $_SESSION['vehicle_id'] ?>)" value="end">
+            <h2>End Trip on <?php $currentDate = date("Y-m-d"); echo $currentDate;?></h2></button>`;
+            var btn = document.getElementById("start-trip-btn");
+            btn.style.backgroundColor = "red";
+          }else{
+            btnDiv.innerHTML = `<button id="start-trip-btn" class="trip-button">
+            <h2>Your ride on <?php $currentDate = date("Y-m-d"); echo $currentDate;?> is successfully completed!</h2></button>`;
+            var btn = document.getElementById("start-trip-btn");
+            btn.style.backgroundColor = "blue";
+          }
+        }
+
+      }
+
+
+
         function startTrip(vehicleId) {
             // Change button text and color
             var btn = document.getElementById("start-trip-btn");
-            btn.innerHTML = "<h2>End Trip on <?php $currentDate = date("Y-m-d"); echo $currentDate;?></h2>";
-            btn.style.backgroundColor = "red";
+            if(btn.value == 'start'){
+              swal({
+                title: "Are you sure to start the trip?",
+                text: "Your trip will be started",
+                icon: "warning",
+                buttons: ["Cancel", "Start"],
+                dangerMode: true,
+              }).then((confirm) => {
+                if (confirm) {
+                  swal("Trip Started", "Your today's trip is started.. Keep safe driving", "success")
+                  btn.innerHTML = "<h2>End Trip on <?php $currentDate = date("Y-m-d"); echo $currentDate;?></h2>";
+                  btn.style.backgroundColor = "red";
+                  const xhr = new XMLHttpRequest();
+                  xhr.open('POST', '<?php echo URLROOT;?>/D_Own_School_Drivers/startTrip', true);
+                  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
-            // fetchStartTrip(vehicleId);
-            
-            // // Call startTrip function using AJAX
-            // var xhttp = new XMLHttpRequest();
-            // xhttp.onreadystatechange = function() {
-            //     if (this.readyState == 4 && this.status == 200) {
-            //         // Handle server response if necessary
-            //     }
-            // };
-            // xhttp.open("GET", "<?php echo URLROOT;?>/D_Own_School_Drivers/startTrip", true);
-            // xhttp.send();
+                  xhr.onload = function () {
+                    if (xhr.status === 200) {
+                      const response = xhr.responseText;
+                      console.log(response);
+                      
+                      // displayQueryResults(response);
+                    } else {
+                      console.error('Error running the SQL query: ', xhr.responseText);
+                    }
+                  };
 
-            
-            const xhr = new XMLHttpRequest();
-            xhr.open('POST', '<?php echo URLROOT;?>/D_Own_School_Drivers/startTrip', true);
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-            xhr.onload = function () {
-              if (xhr.status === 200) {
-                const response = xhr.responseText;
-                console.log(response);
+                  const data = 'runQuery=true&pvehicleid='.vehicleId; // POST parameter to indicate that the query should be executed
+                  xhr.send(data);
+                  btn.value = 'end';
+                    }
+                  });
+              
+            }else if(btn.value == 'end'){
+              swal({
+                title: "Are you sure to end the today's trip?",
+                text: "Your trip will be ended for today",
+                icon: "warning",
+                buttons: ["Cancel", "End"],
+                dangerMode: true,
+              }).then((confirm) => {
+                if (confirm) {
+                  swal("Trip Ended", "Your today's trip is ended.. View completed trips for more details", "success")
+                  btn.innerHTML = "<h2>Your ride on <?php $currentDate = date("Y-m-d"); echo $currentDate;?> is successfully completed!</h2>";
+                  btn.style.backgroundColor = "blue";
+                  const xhr = new XMLHttpRequest();
+                  xhr.open('POST', '<?php echo URLROOT;?>/D_Own_School_Drivers/endTrip', true);
+                  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                  xhr.onload = function () {
+                    if (xhr.status === 200) {
+                      const response = xhr.responseText;
+                      console.log(response);
+                      
+                      // displayQueryResults(response);
+                    } else {
+                      console.error('Error running the SQL query: ', xhr.responseText);
+                    }
+                  };
                 
-                // displayQueryResults(response);
-              } else {
-                console.error('Error running the SQL query: ', xhr.responseText);
-              }
-            };
+                  const data = 'runQuery=true&pvehicleid='.vehicleId; // POST parameter to indicate that the query should be executed
+                  xhr.send(data);
+                  btn.value = 'completed';
+                    }
+                  });
+              
+            }
+            else{
 
-          
-            const data = 'runQuery=true&pvehicleid='.vehicleId; // POST parameter to indicate that the query should be executed
-            xhr.send(data);
-          
+            }  
         }
-
-        // const fetchStartTrip = async(vehicleId) => {
-        //   window.location.href = 'http://localhost/projectwego/D_Own_School_Drivers/startTrip/' + vehicleId;
-        //   console.log("Su");
-        // }
-
        
     </script>
 
@@ -259,16 +297,6 @@
   <div class="map-container col-10">
   <div id="map" style="width:100%;height:400px;">
   </div>
-
-<!-- 
-  The `defer` attribute causes the callback to execute after the full HTML
-  document has been parsed. For non-blocking uses, avoiding race conditions,
-  and consistent behavior across browsers, consider loading using Promises.
-  See https://developers.google.com/maps/documentation/javascript/load-maps-js-api
-  for more information.
-  -->
-
-  <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.9029322876!2d79.85896421523185!3d6.9022108205585555!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae25963120b1509%3A0x2db2c18a68712863!2sUniversity%20of%20Colombo%20School%20of%20Computing%20(UCSC)!5e0!3m2!1sen!2slk!4v1675998107896!5m2!1sen!2slk" width="1400" height="700" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
   </div>
 </div>
 </main>
@@ -280,10 +308,6 @@
 </script>
 
 <script>
-  // Note: This example requires that you consent to location sharing when
-// prompted by your browser. If you see the error "The Geolocation service
-// failed.", it means you probably did not give permission for the browser to
-// locate you.
 let map, infoWindow;
 
 function initMap() {

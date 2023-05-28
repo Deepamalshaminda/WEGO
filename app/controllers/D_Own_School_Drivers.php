@@ -78,14 +78,7 @@
 
           public function startTrip(){
 
-//              $routeArray = $this -> Own_School_Driver_Model -> findStartAndEnd($_SESSION['vehicle_id']);
-//              $start = trim($routeArray[0]);
-//              $destination = trim(end($routeArray));
-            
-
             if(($_SERVER['REQUEST_METHOD'] == 'POST')) {
-
-
                 $routeArray = $this -> Own_School_Driver_Model -> findStartAndEnd($_SESSION['vehicle_id']);
                 // $start = 1;
                 $vehicle_ID = $_SESSION['vehicle_id'];
@@ -113,6 +106,55 @@
               
               $this->view('users/driver/vehicle-own-school-transport/d_dashboard-own-school');
             }
+          }
+
+          public function endTrip(){
+            if(($_SERVER['REQUEST_METHOD'] == 'POST')) {
+
+
+              $routeArray = $this -> Own_School_Driver_Model -> findStartAndEnd($_SESSION['vehicle_id']);
+              // $start = 1;
+              $vehicle_ID = $_SESSION['vehicle_id'];
+              $array = explode(", ", $routeArray->route);
+              $currentDate = date("Y-m-d");
+
+              print_r($array);
+              
+              // $destination =  2;
+
+              $start = $array[0];
+              $destination = $array[count($array)-1];
+              
+              $data = [
+                  'user_id' => $_SESSION['user_id'],
+                  'start' => $start,
+                  'destination' => $destination,
+                  'no_of_passengers' => 2,
+                  've_id' => $vehicle_ID,
+                  'trip_status' => "Ongoing",
+                  'date' => $currentDate
+
+              ];
+                
+                  $this->Own_School_Driver_Model->endTrip($data);
+                  
+                
+                $this->view('users/driver/vehicle-own-school-transport/d_dashboard-own-school');
+              }
+          }
+
+          public function checkTripsOnSameDate(){
+            $currentDate = date("Y-m-d");
+            $vehicle_ID = $_SESSION['vehicle_id'];
+
+            $data = [
+              'user_id' => $_SESSION['user_id'],
+              've_id' => $vehicle_ID,
+              'date' => $currentDate
+
+          ];
+
+          $this -> sendJson($this->Own_School_Driver_Model->checkTripsOnSameDate($data));
           }
       
           public function getReceivedRequests(){

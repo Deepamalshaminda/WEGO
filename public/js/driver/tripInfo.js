@@ -6,6 +6,7 @@ const fetchOngoingTrips = async() => {
     if(response.status == 200){
         ongoing_trips = await response.json();
         loadOngoingTrips(ongoing_trips);
+        console.log(ongoing_trips);
     }
 }
 
@@ -48,18 +49,6 @@ const loadOngoingTrips = (trips) => {
                     </div>
                     <div class="long col-8">
                       <p>${trip.destination}</p>
-                    </div>
-                  </div>
-
-                  <div class="details-container-top col-12">
-                    <div class="short col-4">
-                      <h4>Driver ID</h4>
-                    </div>
-                    <div class="long col-3">
-                      <p>${trip.driver_id}</p>
-                    </div>
-                    <div class="rest col-3">
-                      <button class="button"><a class="link" href="#">Driver Details</a></button>
                     </div>
                   </div>
 

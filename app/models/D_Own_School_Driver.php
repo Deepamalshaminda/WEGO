@@ -29,13 +29,14 @@
         {
             $this->db->query("SELECT
             r.ride_request_id as 'request_id',
-            u.name as 'fromWhom',
+            u.name as 'fromParent',
             u.address as 'fromWhere',
-            c.school_address as 'toWhere'
+            c.school_address as 'toWhere',
+            c.Name as 'childName',
+            r.from_whom as 'childId'
             FROM ride_request r
-            INNER JOIN user u ON u.us_id = r.from_whom 
-            INNER JOIN parent p ON p.us_id = u.us_id
-            INNER JOIN child c ON c.pr_id = p.pr_id
+            INNER JOIN child c ON c.ch_id = r.from_whom
+            INNER JOIN user u ON u.us_id = r.from_parent
             INNER JOIN vehicle v ON v.ve_id = r.to_whom
             WHERE v.driver_id = :id AND r.status = 'Pending'");
             $this->db->bind(':id', $userId);
@@ -43,6 +44,28 @@
             $results = $this->db->resultSet();
         
             return $results;
+        }
+
+        public function acceptRideRequests($childId)
+        {
+            $this->db->query("UPDATE ride_request SET status = 'Accepted' WHERE ride_request_id = :id");
+            $this->db->bind(':id', $childId);
+            if($this->db->execute()){
+                return true;
+              } else {
+                return false;
+              }
+        }  
+
+        public function declineRideRequests($requestId)
+        {
+            $this->db->query("DELETE FROM ride_request WHERE ride_request_id = :id");
+            $this->db->bind(':id', $requestId);
+            if($this->db->execute()){
+                return true;
+              } else {
+                return false;
+              }
         }
 
         public function getPresentStudentForVehicle($vehicle_id)
@@ -93,6 +116,8 @@
             return $result;
 
         }
+
+        
 
         
     }

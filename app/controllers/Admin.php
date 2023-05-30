@@ -1,7 +1,11 @@
 <?php
   class Admin extends Controller {
     public $userModel;
-    
+    public $complaintModel;
+    public $profileModel;
+    public $transactionModel;
+    public $vehicleModel;
+    public $rideModel;
     public function __construct(){
       if(!isLoggedIn()){
         redirect('Admin/a_dashboard');
@@ -54,43 +58,6 @@
     
       $this->view('users/admin/admindash', $data);
     }
-    public function adduser(){
-      
-    //     // Check for POST
-    // if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    //   // Process form
-
-    //   // Sanitize POST data
-    //   $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-
-      // Init data
-      $data = [
-        'name' => $name,
-        'nic' => $nic, 
-        'gender' => $gender ,
-        'dob' => $dob,
-        'province' => $province,
-        'district' => $district,
-        'nearestTown' => $nearestTown,
-        'address' => $address,
-        'contactNumber' => $contactNumber,
-        'email' => $email,
-        'user_role' => $user_role,
-        'password' => $password,
-        
-        
-      ];
-
-       
-        $this->view('users/admin/adduser', $data);
-
-       
-        }
-      
-    
- 
-  
-   
     
   
     public function complaints()
@@ -261,8 +228,14 @@ public function deny($ve_id){
   }
   public function dashboard(){
 
-    
+    
 }
-  
+  
 
 }
+  
+
+
+   
+  
+  

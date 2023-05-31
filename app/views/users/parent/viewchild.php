@@ -4,6 +4,8 @@
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/p_prequest.css">
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/viewchildren.css">
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/js/list.js">
+<script src="https://unpkg.com/sweetalert@2/dist/sweetalert.min.js"></script> <script src="https://unpkg.com/sweetalert@2/dist/sweetalert.min.js"></script>
+
 <title><?php echo SITENAME; ?></title>
 <html>
 </head>
@@ -62,8 +64,24 @@
 
                     </div>
                     <div class="data">
-                        <button class="delete"><a href="<?php echo URLROOT ?>/Parents/deleteChild/<?php echo $data['child']->ch_id ?>">Delele child</a></button>
+                        <button class="delete" a href="#" onclick="confirmDelete()"><a href="<?php echo URLROOT ?>/Parents/deleteChild/<?php echo $data['child']->ch_id ?>">Delele child</a></button>
                     </div>
+                    <script>
+            function confirmDelete() {
+              swal({
+                title: "Are you sure?",
+                text: "You will be logged out",
+                icon: "warning",
+                buttons: ["Cancel", "Logout"],
+                dangerMode: true,
+              }).then((confirm) => {
+                if (confirm) {
+                  window.location.href = '<?php echo URLROOT; ?>/Parents/deleteChild/';
+                }
+              });
+            }
+            </script>
+
                 </div>
             </div>
 

@@ -23,6 +23,7 @@
           <div class="friend-card">
             <form action="<?php echo URLROOT; ?>/Complaints/setComplaint" method="post">
               <div class="row">
+        </br></br>
                 <label for="ride">Select Ride ID:</label>
                 <select name="ride" id="ride">
                   <optgroup label="Ride ID">
@@ -32,15 +33,6 @@
                   </optgroup>
                 </select>
                 </br></br>
-                <label for="reservations">Select Reservation ID:</label>
-                <select name="reservations" id="reservations">
-                  <optgroup label="Reservation ID">
-                    <?php foreach ($data['reservations'] as $reservation) : ?>
-                      <option value="<?php echo $reservation->reservation_id ?>">Reservation ID: <?php echo $reservation->reservation_id ?> - <?php echo $reservation->ve_id ?> - <?php echo $reservation->date ?></option>
-                    <?php endforeach; ?>
-                  </optgroup>
-                </select>
-                </br></br></br></br>
                 <div class="row">
                   <span>Complaint</span>
                   <div class="inputBox">

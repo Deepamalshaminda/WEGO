@@ -42,30 +42,13 @@
           </a>
         </li>
         <li>
-          <a href="<?php echo URLROOT?>/Salarydetails/viewSalaryInfo">
-            <i class='bx bx-money-withdraw' ></i>
-            <span class="links_name">&nbsp; Salaries</span>
-          </a>
-        </li>
-        <li>
           <a href="<?php echo URLROOT?>/reports/viewReports">
             <i class='bx bx-spreadsheet' ></i>
             <span class="links_name">&nbsp; Reports</span>
           </a>
         </li>
-        <li>
-          <a href="<?php echo URLROOT?>/Documents/viewDocuments">
-            <i class='bx bx-file' ></i>
-            <span class="links_name">&nbsp; Vehicle Documents</span>
-          </a>
-        </li>
         
-        <li>
-          <a href="<?php echo URLROOT?>/DriverAttendance/viewDriverAttendance">
-            <i class='bx bx-calendar-check' ></i>
-            <span class="links_name">&nbsp; Driver Attendace</span>
-          </a>
-        </li>
+        
         
         <li class="log_out">
           <a href="<?php echo URLROOT?>/Users/logout">

@@ -62,7 +62,7 @@
             <li>
                 <a href="<?php echo URLROOT;?>/D_Own_School_Drivers/getPresentStudentForVehicle">
                     <i class='bx bx-coin-stack'></i>
-                    <span class="links_name">Students to be Absent</span>
+                    <span class="links_name">Students to be Present</span>
                 </a>
             </li>
             <li>
@@ -128,37 +128,6 @@
         </nav>
        
     </section>
-
-<!--    <script>-->
-<!--        const startButton = document.querySelector("#start");-->
-<!--        const endButton = document.querySelector("#end");-->
-<!---->
-<!--        startButton.addEventListener('click', () => {-->
-<!--            startTrip();-->
-<!--            startButton.classList.remove('start-button');-->
-<!--            btnSuggessions.classList.add('end-button')-->
-<!--        });-->
-<!--        endButton.addEventListener('click', () => endTrip());-->
-<!---->
-<!--        let start = null;-->
-<!--        let end = null;-->
-<!---->
-<!--        const startTrip = async() => {-->
-<!--            const response = await fetch('http://localhost/projectwego/D_Own_School_Drivers/startTrip');-->
-<!--            if(response.status == 200){-->
-<!--                start = await response.json();-->
-<!--                loadReceivedRequests(received_requests);-->
-<!--            }-->
-<!--        }-->
-<!---->
-<!--        const endTrip = async() => {-->
-<!--            const response = await fetch('http://localhost/projectwego/D_Own_School_Drivers/endTrip');-->
-<!--            if(response.status == 200){-->
-<!--                sent_requests = await response.json();-->
-<!--                loadSentRequests(sent_requests);-->
-<!--            }-->
-<!--        }-->
-<!--    </script>-->
 
     <script>
         let sidebar = document.querySelector(".sidebar");
@@ -303,8 +272,8 @@
 
 
 <script
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANjobudebgCKlFuSSxv-7SSFaQVLUGsfU&callback=initMap&v=weekly"
-  defer>
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9dw4OZzvDlq6z8TBvgTSk0lvtpsY9jv0&callback=initMap&v=weekly"
+  async>
 </script>
 
 <script>
@@ -312,8 +281,9 @@ let map, infoWindow;
 
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: -34.397, lng: 150.644 },
-    zoom: 6,
+    center: { lat: 6.0329, lng: 80.2168 },
+    zoom: 8
+    ,
   });
   infoWindow = new google.maps.InfoWindow();
 

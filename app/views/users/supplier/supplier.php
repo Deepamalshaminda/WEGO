@@ -15,7 +15,7 @@
       <br>
       <br>
 
-      <!--<div class="overview-boxes">
+      <div class="overview-boxes">
         <div class="box">
           <div class="right-side">
             <div class="box-topic">Drivers working today</div>
@@ -45,9 +45,10 @@
             <div class="box-topic">New Worker Requests</div>
             <div class="number">15</div>
 
-          </div>-->
+          </div>
 
-       
+        </div>
+      </div>
 
       <div class="sales-boxes">
         <div class="recent-sales box">

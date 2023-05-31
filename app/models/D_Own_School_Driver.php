@@ -59,7 +59,7 @@
 
         public function declineRideRequests($requestId)
         {
-            $this->db->query("DELETE FROM ride_request WHERE ride_request_id = :id");
+            $this->db->query("UPDATE ride_request SET status = 'declined' WHERE ride_request_id = :id");
             $this->db->bind(':id', $requestId);
             if($this->db->execute()){
                 return true;
@@ -146,6 +146,30 @@
             $result = $this->db->single();
             return $result;
         }
+
+        public function updateProfileDetails($data){
+
+            $this->db->query('UPDATE user SET name = :name, gender = :gender, dob = :dob, province = :province, district = :district, nearestTown :nearestTown, contactNumber = :contactNumber, email = :email');
+      
+            // Bind values
+            $this->db->bind(':name', $data['name']);
+            $this->db->bind(':gender', $data['gender']);
+            $this->db->bind(':dob', $data['dob']);
+            $this->db->bind(':province', $data['province']);
+            $this->db->bind(':district', $data['district']);
+            $this->db->bind(':nearestTown', $data['nearestTown']);
+            $this->db->bind(':address', $data['address']);
+            $this->db->bind(':contactNumber', $data['contactNumber']);
+            $this->db->bind(':email', $data['email']);
+            
+      
+            // Execute
+            if($this->db->execute()){
+              return true;
+            } else {
+              return false;
+            }
+          }
         
     }
 

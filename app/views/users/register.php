@@ -56,7 +56,7 @@
                                                  <label for="map">Select your default location</label>
                                                  <div class="space" style="height: 50vh; margin : 20px;">
                                                         <div id="map" style="height: 50vh; width: 100%; margin: 20px;">
-                                                        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCykzd2-mQTQdSMQNh8PxrWAnDBgqjf_Xg&callback=Function.prototype"></script>
+                                                        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9dw4OZzvDlq6z8TBvgTSk0lvtpsY9jv0&callback=Function.prototype"></script>
                                                                <script>
                                                                       function initMap() {
                                                                       var colombo = {lat: 6.9271, lng: 79.8612};

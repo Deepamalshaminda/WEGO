@@ -17,7 +17,7 @@
 
     <div class="top-container col-12">
         <div class="top-container-left col-12">
-            <h3>Students to be Absent</h3>
+            <h3>Students to be Present</h3>
         </div>
         <div class="top-container-right">
             <h3></h3>

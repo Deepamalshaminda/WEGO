@@ -2,6 +2,7 @@
     class D_Own_School_Drivers extends Controller{
       public $viewDashboardModel;
       public $model;
+      public $userModel;
       public $connRequestModel;
       public $Own_School_Driver_Model;
       public $Attendencechild;
@@ -12,6 +13,7 @@
         }
   
         $this->model = $this->model('D_ManageDriver');
+        $this->userModel = $this->model('User');
         $this->connRequestModel = $this->model('D_ConnectionRequest');
         $this->viewDashboardModel = $this->model('viewDashboard');
         $this->Own_School_Driver_Model = $this->model('D_Own_School_Driver');
@@ -237,7 +239,6 @@
               'user' => '',
               'requests' => $requests
           ];
-          print_r($data);
     
           $this->view('users/driver/vehicle-own-school-transport/d_acceptriderequest', $data);
         }
@@ -323,6 +324,109 @@
     
           $this->view('users/driver/vehicle-own-school-transport/d_driver_profile', $data);
         }
+
+        public function editDriverProfile(){
+          $userId = $_SESSION['user_id'];
+          $user = $this->Own_School_Driver_Model->getProfileDetails($userId);
+          $data = [
+            'title' => 'Profile',
+            'user' => $user
+          ];
+          $this->view('users/driver/vehicle-own-school-transport/d_driver_profile_update', $data);
+
+          // Check for POST
+          if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // Process form
+
+            // Sanitize POST data
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+          $userId = $_SESSION['user_id'];
+          $user = $this->Own_School_Driver_Model->getProfileDetails($userId);
+          $data = [
+            'title' => 'Profile',
+            'user' => $user,
+            'name' => trim($_POST['name']),
+            'gender' => trim($_POST['gender']),
+            'dob' => trim($_POST['dob']),
+            'province' => trim($_POST['province']),
+            'district' => trim($_POST['district']),
+            'nearestTown' => trim($_POST['nearestTown']),
+            'address' => trim($_POST['address']),
+            'contactNumber' => trim($_POST['contactNumber']),
+            'email' => trim($_POST['email']),
+            'name_err' => '',
+            'gender_err' => '',
+            'dob_err' => '',
+            'province_err' => '',
+            'district_err' => '',
+            'nearestTown_err' => '',
+            'address_err' => '',
+            'contactNumber_err' => '',
+            'email_err' => '',
+          ];
+
+          if (empty($data['name'])) {
+            $data['name_err'] = 'Please enter name';
+          }
+
+          // Validate grnder
+      if (empty($data['gender'])) {
+        $data['gender_err'] = 'Please fill this field';
+      }
+
+      // Validate dob
+      if (empty($data['dob'])) {
+        $data['dob_err'] = 'Please enter dob';
+      }
+
+      // Validate province
+      if (empty($data['province'])) {
+        $data['province_err'] = 'Please fill this field';
+      }
+
+      // Validate district
+      if (empty($data['district'])) {
+        $data['district_err'] = 'Please fill this field';
+      }
+
+      // Validate town
+      if (empty($data['nearestTown'])) {
+        $data['nearestTown_err'] = 'Please fill this field';
+      }
+
+      // Validate address
+      if (empty($data['address'])) {
+        $data['address_err'] = 'Please enter address';
+      }
+
+      // Validate contact number
+      if (empty($data['contactNumber'])) {
+        $data['contactNumber_err'] = 'Please enter contact number';
+      } else if (!preg_match('/^\d{10}$/', $data['contactNumber'])) {
+        $data['contactNumber_err'] = 'Contact number must have exactly 10 digits';
+      }
+
+      if (empty($data['email'])) {
+        $data['email_err'] = 'Please enter email';
+      } else {
+        // Check email format
+        if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+          $data['email_err'] = 'Invalid email format';
+        } else {
+          // Check if email already exists in database
+          if ($this->userModel->findUserByEmail($data['email'])) {
+            $data['email_err'] = 'Email is already taken';
+          }
+        }
+      }
+
+      if (empty($data['email_err']) && empty($data['name_err']) && empty($data['gender_err']) && empty($data['dob_err']) && empty($data['province_err']) && empty($data['district_err']) && empty($data['nearestTown_err']) && empty($data['address_err']) && empty($data['contactNumber_err'])){
+        $this->Own_School_Driver_Model->updateProfileDetails($userId);
+      }
+          // $this->view('users/driver/vehicle-own-school-transport/d_driver_profile_update', $data);
+          
+        }}
     
         public function getDriverByUserId($us_id){
           $driver = $this -> model -> getDriverByUserId($us_id);

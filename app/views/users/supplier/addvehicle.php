@@ -20,7 +20,7 @@
     <div class="form-group">
     
                 <label for="vehicleno">Vehicle No &nbsp; : <sup>*</sup></label>
-                <input type="vehicleno" name="vehicleno" class="controls <?php echo (!empty($data['vehicleno_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['vehicleno']; ?>">
+                <input type="text" name="vehicleno" class="controls <?php echo (!empty($data['vehicleno_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['vehicleno']; ?>">
                 <span class="invalid-feedback"><?php echo $data['vehicleno_err']; ?></span>
             </div>
 
@@ -32,7 +32,7 @@
 
             <div class="form-group">
                 <label for="model">Model &nbsp; &nbsp; : <sup>*</sup></label>
-                <input type="model" name="model" class="controls <?php echo (!empty($data['model_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['model']; ?>">
+                <input type="text" name="model" class="controls <?php echo (!empty($data['model_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['model']; ?>">
                 <span class="invalid-feedback"><?php echo $data['model_err']; ?></span>
             </div><br>
 
@@ -44,39 +44,49 @@
 
             <div class="form-group">
                 <label for="year">Year  : <sup>*</sup></label>
-                <input type="year" name="year" class="controls <?php echo (!empty($data['year_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['year']; ?>">
+                <input type="text" name="year" class="controls <?php echo (!empty($data['year_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['year']; ?>">
                 <span class="invalid-feedback"><?php echo $data['year_err']; ?></span>
             </div>
 
             <div class="form-group">
                 <label for="address">Address : <sup>*</sup></label>
-                <input type="address" name="address" class="controls <?php echo (!empty($data['address_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['address']; ?>">
+                <input type="text" name="address" class="controls <?php echo (!empty($data['address_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['address']; ?>">
                 <span class="invalid-feedback"><?php echo $data['address_err']; ?></span>
             </div>
 
             <div class="form-group">
                 <label for="route">Route : <sup>*</sup></label>
-                <input type="route" name="route" class="controls <?php echo (!empty($data['route_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['route']; ?>">
+                <input type="text" name="route" class="controls <?php echo (!empty($data['route_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['route']; ?>">
                 <span class="invalid-feedback"><?php echo $data['route_err']; ?></span>
             </div>
 
             <div class="form-group">
                 <label for="starttime">Usual journey start time : <sup>*</sup></label>
-                <input type="starttime" name="starttime" class="controls <?php echo (!empty($data['starttime_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['starttime']; ?>">
+                <input type="time" name="starttime" class="controls <?php echo (!empty($data['starttime_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['starttime']; ?>">
                 <span class="invalid-feedback"><?php echo $data['starttime_err']; ?></span>
             </div>
 
             <div class="form-group">
                 <label for="seatingcapacity">Seating capacity: <sup>*</sup></label>
-                <input type="seatingcapacity" name="seatingcapacity" class="controls <?php echo (!empty($data['seatingcapacity_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['seatingcapacity']; ?>">
+                <input type="text" name="seatingcapacity" class="controls <?php echo (!empty($data['seatingcapacity_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['seatingcapacity']; ?>">
                 <span class="invalid-feedback"><?php echo $data['seatingcapacity_err']; ?></span>
             </div>
-
+            
             <div class="form-group">
+    <label for="Ac">AC/Non-AC: <sup>*</sup></label>
+    <select name="Ac" class="controls <?php echo (!empty($data['Ac_err'])) ? 'is-invalid' : ''; ?>">
+        <option value="">Select AC/Non-AC</option>
+        <option value="AC" <?php if ($data['Ac'] == 'AC') echo 'selected'; ?>>AC</option>
+        <option value="Non-AC" <?php if ($data['Ac'] == 'Non-AC') echo 'selected'; ?>>Non-AC</option>
+    </select>
+    <span class="invalid-feedback"><?php echo $data['Ac_err']; ?></span>
+</div>
+
+            <!-- <div class="form-group">
                 <label for="Ac">AC/Non-AC : <sup>*</sup></label>
-                <input type="Ac" name="Ac" class="controls <?php echo (!empty($data['Ac_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['Ac']; ?>">
+                <input type="text" name="Ac" class="controls <?php echo (!empty($data['Ac_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['Ac']; ?>">
                 <span class="invalid-feedback"><?php echo $data['Ac_err']; ?></span>
-            </div>
+            </div> -->
 
             <div class="form-group">
                 <label for="expirylicence">Expiry date of licence: <sup>*</sup></label>
@@ -86,19 +96,32 @@
             </div>
 
             <div class="form-group">
-                <label for="service_type">Service Type of the Vehicle<sup>*</sup></label>
-                <input type="service_type" name="service_type" class="controls <?php echo (!empty($data['service_type_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['service_type']; ?>">
-                <span class="invalid-feedback"><?php echo $data['service_type_err']; ?></span>
+    <label for="service_type">Service Type of the Vehicle<sup>*</sup></label>
+    <select name="service_type" class="controls <?php echo (!empty($data['service_type_err'])) ? 'is-invalid' : ''; ?>">
+        <option value="">Select Service Type</option>
+        <option value="School Service" <?php if ($data['service_type'] == 'School Service') echo 'selected'; ?>>School Service</option>
+        <option value="Office Transport" <?php if ($data['service_type'] == 'Office Transport') echo 'selected'; ?>>Office Transport</option>
+    </select>
+    <span class="invalid-feedback"><?php echo $data['service_type_err']; ?></span>
+</div>
+
+
+            <div class="form-group">
+                <label for="charge_for_a_km">Charge for a Km<sup>*</sup></label>
+                <input type="text" name="charge_for_a_km" class="controls <?php echo (!empty($data['charge_for_a_km_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['charge_for_a_km']; ?>">
+                <span class="invalid-feedback"><?php echo $data['charge_for_a_km_err']; ?></span>
             </div>
 
             <div class="form-group">
                 <label for="comments">Special conditions<sup>*</sup></label>
-                <input type="comments" name="comments" class="controls <?php echo (!empty($data['comments_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['comments']; ?>">
+                <input type="text" name="comments" class="controls <?php echo (!empty($data['comments_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['comments']; ?>">
                 <span class="invalid-feedback"><?php echo $data['comments_err']; ?></span>
             </div>
+
+          
             
             <div class="form-group">
-                <label for="vehicle_image">Image of vehicle<sup>*</sup></label>
+                <label for="vehicle_image">Image of vehicle <sup>*</sup>- Rename the image with the vehicle number ( ex/- AB 1234)</label>
                 <input type="file" name="vehicle_image" class="controls <?php echo (!empty($data['vehicle_image_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['vehicle_image']; ?>">
                 <span class="invalid-feedback"><?php echo $data['vehicle_image_err']; ?></span>
             </div>
@@ -107,7 +130,7 @@
             
             <div class="form-group">
 
-        <label for="vehicle_document">Upload documents of the vehicle (ZIP format only)    -Please rename the zip file with your vehicle number<sup>*</sup></label>
+        <label for="vehicle_document">Upload documents of the vehicle (ZIP format only)<sup>*</sup>  -Please upload a zip file including the below documents and rename it with your vehicle number<br> 1. Driver Licence<br> 2. Letter of handingover the vehicle <br> 3. Vehicle Insuarance Document</label>
         <input type="file" name="vehicle_document" class="controls <?php echo (!empty($data['vehicle_document_err'])) ? 'is-invalid' : ''; ?>" accept=".zip">
         <span class="invalid-feedback"><?php echo $data['vehicle_document_err']; ?></span>
     </div>
@@ -116,7 +139,11 @@
 
                     <input type="submit" value="Save" name="addVehicle" class="btn1">
                     <br>
-                    <input type="reset" value="Cancel" class="btn2">
+                    <form action="<?php echo URLROOT?>/users/supplier/addvehicle" method="get">
+  <button type="submit" class="btn2">Cancel</button>
+</form>
+
+                    <!-- <a href="<?php echo URLROOT?>/users/supplier/supplier"> <button value="Cancel" class="btn2">Cancel</button></a> -->
                 </div>
             </div>
         </div>

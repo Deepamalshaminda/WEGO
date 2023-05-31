@@ -16,7 +16,7 @@ class AssignDrivers {
         return $vehicles;
     }
 
-    // retrieve all drivers from the database
+    // retrieve all drivers from the database of supplier
     public function getDrivers() {
         $this->db->query('SELECT driver_id from driver WHERE id = 154');
         $drivers = $this->db->resultSet();
@@ -35,20 +35,59 @@ class AssignDrivers {
         }
     }
 
+    public function getVehicleByVehicleId($vehicle_id){
+        $this->db->query("SELECT * FROM vehicle WHERE ve_id = :vehicle_id");
+        $this->db->bind(':vehicle_id',$vehicle_id);
+        $row = $this->db->asAnArray();
+        //$row = $this->db->asAnArray();
+        if($row){
+            $row = $this->db->single();
+            return $row;
+        } else {
+            return false;
+        }
+    }
+
     public function getRideInfo() {
-        $this->db->query('SELECT ve_id, vehicleno, driver_id, starttime, route 
-        FROM vehicle 
-        INNER JOIN trip_information ON vehicle.ve_id = trip_information.ve_id 
-        WHERE trip_information.trip_status = "Ongoing" AND vehicle.id =id
-        ');
-        
+        $this->db->query('SELECT v.ve_id, v.vehicleno, v.driver_id, v.starttime, v.route FROM vehicle v INNER JOIN trip_information ON v.ve_id = trip_information.ve_id WHERE trip_information.trip_status = "Ongoing" AND v.id = :id;');
         $this->db->bind(':id', $this->id);
- 
-       // $this->db->bind($_SESSION['id'], $this->id);
-        
         $vehicles = $this->db->resultSet();
         return $vehicles;
     }
+    
+    public function getCompletedRides() {
+        $this->db->query('SELECT v.ve_id, v.vehicleno, v.driver_id, v.route 
+        FROM vehicle v 
+        INNER JOIN trip_information 
+        ON v.ve_id = trip_information.ve_id 
+        WHERE trip_information.trip_status = "Completed" 
+        AND v.id = :id;');
+        $this->db->bind(':id', $this->id);
+        $vehicles = $this->db->resultSet();
+        return $vehicles;
+    }
+    public function getDriverEmail(){
+        $this->db->query('SELECT email
+        FROM user 
+        INNER JOIN driver ON driver.driver_id = user.us_id');
+        $vehicles = $this->db->resultSet();
+        return $vehicles;
+        
+
+    }
+    public function getDriverEmailbyID($id){
+        $this->db->query('SELECT email
+        FROM user 
+        INNER JOIN driver ON driver.driver_id = user.us_id
+        WHERE driver_id = :driver_id ');
+        $this->db->bind(':driver_id', $id);
+        $vehicles = $this->db->single();
+        return $vehicles->email;
+        
+
+    }
+
+    
     
     }
     

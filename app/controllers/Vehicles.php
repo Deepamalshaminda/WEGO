@@ -32,6 +32,8 @@ class Vehicles extends Controller
 
       $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
+     // print_r($_POST);
+
       // Init data
       $data = [
         'vehicleno' => trim($_POST['vehicleno']),
@@ -45,6 +47,7 @@ class Vehicles extends Controller
         'Ac' => trim($_POST['Ac']),
         'expirylicence' => trim($_POST['expirylicence']),
         'service_type' => trim($_POST['service_type']),
+        'charge_for_a_km' => trim($_POST['charge_for_a_km']),
         'comments' => trim($_POST['comments']),
        // 'vehicle_image' => trim($_POST['vehicle_image']),
         'vehicle_image' => !empty($_POST['vehicle_image']) ? trim(implode(',', (array)$_POST['vehicle_image'])) : '',
@@ -63,6 +66,7 @@ class Vehicles extends Controller
         'Ac_err' => '',
         'expirylicence_err' => '',
         'service_type_err' => '',
+        'charge_for_a_km_err' => '',
         'comments_err' => '',
         'vehicle_image_err' => '',
         'vehicle_document_err' => '',
@@ -70,20 +74,35 @@ class Vehicles extends Controller
         
         'userid' => $_SESSION['user_id']
       ];
+      //echo "<br>";
+      //print_r($data);
 
       $fileVehicleImage = [
         'image_name'=>$_FILES['vehicle_image']['name'],
         'image_type'=>$_FILES['vehicle_image']['type'],
         'image_size'=>$_FILES['vehicle_image']['size'],
-        'image_tempName'=>$_FILES['vehicle_image']['temp_name'],
+        'image_tmpName'=>$_FILES['vehicle_image']['tmp_name'],
         'upload_location'=> PUBROOT . '/public/vehicle_image/'
       ];
 
       // Validate vehicleno
       if (empty($data['vehicleno'])) {
         $data['vehicleno_err'] = 'Please enter vehicle number';
-      }
-
+    } else {
+        // Validate vehicle number format
+        $vehicleno_regex = '/^[A-Z]{2,3}\s[0-9]{4}$/'; // Matches format AA 1234 or AAA 1234
+        if (!preg_match($vehicleno_regex, $data['vehicleno'])) {
+            $data['vehicleno_err'] = 'Please enter a valid vehicle number in the format AA 1234 or AAA 1234.';
+        }
+        else {
+          // Check if the vehicle number already exists
+          $existingVehicle = $this->vehicleModel->getVehicleByNumber($data['vehicleno']);
+          if ($existingVehicle) {
+              $data['vehicleno_err'] = 'This vehicle number already exists in the system';
+          }
+        }
+    }
+    
     
 
       // Validate model
@@ -129,95 +148,94 @@ class Vehicles extends Controller
       // Validate expiry of licence
       if (empty($data['expirylicence'])) {
         $data['expirylicence_err'] = 'Please enter licence expiry date';
-      }
-     
+    } else {
+        // Validate that expiry date is not due
+        $expiry_date = strtotime($data['expirylicence']);
+        if ($expiry_date < time()) {
+            $data['expirylicence_err'] = 'Licence expiry date cannot be due.';
+        }
+    }
+    
       // Validate service type
       if (empty($data['service_type'])) {
         $data['service_type_err'] = 'Please select whether you are providing school service or office transport';
+      }
+
+      // Validate service type
+      if (empty($data['charge_for_a_km'])) {
+        $data['charge_for_a_km_err'] = 'Please enter the charge per kilometer';
       }
       // Validate comments
       if (empty($data['comments'])) {
         $data['comments_err'] = 'Please describe if there any special conditions of the vehicle';
       }
 
-        //validate images
-        if (!empty($_FILES['vehicle_image']['name'])) {
-          $allowed_extensions = array('jpg','png','jpeg');
-          $file_name = $_FILES['vehicle_image']['name'];
-          $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
-        
-          // Check if file extension is allowed
-          if (!in_array($file_ext, $allowed_extensions)) {
-            $data['vehicle_image_err'] = 'Invalid file type';
-          }
-        
-          // Check if file size is less than 10 MB
-          elseif ($_FILES['vehicle_image']['size'] > 5485760) {
-            $data['vehicle_image_err'] = 'File size exceeded. Please upload an image with size less than 5 MB.';
-          }
-        
-          // If file is valid, move it to the destination folder
-          // else {
-          //   $file_tmp = $_FILES['vehicle_image']['tmp_name'];
-          //   $file_destination = 'C:\xampp\htdocs\projectwego\public\vehicle_image\\' . $file_name;
-        
-          //   echo realpath($file_destination);
-        
-          //   if (move_uploaded_file($file_tmp, $file_destination)) {
-          //     $data['vehicle_image'] = $file_destination;
-          //   } else {
-          //     $data['vehicle_image_err'] = 'Error uploading image.';
-          //   }
-            
-          // }
-          
-        } else {
-          $data['vehicle_image_err'] = 'Please upload an image of your vehicle.';
-        }
-        
+       // Validate image filename
+if (!empty($_FILES['vehicle_image']['name'])) {
+  $allowed_extensions = array('jpg', 'png', 'jpeg');
+  $file_name = $_FILES['vehicle_image']['name'];
+  $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
 
+  // Check if file extension is allowed
+  if (!in_array($file_ext, $allowed_extensions)) {
+      $data['vehicle_image_err'] = 'Invalid file type';
+  } else {
+      $vehicleno = $data['vehicleno'];
+      $expected_filename = $vehicleno . '.' . $file_ext; // Expected filename with the vehicle number and original extension
 
-      
+      // Check if the uploaded filename matches the expected filename
+      if ($file_name != $expected_filename) {
+          $data['vehicle_image_err'] = 'Please rename the image file with the vehicle number: ' . $expected_filename;
+      } else {
+          $file_tmp = $_FILES['vehicle_image']['tmp_name'];
+          $file_destination = 'C:\xampp\htdocs\projectwego\public\vehicle_image\\' . $file_name;
 
-        // Validate documents
-        if (!empty($_FILES['vehicle_document']['name'])) {
-          $allowed_extensions = array('zip');
-          $file_name = $_FILES['vehicle_document']['name'];
-          $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
-        
-          // Check if file extension is allowed
-          if (!in_array($file_ext, $allowed_extensions)) {
-            $data['vehicle_document_err'] = 'Invalid file type. Only ZIP files are allowed.';
+          if (move_uploaded_file($file_tmp, $file_destination)) {
+              $data['vehicle_image'] = $file_destination;
+          } else {
+              $data['vehicle_image_err'] = 'Error uploading image.';
           }
-        
-          // Check if file size is less than 10 MB
-          elseif ($_FILES['vehicle_document']['size'] > 10485760) {
-            $data['vehicle_document_err'] = 'File size exceeded. Please upload a file with size less than 10 MB.';
-          }
-        
-          // If file is valid, move it to the destination folder
-          else {
-            $file_tmp = $_FILES['vehicle_document']['tmp_name'];
-            $file_destination = 'C:\xampp\htdocs\projectwego\public\vehicle_document\\' . $file_name;
-        
-            echo realpath($file_destination);
-        
-            if (move_uploaded_file($file_tmp, $file_destination)) {
+      }
+  }
+} else {
+  $data['vehicle_image_err'] = 'Please upload an image of your vehicle.';
+}
+
+// Validate document filename
+if (!empty($_FILES['vehicle_document']['name'])) {
+  $allowed_extensions = array('zip');
+  $file_name = $_FILES['vehicle_document']['name'];
+  $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
+
+  // Check if file extension is allowed
+  if (!in_array($file_ext, $allowed_extensions)) {
+      $data['vehicle_document_err'] = 'Invalid file type. Only ZIP files are allowed.';
+  } else {
+      $vehicleno = $data['vehicleno'];
+      $expected_filename = $vehicleno . '.' . $file_ext; // Expected filename with the vehicle number and original extension
+
+      // Check if the uploaded filename matches the expected filename
+      if ($file_name != $expected_filename) {
+          $data['vehicle_document_err'] = 'Please rename the document file with the vehicle number: ' . $expected_filename;
+      } else {
+          $file_tmp = $_FILES['vehicle_document']['tmp_name'];
+          $file_destination = 'C:\xampp\htdocs\projectwego\public\vehicle_document\\' . $file_name;
+
+          if (move_uploaded_file($file_tmp, $file_destination)) {
               $data['vehicle_document'] = $file_destination;
-            } else {
+          } else {
               $data['vehicle_document_err'] = 'Error uploading file.';
-            }
-            
           }
-          
-        } else {
-          $data['vehicle_document_err'] = 'Please upload documents of your vehicle.';
-        }
-        
+      }
+  }
+} else {
+  $data['vehicle_document_err'] = 'Please upload documents of your vehicle.';
+}
+
 
 
       // Make sure errors are empty
-      if (empty($data['vehicleno_err']) && empty($data['model_err']) && empty($data['color_err']) && empty($data['year_err']) && empty($data['address_err']) && empty($data['route_err']) && empty($data['starttime_err']) && empty($data['seatingcapacity_err']) && empty($data['Ac_err']) && empty($data['expirylicence_err']) && empty($data['service_type_err']) && empty($data['comments_err']) && empty($data['vehicle_document_err'])) {
+      if (empty($data['vehicleno_err']) && empty($data['model_err']) && empty($data['color_err']) && empty($data['year_err']) && empty($data['address_err']) && empty($data['route_err']) && empty($data['starttime_err']) && empty($data['seatingcapacity_err']) && empty($data['Ac_err']) && empty($data['expirylicence_err']) && empty($data['service_type_err']) && empty($data['charge_for_a_km_err']) && empty($data['comments_err']) && empty($data['vehicle_document_err'])) {
         if ($this->vehicleModel->addvehicle($data,$fileVehicleImage)) {
           // flash('vehicle_message','Vehicle Added');
           // echo "added";
@@ -245,6 +263,7 @@ class Vehicles extends Controller
         'Ac' => '',
         'expirylicence' => '',
         'service_type' => '',
+        'charge_for_a_km' => '',
         'comments' => '',
         'vehicle_image' => '',
         'vehicle_document' => '',
@@ -260,6 +279,7 @@ class Vehicles extends Controller
         'Ac_err' => '',
         'expirylicence_err' => '',
         'service_type_err' => '',
+        'charge_for_a_km_err' => '',
         'comments_err' => '',
         'vehicle_image_err' => '',
         'vehicle_document_err' => '',

@@ -11,6 +11,8 @@ public $userModel;
 
   public function viewDriverAttendance(){
     //view
+    
     $this->view('users/supplier/driver_attendance');
 }
+
 }

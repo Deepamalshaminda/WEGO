@@ -16,25 +16,23 @@
     <h2>Choose your driver from here...</h2>
     <br>
     <br>
-    <form action="<?php echo URLROOT; ?>/rides/assignDrivers" method="post">
-    
-    <form>
+    <form action="<?php echo URLROOT; ?>/rides/assignDriverToVehicle" method="post">
     <label for="vehicleid">Vehicle ID:</label>
-    <input type="vehicleid" id="vehicleid" name="vehicleid" value="<?php echo $vehicle_id->vehicleid; ?>">
+    <input type="text" id="vehicleid" name="vehicleid" value="<?php echo $data['vehicle_id']; ?>">
 <br>
 <label for="vehicleno">Vehicle No:</label>
-<input type="vehicleno" id="vehicleno" name="vehicleno" value="<?php echo $data['vehicle']->vehicleno ?>">
+<input type="text" id="vehicleno" name="vehicleno" value="<?php echo $data['vehicle_no'];?>">
 <br>
 <label for="route">Route:</label>
-<input type="route" id="route" name="route" value="<?php echo $data['vehicle']->route ?>">
+<input type="text" id="route" name="route" value="<?php echo $data['route']; ?>">
 <br>
 <label for="driverid">Choose a Driver:</label>
 <select id="driverid" name="driverid">
     <option value="select">-Select</option>
     
-    <?php foreach($data['drivers'] as $driver): ?>
-        <option value="<?php echo $driver->us_id; ?>">Driver ID <?php echo $driver->us_id; ?></option>
-    <?php endforeach; ?>
+    <?php foreach($data['drivers'] as $drivers): ?>
+        <option value="<?php echo $drivers->driver_id; ?>">Driver ID <?php echo $drivers->driver_id; ?></option>
+   <?php endforeach; ?>
 </select>
 
   <br>

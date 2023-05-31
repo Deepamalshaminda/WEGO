@@ -10,7 +10,7 @@
 body{
     margin: 0;
     padding: 0;
-    background-image: url("../img/Driver/bus2.jpg");
+    background-image: url("../img/Driver/bus3.jpg");
     background-size: calc(100% + 20px);
     background-repeat: no-repeat;
 }
@@ -70,7 +70,7 @@ a{
 }
 
 .bottom-2{
-    margin-top: 15vh;
+    margin-top: 55vh;
     display: flex;
     text-align: center;
     align-items: center;
@@ -83,9 +83,10 @@ a{
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #f2f3f5;
+    background-color: #041630;
     opacity: 80%;
     border-radius: 8px;
+    color: white;
 }
 
 .ow-pr{

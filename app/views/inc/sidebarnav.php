@@ -1,3 +1,4 @@
+<script src="https://unpkg.com/sweetalert@2/dist/sweetalert.min.js"></script>
 <div class="sidebar">
     <div class="logo-details">
     <i><img src="<?php echo URLROOT?>/img/wego_logo.png" class="wego-logo" alt="wego-logo"></i>
@@ -48,15 +49,36 @@
           </a>
         </li>
         
-        
-        
         <li class="log_out">
+              <a href="#" onclick="confirmLogout()">
+                <i class='bx bx-log-out'></i>
+                <span class="links_name">Log out</span>
+              </a>
+            </li>
+
+            <script>
+            function confirmLogout() {
+              swal({
+                title: "Are you sure?",
+                text: "You will be logged out",
+                icon: "warning",
+                buttons: ["Cancel", "Logout"],
+                dangerMode: true,
+              }).then((confirm) => {
+                if (confirm) {
+                  window.location.href = '<?php echo URLROOT; ?>/Users/logout';
+                }
+              });
+            }
+            </script>
+        
+        <!-- <li class="log_out">
           <a href="<?php echo URLROOT?>/Users/logout">
             <i class='bx bx-log-out'></i>
             <span class="links_name">&nbsp; Log out</span>
           </a>
         </li>
-        
+         -->
         
         <!--<li class="log_out">
           <a href="#">

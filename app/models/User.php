@@ -8,7 +8,9 @@
 
     // Regsiter user
     public function register($data){
-      $this->db->query('INSERT INTO user (name, nic, gender, dob, province, district, nearestTown, address, contactNumber, email, password, role_id,latitude, longitude) VALUES(:name, :nic, :gender, :dob, :province, :district, :nearestTown, :address, :contactNumber, :email, :password, :role_id, :latitude, :longitude)');
+
+      $this->db->query('INSERT INTO user (name, nic, gender, dob, province, district, nearestTown, address, contactNumber, email, password, role_id,latitude, longitude, profile_image) VALUES(:name, :nic, :gender, :dob, :province, :district, :nearestTown, :address, :contactNumber, :email, :password, :role_id, :latitude, :longitude, :profile_image)');
+
       // Bind values
       $this->db->bind(':name', $data['name']);
       $this->db->bind(':nic', $data['nic']);
@@ -24,6 +26,7 @@
       $this->db->bind(':role_id', $data['user_role']);
       $this->db->bind(':latitude', $data['latitude']);
       $this->db->bind(':longitude', $data['longitude']);
+      $this->db->bind(':profile_image', $data['profile_image']);
       
 
       // Execute
@@ -88,6 +91,7 @@
             }
     }
 
+
     public function ownVehicle($email){
       $this->db->query('SELECT * FROM user WHERE email = :email');
       $this->db->bind(':email', $email);
@@ -116,6 +120,21 @@
         return false;
       }
     }
+
+    public function findUserById($id){
+      $this->db->query('SELECT * FROM user WHERE us_id = :us_id');
+      // Bind value
+      $this->db->bind(':us_id', $id);
+
+      $row = $this->db->single();
+      // Check row
+      if($this->db->rowCount() > 0){
+        return $row;
+      } else {
+        return false;
+      }
+    }
+
 
 
 
@@ -175,7 +194,47 @@
         } else {
           return false;
         }
+    } 
+    public function getUsers()
+    {
+        $this->db->query('SELECT * FROM user');
+        $results = $this->db->resultSet();
+        return $results;
     }
+    public function getUsersById($us_id)
+    {
+        $this->db->query('SELECT * FROM user 
+                          INNER JOIN roles on user.role_id = roles.role_id
+                          WHERE user.us_id = :us_id');
+        $this->db->bind(':us_id', $us_id);
+        $row = $this->db->single();
+        return $row;
+    }
+
+
+  // public function suspendUser($us_id)
+  // {
+  //     $this->db->query("DELETE FROM user WHERE us_id = :us_id");
+  //     $this->db->bind(':us_id', $us_id);
+  //           if($this->db->execute()){
+  //               return true;
+  //             } else {
+  //               return false;
+  //             }
+  // }
+
+  public function suspendUser($us_id)
+{
+    $this->db->query("UPDATE complain SET action = 'Suspended' WHERE us_id = :us_id");
+    $this->db->bind(':us_id', $us_id);
+    if ($this->db->execute()) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+    
     public function getUserById($id)
   {
     $this->db->query('SELECT * FROM user WHERE us_id = :id');
@@ -186,4 +245,5 @@
 
     return $row;
   }
+
   }

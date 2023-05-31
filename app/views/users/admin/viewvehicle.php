@@ -23,7 +23,7 @@
     <div class="left">
         <img src ="../public/img/v3.png" 
         alt="user" width="100">
-        <h4> Added By: Roshan Madushan </h4>
+        <h4> Added By: <?php echo $data['vehicle']->name; ?> </h4>
         <br>
         <h4> Vehicle No:<br><?php echo $data['vehicle']->vehicleno; ?> <h4>
     </div>
@@ -58,17 +58,7 @@
       
     
             
-            <div class="projects_data">
-                 <div class="data">
-                    <button class="suspend"> Update </button>
-                    
-                 </div>
-                 <div class="data">
-                    <button class="suspend"> Delete </button>
-                    
-                 </div>
-                 
-            </div>
+            
       
         
     </div>

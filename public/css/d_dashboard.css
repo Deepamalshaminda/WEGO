@@ -57,18 +57,85 @@ a{
     text-decoration: none;
 }
 
+.trip-button-div{
+    padding-left: 25vh;
+    padding-right: 25vh;
+}
+
+.trip-button{
+    background-color: #00a808;
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    text-align: center;
+    text-decoration: none;
+}
+
 .map-div{
 
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 3%;
 }
 
 .map-container{
     width: 100%;
-    height: 74vh;
-    padding-left:15vh;
-    box-shadow: 10px 10px 5px rgb(60, 162, 230);
+    height: 30%vh;
+    padding-left:5%;
     border-radius: 5px;
 }
 
+
+/* 
+ * Always set the map height explicitly to define the size of the div element
+ * that contains the map. 
+ */
+ #map {
+    height: 100%;
+  }
+  
+  /* 
+   * Optional: Makes the sample page fill the window. 
+   */
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .custom-map-control-button {
+    background-color: #fff;
+    border: 0;
+    border-radius: 2px;
+    box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+    margin: 10px;
+    padding: 0 0.5em;
+    font: 400 18px Roboto, Arial, sans-serif;
+    overflow: hidden;
+    height: 40px;
+    cursor: pointer;
+  }
+  .custom-map-control-button:hover {
+    background: rgb(235, 235, 235);
+  }
+
+  .start{
+
+  }
+
+.trip-button-started{
+    background-color: #ba0c26;
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    text-align: center;
+    text-decoration: none;
+}

@@ -620,7 +620,7 @@
     </script>
   </head>
 
-<?php require APPROOT . '/views/inc/d_sidenavbar-find-school'; ?>
+<?php require APPROOT . '/views/inc/d_sidenavbar-find-school.php'; ?>
 
 <?php 
   //require APPROOT . '/views/inc/map.php'; 

@@ -22,7 +22,29 @@ body{
   color: #3859dc;
 }
 
-.register-wrapper{
+.input-x{
+  text-align:left;
+  width: 30%;
+  height: 50px;
+  box-sizing: border-box;
+  border: none;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+
+}
+.input-y{
+  text-align:left;
+  width: 100%;
+  height: 50px;
+  box-sizing: border-box;
+  border: none;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  
+
+}
+
+/*.register-wrapper{
   border-radius: 8px;
   display: inline-block;
   width: 700px;
@@ -31,10 +53,13 @@ body{
   padding: 20px 5px;
   box-shadow: #f2f2f2 1px 1px 2px 3px;
 
-}
+}*/
 
 .field{
   margin-bottom: 5%;
+  width: 100%;
+  height: 5%;
+
 }
 
 .left-column {
@@ -51,12 +76,12 @@ body{
   padding: 5px;
 }
 
-.form-control{
+/*.form-control{
   padding: 5px 10px;
   margin: 3px 0;
   border-radius: 5px;
   border: #d9d6d6 1px solid;
-}
+}*/
 
 ::placeholder{
   color: #cccbcb;
@@ -741,9 +766,9 @@ background-color: #558bef;
 /* Float cancel and signup buttons and add an equal width */
 .cancelbtn {
 float: left;
-width: 25%;
-height: 6.5%;
-border-radius: 25px;
+width: 20%;
+height: 6%;
+border-radius: 10px;
 font-size: medium;
 margin-left: 15%;
 opacity: 0.9;
@@ -752,13 +777,16 @@ opacity: 0.9;
 
 .signupbtn {
 float: right;
-width: 25%;
-border-radius: 25px;
+width: 20%;
+height: 6%;
+border-radius: 10px;
 background-color: rgb(43, 43, 149);
 font-size: medium;
 margin-right: 15%;
 height: 6.5%;
 opacity: 0.9;
+padding: 14px 20px;
+border: none;
 
 }
 

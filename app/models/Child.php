@@ -16,7 +16,7 @@
       //return $results;
    // }
     public function getChildById($id){
-        $this->db->query('SELECT * FROM child WHERE id = :id');
+        $this->db->query('SELECT * FROM child WHERE ch_id = :id');
         $this->db->bind(':id', $id);
         $child = $this->db->single();
         return $child;
@@ -24,7 +24,7 @@
 
     public function getChildren(){
       $parent_id = $_SESSION['user_id'];
-      $this->db->query('SELECT *  FROM child WHERE parent_id = :parent_id');
+      $this->db->query('SELECT *  FROM child WHERE pr_id = :parent_id');
       $this->db->bind(':parent_id', $parent_id);
       $results = $this->db->resultSet();
 
@@ -32,7 +32,7 @@
     }
 
     public function deleteChildById($id){
-      $this->db->query('DELETE FROM child WHERE id = :id');
+      $this->db->query('DELETE FROM child WHERE ch_id = :id');
       $this->db->bind(':id', $id);
       $child = $this->db->single();
 
@@ -40,9 +40,9 @@
       return $child;
     }
 
-    public function addchild($data){
+    public function addchild($data, $fileChildImage){
       
-      $this->db->query('INSERT INTO child(name,gender,dob,school,school_address,age,parent_id) VALUES(:name, :gender, :dob, :school,:school_address, :age, :parent_id)');
+      $this->db->query('INSERT INTO child(name,gender,dob,school,school_address,distance_to_school,child_image,pr_id) VALUES(:name, :gender, :dob, :school,:school_address,:distance_to_school,:child_image,:pr_id)');
       // Bind values
       
       $this->db->bind(':name', $data['name']);
@@ -50,8 +50,10 @@
       $this->db->bind(':dob', $data['dob']);
       $this->db->bind(':school', $data['school']);
       $this->db->bind(':school_address', $data['school_address']);
-      $this->db->bind(':age', (date('Y') - date('Y',strtotime($data['dob']))));
-      $this->db->bind(':parent_id', $data['parentid']);
+      $this->db->bind(':distance_to_school', $data['distance_to_school']);
+      $this->db->bind(':child_image', $fileChildImage['image_name']);
+     // $this->db->bind(':age', (date('Y') - date('Y',strtotime($data['dob']))));
+      $this->db->bind(':pr_id', $data['parentid']);
 
       // Execute
       if($this->db->execute()){
@@ -61,16 +63,18 @@
       }
     }
     public function updateChild($data){
-      $this->db->query('UPDATE child SET name = :name, gender = :gender, dob = :dob, school = :school, school_address = :school_address, age = :age, parent_id = :parent_id WHERE id = :id');
+      $this->db->query('UPDATE child SET name = :name, gender = :gender, dob = :dob, school = :school, school_address = :school_address :distance_to_school,:child_image, pr_id = :parent_id WHERE ch_id = :id');
       // Bind values
-      $this->db->bind(':id', $data['id']);
+      $this->db->bind(':ch_id', $data['id']);
       $this->db->bind(':name', $data['name']);
       $this->db->bind(':gender', $data['gender']);
       $this->db->bind(':dob', $data['dob']);
       $this->db->bind(':school', $data['school']);
       $this->db->bind(':school_address', $data['school_address']);
-      $this->db->bind(':age', (date('Y') - date('Y',strtotime($data['dob']))));
-      $this->db->bind(':parent_id', $data['parentid']);
+      $this->db->bind(':distance_to_school', $data['distance_to_school']);
+      $this->db->bind(':child_image', $data['child_image']);
+      //$this->db->bind(':age', (date('Y') - date('Y',strtotime($data['dob']))));
+      $this->db->bind(':pr_id', $data['parentid']);
 
       // Execute
       if($this->db->execute()){

@@ -1,21 +1,43 @@
 <?php
-  class Vehicle {
-    private $db;
+class Vehicle
+{
+  private $db;
 
-    public function __construct(){
-      $this->db = new Database;
-    }
+  public function __construct()
+  {
+    $this->db = new Database;
+  }
 
-    public function getVehicles($userid){
-      $this->db->query('SELECT *  FROM vehicle where id=:id;');
-      $this->db->bind(':id', $userid);
-      $results = $this->db->resultSet();
+  public function getVehicles($userid)
+  {
+    $this->db->query('SELECT *  FROM vehicle where id=:id;');
+    $this->db->bind(':id', $userid);
+    $results = $this->db->resultSet();
 
-      return $results;
-    }
+    return $results;
+  }
 
-    public function addvehicle($data){
-      $this->db->query('INSERT INTO vehicle (vehicleno,model,color,year,address,route,starttime,seatingcapacity,Ac,expirylicence,comments,image_path, document_path,id) VALUES(:vehicleno, :model, :color, :year, :address, :route, :starttime, :seatingcapacity, :Ac, :expirylicence, :comments, :vehicle_image, :vehicle_document, :id)');
+  public function getVehicleByNumber($number)
+  {
+    $this->db->query('SELECT *  FROM vehicle where vehicleno=:vehicleno;');
+    $this->db->bind(':vehicleno', $number);
+    $results = $this->db->resultSet();
+
+    return $results;
+  }
+
+
+
+  public function getAllVehicles()
+  {
+    $this->db->query('SELECT *  FROM vehicle;');
+    $results = $this->db->resultSet();
+
+    return $results;
+  }
+
+    public function addvehicle($data,$fileVehicleImage){
+      $this->db->query('INSERT INTO vehicle (vehicleno, model, color, year, address, route, starttime, seatingcapacity, Ac, expirylicence, service_type, charge_for_a_km, comments, vehicle_image, vehicle_document, id) VALUES(:vehicleno, :model, :color, :year, :address, :route, :starttime, :seatingcapacity, :Ac, :expirylicence, :service_type, :charge_for_a_km, :comments, :vehicle_image, :vehicle_document, :id)');
       // Bind values
       $this->db->bind(':vehicleno', $data['vehicleno']);
       //$this->db->bind(':user id', $data['user id']);
@@ -30,9 +52,15 @@
       $this->db->bind(':Ac', $data['Ac']);
       $this->db->bind(':expirylicence', $data['expirylicence']);
       $this->db->bind(':comments', $data['comments']);
-      $this->db->bind(':vehicle_image', $data['vehicle_image']);
+
+      $this->db->bind(':charge_for_a_km', $data['charge_for_a_km']);
+      $this->db->bind(':vehicle_image', $fileVehicleImage['image_name']);
       $this->db->bind(':vehicle_document', $data['vehicle_document']);
+
       $this->db->bind(':id', $data['userid']);
+
+    
+      //move_uploaded_file($fileVehicleImage['image_tempName'],$fileVehicleImage['upload_location'].$fileVehicleImage['image_name']);
 
       // Execute
       if($this->db->execute()){
@@ -40,6 +68,8 @@
       } else {
         return false;
       }
+
+      
     }
 
 
@@ -105,3 +135,4 @@
 }
 
 }
+

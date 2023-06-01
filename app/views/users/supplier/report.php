@@ -19,6 +19,8 @@
                     <tr class="row">
                       
                       <th><h2>Reports</h2></th>
+                      <br>
+                      <br>
                       <th></th>
                     </tr>
                     <tr class="row">
@@ -28,7 +30,7 @@
                     </tr>
                     
                     <tr class="row">
-                      <td>Monthly salary expense report</td>
+                      <td>Income from Vehicles report</td>
                       <td><button class="report-btn">View and Download PDF</button></td>
                       
                     </tr>
@@ -37,7 +39,7 @@
                         <td><button class="report-btn">View and Download PDF</button></td>
                         
                     </tr>
-                    <tr class="row">
+                   <!-- <tr class="row">
                         <td>Annual Expenses Report</td>
                         <td><button class="report-btn">View and Download PDF</button></td>
                         
@@ -56,7 +58,7 @@
                         <td>Income and Expense Summary Report</td>
                         <td><button class="report-btn">View and Download PDF</button></td>
                         
-                    </tr>
+                    </tr>-->
                     
                     
                 </table>

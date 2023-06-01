@@ -19,4 +19,18 @@ class Complaint{
         $row = $this->db->single();
         return $row;
     }
+    public function complainActionUpdate($data){
+        $selectedOption = $data['selectedOption'];
+        $co_id = $data['co_id'];
+        var_dump($selectedOption);
+        var_dump($co_id);
+        $this->db->query('UPDATE complaint SET action = :complaint_status WHERE co_id = :co_id');
+        $this->db->bind(':complaint_status', $selectedOption);
+        $this->db->bind(':co_id', $co_id);
+        if($this->db->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

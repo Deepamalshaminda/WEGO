@@ -18,11 +18,11 @@
 
 <div class="wrapper">
     <div class="left">
-        <img src ="../public/img/v5.png" 
-        alt="user" width="100">
+    <img src="<?=URLROOT?>/vehicle_image/<?=$data['rides']->vehicle_image?>" alt="user" width="100">
         <br>
         <h6 class="name">Vehicle No <?php echo $data['rides']->vehicleno; ?></h6>
          <p class="name" >Driver ID  - <?php echo $data['rides']->driver_id; ?> </p>
+         <h6 class="name">Trip Status -<?php echo $data['rides']->trip_status; ?></h6>
 
          <br>
          

@@ -1,6 +1,7 @@
 <?php
   class Admin extends Controller {
     public $userModel;
+    
     public function __construct(){
       if(!isLoggedIn()){
         redirect('Admin/a_dashboard');
@@ -38,12 +39,58 @@
 
     
     public function a_dashboard(){
+    $total_rides = $this->rideModel->calculateTotalRides();
+    $total_vehicles = $this->vehicleModel->calculateTotalVehicles();
+    $total_users = $this->userModel->calculateTotalUsers();
+    // $chart = $this->transactionModel->calculateTransactions();
+
+    
       $data = [
+        'total_rides' => $total_rides,
+        'total_vehicles' => $total_vehicles,
+        'total_users' => $total_users,
         'title' => 'Admin'
       ];
     
       $this->view('users/admin/admindash', $data);
     }
+    public function adduser(){
+      
+    //     // Check for POST
+    // if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    //   // Process form
+
+    //   // Sanitize POST data
+    //   $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+      // Init data
+      $data = [
+        'name' => $name,
+        'nic' => $nic, 
+        'gender' => $gender ,
+        'dob' => $dob,
+        'province' => $province,
+        'district' => $district,
+        'nearestTown' => $nearestTown,
+        'address' => $address,
+        'contactNumber' => $contactNumber,
+        'email' => $email,
+        'user_role' => $user_role,
+        'password' => $password,
+        
+        
+      ];
+
+       
+        $this->view('users/admin/adduser', $data);
+
+       
+        }
+      
+    
+ 
+  
+   
     
   
     public function complaints()
@@ -60,6 +107,14 @@
   
       $this->view('users/admin/viewcomplaint', $data);
     }
+
+    public function updateComplainAction() {
+    
+      $request = json_decode(file_get_contents('php://input'), true);
+      if($this->model('Complaint')->complainActionUpdate($request)) { 
+        return true;
+      }
+   }
 
     public function rideschedule(){
       $data = [];
@@ -202,22 +257,17 @@ public function deny($ve_id){
     $this->view('users/admin/viewUser');
     return false;
   }
-  public function dashboard(){
+  public function activateUser($us_id){
 
-    $total_rides = $this->rideModel->calculateTotalRides();
-    $total_vehicles = $this->vehicleModel->calculateTotalVehicles();
-    $chart = $this->transactionModel->calculateTransactions();
-   
-
-    $data = [
-       'total_rides' => $total_rides,
-       'total_vehicles' => $total_vehicles,
-       'chart' => $chart,
-    
-    ];
-
-    $this->view('admin/admindash', $data);
-}
+    if ($this->model('User')->activateUser($us_id)){
+      redirect('Admin/viewUser');
+      return true;
+    };
+  
+    $this->view('users/admin/viewUser');
+    return false;
+  }
+ 
   
 
 }

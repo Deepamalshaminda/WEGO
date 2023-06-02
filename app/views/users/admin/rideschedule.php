@@ -28,7 +28,7 @@
         <?php foreach($data['rides'] as $trip_information): ?>
     <div class="friend-card">
       
-      <div class="friend-name"><img src="../public/img/v5.png" class="friend-picture" > Start : <?php echo $trip_information->start; ?></div>
+      <div class="friend-name"><img src="../public/vehicle_image/<?php echo $trip_information->vehicle_image; ?>." class="friend-picture" > Start : <?php echo $trip_information->start; ?></div>
       
       <br>
       <br>

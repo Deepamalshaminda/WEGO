@@ -24,8 +24,7 @@
       <div class="friend-list">
         <?php foreach($data['complaints'] as $complaint): ?>
         <div class="friend-card">
-
-          <div class="friend-name"><img src="../public/img/rr.png" class="friend-picture">
+          <div class="friend-name"><img src="<?php echo URLROOT?>/public/img/<?php echo $complaint->profile_image; ?>." class="friend-picture" > 
           <?php echo $complaint->name; ?>
           </div>
           <br>

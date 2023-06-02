@@ -14,17 +14,19 @@
     <div class="home-content">
 <div class="tab">
         <button class="tablink" onclick="openPage('drivers')" id="defaultOpen" > Users </button>
-        
     </div>   
 <br>
-    
+<div class="tab">
+      <button class="details-button"><a href="<?php echo URLROOT?>/Admin/adduser/"> Add Users </a></button>
+        
+</div>  
 
 <div id="drivers" class="tabcontent">
   <div class="friend-list">
   <?php foreach($data['users'] as $user): ?>
     <div class="friend-card">
       
-      <div class="friend-name"><img src="../public/img/us1.jpg" class="friend-picture" > <?php echo $user->name; ?> </div>
+     <div class="friend-name"><img src="<?php echo URLROOT?>/public/img/<?php echo $user->profile_image; ?>" class="friend-picture" > <?php echo $user->name; ?> </div>
       <br>
       <br>
       <div class="friend-actions">

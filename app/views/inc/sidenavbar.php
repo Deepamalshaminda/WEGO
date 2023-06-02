@@ -1,11 +1,13 @@
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/p_dashboard.css">
 <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+<script src="https://unpkg.com/sweetalert@2/dist/sweetalert.min.js"></script> <script src="https://unpkg.com/sweetalert@2/dist/sweetalert.min.js"></script>
 <title><?php echo SITENAME; ?></title>
 </head>
 
 <body>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
   </head>
 
   <body>
@@ -66,11 +68,27 @@
         </li>-->
 
         <li class="log_out">
-          <a href="<?php echo URLROOT ?>/Users/logout">
-            <i class='bx bx-log-out'></i>
-            <span class="links_name">&nbsp; Log out</span>
-          </a>
-        </li>
+              <a href="#" onclick="confirmLogout()">
+                <i class='bx bx-log-out'></i>
+                <span class="links_name">Log out</span>
+              </a>
+            </li>
+
+            <script>
+            function confirmLogout() {
+              swal({
+                title: "Are you sure?",
+                text: "You will be logged out",
+                icon: "warning",
+                buttons: ["Cancel", "Logout"],
+                dangerMode: true,
+              }).then((confirm) => {
+                if (confirm) {
+                  window.location.href = '<?php echo URLROOT; ?>/Users/logout';
+                }
+              });
+            }
+            </script>
       </ul>
     </div>
     <section class="home-section">

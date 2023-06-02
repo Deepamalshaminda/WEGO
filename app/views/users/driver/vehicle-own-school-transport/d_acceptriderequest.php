@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/d_sidenavbar.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/d_acceptriderequests.css">
   <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/_base.css">
+  <script src="https://unpkg.com/sweetalert@2/dist/sweetalert.min.js"></script>
     <title><?php echo SITENAME; ?></title>
 </head>
 <body>
@@ -24,9 +25,9 @@
     
         <?php foreach($data['requests'] as $request){ ?>
              <div class="left-request col-6">
-             <div class="left-request-container col-6">
+             <div class="left-request-container col-10">
                  <div class="title-container col-12">
-                     <h3><?php echo $request->fromWhom?></h3>
+                     <h3>Parent : <?php echo $request->fromParent?></h3>
                      
                  </div>
  
@@ -35,9 +36,19 @@
                          <img src="<?php echo URLROOT?>/img/3.jpg" class="profile-picture" alt="profile picture">
                      </div>
                      <div class="user-details col-8">
+
+                        <div class="from-where col-12">
+                             <div class="from col-4">
+                                 <p>Child Name : </p>
+                             </div>
+                             <div class="location-name col-8">
+                                 <h5><?php echo $request->childName?></h5>
+                             </div>
+                         </div>
+
                          <div class="from-where col-12">
                              <div class="from col-4">
-                                 <p>From</p>
+                                 <p>From : </p>
                              </div>
                              <div class="location-name col-8">
                                  <h5><?php echo $request->fromWhere?></h5>
@@ -46,7 +57,7 @@
  
                          <div class="to-where col-12">
                              <div class="from col-4">
-                                 <p>To</p>
+                                 <p>To : </p>
                              </div>
                              <div class="location-name col-8">
                                  <h5><?php echo $request->toWhere?></h5>
@@ -56,8 +67,44 @@
                  </div>
  
                  <div class="btn-container col-12">
-                     <button class="button"><a class="link" href="<?php echo URLROOT?>/D_Own_School_Drivers/acceptRideRequest/<?php echo $request->request_id?>">Accept</a></button>
-                     <button class="button"><a class="link" href="<?php echo URLROOT?>/D_Own_School_Drivers/declineRideRequest/<?php echo $request->request_id?>">Declline</a></button>
+                    <button class="button"><a class="link" href="#" onclick="acceptRideRequest(<?php echo $request->request_id?>)">Accept</a></button>
+                        <script>
+                        function acceptRideRequest(requestId) {
+                            // swal("Ride Request Accepted", "The ride request has been successfully accepted.", "success").then(() => {
+                            //     window.location.href = '<?php echo URLROOT?>/D_Own_School_Drivers/acceptRideRequest/' + requestId;
+                            // });
+                            swal({
+                            title: "Are you sure to accept?",
+                            text: "Child will be added to your vehicle",
+                            icon: "warning",
+                            buttons: ["Cancel", "Accept"],
+                            dangerMode: true,
+                        }).then((confirm) => {
+                            if (confirm) {
+                                window.location.href = '<?php echo URLROOT?>/D_Own_School_Drivers/acceptRideRequest/' + requestId;
+                            }
+                        });
+                        }
+                        </script>
+                     <button class="button"><a class="link" href="#" onclick="declineRideRequest(<?php echo $request->request_id?>)">Decline</a></button>
+                        <script>
+                        function declineRideRequest(requestId) {
+                            // swal("Ride Request declined", "The ride request has been successfully decline.", "success").then(() => {
+                            //     window.location.href = '<?php echo URLROOT?>/D_Own_School_Drivers/declineRideRequest/' + requestId;
+                            // });
+                            swal({
+                            title: "Are you sure to decline?",
+                            text: "Request will be removed",
+                            icon: "warning",
+                            buttons: ["Cancel", "Decline"],
+                            dangerMode: true,
+                        }).then((confirm) => {
+                            if (confirm) {
+                                window.location.href = '<?php echo URLROOT?>/D_Own_School_Drivers/declineRideRequest/' + requestId;
+                            }
+                        });
+                        }
+                        </script>
                  </div>
              </div>
          </div>

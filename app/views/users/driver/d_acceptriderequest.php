@@ -7,7 +7,8 @@
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/d_sidenavbar.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/d_acceptriderequests.css">
-  <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/_base.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/_base.css">
+    <script src="https://unpkg.com/sweetalert@2/dist/sweetalert.min.js"></script>
     <title><?php echo SITENAME; ?></title>
 </head>
 <body>
@@ -20,7 +21,7 @@
              <div class="left-request col-6">
              <div class="left-request-container col-6">
                  <div class="title-container col-12">
-                     <h3><?php echo $request->fromWhom?></h3>
+                     <h3><?php echo $request->fromParent?></h3>
                      
                  </div>
  

@@ -32,7 +32,7 @@
 
       // $results = $this->db->resultSet();
 
-      return $res;
+      return $userid;
     }
    
 

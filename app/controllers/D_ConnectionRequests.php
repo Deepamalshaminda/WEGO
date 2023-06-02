@@ -84,12 +84,19 @@
         $this->view('users/driver/d_acceptconnectionrequest');
         return false;
       }
-
+     
     public function riderRequest(){
       // echo 'inside the controller';
       if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-        $results = $this->connRequestModel->makeRideRequest($_POST['to_whom']);
+        $data = [
+          'to_whom' => trim($_POST['to_whom']),
+          
+          'from_whom' => trim($_POST['child']),
+        
+      ];
+        $results = $this->connRequestModel->makeRideRequest($data);
+
         if ($results) {
           $this->view('users/parent/parentdash');
         } else {

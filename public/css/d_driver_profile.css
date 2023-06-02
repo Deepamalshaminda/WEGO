@@ -149,3 +149,88 @@ td, th {
 tr:nth-child(even) {
   background-color: #6187aa;
 }
+
+/* ---------------------------------------------------------------------update */
+
+.form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input::placeholder{
+  color: #727575;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.field{
+  margin-bottom: 4vh;
+}
+
+.full-page .register-wrapper .input{
+  background-color: #e4e0e0;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  box-shadow: #797474;
+}
+
+.input{
+    background-color: #e4e0e03b;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    box-shadow: #797474;
+}
+
+::placeholder{
+  color: #939292;
+  font-family: Poppins, sans-serif;
+  font-size: small;
+}
+
+.invalid-feedback{
+  color: #f63b3b;
+}
+
+.btn-submit, .btn-cancel{
+  margin: 20px 10px;
+  font-family: Poppins, sans-serif;
+  cursor: pointer;
+}
+
+.btn-submit{
+  background-color: rgb(26, 10, 129);
+  color: white;
+  border: rgb(26, 10, 129) 2px solid;
+  padding: 6px 20px;
+  border-radius: 8px;
+}
+
+.btn-submit:hover{
+  background-color: rgb(15, 8, 62);
+  color: white;
+  border: rgb(15, 8, 62) 2px solid;
+  padding: 6px 20px;
+  border-radius: 8px;
+}
+
+.btn-cancel{
+  border: #f63b3b 2px solid;
+  background-color: #ffffff;
+  color: #f63b3b;
+  border-radius: 8px;
+  padding: 6px 20px;
+  font-weight: bold;
+}
+
+.btn-cancel:hover{
+  color: white;
+  background-color: #f63b3b;
+  text-emphasis-color: white;
+}
+
+.btn-wrapper{
+  text-align: center;
+}

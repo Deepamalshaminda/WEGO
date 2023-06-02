@@ -630,7 +630,7 @@
 <div class="top-row col-12">
   <div class="btn-1-container col-3">
     <div class="btn-1 col-10">
-      <a href="<?php echo URLROOT;?>/D_Vehicles/studentsToBeAbsent"><h1>Students To Be Absent</h1></a>
+      <a href="<?php echo URLROOT;?>/D_Vehicles/studentsToBeAbsent"><h1>Students to be Present</h1></a>
     </div>
   </div>
 

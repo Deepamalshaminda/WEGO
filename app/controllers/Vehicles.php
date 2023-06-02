@@ -32,7 +32,7 @@ class Vehicles extends Controller
 
       $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
-      print_r($_POST);
+     // print_r($_POST);
 
       // Init data
       $data = [
@@ -74,8 +74,8 @@ class Vehicles extends Controller
         
         'userid' => $_SESSION['user_id']
       ];
-      echo "<br>";
-      print_r($data);
+      //echo "<br>";
+      //print_r($data);
 
       $fileVehicleImage = [
         'image_name'=>$_FILES['vehicle_image']['name'],
@@ -93,6 +93,13 @@ class Vehicles extends Controller
         $vehicleno_regex = '/^[A-Z]{2,3}\s[0-9]{4}$/'; // Matches format AA 1234 or AAA 1234
         if (!preg_match($vehicleno_regex, $data['vehicleno'])) {
             $data['vehicleno_err'] = 'Please enter a valid vehicle number in the format AA 1234 or AAA 1234.';
+        }
+        else {
+          // Check if the vehicle number already exists
+          $existingVehicle = $this->vehicleModel->getVehicleByNumber($data['vehicleno']);
+          if ($existingVehicle) {
+              $data['vehicleno_err'] = 'This vehicle number already exists in the system';
+          }
         }
     }
     
@@ -163,79 +170,68 @@ class Vehicles extends Controller
         $data['comments_err'] = 'Please describe if there any special conditions of the vehicle';
       }
 
-        //validate images
-        if (!empty($_FILES['vehicle_image']['name'])) {
-          $allowed_extensions = array('jpg','png','jpeg');
-          $file_name = $_FILES['vehicle_image']['name'];
-          $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
-        
-          // Check if file extension is allowed
-          if (!in_array($file_ext, $allowed_extensions)) {
-            $data['vehicle_image_err'] = 'Invalid file type';
-          }
-        
-          // Check if file size is less than 10 MB
-          elseif ($_FILES['vehicle_image']['size'] > 5485760) {
-            $data['vehicle_image_err'] = 'File size exceeded. Please upload an image with size less than 5 MB.';
-          }
-          else {
-            $file_tmp = $_FILES['vehicle_image']['tmp_name'];
-            $file_destination = 'C:\xampp\htdocs\projectwego\public\vehicle_image\\' . $file_name;
-        
-            //echo realpath($file_destination);
-        
-            if (move_uploaded_file($file_tmp, $file_destination)) {
-              echo "uploaded";
+       // Validate image filename
+if (!empty($_FILES['vehicle_image']['name'])) {
+  $allowed_extensions = array('jpg', 'png', 'jpeg');
+  $file_name = $_FILES['vehicle_image']['name'];
+  $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
+
+  // Check if file extension is allowed
+  if (!in_array($file_ext, $allowed_extensions)) {
+      $data['vehicle_image_err'] = 'Invalid file type';
+  } else {
+      $vehicleno = $data['vehicleno'];
+      $expected_filename = $vehicleno . '.' . $file_ext; // Expected filename with the vehicle number and original extension
+
+      // Check if the uploaded filename matches the expected filename
+      if ($file_name != $expected_filename) {
+          $data['vehicle_image_err'] = 'Please rename the image file with the vehicle number: ' . $expected_filename;
+      } else {
+          $file_tmp = $_FILES['vehicle_image']['tmp_name'];
+          $file_destination = 'C:\xampp\htdocs\projectwego\public\vehicle_image\\' . $file_name;
+
+          if (move_uploaded_file($file_tmp, $file_destination)) {
               $data['vehicle_image'] = $file_destination;
-            } else {
+          } else {
               $data['vehicle_image_err'] = 'Error uploading image.';
-            }
-            
           }
-          
-        } else {
-          $data['vehicle_image_err'] = 'Please upload an image of your vehicle.';
-        }
-        
+      }
+  }
+} else {
+  $data['vehicle_image_err'] = 'Please upload an image of your vehicle.';
+}
 
+// Validate document filename
+if (!empty($_FILES['vehicle_document']['name'])) {
+  $allowed_extensions = array('zip');
+  $file_name = $_FILES['vehicle_document']['name'];
+  $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
 
-      
+  // Check if file extension is allowed
+  if (!in_array($file_ext, $allowed_extensions)) {
+      $data['vehicle_document_err'] = 'Invalid file type. Only ZIP files are allowed.';
+  } else {
+      $vehicleno = $data['vehicleno'];
+      $expected_filename = $vehicleno . '.' . $file_ext; // Expected filename with the vehicle number and original extension
 
-        // Validate documents
-        if (!empty($_FILES['vehicle_document']['name'])) {
-          $allowed_extensions = array('zip');
-          $file_name = $_FILES['vehicle_document']['name'];
-          $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
-        
-          // Check if file extension is allowed
-          if (!in_array($file_ext, $allowed_extensions)) {
-            $data['vehicle_document_err'] = 'Invalid file type. Only ZIP files are allowed.';
-          }
-        
-          // Check if file size is less than 10 MB
-          elseif ($_FILES['vehicle_document']['size'] > 10485760) {
-            $data['vehicle_document_err'] = 'File size exceeded. Please upload a file with size less than 10 MB.';
-          }
-        
-          // If file is valid, move it to the destination folder
-          else {
-            $file_tmp = $_FILES['vehicle_document']['tmp_name'];
-            $file_destination = 'C:\xampp\htdocs\projectwego\public\vehicle_document\\' . $file_name;
-        
-            echo realpath($file_destination);
-        
-            if (move_uploaded_file($file_tmp, $file_destination)) {
+      // Check if the uploaded filename matches the expected filename
+      if ($file_name != $expected_filename) {
+          $data['vehicle_document_err'] = 'Please rename the document file with the vehicle number: ' . $expected_filename;
+      } else {
+          $file_tmp = $_FILES['vehicle_document']['tmp_name'];
+          $file_destination = 'C:\xampp\htdocs\projectwego\public\vehicle_document\\' . $file_name;
+
+          if (move_uploaded_file($file_tmp, $file_destination)) {
               $data['vehicle_document'] = $file_destination;
-            } else {
+          } else {
               $data['vehicle_document_err'] = 'Error uploading file.';
-            }
-            
           }
-          
-        } else {
-          $data['vehicle_document_err'] = 'Please upload documents of your vehicle.';
-        }
-        
+      }
+  }
+} else {
+  $data['vehicle_document_err'] = 'Please upload documents of your vehicle.';
+}
+
 
 
       // Make sure errors are empty

@@ -19,6 +19,7 @@
 
     <div id="Parentrequests" class="tabcontent">
       <div class="friend-list">
+        
         <?php foreach ($data["children"] as $child) {; ?>
 
           <div class="friend-card">

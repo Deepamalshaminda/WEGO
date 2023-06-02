@@ -43,7 +43,7 @@
             <li>
                 <a href="<?php echo URLROOT;?>/D_Vehicles/studentsToBeAbsent">
                     <i class='bx bx-coin-stack'></i>
-                    <span class="links_name">Students to be Absent</span>
+                    <span class="links_name">Students to be Present</span>
                 </a>
             </li>
             <li>

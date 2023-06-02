@@ -41,7 +41,7 @@ class Vehicle
       // Bind values
       $this->db->bind(':vehicleno', $data['vehicleno']);
       //$this->db->bind(':user id', $data['user id']);
-    
+      
       $this->db->bind(':model', $data['model']);
       $this->db->bind(':color', $data['color']);
       $this->db->bind(':year', $data['year']);
@@ -51,17 +51,15 @@ class Vehicle
       $this->db->bind(':seatingcapacity', $data['seatingcapacity']);
       $this->db->bind(':Ac', $data['Ac']);
       $this->db->bind(':expirylicence', $data['expirylicence']);
+      $this->db->bind(':service_type', $data['service_type']);
       $this->db->bind(':comments', $data['comments']);
-
       $this->db->bind(':charge_for_a_km', $data['charge_for_a_km']);
       $this->db->bind(':vehicle_image', $fileVehicleImage['image_name']);
       $this->db->bind(':vehicle_document', $data['vehicle_document']);
 
       $this->db->bind(':id', $data['userid']);
-
     
       //move_uploaded_file($fileVehicleImage['image_tempName'],$fileVehicleImage['upload_location'].$fileVehicleImage['image_name']);
-
       // Execute
       if($this->db->execute()){
         return true;
@@ -72,24 +70,7 @@ class Vehicle
       
     }
 
-
-
-  // public function showVehicles()
-  // {
-  //     $this->db->query('SELECT * FROM vehicle');
-  //     $results = $this->db->resultSet();
-  //     return $results;
-  // }
-  // public function showVehiclesById($ve_id)
-  // {
-  //     $this->db->query('SELECT * FROM vehicle  WHERE ve_id = :ve_id');
-  //     $this->db->bind(':ve_id', $ve_id);
-  //     $row = $this->db->single();
-  //     return $row;
-  // }
-
-  
-  public function showVehicles()
+    public function showVehicles()
   {
       $this->db->query('SELECT vehicle. * , user. * FROM vehicle INNER JOIN user ON vehicle.id=user.us_id');
       $results = $this->db->resultSet();
@@ -133,6 +114,4 @@ class Vehicle
 
     return $row->total_count;
 }
-
-}
-
+}    

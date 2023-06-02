@@ -24,6 +24,20 @@ class Sendrequest {
       return $vehicle;
   }
 
+  
+  public function getChildrenByParent(){
+    $this->db->query('SELECT * FROM child WHERE pr_id = :id');
+
+    //Bind values
+    //$this->db->bindParam(':nic', $nic);
+    $this->db->bind(':id', $_SESSION['user_id']);
+    //Execute
+    $sent = $this->db->resultSet();
+    
+    return $sent;
+    
+}
+
   //view all sent requests
   public function getSentRequests() {
     $this->db->query('SELECT * FROM ride_request;');

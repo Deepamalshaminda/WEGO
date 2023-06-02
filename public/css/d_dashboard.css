@@ -1,5 +1,6 @@
 .full-page{
     position: relative;
+    height: 100vh;
     max-height: 100vh;
     width: calc(100% - 240px);
     left: 240px;

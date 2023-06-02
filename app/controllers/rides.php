@@ -36,9 +36,7 @@ class rides extends Controller
     // create a new instance of the assignDrivers model
     $assignDrivers = new assignDrivers($_SESSION['user_id']);
 
-   
-
-
+  
     // retrieve the list of drivers from the database
     $vehicle = $assignDrivers->getVehicleByVehicleId($vehicle_id);
     $drivers = $assignDrivers->getDrivers();
@@ -49,15 +47,51 @@ class rides extends Controller
     $route = $vehicle -> route;
     
 
-    // pass the driver list and selected vehicle information to the view
+    // pass the selected vehicle information to the view
     $data = [
-        'drivers' => $drivers,
+        'driver_id' => $driver_id,
         'vehicle_id' => $vehicle_id,
         'vehicle_no' => $vehicle_no,
-        'route' => $route
+        
+
     ];
     $this->view('users/supplier/assigndrivers', $data);
   }
+
+  public function viewVehicleDetails($vehicle_id){
+    
+    // load the assignDrivers model
+    require_once APPROOT . '/models/VehicleDetails.php'; 
+
+    // create a new instance of the assignDrivers model
+    $VehicleDetails = new VehicleDetails($_SESSION['user_id']);
+
+
+    // retrieve the list of drivers from the database
+   // $vehicle = $VehicleDetails->getVehicledetailsbyVehicleId($vehicle_id);
+    
+    
+    // retrieve the selected vehicle information from the form data
+    // $data =[
+    // 'vehicle_id' => $vehicle_id,
+    // 'vehicle_no' => $vehicle_no,
+    // 'model' => $model,
+    // 'color' => $color,
+    // 'route' => $route,
+    // 'year' => $year,
+    // 'address'=> $address,
+    // 'starttime' => $starttime,
+    // 'seatingcapacity'=>$seatingcapacity,
+    // 'Ac'=>$Ac,
+    // 'expirylicence'=>$expirylicence,
+    // 'comments'=>$comments,
+    // 'service_type'=> $service_type,
+    // 'charge_for_a_km'=> $charge_for_a_km,
+    // ];
+    
+     $this->view('users/supplier/ViewVehicleData');
+  }
+
 
   public function assignDriverToVehicle(){
     //load the assignDrivers model

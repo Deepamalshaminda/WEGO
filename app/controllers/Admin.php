@@ -271,6 +271,3 @@ public function deny($ve_id){
   
 
 }
-   
-  
-  

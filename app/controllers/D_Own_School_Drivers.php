@@ -460,7 +460,7 @@ class D_Own_School_Drivers extends Controller
 
   public function viewAddedChildren()
   {
-    $student = $this->Own_School_Driver_Model->getStudentDetailsForViewAddedChildren($_SESSION['vehicle_id']);
+    $student = $this->Own_School_Driver_Model->viewAddedChildren($_SESSION['vehicle_id']);
     $data = [
       'student' => $student
     ];
@@ -469,7 +469,7 @@ class D_Own_School_Drivers extends Controller
 
   public function getStudentListForTheVehicle()
   {
-    $students = $this->Own_School_Driver_Model->getStudentDetailsForViewAddedChildren($_SESSION['vehicle_id']);
+    $students = $this->Own_School_Driver_Model->getStudentListForTheVehicle($_SESSION['vehicle_id']);
     $this->sendJson($students);
   }
 
@@ -488,4 +488,286 @@ class D_Own_School_Drivers extends Controller
     // print_r($presentStudents);
     redirect('D_Own_School_Drivers/getPresentStudentForVehicle');
   }
+
+  public function getPresentStudentsForDashboard(){
+    $studentsToBePresent = $this->Own_School_Driver_Model->getPresentStudentForVehicle($_SESSION['vehicle_id']);
+    $data = [
+      'studentsToBePresent' => $studentsToBePresent
+    ];
+    $this->sendJson($studentsToBePresent);
+  }
+
+  public function addvehicle()
+  {
+    // Check for POST
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+
+      // Process form
+      // Sanitize POST data
+
+      $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+     // print_r($_POST);
+
+      // Init data
+      $data = [
+        'vehicleno' => trim($_POST['vehicleno']),
+        'model' => trim($_POST['model']),
+        'color' => trim($_POST['color']),
+        'year' => trim($_POST['year']),
+        'address' => trim($_POST['address']),
+        'route' => trim($_POST['route']),
+        'starttime' => trim($_POST['starttime']),
+        'seatingcapacity' => trim($_POST['seatingcapacity']),
+        'Ac' => trim($_POST['Ac']),
+        'expirylicence' => trim($_POST['expirylicence']),
+        'service_type' => trim($_POST['service_type']),
+        'charge_for_a_km' => trim($_POST['charge_for_a_km']),
+        'comments' => trim($_POST['comments']),
+       // 'vehicle_image' => trim($_POST['vehicle_image']),
+        'vehicle_image' => !empty($_POST['vehicle_image']) ? trim(implode(',', (array)$_POST['vehicle_image'])) : '',
+        'vehicle_document' => !empty($_POST['vehicle_document']) ? trim(implode(',', (array)$_POST['vehicle_document'])) : '',
+
+        
+
+        'vehicleno_err' => '',
+        'model_err' => '',
+        'color_err' => '',
+        'year_err' => '',
+        'address_err' => '',
+        'route_err' => '',
+        'starttime_err' => '',
+        'seatingcapacity_err' => '',
+        'Ac_err' => '',
+        'expirylicence_err' => '',
+        'service_type_err' => '',
+        'charge_for_a_km_err' => '',
+        'comments_err' => '',
+        'vehicle_image_err' => '',
+        'vehicle_document_err' => '',
+        
+        
+        'userid' => $_SESSION['user_id']
+      ];
+      //echo "<br>";
+      //print_r($data);
+
+      $fileVehicleImage = [
+        'image_name'=>$_FILES['vehicle_image']['name'],
+        'image_type'=>$_FILES['vehicle_image']['type'],
+        'image_size'=>$_FILES['vehicle_image']['size'],
+        'image_tmpName'=>$_FILES['vehicle_image']['tmp_name'],
+        'upload_location'=> PUBROOT . '/public/vehicle_image/'
+      ];
+
+      // Validate vehicleno
+      if (empty($data['vehicleno'])) {
+        $data['vehicleno_err'] = 'Please enter vehicle number';
+    } else {
+        // Validate vehicle number format
+        $vehicleno_regex = '/^[A-Z]{2,3}\s[0-9]{4}$/'; // Matches format AA 1234 or AAA 1234
+        if (!preg_match($vehicleno_regex, $data['vehicleno'])) {
+            $data['vehicleno_err'] = 'Please enter a valid vehicle number in the format AA 1234 or AAA 1234.';
+        }
+        else {
+          // Check if the vehicle number already exists
+          $existingVehicle = $this->model->D_Own_School_Driver->getVehicleByNumber($data['vehicleno']);
+          if ($existingVehicle) {
+              $data['vehicleno_err'] = 'This vehicle number already exists in the system';
+          }
+        }
+    }
+    
+    
+
+      // Validate model
+      if (empty($data['model'])) {
+        $data['model_err'] = 'Please enter vehicle model';
+      }
+
+      // Validate color
+      if (empty($data['color'])) {
+        $data['color_err'] = 'Please enter color of the vehicle';
+      }
+
+      // Validate year
+      if (empty($data['year'])) {
+        $data['year_err'] = 'Please enter manufactured year of the vehicle';
+      }
+
+      // Validate address
+      if (empty($data['address'])) {
+        $data['address_err'] = 'Please enter the address';
+      }
+
+      // Validate route
+      if (empty($data['route'])) {
+        $data['route_err'] = 'Please enter vehicle route';
+      }
+
+      // Validate start time
+      if (empty($data['starttime'])) {
+        $data['starttime_err'] = 'Please enter normal journey start time';
+      }
+
+      // Validate seating capacity
+      if (empty($data['seatingcapacity'])) {
+        $data['seatingcapacity_err'] = 'Please enter number of seats';
+      }
+
+      // Validate AC
+      if (empty($data['Ac'])) {
+        $data['Ac_err'] = 'Please select Ac or Non-Ac';
+      }
+
+      // Validate expiry of licence
+      if (empty($data['expirylicence'])) {
+        $data['expirylicence_err'] = 'Please enter licence expiry date';
+    } else {
+        // Validate that expiry date is not due
+        $expiry_date = strtotime($data['expirylicence']);
+        if ($expiry_date < time()) {
+            $data['expirylicence_err'] = 'Licence expiry date cannot be due.';
+        }
+    }
+    
+      // Validate service type
+      if (empty($data['service_type'])) {
+        $data['service_type_err'] = 'Please select whether you are providing school service or office transport';
+      }
+
+      // Validate service type
+      if (empty($data['charge_for_a_km'])) {
+        $data['charge_for_a_km_err'] = 'Please enter the charge per kilometer';
+      }
+      // Validate comments
+      if (empty($data['comments'])) {
+        $data['comments_err'] = 'Please describe if there any special conditions of the vehicle';
+      }
+
+       // Validate image filename
+if (!empty($_FILES['vehicle_image']['name'])) {
+  $allowed_extensions = array('jpg', 'png', 'jpeg');
+  $file_name = $_FILES['vehicle_image']['name'];
+  $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
+
+  // Check if file extension is allowed
+  if (!in_array($file_ext, $allowed_extensions)) {
+      $data['vehicle_image_err'] = 'Invalid file type';
+  } else {
+      $vehicleno = $data['vehicleno'];
+      $expected_filename = $vehicleno . '.' . $file_ext; // Expected filename with the vehicle number and original extension
+
+      // Check if the uploaded filename matches the expected filename
+      if ($file_name != $expected_filename) {
+          $data['vehicle_image_err'] = 'Please rename the image file with the vehicle number: ' . $expected_filename;
+      } else {
+          $file_tmp = $_FILES['vehicle_image']['tmp_name'];
+          $file_destination = 'C:\wamp64\www\projectwego\public\vehicle_image\\' . $file_name;
+
+          if (move_uploaded_file($file_tmp, $file_destination)) {
+              $data['vehicle_image'] = $file_destination;
+          } else {
+              $data['vehicle_image_err'] = 'Error uploading image.';
+          }
+      }
+  }
+} else {
+  $data['vehicle_image_err'] = 'Please upload an image of your vehicle.';
+}
+
+// Validate document filename
+if (!empty($_FILES['vehicle_document']['name'])) {
+  $allowed_extensions = array('zip');
+  $file_name = $_FILES['vehicle_document']['name'];
+  $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
+
+  // Check if file extension is allowed
+  if (!in_array($file_ext, $allowed_extensions)) {
+      $data['vehicle_document_err'] = 'Invalid file type. Only ZIP files are allowed.';
+  } else {
+      $vehicleno = $data['vehicleno'];
+      $expected_filename = $vehicleno . '.' . $file_ext; // Expected filename with the vehicle number and original extension
+
+      // Check if the uploaded filename matches the expected filename
+      if ($file_name != $expected_filename) {
+          $data['vehicle_document_err'] = 'Please rename the document file with the vehicle number: ' . $expected_filename;
+      } else {
+          $file_tmp = $_FILES['vehicle_document']['tmp_name'];
+          $file_destination = 'C:\xampp\htdocs\projectwego\public\vehicle_document\\' . $file_name;
+
+          if (move_uploaded_file($file_tmp, $file_destination)) {
+              $data['vehicle_document'] = $file_destination;
+          } else {
+              $data['vehicle_document_err'] = 'Error uploading file.';
+          }
+      }
+  }
+} else {
+  $data['vehicle_document_err'] = 'Please upload documents of your vehicle.';
+}
+
+
+
+      // Make sure errors are empty
+      if (empty($data['vehicleno_err']) && empty($data['model_err']) && empty($data['color_err']) && empty($data['year_err']) && empty($data['address_err']) && empty($data['route_err']) && empty($data['starttime_err']) && empty($data['seatingcapacity_err']) && empty($data['Ac_err']) && empty($data['expirylicence_err']) && empty($data['service_type_err']) && empty($data['charge_for_a_km_err']) && empty($data['comments_err']) && empty($data['vehicle_document_err'])) {
+        if ($this->model->D_Own_School_Driver->addvehicle($data,$fileVehicleImage)) {
+          // flash('vehicle_message','Vehicle Added');
+          // echo "added";
+
+
+          return redirect('vehicles');
+        } else {
+          die('Something went wrong');
+        }
+      } else {
+        // Load view with errors
+        $this->view('users/driver/vehicle-own-school-transport/d_addvehicle_old', $data);
+      }
+    } else {
+      // Init data
+      $data = [
+        'vehicleno' => '',
+        'model' => '',
+        'color' => '',
+        'year' => '',
+        'address' => '',
+        'route' => '',
+        'starttime' => '',
+        'seatingcapacity' => '',
+        'Ac' => '',
+        'expirylicence' => '',
+        'service_type' => '',
+        'charge_for_a_km' => '',
+        'comments' => '',
+        'vehicle_image' => '',
+        'vehicle_document' => '',
+        'vehicleno_err' => '',
+        //'chassino_err' => '',
+        'model_err' => '',
+        'color_err' => '',
+        'year_err' => '',
+        'address_err' => '',
+        'route_err' => '',
+        'starttime_err' => '',
+        'seatingcapacity_err' => '',
+        'Ac_err' => '',
+        'expirylicence_err' => '',
+        'service_type_err' => '',
+        'charge_for_a_km_err' => '',
+        'comments_err' => '',
+        'vehicle_image_err' => '',
+        'vehicle_document_err' => '',
+        
+    
+      ];
+
+      
+      
+      // Load view
+      $this->view('users/driver/vehicle-own-school-transport/d_addvehicle_old', $data);
+    }
+  }
+
 }

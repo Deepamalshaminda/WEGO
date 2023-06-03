@@ -88,7 +88,27 @@ class D_Own_School_Driver
     return $results;
   }
 
-  public function getStudentDetailsForViewAddedChildren($vehicle_id)
+  public function viewAddedChildren($vehicle_id)
+  {
+    $currentDate = date("Y-m-d");
+    $this->db->query("SELECT
+            c.name as 'child_name',
+            u.contactNumber as 'parent_contact',
+            u.address as 'location',
+            c.school as 'school',
+            c.ch_id as 'child_id'
+            FROM child c
+            INNER JOIN user u ON u.us_id = c.pr_id
+            INNER JOIN vehicle v ON v.ve_id = c.ve_id
+            WHERE c.ve_id = :vehicle_id
+            ");
+    $this->db->bind(':vehicle_id', $vehicle_id);
+    // $this->db->bind(':attendance_date', $currentDate);
+    $results = $this->db->resultSet();
+    return $results;
+  }
+
+  public function getStudentListForTheVehicle($vehicle_id)
   {
     $currentDate = date("Y-m-d");
     $this->db->query("SELECT
@@ -217,5 +237,48 @@ class D_Own_School_Driver
     } else {
       return false;
     }
+  }
+
+  public function getVehicleByNumber($number)
+  {
+    $this->db->query('SELECT *  FROM vehicle where vehicleno=:vehicleno;');
+    $this->db->bind(':vehicleno', $number);
+    $results = $this->db->resultSet();
+
+    return $results;
+  }
+
+  public function addvehicle($data,$fileVehicleImage){
+    $this->db->query('INSERT INTO vehicle (vehicleno, model, color, year, address, route, starttime, seatingcapacity, Ac, expirylicence, service_type, charge_for_a_km, comments, vehicle_image, vehicle_document, id) VALUES(:vehicleno, :model, :color, :year, :address, :route, :starttime, :seatingcapacity, :Ac, :expirylicence, :service_type, :charge_for_a_km, :comments, :vehicle_image, :vehicle_document, :id)');
+    // Bind values
+    $this->db->bind(':vehicleno', $data['vehicleno']);
+    //$this->db->bind(':user id', $data['user id']);
+    
+    $this->db->bind(':model', $data['model']);
+    $this->db->bind(':color', $data['color']);
+    $this->db->bind(':year', $data['year']);
+    $this->db->bind(':address', $data['address']);
+    $this->db->bind(':route', $data['route']);
+    $this->db->bind(':starttime', $data['starttime']);
+    $this->db->bind(':seatingcapacity', $data['seatingcapacity']);
+    $this->db->bind(':Ac', $data['Ac']);
+    $this->db->bind(':expirylicence', $data['expirylicence']);
+    $this->db->bind(':service_type', $data['service_type']);
+    $this->db->bind(':comments', $data['comments']);
+    $this->db->bind(':charge_for_a_km', $data['charge_for_a_km']);
+    $this->db->bind(':vehicle_image', $fileVehicleImage['image_name']);
+    $this->db->bind(':vehicle_document', $data['vehicle_document']);
+
+    $this->db->bind(':id', $data['userid']);
+  
+    //move_uploaded_file($fileVehicleImage['image_tempName'],$fileVehicleImage['upload_location'].$fileVehicleImage['image_name']);
+    // Execute
+    if($this->db->execute()){
+      return true;
+    } else {
+      return false;
+    }
+
+    
   }
 }

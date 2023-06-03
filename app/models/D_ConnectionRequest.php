@@ -102,12 +102,13 @@
     // echo 'inside the mode';
     $current_timestamp = time();
     $formatted_timestamp = date('Y-m-d H:i:s', $current_timestamp);
-    $this->db->query('INSERT INTO ride_request(sent_at,from_whom,to_whom,status) VALUES(:sent_at, :from_whom, :to_whom, :status)');
+    $this->db->query('INSERT INTO ride_request(sent_at,from_parent,to_whom,from_whom,status) VALUES(:sent_at, :from_parent, :to_whom,:from_whom, :status)');
     // Bind values
 
     $this->db->bind(':sent_at', $formatted_timestamp);
-    $this->db->bind(':from_whom', $_SESSION['user_id']);
-    $this->db->bind(':to_whom', $data);
+    $this->db->bind(':from_parent', $_SESSION['user_id']);
+    $this->db->bind(':to_whom',$data['to_whom']);
+    $this->db->bind(':from_whom', $data['from_whom']);
     $this->db->bind(':status', 'Pending');
     // Execute
     if ($this->db->execute()) {

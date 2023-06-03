@@ -28,7 +28,7 @@
                 
                     <tr>
                         <td><h3>Name</h3></td>
-                        <td><input type="text" value="<?php echo $data['user']->name?>" class="input <?php echo (!empty($data['name_err'])) ? 'is-invalid' : ''; ?>"></td>
+                        <td><input type="text" name="name" value="<?php echo $data['user']->name?>" class="input <?php echo (!empty($data['name_err'])) ? 'is-invalid' : ''; ?>"></td>
                     </tr>
                     <tr>
                         <td><h3>User ID</h3></td>
@@ -36,35 +36,35 @@
                     </tr>
                     <tr>
                         <td><h3>Gender</h3></td>
-                        <td><input type="text" value="<?php echo $data['user']->gender?>" class="input <?php echo (!empty($data['gender_err'])) ? 'is-invalid' : ''; ?>"></td>
+                        <td><input type="text" name="gender" value="<?php echo $data['user']->gender?>" class="input <?php echo (!empty($data['gender_err'])) ? 'is-invalid' : ''; ?>"></td>
                     </tr>
                     <tr>
                         <td><h3>DOB</h3></td>
-                        <td><input type="text" value="<?php echo $data['user']->dob?>" class="input <?php echo (!empty($data['dob_err'])) ? 'is-invalid' : ''; ?>"></td>
+                        <td><input type="text" name="dob" value="<?php echo $data['user']->dob?>" class="input <?php echo (!empty($data['dob_err'])) ? 'is-invalid' : ''; ?>"></td>
                     </tr>
                     <tr>
                         <td><h3>Province</h3></td>
-                        <td><input type="text" value="<?php echo $data['user']->province?>" class="input <?php echo (!empty($data['province_err'])) ? 'is-invalid' : ''; ?>"></td>
+                        <td><input type="text" name="province" value="<?php echo $data['user']->province?>" class="input <?php echo (!empty($data['province_err'])) ? 'is-invalid' : ''; ?>"></td>
                     </tr>
                     
                     <tr>
                         <td><h3>District</h3></td>
-                        <td><input type="text" value="<?php echo $data['user']->district?>" class="input <?php echo (!empty($data['district_err'])) ? 'is-invalid' : ''; ?>"></td>
+                        <td><input type="text" name="district" value="<?php echo $data['user']->district?>" class="input <?php echo (!empty($data['district_err'])) ? 'is-invalid' : ''; ?>"></td>
                     </tr>
 
                     <tr>
-                        <td><h3>Naearest Town</h3></td>
-                        <td><input type="text" value="<?php echo $data['user']->nearestTown?>" class="input <?php echo (!empty($data['nearestTown_err'])) ? 'is-invalid' : ''; ?>"></td>
+                        <td><h3>Nearest Town</h3></td>
+                        <td><input type="text" name="nearestTown" value="<?php echo $data['user']->nearestTown?>" class="input <?php echo (!empty($data['nearestTown_err'])) ? 'is-invalid' : ''; ?>"></td>
                     </tr>
 
                     <tr>
                         <td><h3>Contact Number</h3></td>
-                        <td><input type="text" value="<?php echo $data['user']->contactNumber?>" class="input <?php echo (!empty($data['contactNumber_err'])) ? 'is-invalid' : ''; ?>"></td>
+                        <td><input type="text" name="contactNumber" value="<?php echo $data['user']->contactNumber?>" class="input <?php echo (!empty($data['contactNumber_err'])) ? 'is-invalid' : ''; ?>"></td>
                     </tr>
 
                     <tr>
                         <td><h3>Email</h3></td>
-                        <td><input type="text" value="<?php echo $data['user']->email?>" class="input <?php echo (!empty($data['email_err'])) ? 'is-invalid' : ''; ?>"></td>
+                        <td><input type="text" name="email" value="<?php echo $data['user']->email?>" class="input <?php echo (!empty($data['email_err'])) ? 'is-invalid' : ''; ?>"></td>
                     </tr>
 
                 </table>

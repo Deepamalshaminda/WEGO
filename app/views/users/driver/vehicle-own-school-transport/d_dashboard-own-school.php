@@ -39,14 +39,14 @@
                       </button>`;
                             } else if (data[0].trip_status == 'Ongoing') {
                                 btnDiv.innerHTML = `<button id="start-trip-btn" class="trip-button" onclick="startTrip(<?php echo $_SESSION['vehicle_id'] ?>)" value="end">
-            <h2>End Trip on <?php $currentDate = date("Y-m-d");
-                            echo $currentDate; ?></h2></button>`;
+                                <h2>End Trip on <?php $currentDate = date("Y-m-d");
+                                                echo $currentDate; ?></h2></button>`;
                                 var btn = document.getElementById("start-trip-btn");
                                 btn.style.backgroundColor = "red";
                             } else {
                                 btnDiv.innerHTML = `<button id="start-trip-btn" class="trip-button">
-            <h2>Your ride on <?php $currentDate = date("Y-m-d");
-                                echo $currentDate; ?> is successfully completed!</h2></button>`;
+                                <h2>Your ride on <?php $currentDate = date("Y-m-d");
+                                                    echo $currentDate; ?> is successfully completed!</h2></button>`;
                                 var btn = document.getElementById("start-trip-btn");
                                 btn.style.backgroundColor = "blue";
                             }
@@ -139,10 +139,132 @@
         </div>
         <div class="bottom col-12">
             <div class="bottom-left col-4">
+                <div class="card-row col-12">
+                    <div class="card-row-left col-12">
+                        <div class="card-row-left-container col-10">
+                            <table class="col-12">
+                                <tr>
+                                    <th>Student Name</th>
+                                    <th>Parent Contact</th>
+                                    <th>Location</th>
+                                </tr>
+                                <?php
+                                foreach ($data['studentsToBePresent'] as $student) { ?>
+                                    <tr>
+                                        <td><?php echo $student->child_name ?></td>
+                                        <td><?php echo $student->parent_contact ?></td>
+                                        <td><?php echo $student->location ?></td>
+                                    </tr>
+                                <?php } ?>
+                                <tr>
+                                    <td>
+                                        <button onclick="showStudentList()">Add Present Students</button>
+                                        <div id="student-list">
 
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="bottom-right col-8">
+            <script>
+                const studentListDiv = document.getElementById('student-list');
 
+                async function showStudentList() {
+                    const response = await fetch(`<?php echo URLROOT; ?>/D_Own_School_Drivers/getStudentListForTheVehicle`);
+                    if (response.status == 200) {
+                        let data = await response.json();
+
+                        let list = `<form action="<?php echo URLROOT ?>/D_Own_School_Drivers/updateAttendance" method="post">`;
+                        let student = 0;
+
+                        if (data.length != 0) {
+                            data.forEach(element => {
+                                let row = `<input type="checkbox" name="student${student}" value="${element.child_id}">
+                                <label for="${student}-student">${element.child_name}</label><br>`;
+                                list += row;
+                                student++;
+                            });
+
+                            list += `<input type="submit" value="Submit"></form>`;
+                            studentListDiv.innerHTML = list;
+                        } else {
+                            studentListDiv.innerHTML = `<h5>No more students to be marked</h5>`
+                        }
+                    }
+                }
+            </script>
+            <div class="bottom-right col-8">
+                <div class="map-div col-12">
+                    <div class="map-container col-10">
+                        <div id="map" style="width:100%;height:400px;">
+                        </div>
+                    </div>
+                </div>
+
+
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9dw4OZzvDlq6z8TBvgTSk0lvtpsY9jv0&callback=initMap&v=weekly" async>
+                </script>
+
+                <script>
+                    let map, infoWindow;
+
+                    function initMap() {
+                        map = new google.maps.Map(document.getElementById("map"), {
+                            center: {
+                                lat: 6.0329,
+                                lng: 80.2168
+                            },
+                            zoom: 8,
+                        });
+                        infoWindow = new google.maps.InfoWindow();
+
+                        const locationButton = document.createElement("button");
+
+                        locationButton.textContent = "Pan to Current Location";
+                        locationButton.classList.add("custom-map-control-button");
+                        map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
+                        locationButton.addEventListener("click", () => {
+                            // Try HTML5 geolocation.
+                            if (navigator.geolocation) {
+                                navigator.geolocation.getCurrentPosition(
+                                    (position) => {
+                                        const pos = {
+                                            lat: position.coords.latitude,
+                                            lng: position.coords.longitude,
+                                        };
+
+                                        infoWindow.setPosition(pos);
+                                        infoWindow.setContent("Location found.");
+                                        infoWindow.open(map);
+                                        map.setCenter(pos);
+                                    },
+                                    () => {
+                                        handleLocationError(true, infoWindow, map.getCenter());
+                                    }
+                                );
+                            } else {
+                                // Browser doesn't support Geolocation
+                                handleLocationError(false, infoWindow, map.getCenter());
+                            }
+                        });
+                    }
+
+                    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+                        infoWindow.setPosition(pos);
+                        infoWindow.setContent(
+                            browserHasGeolocation ?
+                            "Error: The Geolocation service failed." :
+                            "Error: Your browser doesn't support geolocation."
+                        );
+                        infoWindow.open(map);
+                    }
+
+                    window.initMap = initMap;
+                </script>
             </div>
         </div>
     </main>

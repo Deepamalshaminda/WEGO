@@ -9,6 +9,7 @@ class Payments extends Controller
     $this->Vehicle = $this->model('Vehicle');
     $this->User = $this->model('User');
     $this->Payment = $this->model('Payment');
+    
     // $this->userModel = $this->model('User');
   }
 
@@ -25,12 +26,12 @@ class Payments extends Controller
     $this->view('users/parent/paymentchildren', $data);
   }
 
-  public function paymentselector()
+  public function paymentselector($ch_id)
   {
-    $url = $_SERVER['REQUEST_URI'];
-    $url_components = parse_url($url);
-    parse_str($url_components['query'], $params);
-    $ch_id = $params['ch_id'];
+    // $url = $_SERVER['REQUEST_URI'];
+    // $url_components = parse_url($url);
+    // parse_str($url_components['query'], $params);
+    // $ch_id = $params['ch_id'];
 
     $gatewayDetails = $this->Payment->getGatewayDetails();
     $merchant_id = $gatewayDetails->merchant_id;
@@ -49,12 +50,16 @@ class Payments extends Controller
       )
     );
     $vehicles = $this->Vehicle->getAllVehicles();
+    $childVehicle = $this->Vehicle->getVehicleByChild($ch_id);
     $data = [
       'ch_id' => $ch_id,
-      'vehicles' => $vehicles
+      'vehicles' => $vehicles,
+      'childVehicle' => $childVehicle
+
     ];
     $this->view("users/parent/paymentselector", $data);
   }
+
 
 
   public function paymentMethod()
@@ -69,7 +74,7 @@ class Payments extends Controller
       $student_details = $this->Attendencechild->getChildById($ch_id);
       $userDetails = $this->User->getUserById($_SESSION['user_id']);
       $payemnt_id = $this->Payment->getLatestPaymentID() + 1;
-      $vehicle_details = $this->Vehicle->getVehicleByNumber($vehicle)[0];
+      $vehicle_details = $this->Vehicle->getVehicleByNumber($vehicle);
 
       $charge_for_a_km = number_format($vehicle_details->charge_for_a_km);
       $distance_to_school = number_format($student_details->distance_to_school);

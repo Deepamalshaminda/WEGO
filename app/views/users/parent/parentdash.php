@@ -161,7 +161,7 @@
     </div>
     <!-- <div class="join">
    <div class="card2">
-            <a href="<?php echo URLROOT ?>/Vehicles/addvehicle"><button class="addfunctions"  >Add a new vehicle</button></a><br>
+            <a href="<!?php echo URLROOT ?>/Vehicles/addvehicle"><button class="addfunctions"  >Add a new vehicle</button></a><br>
             <br>
             <div><img class="add" src="../public/img/add ve.jpg"></div>
     </div>

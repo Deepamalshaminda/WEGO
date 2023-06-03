@@ -23,11 +23,11 @@
           <?php foreach ($data['children'] as $child) : ?>
             <div class="friend-card">
 
-              <div class="friend-name"><?php echo $child->name ?></div>
+            <div class="friend-name"><img src="../public/child_image/<?php echo $child->child_image; ?>" class="friend-picture" ><?php echo $child->name ?></div>
               <br>
               <br>
               <div class="friend-actions">
-                <button class="details-button"><a href="<?php echo URLROOT ?>/Payments/paymentselector?ch_id=<?php echo $child->ch_id ?>">Make The Payment</a></button>
+                <button class="details-button"><a href="<?php echo URLROOT ?>/Payments/paymentselector/<?php echo $child->ch_id ?>">Make The Payment</a></button>
               </div>
             </div>
           <?php endforeach; ?>

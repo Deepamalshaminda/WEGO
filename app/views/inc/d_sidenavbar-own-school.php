@@ -39,6 +39,14 @@
                     <span class="links_name">Students to be Present</span>
                 </a>
             </li>
+
+            <li>
+                <a href="<?php echo URLROOT;?>/D_Own_School_Drivers/viewAddedChildren">
+                    <i class='bx bx-pie-chart-alt-2'></i>
+                    <span class="links_name">Added Children</span>
+                </a>
+            </li>
+
             <li>
                 <a href="<?php echo URLROOT;?>/D_Own_School_Drivers/viewProfile">
                     <i class='bx bx-book-alt'></i>

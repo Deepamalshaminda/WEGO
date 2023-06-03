@@ -17,7 +17,7 @@
 
     <div class="top-container col-12">
         <div class="top-container-right col-6">
-            <h3>Earnings for vehicle<?php echo $_SESSION['vehicle_id']?></h3>
+            <h3>Earnings for vehicle</h3>
         </div>
     </div>
 
@@ -38,15 +38,15 @@
                   </td>
                 </tr>
                 <tr>
-                  <th>Payment Date</th>
                   <th>Passenger Name</th>
                   <th>Amount</th>
+                  <th>Date that Payment Made</th>
                 </tr>
                 <?php foreach($data['payments'] as $payment){ ?>
                   <tr>
-                    <td><?php echo $payment-> payment_date ?></td>
                     <td><?php echo $payment-> name ?></td>
                     <td><?php echo $payment-> amount ?></td>
+                    <td><?php echo $payment-> payment_date ?></td>
                   </tr>
                 <?php } ?>  
             </table> 

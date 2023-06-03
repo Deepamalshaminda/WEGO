@@ -1,376 +1,384 @@
-<?php 
-    class D_Own_School_Drivers extends Controller{
-      public $viewDashboardModel;
-      public $model;
-      public $userModel;
-      public $connRequestModel;
-      public $Own_School_Driver_Model;
-      public $Attendencechild;
-  
-      public function __construct(){
-        if(!isLoggedIn()){
-          redirect('users/login');
-        }
-  
-        $this->model = $this->model('D_ManageDriver');
-        $this->userModel = $this->model('User');
-        $this->connRequestModel = $this->model('D_ConnectionRequest');
-        $this->viewDashboardModel = $this->model('viewDashboard');
-        $this->Own_School_Driver_Model = $this->model('D_Own_School_Driver');
-        $this->Attendencechild = $this->model('Attendencechild');
-          }
+<?php
+class D_Own_School_Drivers extends Controller
+{
+  public $viewDashboardModel;
+  public $model;
+  public $userModel;
+  public $connRequestModel;
+  public $Own_School_Driver_Model;
+  public $Attendencechild;
 
-          public function viewEarnings()
-          {
-              $month = date('m');
-              $year = date('Y');
-              $monthName = date('F', mktime(0, 0, 0, $month, 1));
-              $payments = $this->Own_School_Driver_Model->getPaymentForVehicle($_SESSION['user_id'], $month, $year);
-              $data = [
-                'payments' => $payments,
-                'month' => $month,
-                'monthName' => $monthName,
-                'year' => $year
+  public function __construct()
+  {
+    if (!isLoggedIn()) {
+      redirect('users/login');
+    }
 
-              ];
-              $this->view('users/driver/vehicle-own-school-transport/d_viewearnings', $data);
-          } 
+    $this->model = $this->model('D_ManageDriver');
+    $this->userModel = $this->model('User');
+    $this->connRequestModel = $this->model('D_ConnectionRequest');
+    $this->viewDashboardModel = $this->model('viewDashboard');
+    $this->Own_School_Driver_Model = $this->model('D_Own_School_Driver');
+    $this->Attendencechild = $this->model('Attendencechild');
+  }
 
+  public function viewEarnings()
+  {
+    $month = date('m');
+    $year = date('Y');
+    $monthName = date('F', mktime(0, 0, 0, $month, 1));
+    $payments = $this->Own_School_Driver_Model->getPaymentForVehicle($_SESSION['user_id'], $month, $year);
+    $data = [
+      'payments' => $payments,
+      'month' => $month,
+      'monthName' => $monthName,
+      'year' => $year
 
-          public function viewEarningsForAMonth(){
-            // Get the month and year values from the form
-            $earningsMonth = $_POST['earningsMonth'];
-
-            // Extract the year and month values from the earningsMonth string
-            $year = substr($earningsMonth, 0, 4);
-            $month = substr($earningsMonth, 5, 2);
-            $monthName = date('F', mktime(0, 0, 0, $month, 1));
-
-            // Pass the year and month values to the viewEarnings function
-            $payments = $this->Own_School_Driver_Model->getPresentStudentForVehicle($_SESSION['user_id'], $month, $year );
-            $data = [
-              'payments' => $payments,
-              'month' => $month,
-              'monthName' => $monthName,
-              'year' => $year
-
-            ];
-            $this->view('users/driver/vehicle-own-school-transport/d_viewearnings', $data);
-          }
-
-          public function getPresentStudentForVehicle(){
-            echo $_SESSION['vehicle_id'];
-            
-            $studentsToBePresent = $this->Own_School_Driver_Model->getPresentStudentForVehicle($_SESSION['vehicle_id']);
-            $data = [
-              'studentsToBePresent' => $studentsToBePresent
-            ];
-            $this->view('users/driver/vehicle-own-school-transport/d_studentstobePresent', $data);
-          }
-      
-          public function ConnectionRequests(){
-      
-            $data = [
-              'title' => 'requests',
-            ];
-      
-            $this->view('users/driver/d_acceptconnrequest',$data);
-      
-          }
-
-          public function startTrip(){
-
-            if(($_SERVER['REQUEST_METHOD'] == 'POST')) {
-                $routeArray = $this -> Own_School_Driver_Model -> findStartAndEnd($_SESSION['vehicle_id']);
-                // $start = 1;
-                $vehicle_ID = $_SESSION['vehicle_id'];
-                $array = explode(", ", $routeArray->route);
-
-                print_r($array);
-                
-                // $destination =  2;
-
-                $start = $array[0];
-                $destination = $array[count($array)-1];
-                
-            $data = [
-                'user_id' => $_SESSION['user_id'],
-                'start' => $start,
-                'destination' => $destination,
-                'no_of_passengers' => 2,
-                've_id' => $vehicle_ID,
-                'trip_status' => "Ongoing"
-
-            ];
-              
-                $this->Own_School_Driver_Model->startTrip($data);
-                 
-              
-              $this->view('users/driver/vehicle-own-school-transport/d_dashboard-own-school');
-            }
-          }
-
-          public function endTrip(){
-            if(($_SERVER['REQUEST_METHOD'] == 'POST')) {
+    ];
+    $this->view('users/driver/vehicle-own-school-transport/d_viewearnings', $data);
+  }
 
 
-              $routeArray = $this -> Own_School_Driver_Model -> findStartAndEnd($_SESSION['vehicle_id']);
-              // $start = 1;
-              $vehicle_ID = $_SESSION['vehicle_id'];
-              $array = explode(", ", $routeArray->route);
-              $currentDate = date("Y-m-d");
+  public function viewEarningsForAMonth()
+  {
+    // Get the month and year values from the form
+    $earningsMonth = $_POST['earningsMonth'];
 
-              print_r($array);
-              
-              // $destination =  2;
+    // Extract the year and month values from the earningsMonth string
+    $year = substr($earningsMonth, 0, 4);
+    $month = substr($earningsMonth, 5, 2);
+    $monthName = date('F', mktime(0, 0, 0, $month, 1));
 
-              $start = $array[0];
-              $destination = $array[count($array)-1];
-              
-              $data = [
-                  'user_id' => $_SESSION['user_id'],
-                  'start' => $start,
-                  'destination' => $destination,
-                  'no_of_passengers' => 2,
-                  've_id' => $vehicle_ID,
-                  'trip_status' => "Ongoing",
-                  'date' => $currentDate
+    // Pass the year and month values to the viewEarnings function
+    $payments = $this->Own_School_Driver_Model->getPresentStudentForVehicle($_SESSION['user_id'], $month, $year);
+    $data = [
+      'payments' => $payments,
+      'month' => $month,
+      'monthName' => $monthName,
+      'year' => $year
 
-              ];
-                
-                  $this->Own_School_Driver_Model->endTrip($data);
-                  
-                
-                $this->view('users/driver/vehicle-own-school-transport/d_dashboard-own-school');
-              }
-          }
+    ];
+    $this->view('users/driver/vehicle-own-school-transport/d_viewearnings', $data);
+  }
 
-          public function checkTripsOnSameDate(){
-            $currentDate = date("Y-m-d");
-            $vehicle_ID = $_SESSION['vehicle_id'];
+  public function getPresentStudentForVehicle()
+  {
 
-            $data = [
-              'user_id' => $_SESSION['user_id'],
-              've_id' => $vehicle_ID,
-              'date' => $currentDate
+    $studentsToBePresent = $this->Own_School_Driver_Model->getPresentStudentForVehicle($_SESSION['vehicle_id']);
+    $data = [
+      'studentsToBePresent' => $studentsToBePresent
+    ];
+    $this->view('users/driver/vehicle-own-school-transport/d_studentstobePresent', $data);
+  }
 
-          ];
+  public function ConnectionRequests()
+  {
 
-          $this -> sendJson($this->Own_School_Driver_Model->checkTripsOnSameDate($data));
-          }
-      
-          public function getReceivedRequests(){
-      
-            $this->sendJson($this->connRequestModel->getRequestsFromVehicleSuppliers($_SESSION['user_id']));
-      
-          }
-      
-          public function getSentRequests(){
-      
-            $this->sendJson($this->connRequestModel->getSentRequestsToVehicleSuppliers($_SESSION['user_id']));
-            
-          }
-      
-          public function getSuggessions(){
-      
-            $this->sendJson($this->connRequestModel->getListOfVehicleSuppliers($_SESSION['user_id']));
-            
-          }
-      
-          public function accept($requestId){
-      
-            if ($this->connRequestModel->acceptConnRequests($requestId)){
-              redirect('D_Own_School_Drivers/ConnectionRequests');
-                return true;
-            };
-      
-              $this->view('users/driver/d_acceptconnectionrequest');
-              return false;
-          }
-      
-          public function decline($requestId){
-      
-            if ($this->connRequestModel->declineConnRequests($requestId)){
-              redirect('D_Own_School_Drivers/ConnectionRequests');
-                return true;
-            };
-            
-              $this->view('users/driver/d_acceptconnectionrequest');
-              return false;
-          }
-      
-          public function delete($requestId){
-      
-              if ($this->connRequestModel->deleteSentRequest($requestId)){
-                redirect('D_Own_School_Drivers/ConnectionRequests');
-                return true;
-              };
-              
-              $this->view('users/driver/d_acceptconnectionrequest');
-              return false;
-            }
-      
+    $data = [
+      'title' => 'requests',
+    ];
 
-        public function viewDashboard($user){
-            $data = [
-                'user' => $user
-            ];
-            $this->view('users/driver/vehicle-own-school-transport/d_dashboard-own-school', $data);
-          }
+    $this->view('users/driver/d_acceptconnrequest', $data);
+  }
 
-        public function viewOwnSchoolDashboard(){
-          $data = [
-            'user' => "Deep"
-        ];
-            $this->view('users/driver/vehicle-own-school-transport/d_dashboard-own-school', $data);
-        }
-    
-        public function index(){
-          
-          die("Something went wrong");
-        }
-    
-        public function RideRequests(){
-   
-          $requests = $this->Own_School_Driver_Model->getRequestsFromParents($_SESSION['user_id']);
-      
-          $data = [
-              'vehicle' =>'' ,
-              'user' => '',
-              'requests' => $requests
-          ];
-    
-          $this->view('users/driver/vehicle-own-school-transport/d_acceptriderequest', $data);
-        }
+  public function startTrip()
+  {
 
-        public function acceptRideRequest($requestId){
+    if (($_SERVER['REQUEST_METHOD'] == 'POST')) {
+      $routeArray = $this->Own_School_Driver_Model->findStartAndEnd($_SESSION['vehicle_id']);
+      // $start = 1;
+      $vehicle_ID = $_SESSION['vehicle_id'];
+      $array = explode(", ", $routeArray->route);
 
-          if ($this->Own_School_Driver_Model->acceptRideRequests($requestId)){
-            redirect('D_Own_School_Drivers/RideRequests');
-            return true;
-          };
-    
-          $this->view('users/driver/vehicle-own-school-transport/d_acceptriderequest');
-          return false;
-        }
-    
-        public function declineRideRequest($requestId){
-    
-          if ($this->Own_School_Driver_Model->declineRideRequests($requestId)){
-            redirect('D_Own_School_Drivers/RideRequests');
-            return true;
-          };
-          
-          $this->view('users/driver/vehicle-own-school-transport/d_acceptriderequest');
-          return false;
-        }
-    
-    
-        // public function accept($requestId){
-    
-        //   if ($this->model->acceptRideRequests($requestId)){
-        //     redirect('D_Own_School_Drivers/RideRequests');
-        //     return true;
-        //   };
-    
-        //   $this->view('users/driver/vehicle-own-school-transport/d_acceptriderequest');
-        //   return false;
-        // }
-    
-        // public function decline($requestId){
-    
-        //   if ($this->model->declineRideRequests($requestId)){
-        //     redirect('D_Own_School_Drivers/RideRequests');
-        //     return true;
-        //   };
-          
-        //   $this->view('users/driver/vehicle-own-school-transport/d_acceptriderequest');
-        //   return false;
-        // }
-    
-        public function checkTripInfo(){
-    
-          $this->view('users/driver/vehicle-own-school-transport/d_checktripinfo');
-    
-        }
-    
-        public function getOngoingTripInfo(){
-    
-          $this->sendJson($this->model->viewOngoingTrip($_SESSION['user_id']));
-    
-        }
-    
-        public function getCompletedTripsInfo(){
-    
-          $this->sendJson($this->model->viewCompletedTrips($_SESSION['user_id']));
-    
-        }
-    
-        // public function viewEarnings(){
-        //   //$dashboard = $this->viewDashboardModel->viewDashboard();
-        //   $data = [
-        //     'earnings' => 'earnings'
-        //   ];
-        //   $this->view('users/driver/vehicle-own-school-transport/d_viewearnings', $data);
-        // }
-        
-        public function viewProfile(){
-          $userId = $_SESSION['user_id'];
-          $user = $this->Own_School_Driver_Model->getProfileDetails($userId);
-          $data = [
-            'title' => 'Profile',
-            'user' => $user
-          ];
-    
-          $this->view('users/driver/vehicle-own-school-transport/d_driver_profile', $data);
-        }
+      print_r($array);
 
-        public function editDriverProfile(){
-          $userId = $_SESSION['user_id'];
-          $user = $this->Own_School_Driver_Model->getProfileDetails($userId);
-          $data = [
-            'title' => 'Profile',
-            'user' => $user
-          ];
-          $this->view('users/driver/vehicle-own-school-transport/d_driver_profile_update', $data);
+      // $destination =  2;
 
-          // Check for POST
-          if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            // Process form
+      $start = $array[0];
+      $destination = $array[count($array) - 1];
 
-            // Sanitize POST data
-            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+      $data = [
+        'user_id' => $_SESSION['user_id'],
+        'start' => $start,
+        'destination' => $destination,
+        'no_of_passengers' => 2,
+        've_id' => $vehicle_ID,
+        'trip_status' => "Ongoing"
 
-          $userId = $_SESSION['user_id'];
-          $user = $this->Own_School_Driver_Model->getProfileDetails($userId);
-          $data = [
-            'title' => 'Profile',
-            'user' => $user,
-            'name' => trim($_POST['name']),
-            'gender' => trim($_POST['gender']),
-            'dob' => trim($_POST['dob']),
-            'province' => trim($_POST['province']),
-            'district' => trim($_POST['district']),
-            'nearestTown' => trim($_POST['nearestTown']),
-            'address' => trim($_POST['address']),
-            'contactNumber' => trim($_POST['contactNumber']),
-            'email' => trim($_POST['email']),
-            'name_err' => '',
-            'gender_err' => '',
-            'dob_err' => '',
-            'province_err' => '',
-            'district_err' => '',
-            'nearestTown_err' => '',
-            'address_err' => '',
-            'contactNumber_err' => '',
-            'email_err' => '',
-          ];
+      ];
 
-          if (empty($data['name'])) {
-            $data['name_err'] = 'Please enter name';
-          }
+      $this->Own_School_Driver_Model->startTrip($data);
 
-          // Validate grnder
+
+      $this->view('users/driver/vehicle-own-school-transport/d_dashboard-own-school');
+    }
+  }
+
+  public function endTrip()
+  {
+    if (($_SERVER['REQUEST_METHOD'] == 'POST')) {
+
+
+      $routeArray = $this->Own_School_Driver_Model->findStartAndEnd($_SESSION['vehicle_id']);
+      // $start = 1;
+      $vehicle_ID = $_SESSION['vehicle_id'];
+      $array = explode(", ", $routeArray->route);
+      $currentDate = date("Y-m-d");
+
+      print_r($array);
+
+      // $destination =  2;
+
+      $start = $array[0];
+      $destination = $array[count($array) - 1];
+
+      $data = [
+        'user_id' => $_SESSION['user_id'],
+        'start' => $start,
+        'destination' => $destination,
+        'no_of_passengers' => 2,
+        've_id' => $vehicle_ID,
+        'trip_status' => "Ongoing",
+        'date' => $currentDate
+
+      ];
+
+      $this->Own_School_Driver_Model->endTrip($data);
+
+
+      $this->view('users/driver/vehicle-own-school-transport/d_dashboard-own-school');
+    }
+  }
+
+  public function checkTripsOnSameDate()
+  {
+    $currentDate = date("Y-m-d");
+    $vehicle_ID = $_SESSION['vehicle_id'];
+
+    $data = [
+      'user_id' => $_SESSION['user_id'],
+      've_id' => $vehicle_ID,
+      'date' => $currentDate
+
+    ];
+
+    $this->sendJson($this->Own_School_Driver_Model->checkTripsOnSameDate($data));
+  }
+
+  public function getReceivedRequests()
+  {
+
+    $this->sendJson($this->connRequestModel->getRequestsFromVehicleSuppliers($_SESSION['user_id']));
+  }
+
+  public function getSentRequests()
+  {
+
+    $this->sendJson($this->connRequestModel->getSentRequestsToVehicleSuppliers($_SESSION['user_id']));
+  }
+
+  public function getSuggessions()
+  {
+
+    $this->sendJson($this->connRequestModel->getListOfVehicleSuppliers($_SESSION['user_id']));
+  }
+
+  public function accept($requestId)
+  {
+
+    if ($this->connRequestModel->acceptConnRequests($requestId)) {
+      redirect('D_Own_School_Drivers/ConnectionRequests');
+      return true;
+    };
+
+    $this->view('users/driver/d_acceptconnectionrequest');
+    return false;
+  }
+
+  public function decline($requestId)
+  {
+
+    if ($this->connRequestModel->declineConnRequests($requestId)) {
+      redirect('D_Own_School_Drivers/ConnectionRequests');
+      return true;
+    };
+
+    $this->view('users/driver/d_acceptconnectionrequest');
+    return false;
+  }
+
+  public function delete($requestId)
+  {
+
+    if ($this->connRequestModel->deleteSentRequest($requestId)) {
+      redirect('D_Own_School_Drivers/ConnectionRequests');
+      return true;
+    };
+
+    $this->view('users/driver/d_acceptconnectionrequest');
+    return false;
+  }
+
+
+  public function viewDashboard($user)
+  {
+    $data = [
+      'user' => $user
+    ];
+    $this->view('users/driver/vehicle-own-school-transport/d_dashboard-own-school', $data);
+  }
+
+  public function viewOwnSchoolDashboard()
+  {
+    $data = [
+      'user' => "Deep"
+    ];
+    $this->view('users/driver/vehicle-own-school-transport/d_dashboard-own-school', $data);
+  }
+
+  public function index()
+  {
+
+    die("Something went wrong");
+  }
+
+  public function RideRequests()
+  {
+
+    $requests = $this->Own_School_Driver_Model->getRequestsFromParents($_SESSION['user_id']);
+
+    $data = [
+      'vehicle' => '',
+      'user' => '',
+      'requests' => $requests
+    ];
+
+    $this->view('users/driver/vehicle-own-school-transport/d_acceptriderequest', $data);
+  }
+
+  public function acceptRideRequest($requestId)
+  {
+
+    if ($this->Own_School_Driver_Model->acceptRideRequests($requestId)) {
+      redirect('D_Own_School_Drivers/RideRequests');
+      return true;
+    };
+
+    $this->view('users/driver/vehicle-own-school-transport/d_acceptriderequest');
+    return false;
+  }
+
+  public function declineRideRequest($requestId)
+  {
+
+    if ($this->Own_School_Driver_Model->declineRideRequests($requestId)) {
+      redirect('D_Own_School_Drivers/RideRequests');
+      return true;
+    };
+
+    $this->view('users/driver/vehicle-own-school-transport/d_acceptriderequest');
+    return false;
+  }
+
+
+  // public function accept($requestId){
+
+  //   if ($this->model->acceptRideRequests($requestId)){
+  //     redirect('D_Own_School_Drivers/RideRequests');
+  //     return true;
+  //   };
+
+  //   $this->view('users/driver/vehicle-own-school-transport/d_acceptriderequest');
+  //   return false;
+  // }
+
+  // public function decline($requestId){
+
+  //   if ($this->model->declineRideRequests($requestId)){
+  //     redirect('D_Own_School_Drivers/RideRequests');
+  //     return true;
+  //   };
+
+  //   $this->view('users/driver/vehicle-own-school-transport/d_acceptriderequest');
+  //   return false;
+  // }
+
+  public function checkTripInfo()
+  {
+
+    $this->view('users/driver/vehicle-own-school-transport/d_checktripinfo');
+  }
+
+  public function getOngoingTripInfo()
+  {
+
+    $this->sendJson($this->model->viewOngoingTrip($_SESSION['user_id']));
+  }
+
+  public function getCompletedTripsInfo()
+  {
+
+    $this->sendJson($this->model->viewCompletedTrips($_SESSION['user_id']));
+  }
+
+  // public function viewEarnings(){
+  //   //$dashboard = $this->viewDashboardModel->viewDashboard();
+  //   $data = [
+  //     'earnings' => 'earnings'
+  //   ];
+  //   $this->view('users/driver/vehicle-own-school-transport/d_viewearnings', $data);
+  // }
+
+  public function viewProfile()
+  {
+    $userId = $_SESSION['user_id'];
+    $user = $this->Own_School_Driver_Model->getProfileDetails($userId);
+    $data = [
+      'title' => 'Profile',
+      'user' => $user
+    ];
+
+    $this->view('users/driver/vehicle-own-school-transport/d_driver_profile', $data);
+  }
+
+  public function editDriverProfile()
+  {
+
+    // Check for POST
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+      // Process form
+
+      // Sanitize POST data
+      $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+      $userId = $_SESSION['user_id'];
+      $user = $this->Own_School_Driver_Model->getProfileDetails($userId);
+      $data = [
+        'user_id' => $userId,
+        'user' => $user,
+        'name' => trim($_POST['name']),
+        'gender' => trim($_POST['gender']),
+        'dob' => trim($_POST['dob']),
+        'province' => trim($_POST['province']),
+        'district' => trim($_POST['district']),
+        'nearestTown' => trim($_POST['nearestTown']),
+        'contactNumber' => trim($_POST['contactNumber']),
+        'email' => trim($_POST['email']),
+        'name_err' => '',
+        'gender_err' => '',
+        'dob_err' => '',
+        'province_err' => '',
+        'district_err' => '',
+        'nearestTown_err' => '',
+        'contactNumber_err' => '',
+        'email_err' => '',
+      ];
+
+      if (empty($data['name'])) {
+        $data['name_err'] = 'Please enter name';
+      }
+
+      // Validate grnder
       if (empty($data['gender'])) {
         $data['gender_err'] = 'Please fill this field';
       }
@@ -395,11 +403,6 @@
         $data['nearestTown_err'] = 'Please fill this field';
       }
 
-      // Validate address
-      if (empty($data['address'])) {
-        $data['address_err'] = 'Please enter address';
-      }
-
       // Validate contact number
       if (empty($data['contactNumber'])) {
         $data['contactNumber_err'] = 'Please enter contact number';
@@ -407,51 +410,82 @@
         $data['contactNumber_err'] = 'Contact number must have exactly 10 digits';
       }
 
-      if (empty($data['email'])) {
-        $data['email_err'] = 'Please enter email';
-      } else {
-        // Check email format
-        if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
-          $data['email_err'] = 'Invalid email format';
+
+      if (empty($data['name_err']) && empty($data['gender_err']) && empty($data['dob_err']) && empty($data['province_err']) && empty($data['district_err']) && empty($data['nearestTown_err']) && empty($data['address_err']) && empty($data['contactNumber_err'])) {
+        if ($this->Own_School_Driver_Model->updateProfileDetails($data)) {
+          redirect('D_Own_School_Drivers/viewProfile');
         } else {
-          // Check if email already exists in database
-          if ($this->userModel->findUserByEmail($data['email'])) {
-            $data['email_err'] = 'Email is already taken';
-          }
+          die('success');
         }
       }
+      // $this->view('users/driver/vehicle-own-school-transport/d_driver_profile_update', $data);Warning: Cannot modify header information - headers already sent by (output started at C:\wamp64\www\projectwego\app\views\inc\d_sidenavbar-own-school.php:65) in C:\wamp64\www\projectwego\app\helpers\url_helper.php on line 4
 
-      if (empty($data['email_err']) && empty($data['name_err']) && empty($data['gender_err']) && empty($data['dob_err']) && empty($data['province_err']) && empty($data['district_err']) && empty($data['nearestTown_err']) && empty($data['address_err']) && empty($data['contactNumber_err'])){
-        $this->Own_School_Driver_Model->updateProfileDetails($userId);
-      }
-          // $this->view('users/driver/vehicle-own-school-transport/d_driver_profile_update', $data);
-          
-        }}
-    
-        public function getDriverByUserId($us_id){
-          $driver = $this -> model -> getDriverByUserId($us_id);
-          return $driver;
-        }
-    
-        public function completedTrips(){
-          //$dashboard = $this->viewDashboardModel->viewDashboard();
-          $data = [
-            'completedTrip' => 'completedTrip'
-          ];
-          $this->view('users/driver/vehicle-own-school-transport/d_completedtrips', $data);
-        }
-        public function checkOngoingTrip(){
-          $ongoingTrip = $this-> model -> checkOngoingTrip($_SESSION['vehicle_id']);
-          $trip_date = $ongoingTrip['trip_date'];
-          $currentDate = date("Y-m-d");
-          
-          if($trip_date == $currentDate){
-            return true;
-          }else{
-            return false;
-          }
-        }
+    } else {
+      $userId = $_SESSION['user_id'];
+      $user = $this->Own_School_Driver_Model->getProfileDetails($userId);
+      $data = [
+        'title' => 'Profile',
+        'user' => $user
+      ];
+      $this->view('users/driver/vehicle-own-school-transport/d_driver_profile_update', $data);
     }
-    
+  }
 
-?>
+  public function getDriverByUserId($us_id)
+  {
+    $driver = $this->model->getDriverByUserId($us_id);
+    return $driver;
+  }
+
+  public function completedTrips()
+  {
+    //$dashboard = $this->viewDashboardModel->viewDashboard();
+    $data = [
+      'completedTrip' => 'completedTrip'
+    ];
+    $this->view('users/driver/vehicle-own-school-transport/d_completedtrips', $data);
+  }
+  public function checkOngoingTrip()
+  {
+    $ongoingTrip = $this->model->checkOngoingTrip($_SESSION['vehicle_id']);
+    $trip_date = $ongoingTrip['trip_date'];
+    $currentDate = date("Y-m-d");
+
+    if ($trip_date == $currentDate) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public function viewAddedChildren()
+  {
+    $student = $this->Own_School_Driver_Model->getStudentDetailsForViewAddedChildren($_SESSION['vehicle_id']);
+    $data = [
+      'student' => $student
+    ];
+    $this->view('users/driver/vehicle-own-school-transport/d_added_children', $data);
+  }
+
+  public function getStudentListForTheVehicle()
+  {
+    $students = $this->Own_School_Driver_Model->getStudentDetailsForViewAddedChildren($_SESSION['vehicle_id']);
+    $this->sendJson($students);
+  }
+
+  public function updateAttendance()
+  {
+    $presentStudents[] = null;
+    $element = 0;
+    foreach ($_POST as $key => $value) {
+      $presentStudents[$element] = $value;
+      $element++;
+    }
+
+    foreach($presentStudents as $key => $value){
+      $this->Own_School_Driver_Model->updateStudentAttendance($value);
+    }
+    // print_r($presentStudents);
+    redirect('D_Own_School_Drivers/getPresentStudentForVehicle');
+  }
+}

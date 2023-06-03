@@ -16,14 +16,24 @@
         <div class="box">
           <div class="right-side">
             <div class="box-topic-link"> Rides</div>
-            <div class="number"> 125 </div>
+            <div class="number"> <?php echo($data["total_rides"]); ?> </div>
+            
             
         </div>
         </div>
         <div class="box">
           <div class="right-side">
             <div class="box-topic-link"> Vehicles </div>
-           <div class="number"> 50 </div>
+           <div class="number">  <?php echo($data["total_vehicles"]); ?>  </div>
+          
+          </div>
+          
+          
+        </div>
+        <div class="box">
+          <div class="right-side">
+            <div class="box-topic-link"> Total No of Users </div>
+           <div class="number">  <?php echo($data["total_users"]); ?>  </div>
           
           </div>
           
@@ -37,14 +47,15 @@
         <div class="recent-sales box">
           <div class="title">Transactions Summary</div>
           <div class="graph-card">
-      <h3 class="summery">Transactions Summary of last month</h3>
+      <h3 class="summery">Transactions Summary of last week</h3>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
   
   
     <canvas id="myChart"></canvas>
     <script>
+      
       <?php
-        $data = [4, 3, 5, 4, 3, 1 , 5];
+        $data = [14, 13, 15, 14, 13, 10 , 15];
       ?>
       var ctx = document.getElementById('myChart').getContext('2d');
       var chart = new Chart(ctx, {

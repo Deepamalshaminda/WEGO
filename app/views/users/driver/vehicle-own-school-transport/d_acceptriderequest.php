@@ -70,12 +70,41 @@
                     <button class="button"><a class="link" href="#" onclick="acceptRideRequest(<?php echo $request->request_id?>)">Accept</a></button>
                         <script>
                         function acceptRideRequest(requestId) {
-                            swal("Ride Request Accepted", "The ride request has been successfully accepted.", "success").then(() => {
+                            // swal("Ride Request Accepted", "The ride request has been successfully accepted.", "success").then(() => {
+                            //     window.location.href = '<?php echo URLROOT?>/D_Own_School_Drivers/acceptRideRequest/' + requestId;
+                            // });
+                            swal({
+                            title: "Are you sure to accept?",
+                            text: "Child will be added to your vehicle",
+                            icon: "warning",
+                            buttons: ["Cancel", "Accept"],
+                            dangerMode: true,
+                        }).then((confirm) => {
+                            if (confirm) {
                                 window.location.href = '<?php echo URLROOT?>/D_Own_School_Drivers/acceptRideRequest/' + requestId;
-                            });
+                            }
+                        });
                         }
                         </script>
-                     <button class="button"><a class="link" href="<?php echo URLROOT?>/D_Own_School_Drivers/declineRideRequest/<?php echo $request->request_id?>">Declline</a></button>
+                     <button class="button"><a class="link" href="#" onclick="declineRideRequest(<?php echo $request->request_id?>)">Decline</a></button>
+                        <script>
+                        function declineRideRequest(requestId) {
+                            // swal("Ride Request declined", "The ride request has been successfully decline.", "success").then(() => {
+                            //     window.location.href = '<?php echo URLROOT?>/D_Own_School_Drivers/declineRideRequest/' + requestId;
+                            // });
+                            swal({
+                            title: "Are you sure to decline?",
+                            text: "Request will be removed",
+                            icon: "warning",
+                            buttons: ["Cancel", "Decline"],
+                            dangerMode: true,
+                        }).then((confirm) => {
+                            if (confirm) {
+                                window.location.href = '<?php echo URLROOT?>/D_Own_School_Drivers/declineRideRequest/' + requestId;
+                            }
+                        });
+                        }
+                        </script>
                  </div>
              </div>
          </div>

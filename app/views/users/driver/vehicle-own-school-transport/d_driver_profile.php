@@ -24,6 +24,7 @@
     <div class="right">
         <div class="info">
             <table>
+
                 <tr>
                     <td><h3>Name</h3></td>
                     <td><?php echo $data['user']->name?></td>
@@ -64,10 +65,10 @@
                     <td><h3>Email</h3></td>
                     <td><?php echo $data['user']->email?></td>
                 </tr>
-                <tr>
+                <!-- <tr>
                     <td><h3>Vehicles</h3></td>
                     <td><button class="button"><a class="link" href="#">View All Your Vehicles</a></button></td>
-                </tr>
+                </tr> -->
 
 
             </table>
@@ -78,13 +79,9 @@
             
             <div class="projects_data">
                  <div class="data">
-                    <button class="edit">Edit</button>
+                    <a href="<?php echo URLROOT?>/D_Own_School_Drivers/editDriverProfile"><button class="edit">Edit</button></a>
                     
                  </div>
-                 <div class="data">
-                   <button class="delete">Delete</h4>
-                    
-              </div>
             </div>
         </div>  
     </div>

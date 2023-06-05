@@ -32,7 +32,7 @@
         <h1 class="title-container">Add vehicle</h1>
         <p class="form-description">Enter your vehicle details here</p>
 
-        <form action="<?php echo URLROOT; ?>/D_Own_School_Drivers/addvehicle" method="POST">
+        <form action="<?php echo URLROOT; ?>/D_Own_School_Drivers/addvehicle" method="POST" enctype="multipart/form-data">
 
           <div class="row col-12">
             <div class="form-group col-6 vehicleNo-input">

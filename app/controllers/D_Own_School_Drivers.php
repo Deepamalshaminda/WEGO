@@ -526,7 +526,7 @@ class D_Own_School_Drivers extends Controller
         'charge_for_a_km' => trim($_POST['charge_for_a_km']),
         'comments' => trim($_POST['comments']),
        // 'vehicle_image' => trim($_POST['vehicle_image']),
-        'vehicle_image' => !empty($_POST['vehicle_image']) ? trim(implode(',', (array)$_POST['vehicle_image'])) : '',
+        'vehicle_image' => $_FILES['vehicle_image'],
         'vehicle_document' => !empty($_POST['vehicle_document']) ? trim(implode(',', (array)$_POST['vehicle_document'])) : '',
 
         
@@ -572,7 +572,7 @@ class D_Own_School_Drivers extends Controller
         }
         else {
           // Check if the vehicle number already exists
-          $existingVehicle = $this->model->D_Own_School_Driver->getVehicleByNumber($data['vehicleno']);
+          $existingVehicle = $this->Own_School_Driver_Model->getVehicleByNumber($data['vehicleno']);
           if ($existingVehicle) {
               $data['vehicleno_err'] = 'This vehicle number already exists in the system';
           }
@@ -712,7 +712,7 @@ if (!empty($_FILES['vehicle_document']['name'])) {
 
       // Make sure errors are empty
       if (empty($data['vehicleno_err']) && empty($data['model_err']) && empty($data['color_err']) && empty($data['year_err']) && empty($data['address_err']) && empty($data['route_err']) && empty($data['starttime_err']) && empty($data['seatingcapacity_err']) && empty($data['Ac_err']) && empty($data['expirylicence_err']) && empty($data['service_type_err']) && empty($data['charge_for_a_km_err']) && empty($data['comments_err']) && empty($data['vehicle_document_err'])) {
-        if ($this->model->D_Own_School_Driver->addvehicle($data,$fileVehicleImage)) {
+        if ($this->Own_School_Driver_Model->addvehicle($data,$fileVehicleImage)) {
           // flash('vehicle_message','Vehicle Added');
           // echo "added";
 

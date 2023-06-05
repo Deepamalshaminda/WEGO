@@ -54,12 +54,16 @@ public function viewDriverSuggestions() {
   require_once APPROOT . '/models/driversuggestions.php';
   $driversuggestions = new driversuggestions();
 
+  // Fetch the user's nearest town
+  $nearestTown = "Your nearest town value here";
+
   // Fetch the drivers based on the user's nearest town
   $drivers = $driversuggestions->getDriversByNearestTown($nearestTown);
 
   // View
   $this->view('users/supplier/driversuggestions', ['drivers' => $drivers]);
 }
+
 
 
 public function viewMyDrivers(){

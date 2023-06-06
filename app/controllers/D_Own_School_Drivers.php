@@ -81,18 +81,43 @@ class D_Own_School_Drivers extends Controller
     $this->view('users/driver/d_acceptconnrequest', $data);
   }
 
-  public function startTrip()
+  public function checkMorningTripsOnSameDate()
+  {
+    $currentDate = date("Y-m-d");
+    $vehicle_ID = $_SESSION['vehicle_id'];
+
+    $data = [
+      'user_id' => $_SESSION['user_id'],
+      've_id' => $vehicle_ID,
+      'date' => $currentDate
+    ];
+
+    $this->sendJson($this->Own_School_Driver_Model->checkMorningTripsOnSameDate($data));
+  }
+
+  public function checkReturnTripsOnSameDate()
+  {
+    $currentDate = date("Y-m-d");
+    $vehicle_ID = $_SESSION['vehicle_id'];
+
+    $data = [
+      'user_id' => $_SESSION['user_id'],
+      've_id' => $vehicle_ID,
+      'date' => $currentDate
+    ];
+
+    $this->sendJson($this->Own_School_Driver_Model->checkReturnTripsOnSameDate($data));
+  }
+
+  public function startMorningTrip()
   {
 
     if (($_SERVER['REQUEST_METHOD'] == 'POST')) {
       $routeArray = $this->Own_School_Driver_Model->findStartAndEnd($_SESSION['vehicle_id']);
-      // $start = 1;
+
       $vehicle_ID = $_SESSION['vehicle_id'];
       $array = explode(", ", $routeArray->route);
 
-      print_r($array);
-
-      // $destination =  2;
 
       $start = $array[0];
       $destination = $array[count($array) - 1];
@@ -103,18 +128,18 @@ class D_Own_School_Drivers extends Controller
         'destination' => $destination,
         'no_of_passengers' => 2,
         've_id' => $vehicle_ID,
-        'trip_status' => "Ongoing"
-
+        'trip_status' => "Ongoing",
+        'trip_type' => "Morning"
       ];
 
-      $this->Own_School_Driver_Model->startTrip($data);
+      $this->Own_School_Driver_Model->startMorningTrip($data);
 
 
       $this->view('users/driver/vehicle-own-school-transport/d_dashboard-own-school');
     }
   }
 
-  public function endTrip()
+  public function endMorningTrip()
   {
     if (($_SERVER['REQUEST_METHOD'] == 'POST')) {
 
@@ -140,29 +165,79 @@ class D_Own_School_Drivers extends Controller
         've_id' => $vehicle_ID,
         'trip_status' => "Ongoing",
         'date' => $currentDate
-
       ];
 
-      $this->Own_School_Driver_Model->endTrip($data);
+      $this->Own_School_Driver_Model->endMorningTrip($data);
 
 
       $this->view('users/driver/vehicle-own-school-transport/d_dashboard-own-school');
     }
   }
 
-  public function checkTripsOnSameDate()
+  public function startReturnTrip()
   {
-    $currentDate = date("Y-m-d");
-    $vehicle_ID = $_SESSION['vehicle_id'];
 
-    $data = [
-      'user_id' => $_SESSION['user_id'],
-      've_id' => $vehicle_ID,
-      'date' => $currentDate
+    if (($_SERVER['REQUEST_METHOD'] == 'POST')) {
+      $routeArray = $this->Own_School_Driver_Model->findStartAndEnd($_SESSION['vehicle_id']);
+      // $start = 1;
+      $vehicle_ID = $_SESSION['vehicle_id'];
+      $array = explode(", ", $routeArray->route);
 
-    ];
+      print_r($array);
 
-    $this->sendJson($this->Own_School_Driver_Model->checkTripsOnSameDate($data));
+      // $destination =  2;
+
+      $start = $array[0];
+      $destination = $array[count($array) - 1];
+
+      $data = [
+        'user_id' => $_SESSION['user_id'],
+        'start' => $start,
+        'destination' => $destination,
+        'no_of_passengers' => 2,
+        've_id' => $vehicle_ID,
+        'trip_status' => "Ongoing",
+        'trip_type' => "Return"
+      ];
+
+      $this->Own_School_Driver_Model->startReturnTrip($data);
+
+
+      $this->view('users/driver/vehicle-own-school-transport/d_dashboard-own-school');
+    }
+  }
+
+  public function endReturnTrip()
+  {
+    if (($_SERVER['REQUEST_METHOD'] == 'POST')) {
+
+
+      $routeArray = $this->Own_School_Driver_Model->findStartAndEnd($_SESSION['vehicle_id']);
+      $vehicle_ID = $_SESSION['vehicle_id'];
+      $array = explode(", ", $routeArray->route);
+      $currentDate = date("Y-m-d");
+
+      print_r($array);
+
+
+      $start = $array[0];
+      $destination = $array[count($array) - 1];
+
+      $data = [
+        'user_id' => $_SESSION['user_id'],
+        'start' => $start,
+        'destination' => $destination,
+        'no_of_passengers' => 2,
+        've_id' => $vehicle_ID,
+        'trip_status' => "Ongoing",
+        'date' => $currentDate
+      ];
+
+      $this->Own_School_Driver_Model->endReturnTrip($data);
+
+
+      $this->view('users/driver/vehicle-own-school-transport/d_dashboard-own-school');
+    }
   }
 
   public function getReceivedRequests()
@@ -526,7 +601,7 @@ class D_Own_School_Drivers extends Controller
         'charge_for_a_km' => trim($_POST['charge_for_a_km']),
         'comments' => trim($_POST['comments']),
        // 'vehicle_image' => trim($_POST['vehicle_image']),
-        'vehicle_image' => $_FILES['vehicle_image'],
+        'vehicle_image' => !empty($_POST['vehicle_image']) ? trim(implode(',', (array)$_POST['vehicle_image'])) : '',
         'vehicle_document' => !empty($_POST['vehicle_document']) ? trim(implode(',', (array)$_POST['vehicle_document'])) : '',
 
         
@@ -572,7 +647,7 @@ class D_Own_School_Drivers extends Controller
         }
         else {
           // Check if the vehicle number already exists
-          $existingVehicle = $this->Own_School_Driver_Model->getVehicleByNumber($data['vehicleno']);
+          $existingVehicle = $this->model->D_Own_School_Driver->getVehicleByNumber($data['vehicleno']);
           if ($existingVehicle) {
               $data['vehicleno_err'] = 'This vehicle number already exists in the system';
           }
@@ -712,7 +787,7 @@ if (!empty($_FILES['vehicle_document']['name'])) {
 
       // Make sure errors are empty
       if (empty($data['vehicleno_err']) && empty($data['model_err']) && empty($data['color_err']) && empty($data['year_err']) && empty($data['address_err']) && empty($data['route_err']) && empty($data['starttime_err']) && empty($data['seatingcapacity_err']) && empty($data['Ac_err']) && empty($data['expirylicence_err']) && empty($data['service_type_err']) && empty($data['charge_for_a_km_err']) && empty($data['comments_err']) && empty($data['vehicle_document_err'])) {
-        if ($this->Own_School_Driver_Model->addvehicle($data,$fileVehicleImage)) {
+        if ($this->model->D_Own_School_Driver->addvehicle($data,$fileVehicleImage)) {
           // flash('vehicle_message','Vehicle Added');
           // echo "added";
 

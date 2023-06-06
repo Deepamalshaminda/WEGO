@@ -7,14 +7,12 @@
             if(!isLoggedIn()){
               redirect('users/login');
             }
-      
-            $this->Own_Office_Driver_Model = $this->model('D_Find_School_Driver');
           }
 
-          public function viewDashboard($user){
+          public function viewDashboard(){
 
             $data = [
-              "user" => $user
+              "user" => ''
             ];
               $this->view('users/driver/vehicle-find-school-transport/D_Find_School_Drivers', $data);
             }

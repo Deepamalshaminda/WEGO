@@ -24,12 +24,13 @@
 
 .wrapper .left{
   width: 50%;
-  background: linear-gradient(to right,#bbbbbb,#eaedf3);
+  background: linear-gradient(to right,#0C457D,#0c447d81);
   border-top-left-radius: 15px;
   border-bottom-left-radius: 15px;
   text-align: center;
   color: #08122e;
   font-size: 24px;
+  color: white;
 }
 
 .right, .left{
@@ -147,7 +148,7 @@ td, th {
 }
 
 tr:nth-child(even) {
-  background-color: #6187aa;
+  background-color: #6c94af;
 }
 
 /* ---------------------------------------------------------------------update */

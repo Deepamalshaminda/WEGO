@@ -23,7 +23,7 @@
  
     <div class="wrapper">
         <div class="left">
-        <img src="<?=URLROOT?>/vehicle_image/<?=$data['vehicle']->vehicle_image?>" alt="user" width="150" height="100">
+            <img src="../public/img/ch2.png" alt="user" width="100">
             <h4><?php echo $data['vehicle']->ve_id ?></h4>
             <p>School service.</p>
         </div>

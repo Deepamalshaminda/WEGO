@@ -25,16 +25,21 @@
           <form action="<?php echo URLROOT; ?>/Payments/paymentmethod" method="post">
             <label for="datepicker">Choose a Month:</label>
             <input name="datepicker" type="month" id="datepicker" value="YYYY-MM">
-            <input name="ch_id" type="hidden" id="ch_id" value="<?php echo $data["ch_id"] ?>">
-            </script>
-            <label for="cars">Choose a Vehicle:</label>
-            <select name="cars" id="cars">
+            <input name="ch_id" type="hidden" id="ch_id" value="<?php echo $data["ch_id"] ?>"><br>
+            <label for="cars">Vehicle Id</label>
+            <input type="text" name="cars" id="cars" value="<?php echo $data["childVehicle"] ?>">
+            <!-- <p><!?php echo $data["childVehicle"] ?></p> -->
+            <!-- <label for=""><!?php echo $data["childVehicle"] ?></label> -->
+            
+            <!--<label for="cars">Choose a Vehicle:</label>
+             <select name="cars" id="cars">
               <optgroup label="Vehicle No">
-                <?php foreach ($data['vehicles'] as $vehicle) : ?>
-                  <option value="<?php echo $vehicle->vehicleno ?>"><?php echo $vehicle->vehicleno ?></option>
-                <?php endforeach; ?>
+                <!?php foreach ($data['vehicles'] as $vehicle) : ?>
+                  <option value="<!?php echo $vehicle->vehicleno ?>"><!?php echo $vehicle->vehicleno ?></option>
+                <!?php endforeach; ?>
               </optgroup>
-            </select>
+            </select> -->
+            <!-- <input type="text" name="vehicleId" id="vehicleId" value="<!?php echo $data["childVehicle"] ?>"> -->
             </br>
             </br>
             <div class="friend-actions">

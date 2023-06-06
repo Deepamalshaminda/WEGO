@@ -212,16 +212,6 @@
     }
 
 
-  // public function suspendUser($us_id)
-  // {
-  //     $this->db->query("DELETE FROM user WHERE us_id = :us_id");
-  //     $this->db->bind(':us_id', $us_id);
-  //           if($this->db->execute()){
-  //               return true;
-  //             } else {
-  //               return false;
-  //             }
-  // }
 
   public function suspendUser($us_id)
 {
@@ -245,5 +235,27 @@
 
     return $row;
   }
+
+ 
+  public function activateUser($us_id)
+  {
+      $this->db->query("UPDATE user SET active_status = 'active' WHERE us_id = :us_id");
+      $this->db->bind(':us_id', $us_id);
+      if ($this->db->execute()) {
+          return true;
+      } else {
+          return false;
+      }
+    }
+  
+    public function calculateTotalUsers(){
+  
+      $this->db->query("SELECT COUNT(*) AS total_count FROM user");
+  
+      $row = $this->db->single();
+  
+      return $row->total_count;
+  }
+
 
   }

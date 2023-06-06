@@ -24,17 +24,13 @@
         <button class="tablink" onclick="openPage('view')" > View Vehicles </button>
         
     </div>
-    <div class="search-box">
-        <input type="text" placeholder="Search...">
-        <div class='bx bx-search' ></div>
-      </div>
 
-<div id="add" class="tabcontent">
+  <div id="add" class="tabcontent">
   <div class="friend-list">
   <?php foreach($data['vehicle'] as $vehicle): ?>
     <div class="friend-card">
       
-      <div class="friend-name"><img src="../public/img/v3.png" class="friend-picture" > <?php echo $vehicle->vehicleno; ?> <br> Added By: <?php echo $vehicle->name; ?> </div>
+    <div class="friend-name"><img src="../public/vehicle_image/<?php echo $vehicle->vehicle_image; ?>." class="friend-picture" > <?php echo $vehicle->vehicleno; ?> <br> Added By: <?php echo $vehicle->name; ?> </div>
       <br>
       <br>
       <div class="friend-actions">

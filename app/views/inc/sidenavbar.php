@@ -96,11 +96,11 @@
         <div class="sidebar-button">
           <div class='bx bx-menu sidebarBtn'></div>
 
-        </div>
+        <!--</div>
         <div class="search-box">
           <input type="text" placeholder="Search...">
           <div class='bx bx-search'></div>
-        </div>
+        </div>-->
         <div class="profile-details">
           <!-- //<img src="../public/img/images.png" alt=""> -->
           <span class="admin_name">Nuwani</span>

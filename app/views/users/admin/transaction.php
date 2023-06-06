@@ -34,7 +34,7 @@
       <?php if ($count >= 2) break; ?>
     <div class="friend-card">
     
-      <div class="friend-name"><img src="../public/img/v2.png" class="friend-picture" >
+      <div class="friend-name"><img src="../public/vehicle_image/" class="friend-picture" >
         <div class="details">
           <p> <?php echo $transaction->earning_rec_id; ?> </p> 
           <p>Supplier Id : 025 </p> 
@@ -79,7 +79,7 @@ viewAllButton.addEventListener('click', () => {
     const resultElement = document.createElement('div');
     resultElement.classList.add('friend-card');
     resultElement.innerHTML = `
-      <div class="friend-name"><img src="../public/img/v2.png" class="friend-picture" >
+      <div class="friend-name"><img src="./public/vehicle_image/" class="friend-picture" >
         <div class="details">
           <p>${transaction.earning_rec_id}</p> 
           <p>Supplier Id : 025</p> 

@@ -19,11 +19,19 @@ class Vehicle
 
   public function getVehicleByNumber($number)
   {
-    $this->db->query('SELECT *  FROM vehicle where vehicleno=:vehicleno;');
+    $this->db->query('SELECT * FROM vehicle where ve_id=:vehicleno');
     $this->db->bind(':vehicleno', $number);
-    $results = $this->db->resultSet();
+    $results = $this->db->single();
 
     return $results;
+  }
+
+  public function getVehicleByChild($ch_id)
+  {
+      $this->db->query('SELECT ve_id FROM child WHERE ch_id = :ch_id');
+      $this->db->bind(':ch_id', $ch_id);
+      $row = $this->db->single();
+      return $row->ve_id;
   }
 
 

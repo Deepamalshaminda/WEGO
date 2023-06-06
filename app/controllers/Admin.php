@@ -75,6 +75,14 @@
       $this->view('users/admin/viewcomplaint', $data);
     }
 
+    public function updateComplainAction() {
+    
+      $request = json_decode(file_get_contents('php://input'), true);
+      if($this->model('Complaint')->complainActionUpdate($request)) { 
+        return true;
+      }
+   }
+
     public function rideschedule(){
       $data = [];
       $data['rides'] =  $this->rideModel->viewrides();
@@ -226,10 +234,6 @@ public function deny($ve_id){
     $this->view('users/admin/viewUser');
     return false;
   }
-  public function dashboard(){
-
-    
-}
   
 
 }

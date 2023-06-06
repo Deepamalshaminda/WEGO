@@ -154,10 +154,11 @@ class D_Own_School_Driver
     return $result;
   }
 
-  public function startTrip($data)
+  public function startMorningTrip($data)
   {
     $this->db->query("INSERT INTO
-            trip_information (driver_id, ve_id, start, destination, no_of_passengers, trip_status) VALUES (:user_id, :ve_id, :start, :destination, :no_of_passengers, :trip_status)           
+            trip_information (driver_id, ve_id, start, destination, no_of_passengers, trip_status, trip_type) 
+            VALUES (:user_id, :ve_id, :start, :destination, :no_of_passengers, :trip_status, :trip_type)           
             ");
     $this->db->bind(':user_id', $data['user_id']);
     $this->db->bind(':ve_id', $data['ve_id']);
@@ -165,6 +166,7 @@ class D_Own_School_Driver
     $this->db->bind(':destination', $data['destination']);
     $this->db->bind(':no_of_passengers', $data['no_of_passengers']);
     $this->db->bind(':trip_status', $data['trip_status']);
+    $this->db->bind(':trip_type', $data['trip_type']);
     if ($this->db->execute()) {
       return true;
     } else {
@@ -172,7 +174,7 @@ class D_Own_School_Driver
     }
   }
 
-  public function endTrip($data)
+  public function endMorningTrip($data)
   {
     $this->db->query("UPDATE trip_information SET trip_status = 'Completed' WHERE ve_id = :id AND DATE(date) = :date");
     $this->db->bind(':id', $data['ve_id']);
@@ -184,11 +186,56 @@ class D_Own_School_Driver
     }
   }
 
-  public function checkTripsOnSameDate($data)
+  public function startReturnTrip($data)
   {
-    $this->db->query("SELECT trip_id, trip_status FROM trip_information WHERE DATE(date) = :date AND ve_id = :ve_id");
+    $this->db->query("INSERT INTO
+            trip_information (driver_id, ve_id, start, destination, no_of_passengers, trip_status, trip_type) 
+            VALUES (:user_id, :ve_id, :start, :destination, :no_of_passengers, :trip_status, :trip_type)           
+            ");
+    $this->db->bind(':user_id', $data['user_id']);
+    $this->db->bind(':ve_id', $data['ve_id']);
+    $this->db->bind(':start', $data['start']);
+    $this->db->bind(':destination', $data['destination']);
+    $this->db->bind(':no_of_passengers', $data['no_of_passengers']);
+    $this->db->bind(':trip_status', $data['trip_status']);
+    $this->db->bind(':trip_type', $data['trip_type']);
+    if ($this->db->execute()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public function endReturnTrip($data)
+  {
+    $this->db->query("UPDATE trip_information SET trip_status = 'Completed' WHERE ve_id = :id AND DATE(date) = :date");
+    $this->db->bind(':id', $data['ve_id']);
+    $this->db->bind(':date', $data['date']);
+    if ($this->db->execute()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public function checkMorningTripsOnSameDate($data)
+  {
+    $this->db->query("SELECT trip_id, trip_status, trip_type FROM trip_information 
+    WHERE DATE(date) = :date AND ve_id = :ve_id AND trip_type = :trip_type");
     $this->db->bind(':ve_id', $data['ve_id']);
     $this->db->bind(':date', $data['date']);
+    $this->db->bind(':trip_type', "Morning");
+    $result = $this->db->resultSet();
+    return $result;
+  }
+
+  public function checkReturnTripsOnSameDate($data)
+  {
+    $this->db->query("SELECT trip_id, trip_status, trip_type FROM trip_information
+    WHERE DATE(date) = :date AND ve_id = :ve_id AND trip_type = :trip_type");
+    $this->db->bind(':ve_id', $data['ve_id']);
+    $this->db->bind(':date', $data['date']);
+    $this->db->bind(':trip_type', "Return");
     $result = $this->db->resultSet();
     return $result;
   }

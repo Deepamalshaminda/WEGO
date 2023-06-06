@@ -25,8 +25,11 @@ public function __construct()
 
 public function getVehicleById($id){
   $vehicle = $this->SendrequestModel->getVehicleById($id);
+  $children = $this->SendrequestModel->getChildrenByParent();
   $data = [
-    'vehicle' => $vehicle
+    'vehicle' => $vehicle,
+    'children'=> $children
+    
   ];
   $this->view('users/parent/viewvehicle', $data);
 }

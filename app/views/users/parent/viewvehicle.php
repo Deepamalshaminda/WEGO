@@ -20,10 +20,10 @@
 
 
     </div>
-
+ 
     <div class="wrapper">
         <div class="left">
-        <img src="<?=URLROOT?>/vehicle_image/<?=$data['vehicle']->vehicle_image?>" alt="user" width="150" height="100">
+            <img src="../public/img/ch2.png" alt="user" width="100">
             <h4><?php echo $data['vehicle']->ve_id ?></h4>
             <p>School service.</p>
         </div>
@@ -42,6 +42,7 @@
                         <h4>Start time : <?php echo $data['vehicle']->starttime ?></h4>
                         <br>
                         <h4>Ac/nonAC : <?php echo $data['vehicle']->Ac ?></h4>
+                        <!-- <form action="<!?php echo URLROOT; ?>/parents/addchild" method="post" enctype="multipart/form-data"> -->
                         
               <br>
                         <!--<p>Kevin Fernando</p>-->
@@ -59,6 +60,20 @@
                 <div class="projects_data">
                     <div class="data">
                         <form action="<?php echo URLROOT; ?>/D_ConnectionRequests/riderRequest" method="post">
+                        
+                        
+                        <div>
+                            <label for="child">Children: <sup>*</sup></label> <br>
+                            <select name="child" id="child">
+                                <option value="">Select a child</option>
+                                <?php foreach($data['children'] as $children) : ?>
+                                    <option value="<?php echo $children->ch_id; ?>"><?php echo $children->name; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                            
+                        </div> 
+                       
+                    
                             
                              
                             <input type="text" name="to_whom" value="<?php echo $data['vehicle']->ve_id ?>" hidden>

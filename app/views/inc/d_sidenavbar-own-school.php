@@ -39,6 +39,14 @@
                     <span class="links_name">Students to be Present</span>
                 </a>
             </li>
+
+            <li>
+                <a href="<?php echo URLROOT;?>/D_Own_School_Drivers/viewAddedChildren">
+                    <i class='bx bx-pie-chart-alt-2'></i>
+                    <span class="links_name">Added Children</span>
+                </a>
+            </li>
+
             <li>
                 <a href="<?php echo URLROOT;?>/D_Own_School_Drivers/viewProfile">
                     <i class='bx bx-book-alt'></i>
@@ -54,11 +62,27 @@
             </li>
 
             <li class="log_out">
-                <a href="<?php echo URLROOT;?>/Users/logout">
-                    <i class='bx bx-log-out'></i>
-                    <span class="links_name">Log out</span>
-                </a>
+              <a href="#" onclick="confirmLogout()">
+                <i class='bx bx-log-out'></i>
+                <span class="links_name">Log out</span>
+              </a>
             </li>
+
+            <script>
+            function confirmLogout() {
+              swal({
+                title: "Are you sure?",
+                text: "You will be logged out",
+                icon: "warning",
+                buttons: ["Cancel", "Logout"],
+                dangerMode: true,
+              }).then((confirm) => {
+                if (confirm) {
+                  window.location.href = '<?php echo URLROOT; ?>/Users/logout';
+                }
+              });
+            }
+            </script>
         </ul>
     </div>
 

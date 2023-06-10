@@ -117,7 +117,7 @@ class Email
 
             $this->mail->Body = "<h1 style='text-align: center; margin-top: 40px;'>Hello " . $receiverName . ",</h1>
                     <h2 style='color: #0A2558;'>Vehicle Assigning</h2>
-                    <h4>You have assigned to a Vehicle .<a href='http://localhost/projectwego/users/login'>here</a>.</h4>
+                    <h4>You have assigned to a Vehicle . Please login to WeGO <a href='http://localhost/projectwego/users/login'>here</a>.</h4>
                     <h3 style='color: #0A2558;'>Thank You!</h3>";
             $this->mail->send();
         } catch (Exception $e) {

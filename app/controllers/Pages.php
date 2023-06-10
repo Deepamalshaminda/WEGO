@@ -105,4 +105,11 @@ public function a_dashboard(){
   $this->view('users/admin/admindash', $data);
 }
 
+// public function viewDriverProfile(){
+//   $data = [
+//     'title' => 'Driver Profile'
+//   ];
+//   $this->view('users/driver/vehicle-own-school-transport/d_driver_profile', $data);
+// }
+
 }

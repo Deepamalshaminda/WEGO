@@ -27,7 +27,7 @@
               <br>
               <br>
               <div class="friend-actions">
-                <button class="details-button"><a href="<?php echo URLROOT ?>/Payments/paymentselector?ch_id=<?php echo $child->ch_id ?>">Make The Payment</a></button>
+                <button class="details-button"><a href="<?php echo URLROOT ?>/Payments/paymentselector/<?php echo $child->ch_id ?>">Make The Payment</a></button>
               </div>
             </div>
           <?php endforeach; ?>

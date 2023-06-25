@@ -1,38 +1,37 @@
-.home-content {
-    padding: 20px;
-  }
-  
-  h1 {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-  
-  .driver-card {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 20px;
-  }
-  
-  .driver-card img {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-bottom: 10px;
-  }
-  
-  .driver-card h3 {
-    font-size: 18px;
-    margin-bottom: 5px;
-  }
-  
-  .driver-card a {
-    display: block;
-    margin-top: 10px;
-    color: #007bff;
-  }
-  
-  .driver-card a:hover {
-    text-decoration: underline;
-  }
+.driver-card {
+  display: inline-block;
+  width: 40%; /* Adjust the width as per your preference */
+  margin: 10px;
+  margin-left: 50px;
+  padding: 10px;
+  border: 1px solid #e8e4e4;
+  border-radius: 15px;
+  text-align: center;
+  background-color: white;
+}
+
+.driver-card img {
+  width: 100px; /* Adjust the image size as per your preference */
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.driver-card .card-text {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.driver-card button {
+  padding: 8px 16px;
+  background-color: #251468;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.driver-card button:hover {
+  background-color: #4e30b9;
+}

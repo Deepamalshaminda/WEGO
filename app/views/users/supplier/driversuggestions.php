@@ -13,19 +13,18 @@
 
     <div class="home-content">
         <h1>Drivers Near You</h1>
-        <!-- <?php var_dump($drivers); ?>  -->
-        <?php foreach ($data['drivers'] as $driver): ?>
-  <div class="driver-card">
-    <img src="<?php echo $driver['profile_image']; ?>">
-   
-    <h3><?php echo $driver['name']; ?></h3>
-    <a href="driverdetails.php?id=<?php echo $driver['id']; ?>">View Details</a>
-  </div>
-<?php endforeach; ?>
-
+        <?php if (!empty($data['drivers'])): ?> 
+        <?php foreach ($data['drivers'] as $drivers): ?>
+            <div class="driver-card">
+                <img src="<?php echo URLROOT; ?>/img/profile_image/<?php echo $drivers->profile_image ?>" >
+                <h4 class="card-text"><?php echo $drivers->name; ?></h5>
+                <button>View Details</button>
+            </div>
+        <?php endforeach; ?>
+        <?php endif; ?>
     </div>
    
 <?php require APPROOT . '/views/inc/footer.php'; ?>
 
-
-   
+</body>
+</html>

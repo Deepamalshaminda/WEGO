@@ -8,14 +8,11 @@ class driversuggestions {
     }
 
     // Function to fetch drivers based on nearest town
-    public function getDriversByNearestTown($nearestTown) {
-        $this->db->query('SELECT profile_image, name FROM user WHERE role_id = 1 AND nearestTown = :nearestTown');
-        $this->db->bind(':nearestTown', $nearestTown);
-        $this->db->execute();
+    public function getDriverByNearestTown() {
+        $this->db->query('SELECT profile_image, name FROM user WHERE role_id = 1 AND nearestTown = "Galle" ');
+        
         $drivers = $this->db->resultSet();
     
-        // Debug statement
-        var_dump($drivers);
     
         return $drivers;
     }

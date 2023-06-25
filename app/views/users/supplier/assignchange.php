@@ -32,9 +32,7 @@
           <a href="<?php echo URLROOT?>/rides/assignDrivers/<?php echo $vehicle->ve_id; ?>">
             <button type="button" class="btn btn-primary assign-btn">Assign</button>
           </a>
-          <a href="<?php echo URLROOT?>/rides/changeDrivers">
-            <button type="button" class="btn btn-secondary change-btn">Change</button>
-          </a>
+         
         </div>
       </div>
     <?php endforeach; ?>
